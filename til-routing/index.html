@@ -52,7 +52,7 @@
   <meta itemprop="description" content="I’m currently studying for the CCNA exam, primarily using Jeremy’s IT Lab YouTube channel. He’s well-known for providing great CCNA content, and the best part is that it’s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.">
   <meta itemprop="datePublished" content="2024-06-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-06-18T00:00:00+00:00">
-  <meta itemprop="wordCount" content="86">
+  <meta itemprop="wordCount" content="583">
   <meta itemprop="keywords" content="Today I Learned">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -115,10 +115,70 @@
   
   
   <content>
-    <blockquote>
-<p>I&rsquo;m currently studying for the CCNA exam, primarily using Jeremy&rsquo;s IT Lab YouTube channel. He&rsquo;s well-known for providing great CCNA content, and the best part is that it&rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</p>
-</blockquote>
+    <p>I&rsquo;m currently studying for the CCNA exam, primarily using Jeremy&rsquo;s IT Lab YouTube channel. He&rsquo;s well-known for providing great CCNA content, and the best part is that it&rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</p>
 <p>Today, I learned about routing.</p>
+<h3 id="what-is-routing">What is Routing?</h3>
+<hr>
+<p>Definition:</p>
+<blockquote>
+<p>Routing is the process that routers use to determine the path that IP packets should take over a network to reach their destination.</p>
+</blockquote>
+<p>When a router receives a packet, it&rsquo;s the router&rsquo;s job to forward it to the correct destination.</p>
+<p>Routers store routes to all of their known destinations in a <strong>Routing table</strong>.</p>
+<p>Switches keep a MAC address table with their known destination MAC addresses, and routers keep a routing table with their known destination networks.</p>
+<p>When routers receive packets, they look in the routing table to find the best route to forward the packet.</p>
+<p>There are two main routing methods:</p>
+<ul>
+<li>
+<p><strong>dynamic routing</strong>: Routers use dynamic protocols (i.e., OSPF) to share routing information with each other automatically and build their routing tables.</p>
+</li>
+<li>
+<p><strong>static routing</strong>: A network engineer/admin manually configures routes on the router.
+But before we go into routing methods,</p>
+</li>
+</ul>
+<h3 id="what-exactly-is-a-route">What exactly is a route?</h3>
+<hr>
+<p>Basically, it&rsquo;s an instruction to the router.</p>
+<p>A route tells the router:</p>
+<ul>
+<li>To send a packet to destination X, you should send the packet to next-hop Y.</li>
+<li>or, if the destination is directly connected to the router, send the packet directly to the destination.</li>
+<li>or, if the destination is the router&rsquo;s own IP address, receive the packet for yourself (don&rsquo;t forward it).</li>
+</ul>
+<p>Also, there are few types of routes found in routing tables.</p>
+<ol>
+<li><strong>Connected routes</strong></li>
+<li><strong>Local routes</strong></li>
+</ol>
+<p><strong>Connected Routes</strong></p>
+<ul>
+<li>These are routes that are directly connected to a router&rsquo;s interface.</li>
+<li>they are automatically created when an interface is configured with an IP address and brought up. Connected routes are essential for a router to communicate with devices on the directly attached network.</li>
+</ul>
+<p><strong>Local Routes</strong></p>
+<ul>
+<li>These are routes to the IP addresses assigned to the router&rsquo;s own interfaces.</li>
+<li>Local routes are used to specify that the router can directly reach its own IP addresses. They have the highest priority in the routing table since the router must be able to communicate with its own interfaces.</li>
+<li><strong>/32</strong> netmask is used to specify the exact IP address of the interface.</li>
+</ul>
+<p>There&rsquo;s a special kind of static route called a <strong>default route</strong>.</p>
+<p>This is a route that you configure inside the router that says, if nothing else matches inside of our routing table, send the traffic this way.</p>
+<p>It&rsquo;s also known as the &ldquo;gateway of last resort&rdquo;</p>
+<p>A default route is a route to <strong>0.0.0.0/0</strong></p>
+<ul>
+<li><strong>/0</strong> means that all bits of the netmask are 0, so none of the bits of the addresses are fixed. They can all change to be either 0 or 1.</li>
+<li><strong>0.0.0.0/0</strong> is the least specific route possible; it includes every possible destination IP address.</li>
+<li>If the router doesn&rsquo;t have any more specific routes that match a packet&rsquo;s destination IP address, the router will forward the packet using the default route.</li>
+</ul>
+<ul>
+<li>A default route is often used to direct traffic to the Internet.
+<ul>
+<li>More specific routes are used for destinations in the internal corporate network.</li>
+<li>Traffic to destinations outside of the internal network is sent to the Internet.</li>
+</ul>
+</li>
+</ul>
 
   </content>
   <p>
