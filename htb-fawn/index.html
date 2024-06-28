@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[HTB] Fawn&nbsp;|&nbsp;leewook</title>
+<meta
+  name="title"
+  content="[HTB] Fawn"
+/>
+<meta
+  name="description"
+  content="Hopefully one day I will become very good at CTFs.
+TASK 1 What does the 3-letter acronym FTP stand for?
+File Transfer Protocol TASK 2
+Which port does the FTP service listen on usually?
+21 TASK 3
+What acronym is used for the secure version of FTP?
+SFTP Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).
+TASK 4
+What is the command we can use to send an ICMP echo request to test our connection to the target?"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="https://lbu0413.github.io/htb-fawn/">
+  <meta property="og:site_name" content="leewook">
+  <meta property="og:title" content="[HTB] Fawn">
+  <meta property="og:description" content="Hopefully one day I will become very good at CTFs.
+TASK 1 What does the 3-letter acronym FTP stand for?
+File Transfer Protocol TASK 2
+Which port does the FTP service listen on usually?
+21 TASK 3
+What acronym is used for the secure version of FTP?
+SFTP Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).
+TASK 4
+What is the command we can use to send an ICMP echo request to test our connection to the target?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-06-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-17T00:00:00+00:00">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTB] Fawn">
+  <meta name="twitter:description" content="Hopefully one day I will become very good at CTFs.
+TASK 1 What does the 3-letter acronym FTP stand for?
+File Transfer Protocol TASK 2
+Which port does the FTP service listen on usually?
+21 TASK 3
+What acronym is used for the secure version of FTP?
+SFTP Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).
+TASK 4
+What is the command we can use to send an ICMP echo request to test our connection to the target?">
+
+
+
+
+
+  <meta itemprop="name" content="[HTB] Fawn">
+  <meta itemprop="description" content="Hopefully one day I will become very good at CTFs.
+TASK 1 What does the 3-letter acronym FTP stand for?
+File Transfer Protocol TASK 2
+Which port does the FTP service listen on usually?
+21 TASK 3
+What acronym is used for the secure version of FTP?
+SFTP Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).
+TASK 4
+What is the command we can use to send an ICMP echo request to test our connection to the target?">
+  <meta itemprop="datePublished" content="2024-06-17T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-06-17T00:00:00+00:00">
+  <meta itemprop="wordCount" content="537">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[HTB] Fawn</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-06-17" pubdate>
+            17170-24-178
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <blockquote>
+<p>Hopefully one day I will become very good at CTFs.</p>
+</blockquote>
+<h5 id="task-1">TASK 1</h5>
+<p>What does the 3-letter acronym FTP stand for?</p>
+<p>File Transfer Protocol
+TASK 2</p>
+<p>Which port does the FTP service listen on usually?</p>
+<p>21
+TASK 3</p>
+<p>What acronym is used for the secure version of FTP?</p>
+<p>SFTP
+Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).</p>
+<p>TASK 4</p>
+<p>What is the command we can use to send an ICMP echo request to test our connection to the target?</p>
+<p>ping
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[<del>]
+└──╼ [★]$ ping 10.129.67.107
+PING 10.129.67.107 (10.129.67.107) 56(84) bytes of data.
+64 bytes from 10.129.67.107: icmp_seq=1 ttl=63 time=8.68 ms
+64 bytes from 10.129.67.107: icmp_seq=2 ttl=63 time=8.81 ms
+64 bytes from 10.129.67.107: icmp_seq=3 ttl=63 time=8.87 ms
+64 bytes from 10.129.67.107: icmp_seq=4 ttl=63 time=8.68 ms
+^C
+&mdash; 10.129.67.107 ping statistics &mdash;
+4 packets transmitted, 4 received, 0% packet loss, time 3006ms
+rtt min/avg/max/mdev = 8.679/8.760/8.873/0.082 ms
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[</del>]
+└──╼ [★]$
+TASK 5</p>
+<p>From your scans, what version is FTP running on the target?</p>
+<p>vsftpd 3.0.3
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
+└──╼ [★]$ nmap -sV 10.129.67.107
+Starting Nmap 7.93 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2024-06-17 05:49 BST
+Nmap scan report for 10.129.67.107
+Host is up (0.027s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT STATE SERVICE VERSION
+21/tcp open ftp vsftpd 3.0.3
+Service Info: OS: Unix</p>
+<p>Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .
+Nmap done: 1 IP address (1 host up) scanned in 0.60 seconds
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
+└──╼ [★]$
+TASK 6</p>
+<p>From your scans, what OS type is running on the target?</p>
+<p>Unix
+TASK 7</p>
+<p>What is the command we need to run in order to display the &lsquo;ftp&rsquo; client help menu?</p>
+<p>ftp -h
+TASK 8</p>
+<p>What is username that is used over FTP when you want to log in without having an account?</p>
+<p>anonymous
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
+└──╼ [★]$ ftp 10.129.67.107
+Connected to 10.129.67.107.
+220 (vsFTPd 3.0.3)
+Name (10.129.67.107:root): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt;
+TASK 9</p>
+<p>What is the response code we get for the FTP message &lsquo;Login successful&rsquo;?</p>
+<p>230
+230 Login successful.
+TASK 10</p>
+<p>There are a couple of commands we can use to list the files and directories available on the FTP server. One is dir. What is the other that is a common way to list files on a Linux system.</p>
+<p>ls
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
+└──╼ [★]$ ftp 10.129.67.107
+Connected to 10.129.67.107.
+220 (vsFTPd 3.0.3)
+Name (10.129.67.107:root): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r&ndash;r&ndash; 1 0 0 32 Jun 04 2021 flag.txt
+226 Directory send OK.
+ftp&gt;
+TASK 11</p>
+<p>What is the command used to download the file we found on the FTP server?</p>
+<p>get
+ftp&gt; get flag.txt
+local: flag.txt remote: flag.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for flag.txt (32 bytes).
+226 Transfer complete.
+32 bytes received in 0.00 secs (32.7225 kB/s)
+ftp&gt;
+SUBMIT THE FLAG</p>
+<p>Submit root flag</p>
+<p>035db21c881520061c53e0536e44f815
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[<del>]
+└──╼ [★]$ ls
+Desktop flag.txt my_data Templates
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[</del>]
+└──╼ [★]$ cat flag.txt
+035db21c881520061c53e0536e44f815
+┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
+└──╼ [★]$</p>
+
+  </content>
+  <p>
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
