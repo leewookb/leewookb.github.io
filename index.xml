@@ -17,122 +17,238 @@
       <guid>http://localhost:1313/htb-fawn/</guid>
       <description>Hopefully one day I will become very good at CTFs.
 TASK 1 What does the 3-letter acronym FTP stand for?
-File Transfer Protocol TASK 2
-Which port does the FTP service listen on usually?
-21 TASK 3
-What acronym is used for the secure version of FTP?
+File Transfer Protocol TASK 2 Which port does the FTP service listen on usually?
+21 TASK 3 What acronym is used for the secure version of FTP?
 SFTP Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).
-TASK 4
-What is the command we can use to send an ICMP echo request to test our connection to the target?</description>
+TASK 4 What is the command we can use to send an ICMP echo request to test our connection to the target?</description>
       <content:encoded><![CDATA[<blockquote>
 <p>Hopefully one day I will become very good at CTFs.</p>
 </blockquote>
 <h5 id="task-1">TASK 1</h5>
 <p>What does the 3-letter acronym FTP stand for?</p>
-<p>File Transfer Protocol
-TASK 2</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>File Transfer Protocol</code></pre>
+</br>
+<h5 id="task-2">TASK 2</h5>
 <p>Which port does the FTP service listen on usually?</p>
-<p>21
-TASK 3</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>21</code></pre>
+</br>
+<h5 id="task-3">TASK 3</h5>
 <p>What acronym is used for the secure version of FTP?</p>
-<p>SFTP
-Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).</p>
-<p>TASK 4</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>SFTP</code></pre>
+<p><code>Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).</code></p>
+</br>
+<h4 id="task-4">TASK 4</h4>
 <p>What is the command we can use to send an ICMP echo request to test our connection to the target?</p>
-<p>ping
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[<del>]
-└──╼ [★]$ ping 10.129.67.107
-PING 10.129.67.107 (10.129.67.107) 56(84) bytes of data.
-64 bytes from 10.129.67.107: icmp_seq=1 ttl=63 time=8.68 ms
-64 bytes from 10.129.67.107: icmp_seq=2 ttl=63 time=8.81 ms
-64 bytes from 10.129.67.107: icmp_seq=3 ttl=63 time=8.87 ms
-64 bytes from 10.129.67.107: icmp_seq=4 ttl=63 time=8.68 ms
-^C
-&mdash; 10.129.67.107 ping statistics &mdash;
-4 packets transmitted, 4 received, 0% packet loss, time 3006ms
-rtt min/avg/max/mdev = 8.679/8.760/8.873/0.082 ms
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[</del>]
-└──╼ [★]$
-TASK 5</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>ping</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ ping 10.129.67.107
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>PING 10.129.67.107 <span style="color:#89dceb;font-weight:bold">(</span>10.129.67.107<span style="color:#89dceb;font-weight:bold">)</span> 56<span style="color:#89dceb;font-weight:bold">(</span>84<span style="color:#89dceb;font-weight:bold">)</span> bytes of data.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#fab387">64</span> bytes from 10.129.67.107: <span style="color:#f5e0dc">icmp_seq</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span> <span style="color:#f5e0dc">ttl</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">63</span> <span style="color:#f5e0dc">time</span><span style="color:#89dceb;font-weight:bold">=</span>8.68 ms
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#fab387">64</span> bytes from 10.129.67.107: <span style="color:#f5e0dc">icmp_seq</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2</span> <span style="color:#f5e0dc">ttl</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">63</span> <span style="color:#f5e0dc">time</span><span style="color:#89dceb;font-weight:bold">=</span>8.81 ms
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#fab387">64</span> bytes from 10.129.67.107: <span style="color:#f5e0dc">icmp_seq</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">3</span> <span style="color:#f5e0dc">ttl</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">63</span> <span style="color:#f5e0dc">time</span><span style="color:#89dceb;font-weight:bold">=</span>8.87 ms
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#fab387">64</span> bytes from 10.129.67.107: <span style="color:#f5e0dc">icmp_seq</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">4</span> <span style="color:#f5e0dc">ttl</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">63</span> <span style="color:#f5e0dc">time</span><span style="color:#89dceb;font-weight:bold">=</span>8.68 ms
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>^C
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>--- 10.129.67.107 ping statistics ---
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#fab387">4</span> packets transmitted, <span style="color:#fab387">4</span> received, 0% packet loss, <span style="color:#89dceb">time</span> 3006ms
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>rtt min/avg/max/mdev <span style="color:#89dceb;font-weight:bold">=</span> 8.679/8.760/8.873/0.082 ms
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
+</br>
+<h5 id="task-5">TASK 5</h5>
 <p>From your scans, what version is FTP running on the target?</p>
-<p>vsftpd 3.0.3
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
-└──╼ [★]$ nmap -sV 10.129.67.107
-Starting Nmap 7.93 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2024-06-17 05:49 BST
-Nmap scan report for 10.129.67.107
-Host is up (0.027s latency).
-Not shown: 999 closed tcp ports (conn-refused)
-PORT STATE SERVICE VERSION
-21/tcp open ftp vsftpd 3.0.3
-Service Info: OS: Unix</p>
-<p>Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .
-Nmap done: 1 IP address (1 host up) scanned in 0.60 seconds
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
-└──╼ [★]$
-TASK 6</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>vsftpd 3.0.3</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ nmap -sV 10.129.67.107
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.93 <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-17 05:49 BST
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.67.107
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.027s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">999</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>conn-refused<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>21/tcp open ftp vsftpd 3.0.3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service Info: OS: Unix
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 0.60 seconds
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
+</br>
+<h5 id="task-6">TASK 6</h5>
 <p>From your scans, what OS type is running on the target?</p>
-<p>Unix
-TASK 7</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Unix</code></pre>
+</br>
+<h5 id="task-7">TASK 7</h5>
 <p>What is the command we need to run in order to display the &lsquo;ftp&rsquo; client help menu?</p>
-<p>ftp -h
-TASK 8</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>ftp -h</code></pre>
+</br>
+<h5 id="task-8">TASK 8</h5>
 <p>What is username that is used over FTP when you want to log in without having an account?</p>
-<p>anonymous
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
-└──╼ [★]$ ftp 10.129.67.107
-Connected to 10.129.67.107.
-220 (vsFTPd 3.0.3)
-Name (10.129.67.107:root): anonymous
-331 Please specify the password.
-Password:
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp&gt;
-TASK 9</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>anonymous</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ ftp 10.129.67.107
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Connected to 10.129.67.107.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#fab387">220</span> <span style="color:#89dceb;font-weight:bold">(</span>vsFTPd 3.0.3<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Name <span style="color:#89dceb;font-weight:bold">(</span>10.129.67.107:root<span style="color:#89dceb;font-weight:bold">)</span>: anonymous
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#fab387">331</span> Please specify the password.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#fab387">230</span> Login successful.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Remote system <span style="color:#89dceb">type</span> is UNIX.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Using binary mode to transfer files.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>ftp&gt;</span></span></code></pre></div>
+</br>
+<h5 id="task-9">TASK 9</h5>
 <p>What is the response code we get for the FTP message &lsquo;Login successful&rsquo;?</p>
-<p>230
-230 Login successful.
-TASK 10</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>230</code></pre>
+</br>
+<h5 id="task-10">TASK 10</h5>
 <p>There are a couple of commands we can use to list the files and directories available on the FTP server. One is dir. What is the other that is a common way to list files on a Linux system.</p>
-<p>ls
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
-└──╼ [★]$ ftp 10.129.67.107
-Connected to 10.129.67.107.
-220 (vsFTPd 3.0.3)
-Name (10.129.67.107:root): anonymous
-331 Please specify the password.
-Password:
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp&gt; ls
-200 PORT command successful. Consider using PASV.
-150 Here comes the directory listing.
--rw-r&ndash;r&ndash; 1 0 0 32 Jun 04 2021 flag.txt
-226 Directory send OK.
-ftp&gt;
-TASK 11</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>ls</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ ftp 10.129.67.107
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Connected to 10.129.67.107.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#fab387">220</span> <span style="color:#89dceb;font-weight:bold">(</span>vsFTPd 3.0.3<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Name <span style="color:#89dceb;font-weight:bold">(</span>10.129.67.107:root<span style="color:#89dceb;font-weight:bold">)</span>: anonymous
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#fab387">331</span> Please specify the password.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#fab387">230</span> Login successful.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Remote system <span style="color:#89dceb">type</span> is UNIX.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Using binary mode to transfer files.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>ftp&gt; ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#fab387">200</span> PORT <span style="color:#89dceb">command</span> successful. Consider using PASV.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#fab387">150</span> Here comes the directory listing.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>-rw-r--r-- <span style="color:#fab387">1</span> <span style="color:#fab387">0</span> <span style="color:#fab387">0</span> <span style="color:#fab387">32</span> Jun <span style="color:#fab387">04</span> <span style="color:#fab387">2021</span> flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#fab387">226</span> Directory send OK.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>ftp&gt;</span></span></code></pre></div>
+</br>
+<h5 id="task-11">TASK 11</h5>
 <p>What is the command used to download the file we found on the FTP server?</p>
-<p>get
-ftp&gt; get flag.txt
-local: flag.txt remote: flag.txt
-200 PORT command successful. Consider using PASV.
-150 Opening BINARY mode data connection for flag.txt (32 bytes).
-226 Transfer complete.
-32 bytes received in 0.00 secs (32.7225 kB/s)
-ftp&gt;
-SUBMIT THE FLAG</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>get</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>ftp&gt; get flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>local: flag.txt remote: flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#fab387">200</span> PORT <span style="color:#89dceb">command</span> successful. Consider using PASV.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span><span style="color:#fab387">150</span> Opening BINARY mode data connection <span style="color:#cba6f7">for</span> flag.txt <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">32</span> bytes<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#fab387">226</span> Transfer complete.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#fab387">32</span> bytes received in 0.00 secs <span style="color:#89dceb;font-weight:bold">(</span>32.7225 kB/s<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>ftp&gt;</span></span></code></pre></div>
+</br>
+<h5 id="submit-the-flag">SUBMIT THE FLAG</h5>
 <p>Submit root flag</p>
-<p>035db21c881520061c53e0536e44f815
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[<del>]
-└──╼ [★]$ ls
-Desktop flag.txt my_data Templates
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[</del>]
-└──╼ [★]$ cat flag.txt
-035db21c881520061c53e0536e44f815
-┌─[us-starting-point-vip-1-dhcp]─[10.10.14.27]─[leewookb@htb-psvucohdrg]─[~]
-└──╼ [★]$</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>035db21c881520061c53e0536e44f815</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Desktop flag.txt my_data Templates
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>035db21c881520061c53e0536e44f815
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
 ]]></content:encoded>
     </item>
     <item>
