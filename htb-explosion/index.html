@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[TIL] Explosion&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[TIL] Explosion"
+/>
+<meta
+  name="description"
+  content="some thoughts:
+It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be."
+/>
+<meta
+  name="keywords"
+  content="Hack The Box,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/htb-explosion/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[TIL] Explosion">
+  <meta property="og:description" content="some thoughts:
+It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-06-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-18T00:00:00+00:00">
+    <meta property="article:tag" content="Hack The Box">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[TIL] Explosion">
+  <meta name="twitter:description" content="some thoughts:
+It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.">
+
+
+
+
+
+  <meta itemprop="name" content="[TIL] Explosion">
+  <meta itemprop="description" content="some thoughts:
+It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.">
+  <meta itemprop="datePublished" content="2024-06-18T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-06-18T00:00:00+00:00">
+  <meta itemprop="wordCount" content="504">
+  <meta itemprop="keywords" content="Hack The Box">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[TIL] Explosion</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-06-18" pubdate>
+            2024-06-18
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <p>some thoughts:</p>
+<p>It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.
+If felt like an explosion inside my brain! just like the name of the box.</p>
+<div style="text-align: center"><img src="./explode-explosion.gif"></div>
+<hr>
+<h5 id="task-1">TASK 1</h5>
+<p>What does 3-letter acronym RDP stand for?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Remote Desktop Protocol</code></pre>
+<p>Remote Desktop Protocol (RDP) is a proprietary protocol developed by Microsoft, allowing users to connect to and control a remote computer over a network connection.</p>
+</br>
+<h5 id="task-2">TASK 2</h5>
+<p>What is a 3-letter acronym that refers to interaction with the host through a command line interface?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>CLI</code></pre>
+</br>
+<h5 id="task-3">TASK 3</h5>
+<p>What about graphical user interface interactions?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>GUI</code></pre>
+<br/>
+<h5 id="task-4">TASK 4</h5>
+<p>What is the name of an old remote access tool that came without encryption by default and listens on TCP port 23?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Telnet</code></pre>
+<p>Telnet is one of the oldest protocols, established in 1969. By default, Telnet operates over TCP port 23. One of Telnet&rsquo;s main drawbacks is that it transmits data, including login credentials, in plaintext. This lack of encryption makes it vulnerable to eavesdropping and man-in-the-middle attacks, which is why it has largely been replaced by more secure protocols like SSH (Secure Shell).</p>
+<br/>
+<h5 id="task-5">TASK 5</h5>
+<p>What is the name of the service running on port 3389 TCP?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>ms-wbt-server</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/HTB/connections<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sV 10.129.1.13 -p <span style="color:#fab387">3389</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-18 12:12 EDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.1.13
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.034s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>3389/tcp open ms-wbt-server Microsoft Terminal Services
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 6.45 seconds
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>As you can see from the output, the ms-wbt-server service is running on port 3389/TCP.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Also, I am using my Kali-Linux VM since I have used up all of my Pwnbox <span style="color:#89dceb">time</span> on Hack The Box.</span></span></code></pre></div>
+</br>
+<h5 id="task-6">TASK 6</h5>
+<p>What is the switch used to specify the target host&rsquo;s IP address when using xfreerdp?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>/v:</code></pre>
+<div style="text-align: center"><img src="./image7.png"></div>
+<br/>
+<h5 id="task-7">TASK 7</h5>
+<p>What username successfully returns a desktop projection to us with a blank password?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Administrator</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>/cert-ignore <span style="color:#89dceb;font-weight:bold">[</span>deprecated, use /cert:ignore<span style="color:#89dceb;font-weight:bold">]</span> Ignore
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>certificate</span></span></code></pre></div>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>/u:<span style="color:#89dceb;font-weight:bold">[[</span>&lt;domain&gt;<span style="color:#89b4fa">\]</span>&lt;user&gt;|&lt;user&gt;<span style="color:#89dceb;font-weight:bold">[</span>@&lt;domain&gt;<span style="color:#89dceb;font-weight:bold">]]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Username</span></span></code></pre></div>
+<div style="text-align: center"><img src="./image8.png"></div>
+<div style="text-align: center"><img src="./image9.png"></div>
+<p>I was discovered useful switch options through the <strong>xfreerdp &ndash;help</strong> command, but I had no idea how to find a specific username that would allow me to connect to the RDP server with a blank password, as the RDP session was not accepting my own username. I had to look up the write-up provided by HTB, which revealed that the username was Administrator. Now that I know the username, I thought to myself, why didn&rsquo;t I think of trying &lsquo;<strong>Administrator</strong>&rsquo;?
+The final command <strong>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator</strong> connected me to the RDP server with a blank password.</p>
+</br>
+<h5 id="submit-flag">SUBMIT FLAG</h5>
+<p>Submit root flag</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>951fa96d7830c451b536be5a6be008a0</code></pre>
+<div style="text-align: center"><img src="./image10.png"></div>
+<div style="text-align: center"><img src="./image11.png"></div>
+
+  </content>
+  <p>
+    
+      <a href="/blog/hack-the-box/">#Hack The Box</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
