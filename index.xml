@@ -24,6 +24,7 @@ TASK 4 What is the command we can use to send an ICMP echo request to test our c
       <content:encoded><![CDATA[<blockquote>
 <p>Hopefully one day I will become very good at CTFs.</p>
 </blockquote>
+<p><img src="./icandoit.gif" alt="i_can_do_it"></p>
 <h5 id="task-1">TASK 1</h5>
 <p>What does the 3-letter acronym FTP stand for?</p>
 
@@ -55,7 +56,7 @@ TASK 4 What is the command we can use to send an ICMP echo request to test our c
 <pre tabindex="0"><code>SFTP</code></pre>
 <p><code>Secure File Transfer Protocol. Designed by the Internet Engineering Task Force as an extension of Secure Shell (SSH).</code></p>
 </br>
-<h4 id="task-4">TASK 4</h4>
+<h5 id="task-4">TASK 4</h5>
 <p>What is the command we can use to send an ICMP echo request to test our connection to the target?</p>
 
 
@@ -249,6 +250,7 @@ TASK 4 What is the command we can use to send an ICMP echo request to test our c
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>035db21c881520061c53e0536e44f815
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
+<p><img src="./fawn.png" alt="fawn_cleared"></p>
 ]]></content:encoded>
     </item>
     <item>
