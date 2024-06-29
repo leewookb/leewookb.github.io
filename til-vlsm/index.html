@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[TIL] VLSM&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[TIL] VLSM"
+/>
+<meta
+  name="description"
+  content="VLSM (Variable-Length Subnet Masks) Until now, I have practiced subnetting used FLSM (Fixed-Length Subnet Masks). This means that all of the subnets use the same prefix length (ie. subnetting a Class C network into 4 subnets using /26).
+VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.
+Here&rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/til-vlsm/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[TIL] VLSM">
+  <meta property="og:description" content="VLSM (Variable-Length Subnet Masks) Until now, I have practiced subnetting used FLSM (Fixed-Length Subnet Masks). This means that all of the subnets use the same prefix length (ie. subnetting a Class C network into 4 subnets using /26).
+VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.
+Here’s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-06-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-27T00:00:00+00:00">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[TIL] VLSM">
+  <meta name="twitter:description" content="VLSM (Variable-Length Subnet Masks) Until now, I have practiced subnetting used FLSM (Fixed-Length Subnet Masks). This means that all of the subnets use the same prefix length (ie. subnetting a Class C network into 4 subnets using /26).
+VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.
+Here’s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto.">
+
+
+
+
+
+  <meta itemprop="name" content="[TIL] VLSM">
+  <meta itemprop="description" content="VLSM (Variable-Length Subnet Masks) Until now, I have practiced subnetting used FLSM (Fixed-Length Subnet Masks). This means that all of the subnets use the same prefix length (ie. subnetting a Class C network into 4 subnets using /26).
+VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.
+Here’s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto.">
+  <meta itemprop="datePublished" content="2024-06-27T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-06-27T00:00:00+00:00">
+  <meta itemprop="wordCount" content="778">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[TIL] VLSM</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-06-27" pubdate>
+            2024-06-27
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h3 id="vlsm-variable-length-subnet-masks">VLSM (Variable-Length Subnet Masks)</h3>
+<p>Until now, I have practiced subnetting used FLSM (Fixed-Length Subnet Masks). This means that all of the subnets use the same prefix length (ie. subnetting a Class C network into 4 subnets using /26).</p>
+<p>VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.</p>
+<br>
+<div style="text-align: center"><img src="./image-34.png"></div>
+<p>Here&rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto. We are assigned the <strong>192.168.1.0/24</strong> network and must divide it into 5 subnets to provide IP addresses for all hosts in the enterprise network.</p>
+<p>If we were to try this with FLSM (Fixed-length subnet masks), we would need to borrow 3 bits to make enough subnets. That would leave 5 host bits left. 5 host bits only allow 30 host addresses, so that&rsquo;s not enough addresses for Tokyo LAN A and Toronto LAN B.</p>
+<p>However, if we use VLSM we can assign different subnet sizes to each LAN, which will allow us to make sure each LAN has enough addresses available.</p>
+<br>
+<h3 id="steps-to-subnet-using-vlsm">Steps to subnet using VLSM</h3>
+<ol>
+<li>Assign the largest subnet at the start of the address space.</li>
+<li>Assign the second-largest subnet after it.</li>
+<li>Repeat the process until all subnets have been assigned.</li>
+</ol>
+<p>If we look at our network above, we will assign subnets in this following order:</p>
+<ol>
+<li>Tokyo LAN A</li>
+<li>Toronto LAN B</li>
+<li>Toronto LAN A</li>
+<li>Tokyo LAN B</li>
+<li>point-to-point connection</li>
+</ol>
+<br>
+<h3 id="tokyo-lan-a">Tokyo LAN A</h3>
+<p>Because we need to accommodate 110 hosts for Tokyo LAN A, we have to have at least 7 host bits, which leads to /25 prefix length.</p>
+<p>Convert the original address to binary bits</p>
+<ul>
+<li>11000000.10101000.00000001.00000000</li>
+</ul>
+<p>Network address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.00000000</li>
+</ul>
+<p>Broadcast address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.01111111</li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.1.0/25
+Broadcast address: 192.168.1.127/25
+First usable address: 192.168.1.1/25
+Last usable address: 192.168.1.126/25
+Total number of usable host addresses: 2^7 - 2 = 126</code></pre>
+<br>
+<h3 id="toronto-lan-b">Toronto LAN B</h3>
+<p>We have our first subnet, 192.168.1.0/25 for Tokyo LAN A. The network address of Toronto LAN B should be 192.168.1.128, just 1 up Tokyo LAN A&rsquo;s broadcast address. However, we have to calculate what prefix length we should use for Toronto LAN B.</p>
+<p>Because Toronto LAN B has to have 45 hosts, that means we have to have 6 host bits. That means, the prefix length of the subnet is going to be /26.</p>
+<p>Network address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.10000000</li>
+</ul>
+<p>Broadcast address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.10111111</li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.1.128/26
+Broadcast address: 192.168.1.191/26
+First usable address: 192.168.1.129/26
+Last usable address: 192.168.1.190/26
+Total number of usable host addresses: 2^6 - 2 = 62</code></pre>
+<br>
+<h3 id="toronto-lan-a">Toronto LAN A</h3>
+<p>Next is subnetting Toronto LAN A. The broadcast address of the previous subnet, Toronto LAN B, is 192.168.1.191/26. So, the network address of Toronto LAN A is 192.168.1.192, we just need to figure out the prefix length.</p>
+<p>Since we need to accommodate 29 hosts, we need to have 5 host bits. 2 ^ 5 - 2 = 30, which means the prefix length of the subnet is going to be /27.</p>
+<p>Network address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.11000000</li>
+</ul>
+<p>Broadcast address in binary:</p>
+<ul>
+<li>11000000.10101000.00000001.11011111</li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.1.192/27
+Broadcast address: 192.168.1.223/27
+First usable address: 192.168.1.193/27
+Last usable address: 192.168.1.222/27
+Total number of usable host addresses: 30</code></pre>
+<br>
+<h3 id="tokyo-lan-b">Tokyo LAN B</h3>
+<p>The broadcast address of Toronto LAN A is 192.168.1.223/27. To get the network address of Tokyo LAN B, we just need to add 1 to it. 192.168.1.224. Tokyo LAN B needs to have 8 hosts, which means 4 host bits are needed. The prefix length is /28.</p>
+<p>Network address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.11100000</li>
+</ul>
+<p>Broadcast address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.11101111</li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.1.224/28
+Broadcast address: 192.168.1.239/28
+First usable address: 192.168.1.225/28
+Last usable address: 192.168.1.238/28
+Total number of usable host addresses: 2 ^ 4 - 2 = 14.</code></pre>
+<br>
+<h3 id="point-to-point-connection">Point-to-point connection</h3>
+<p>The broadcast address of Tokyo LAN B is 192.168.1.239. Therefore, the network address of point-to-point connection is 192.168.1.240. Since this is a point-to-point connection, we only need to accommodate 2 hosts. Two answers are possible for this, the first choice is /31 prefix length. However, for the CCNA test, if you are asked what prefix length to use for a subnet that requires two hosts, it is recommended not using a /31 prefix length.</p>
+<p>Then, our other option is /30 prefix length because we need 2 host bits. (2 ^ 2 - 2 = 2).</p>
+<p>Network address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.11110000</li>
+</ul>
+<p>Broadcast address in binary</p>
+<ul>
+<li>11000000.10101000.00000001.11110011</li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.1.240/30
+Broadcast address: 192.168.1.243/30
+First usable address: 192.168.1.241/30
+Last usable address: 192.168.1.242/30
+Total number of usable host addresses: 2</code></pre>
+<br>
+<div style="text-align: center"><img src="./image-34.png"></div>
+Notice that each subnet uses a different prefix length. If we tried to use the same prefix length for each subnet, there wouldn't be enough address space.
+<hr>
+<p>Resources for practicing subnetting</p>
+<ul>
+<li><a href="http://www.subnettingquestions.com">http://www.subnettingquestions.com</a></li>
+<li><a href="http://subnetting.org">http://subnetting.org</a></li>
+<li><a href="https://subnettingpractice.com">https://subnettingpractice.com</a></li>
+</ul>
+
+  </content>
+  <p>
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
