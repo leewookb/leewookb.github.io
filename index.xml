@@ -8,8 +8,62 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Thu, 27 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[THM] OWASP Top 10 (2021)</title>
+      <link>http://localhost:1313/thm-owasp-top-10/</link>
+      <pubDate>Sun, 30 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/thm-owasp-top-10/</guid>
+      <description>What is OWASP? The Open Web Application Security Project, or OWASP, is an international non-profit organization dedicated to web application security. One of OWASP&amp;rsquo;s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.
+What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.</description>
+      <content:encoded><![CDATA[<h3 id="what-is-owasp">What is OWASP?</h3>
+<p>The <strong>Open Web Application Security Project, or OWASP</strong>, is an international non-profit organization dedicated to <strong>web application security</strong>. One of OWASP&rsquo;s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.</p>
+<h3 id="what-is-owasp-top-10">What is OWASP Top 10?</h3>
+<p><strong>The OWASP Top 10</strong> is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.</p>
+<blockquote>
+<ol>
+<li>Broken Access Control</li>
+<li>Cryptographic Failures</li>
+<li>Injection</li>
+<li>Insecure Design</li>
+<li>Security Misconfiguration</li>
+<li>Vulnerable and Outdated Components</li>
+<li>Identification and Authentication Failures</li>
+<li>Software and Data Integrity Failures</li>
+<li>Security Logging &amp; Monitoring Failures</li>
+<li>Server-Side Request Forgery (SSRF)</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="1-broken-access-control">1. Broken Access Control</h3>
+<p>Websites usually have pages that are protected from regular visitors. For example, only the site&rsquo;s admin user should be able to access a page to manage other users. If a website visitor can access protected pages they are not meant to see, then the access controls are <em>broken</em>.</p>
+<h4 id="broken-access-control-idor-challenge">Broken Access Control (IDOR Challenge)</h4>
+<p><strong>IDOR</strong> or <strong>Insecure Direct Object Reference</strong> refers to an access control vulnerability where you can access resources you wouldn&rsquo;t normally be able to see. This occurs when the programmer exposes a <strong>Direct Object Reference</strong>, which is just an identifier that refers to specific objects within the server. By object, it can refer to a file, a user, a bank account in a banking application, or anything.</p>
+<br>
+<p>Deploy the machine and go to <code>http://MACHINE_IP</code> - login with the username <em>noot</em> and the password <em>test1234</em>.</p>
+<br>
+Look at other user's notes. What is the flag?
+
+
+
+
+
+
+<pre tabindex="0"><code>flag{fivefourthree}</code></pre>
+<p><img src="image.png" alt="alt text"></p>
+
+
+
+
+
+
+<pre tabindex="0"><code>http://10.10.255.211/note.php?note_id=0</code></pre>
+<p><img src="image-1.png" alt="alt text">
+changed the <strong>id</strong> in the url from 1 to 0 and revealed the flag.</p>
+<h3 id="2-cryptographic-failures">2. Cryptographic Failures</h3>
+]]></content:encoded>
+    </item>
     <item>
       <title>[TIL] VLSM</title>
       <link>http://localhost:1313/til-vlsm/</link>
@@ -3929,10 +3983,6 @@ Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?
 <div style="display: inline-block; margin: 0 5px;">
     <img src="./leonlevi_kk.jpeg" alt="Image 3" style="width: 300px; height: auto;">
 </div>
-<!-- Image 5 -->
-<div style="display: inline-block; margin: 0 5px;">
-    <img src="./me_in_hat.jpeg" alt="Image 5" style="width: 300px; height: auto;">
-</div>
 <!-- Image 6 -->
 <div style="display: inline-block; margin: 0 5px;">
     <img src="./leon_and_levi.jpeg" alt="Image 5" style="width: 300px; height: auto;">
@@ -3948,6 +3998,14 @@ Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?
 <!-- Image 9 -->
 <div style="display: inline-block; margin: 0 5px;">
     <img src="./levi_close_shot.jpeg" alt="Image 5" style="width: 300px; height: auto;">
+</div>
+<!-- Image 10 -->
+<div style="display: inline-block; margin: 0 5px;">
+    <img src="./leon_close_shot_2.jpeg" alt="Image 5" style="width: 300px; height: auto;">
+</div>
+<!-- Image 11 -->
+<div style="display: inline-block; margin: 0 5px;">
+    <img src="./levi_sitting_on_a_stool.jpeg" alt="Image 5" style="width: 300px; height: auto;">
 </div>
 </div>
 ]]></content:encoded>
