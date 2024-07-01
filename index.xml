@@ -177,8 +177,8 @@ What is the admin&rsquo;s plaintext password?</p>
 
 
 <pre tabindex="0"><code>0</code></pre>
-<p>In order to find users in Linux, we can use the following command: <code>cat /etc/passwd</code>.
-<img src="image-7.png" alt="alt text"></p>
+<p>In order to find users in Linux, we can use the following command: <code>cat /etc/passwd</code>.</p>
+<p><img src="image-7.png" alt="alt text"></p>
 <p>However, there are so many users in the output. We are only interested in <strong>non-root/non-service/non-daemon</strong> users.</p>
 <p>We need to remember that Linux-based systems have two types of users: <code>system</code> and <code>normal</code> users.</p>
 <ul>
@@ -383,12 +383,137 @@ Total number of usable host addresses: 2</code></pre>
 <div style="text-align: center"><img src="./image-34.png"></div>
 Notice that each subnet uses a different prefix length. If we tried to use the same prefix length for each subnet, there wouldn't be enough address space.
 <hr>
+<h3 id="vlsm-lab">VLSM LAB</h3>
+<p><img src="image.png" alt="alt text"></p>
+<p>We will assign the subnets in the following order:</p>
+<ol>
+<li>LAN 2 (64 hosts)</li>
+<li>LAN 1 (45 hosts)</li>
+<li>LAN 3 (14 hosts)</li>
+<li>LAN 4 (9 hosts)</li>
+<li>Point-to-point (2 hosts)</li>
+</ol>
+<h4 id="lan-2">LAN 2</h4>
+<p>convert the <code>192.168.5.0/24</code> network address to binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.000000</code></li>
+</ul>
+<p>Because we have to accommodate 64 hosts for LAN 2, we need 7 host bits <code>2^7 - 2 = 126</code>. That means, the prefix length of the subent will be <code>/25</code>.</p>
+<p>Network address in binary</p>
+<ul>
+<li><code>11000000.10101000.00000101.000000</code></li>
+</ul>
+<p>Broadcast address in binary</p>
+<ul>
+<li><code>11000000.10101000.00000101.01111111</code></li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.5.0/25
+Broadcast address: 192.168.5.127/25
+First usable address: 192.168.5.1/25
+Last usable address: 192.168.5.126/25</code></pre>
+<h4 id="lan-1">LAN 1</h4>
+<p>The subnet with the second biggest hosts is LAN 1.
+We know the broadcast address of LAN 2, so the network address of LAN 1 is just <code>broadcast address of LAN 2 + 1</code>.</p>
+<p>However, we still need to find the prefix length. LAN 1 needs to accomodate 45 hosts, which needs 6 host bits. That leads to <code>/26</code> prefix length.</p>
+<p>Convert the network address <code>192.168.5.128/26</code> to binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.10000000</code>.</li>
+</ul>
+<p>Broadcast address in binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.10111111</code>.</li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.5.128/26
+Broadcast address: 192.168.5.191/26
+First usable address: 192.168.5.129/26
+Last usable address: 192.168.5.190/26</code></pre>
+<h4 id="lan-3">LAN 3</h4>
+<p>Network address: <code>192.168.5.192</code>
+prefix length: <code>/28</code></p>
+<p>Network address in binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.11000000</code></li>
+</ul>
+<p>Broadcast address in binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.11001111</code></li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.5.192/28
+Broadcast address: 192.168.5.207/28
+First usable address: 192.168.5.193/28
+Last usable address: 192.168.5.206/28</code></pre>
+<h3 id="lan-4">LAN 4</h3>
+<p>Network address: <code>192.168.5.208</code>
+Prefix length:<code>/28</code></p>
+<p>Network address in binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.11010000</code></li>
+</ul>
+<p>Broadcast address in binary:
+<code>11000000.10101000.00000101.11011111</code></p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.5.208/28
+Broadcast address: 192.168.5.223/28
+First usable address: 192.168.5.209/28
+Last usable address: 192.168.5.222/28</code></pre>
+<h3 id="point-to-point">Point-to-point</h3>
+<p>Network address: <code>192.168.5.224</code>
+prefix length: <code>/30</code></p>
+<p>Network address in binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.11100000</code></li>
+</ul>
+<p>Broadcast address in binary:</p>
+<ul>
+<li><code>11000000.10101000.00000101.11100011</code></li>
+</ul>
+
+
+
+
+
+
+<pre tabindex="0"><code>Network address: 192.168.5.224/30
+Broadcast address: 192.168.5.227/30
+First usable address: 192.168.5.225/30
+Last usable address: 192.168.5.226/30</code></pre>
+<hr>
 <p>Resources for practicing subnetting</p>
 <ul>
 <li><a href="http://www.subnettingquestions.com">http://www.subnettingquestions.com</a></li>
 <li><a href="http://subnetting.org">http://subnetting.org</a></li>
 <li><a href="https://subnettingpractice.com">https://subnettingpractice.com</a></li>
 </ul>
+
+
+
+
+
+
+<pre tabindex="0"><code></code></pre>
 ]]></content:encoded>
     </item>
     <item>
