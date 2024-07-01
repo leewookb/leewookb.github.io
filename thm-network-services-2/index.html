@@ -64,7 +64,7 @@ Network File System What process allows an NFS client to interact with a remote 
 Mounting By using NFS, users and programs can access files on remote systems as if they were local files.">
   <meta itemprop="datePublished" content="2024-06-26T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-06-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="5240">
+  <meta itemprop="wordCount" content="5241">
   <meta itemprop="keywords" content="TryHackMe">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -133,7 +133,7 @@ Mounting By using NFS, users and programs can access files on remote systems as 
   
   
   <content>
-    <p>This is the second series on Network Services in the <strong>Network Exploitation Basics</strong> module of the Complete Beginner path. I really learned a lot and a lot of new protocols and tools were introduced.</p>
+    <p>This is the second series on Network Services in the <code>Network Exploitation Basics</code> module of the Complete Beginner path. I really learned a lot and a lot of new protocols and tools were introduced.</p>
 <h3 id="nfs">NFS</h3>
 <hr>
 <h4 id="understanding-nfs">Understanding NFS</h4>
@@ -228,12 +228,12 @@ A computer running Windows Server can act as an NFS file server for other non-Wi
 </li>
 <li>
 <p>Mounting NFS shares</p>
-<p>Your client&rsquo;s system needs a directory where all the content shared by the host server in the export folder can be accessed. You can create this folder anywhere on your system. Once you&rsquo;ve created this mount point, you can use the &ldquo;mount&rdquo; command to connect the NFS share to the mount point on your machine like so: <strong>sudo mount -t nfs IP:share /tmp/mount/ -nolock</strong></p>
-<p><strong>sudo</strong> : run as root <br>
-<strong>mount</strong> : execute the mount command <br>
-<strong>-t nfs</strong> : type of device to mount, then specifying that it&rsquo;s NFS <br>
-<strong>IP:share</strong>: the IP address of the NFS server, and the name of the share we wish to mount <br>
-<strong>-nolock</strong>: specifies not to use NLM locking</p>
+<p>Your client&rsquo;s system needs a directory where all the content shared by the host server in the export folder can be accessed. You can create this folder anywhere on your system. Once you&rsquo;ve created this mount point, you can use the &ldquo;mount&rdquo; command to connect the NFS share to the mount point on your machine like so: <code>sudo mount -t nfs IP:share /tmp/mount/ -nolock</code></p>
+<p><code>sudo</code> : run as root <br>
+<code>mount</code> : execute the mount command <br>
+<code>-t nfs</code> : type of device to mount, then specifying that it&rsquo;s NFS <br>
+<code>IP:share</code>: the IP address of the NFS server, and the name of the share we wish to mount <br>
+<code>-nolock</code>: specifies not to use NLM locking</p>
 </li>
 </ol>
 <br>
@@ -296,7 +296,7 @@ A computer running Windows Server can act as an NFS file server for other non-Wi
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>| <span style="color:#fab387">100003</span> <span style="color:#fab387">3</span> 2049/udp nfs
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>| <span style="color:#fab387">100003</span> 3,4 2049/tcp nfs</span></span></code></pre></div>
 <br>
-<p>Now, use <strong>/usr/sbin/showmount -e [IP]</strong> to list the NFS shares, what is the name of the visible share?</p>
+<p>Now, use <code>/usr/sbin/showmount -e [IP]</code> to list the NFS shares, what is the name of the visible share?</p>
 
 
 
@@ -315,7 +315,7 @@ A computer running Windows Server can act as an NFS file server for other non-Wi
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>/home <span style="color:#89b4fa">\*</span></span></span></code></pre></div>
 <br>
 Time to mount the share to our local machine!
-<p>First, use <strong>mkdir /tmp/mount</strong> to create a directory on your machine to mount the share to. This is in the /tmp directory - so be aware that it will be removed on restart.</p>
+<p>First, use <code>mkdir /tmp/mount</code> to create a directory on your machine to mount the share to. This is in the /tmp directory - so be aware that it will be removed on restart.</p>
 <p>Then, use the mount command we broke down earlier to mount the NFS share to your local machine. Change directory to where you mounted the share – what is the name of the folder inside?</p>
 
 
@@ -373,11 +373,11 @@ Time to mount the share to our local machine!
 
 
 <pre tabindex="0"><code>id_rsa</code></pre>
-<p><strong>id_rsa</strong> is the default name of an SSH identity file.</p>
+<p><code>id_rsa</code> is the default name of an SSH identity file.</p>
 <br>
-<p>Copy this file to a different location your local machine, and change the permission to &ldquo;600&rdquo; using <strong>chmod 600 [file]</strong>.</p>
+<p>Copy this file to a different location your local machine, and change the permission to &ldquo;600&rdquo; using <code>chmod 600 [file]</code>.</p>
 <p>Assuming we were right about what type of directory this is, we can pretty easily work out the name of the user this key corresponds to.</p>
-<p>Can we log into the machine using <strong>ssh -i <key-file> <username>@&lt;ip&gt; ?</strong> (Y/N).</p>
+<p>Can we log into the machine using <code>ssh -i &lt;key-file&gt; &lt;username&gt;@\&lt;ip&gt; ?</code> (Y/N).</p>
 
 
 
@@ -428,7 +428,7 @@ Time to mount the share to our local machine!
 <h5 id="suid">SUID</h5>
 <p>So, what are files with the SUID bit set? Essentially, this means that the file or files can be run with the permissions of the file(s) owner/group. In this case, as the super-user. We can leverage this to get a shell with these privileges!</p>
 <p>Due to compatibility reasons, we will obtain the bash executable directly from the target machine.
-With the key obtained in the previous task, we can use SCP with the command <strong>scp -i key_name <a href="mailto:username@10.10.14.168">username@10.10.14.168</a>:/bin/bash ~/Downloads/bash</strong> to download it onto our attacking machine.</p>
+With the key obtained in the previous task, we can use SCP with the command <code>scp -i key_name username@10.10.14.168:/bin/bash ~/Downloads/bash</code> to download it onto our attacking machine.</p>
 <p>Here&rsquo;s a step by step of the actions we&rsquo;re taking, and how they all tie together to allow us to gain a root shell:</p>
 <ol>
 <li>NFS Access</li>
@@ -476,7 +476,7 @@ With the key obtained in the previous task, we can use SCP with the command <str
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>bash
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>root@ip-10-10-233-18:/tmp/mount/cappucino# sudo chown root bash</span></span></code></pre></div>
 <br>
-<p>Now, we&rsquo;re going to add the SUID bit permission to the bash executable we just copied to the share using <strong>sudo chmod +[permission] bash</strong>. What letter do we use to set the SUID bit set using chmod?</p>
+<p>Now, we&rsquo;re going to add the SUID bit permission to the bash executable we just copied to the share using <code>sudo chmod +[permission] bash</code>. What letter do we use to set the SUID bit set using chmod?</p>
 
 
 
@@ -484,13 +484,13 @@ With the key obtained in the previous task, we can use SCP with the command <str
 
 
 <pre tabindex="0"><code>s</code></pre>
-<p>The letter <strong>s</strong> is used to set the setuid (SUID) bit using the <strong>chmod</strong> command in Linux:</p>
+<p>The letter <code>s</code> is used to set the setuid (SUID) bit using the <code>chmod</code> command in Linux:</p>
 <ul>
 <li>chmod u+s &lt;/path/to/the/file&gt;: Sets the setuid bit symbolically</li>
 <li>chmod u-s: Removes the setuid bit</li>
 </ul>
 <br>
-<p>Let&rsquo;s do a sanity check, let&rsquo;s check the permissions of the <strong>bash</strong> executable using <strong>ls -la bash</strong>. What does the permission set look like? Make sure that it ends with -sr-x.</p>
+<p>Let&rsquo;s do a sanity check, let&rsquo;s check the permissions of the <code>bash</code> executable using <code>ls -la bash</code>. What does the permission set look like? Make sure that it ends with -sr-x.</p>
 
 
 
@@ -760,7 +760,7 @@ Where does the SMTP server send the email if the recipient's server is not avail
 
 <pre tabindex="0"><code>Postfix</code></pre>
 <br>
-<p>Good! We&rsquo;ve now got a good amount of information on the target system to move onto the next stage. Let&rsquo;s search for the module <strong>smtp_enum</strong>, what is the full module name?</p>
+<p>Good! We&rsquo;ve now got a good amount of information on the target system to move onto the next stage. Let&rsquo;s search for the module <code>smtp_enum</code>, what is the full module name?</p>
 
 
 
@@ -788,8 +788,8 @@ Where does the SMTP server send the email if the recipient's server is not avail
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>msf6 auxiliary<span style="color:#89dceb;font-weight:bold">(</span>scanner/smtp/smtp_version<span style="color:#89dceb;font-weight:bold">)</span> &gt;</span></span></code></pre></div>
 <br>
-<p>We&rsquo;re going to be using the <strong>top-usernames-shortlist.txt</strong> wordlist from the usernames subsection of seclists (/usr/share/wordlists/SecLists/usernames if you have it installed).
-Seclists is an amazing collection of wordlists. If you&rsquo;re running Kali or Parrot you can install seclists with: <strong>sudo apt install seclists</strong>.</p>
+<p>We&rsquo;re going to be using the <code>top-usernames-shortlist.txt</code> wordlist from the usernames subsection of seclists (/usr/share/wordlists/SecLists/usernames if you have it installed).
+Seclists is an amazing collection of wordlists. If you&rsquo;re running Kali or Parrot you can install seclists with: <code>sudo apt install seclists</code>.</p>
 <br>
 <p>What option do we need to set to the wordlist&rsquo;s path?</p>
 
@@ -871,17 +871,17 @@ Seclists is an amazing collection of wordlists. If you&rsquo;re running Kali or 
 <li>The type of SMTP server and Operating System running.</li>
 </ol>
 <p>We know from our port scan, that the only other open port on this machine is an SSH login. We&rsquo;re going to use this information to try and bruteforce the password of the SSH login for our user using Hydra.</p>
-<p>There is a wide array of customizability when it comes to using Hydra. Hydra uses dictionary attacks primarily, both Kali Linux and Parrot OS have many different wordlists in the <strong>/usr/share/wordlists directory</strong> – If you would like to browse and find a different wordlists to the widely used &ldquo;rockyou.txt&rdquo;.</p>
+<p>There is a wide array of customizability when it comes to using Hydra. Hydra uses dictionary attacks primarily, both Kali Linux and Parrot OS have many different wordlists in the <code>/usr/share/wordlists directory</code> – If you would like to browse and find a different wordlists to the widely used &ldquo;rockyou.txt&rdquo;.</p>
 <p>The syntax for the command we&rsquo;re going to use to find the password is this:</p>
-<p><strong>hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.54.3 ssh</strong></p>
+<p><code>hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.54.3 ssh</code></p>
 <ul>
-<li><strong>hydra</strong>: runs the hydra tool</li>
-<li><strong>-t 16</strong>: number of parallel connections per target</li>
-<li><strong>-l [user]</strong>: points to the user whose account you&rsquo;re trying to compromise</li>
-<li><strong>-P [path to dictionary]</strong>: points to the file containing the list of possible passwords</li>
-<li><strong>-vV</strong>: sets verbose mode to very verbose, shows the login+pass combination for each attempt</li>
-<li><strong>[machine ip]</strong>: the IP address of the target machine</li>
-<li><strong>ssh / protocol</strong>: sets the protocol</li>
+<li><code>hydra</code>: runs the hydra tool</li>
+<li><code>-t 16</code>: number of parallel connections per target</li>
+<li><code>-l [user]</code>: points to the user whose account you&rsquo;re trying to compromise</li>
+<li><code>-P [path to dictionary]</code>: points to the file containing the list of possible passwords</li>
+<li><code>-vV</code>: sets verbose mode to very verbose, shows the login+pass combination for each attempt</li>
+<li><code>[machine ip]</code>: the IP address of the target machine</li>
+<li><code>ssh / protocol</code>: sets the protocol</li>
 </ul>
 <br>
 <p>What is the password of the user we found during our enumeration stage?</p>
@@ -1026,7 +1026,7 @@ What language is MySQL based on?
 <pre tabindex="0"><code>Facebook</code></pre>
 <br>
 <h4 id="enumerating-mysql">Enumerating MySQL</h4>
-<p>Typically, you will have gained some initial credentials from enumerating other services that you can then use to enumerate and exploit the MySQL service. For the sake of the scenario, we&rsquo;re going to assume that we found the <strong>credentials: &ldquo;root:password&rdquo;</strong> while enumerating subdomains of a web server. After trying the login against SSH unsuccessfully, you decide to try it against MySQL.</p>
+<p>Typically, you will have gained some initial credentials from enumerating other services that you can then use to enumerate and exploit the MySQL service. For the sake of the scenario, we&rsquo;re going to assume that we found the <code>credentials: &quot;root:password&quot;</code> while enumerating subdomains of a web server. After trying the login against SSH unsuccessfully, you decide to try it against MySQL.</p>
 <br>
 <p>As always, let&rsquo;s start out with a port scan, so we know what port the service we&rsquo;re trying to attack is running on. What port is MySQL using?</p>
 
@@ -1046,7 +1046,7 @@ What language is MySQL based on?
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>3306/tcp open mysql MySQL 5.7.29-0ubuntu0.18.04.1</span></span></code></pre></div>
 <br>
-<p>Good, now – we think we have a set of credentials. Let&rsquo;s double check that by manually connecting to the MySQL server. We can do this using command <strong>mysql -h [IP] -u [username] -p</strong>.</p>
+<p>Good, now – we think we have a set of credentials. Let&rsquo;s double check that by manually connecting to the MySQL server. We can do this using command <code>mysql -h [IP] -u [username] -p</code>.</p>
 
 
 
@@ -1115,7 +1115,7 @@ What language is MySQL based on?
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>msf6 &gt;</span></span></code></pre></div>
 <br>
-<p>We&rsquo;re going to be using the <strong>mysql_sql</strong> module.
+<p>We&rsquo;re going to be using the <code>mysql_sql</code> module.
 Search for, select and list the options it needs. What three options do we need to set? (in descending order).</p>
 
 
@@ -1174,7 +1174,7 @@ USERNAME</code></pre>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>msf6 auxiliary<span style="color:#89dceb;font-weight:bold">(</span>admin/mysql/mysql_sql<span style="color:#89dceb;font-weight:bold">)</span> &gt; <span style="color:#89dceb">set</span> PASSWORD password
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#f5e0dc">PASSWORD</span> <span style="color:#89dceb;font-weight:bold">=</span>&gt; password</span></span></code></pre></div>
 <br>
-<p>Run the exploit. By default it will test with the <strong>select version()</strong> command, what result does this give you?</p>
+<p>Run the exploit. By default it will test with the <code>select version()</code> command, what result does this give you?</p>
 
 
 
@@ -1253,11 +1253,11 @@ USERNAME</code></pre>
 </ol>
 <br>
 <p><em>Schema</em>
-In MySQL, physically, a <strong>schema</strong> is synonymous with a <strong>database</strong>. You can substitute the keyword schema instead of database in MySQL SQL syntax, for example using <strong>CREATE SCHEMA</strong> instead of <strong>CREATE DATABASE</strong>. Some other database products draw a distinction.</p>
+In MySQL, physically, a <code>schema</code> is synonymous with a <code>database</code>. You can substitute the keyword schema instead of database in MySQL SQL syntax, for example using <code>CREATE SCHEMA</code> instead of <code>CREATE DATABASE</code>. Some other database products draw a distinction.</p>
 <p><em>Hashes</em>
 Hashes are the product of a cryptographic algorithm to turn a variable length input into a fixed length output. In MySQL hashes can be used in different ways, for instance to index data into a hash table. Each hash has a unique ID that serves as a pointer to the original data.</p>
 <br>
-<p>First, let&rsquo;s search for and select the <strong>mysql_schemadump</strong> module. What&rsquo;s the module&rsquo;s full name?</p>
+<p>First, let&rsquo;s search for and select the <code>mysql_schemadump</code> module. What&rsquo;s the module&rsquo;s full name?</p>
 
 
 
@@ -1431,7 +1431,7 @@ What is the user/hash combination string?</p>
 
 <pre tabindex="0"><code>carl:*EA031893AA21444B170FC2162A56978B8CEECE18</code></pre>
 <br>
-<p>Now, we need to crack the password! Let&rsquo;s try <strong>John the Ripper</strong> against it using: <strong>john hash.txt</strong>. What is the password of the user we found?</p>
+<p>Now, we need to crack the password! Let&rsquo;s try <code>John the Ripper</code> against it using: <code>john hash.txt</code>. What is the password of the user we found?</p>
 
 
 

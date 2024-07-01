@@ -126,24 +126,24 @@ First, we determined that the prefix length needs to be /26 because each subnet 
   
   <content>
     <div style="text-align: center"><img src="./image-30.png"></div>
-<p>Divide the <strong>192.168.1.0/24</strong> network into 4 subnets that can accommodate 45 number of hosts.</p>
-<p>First, we determined that the prefix length needs to be <strong>/26</strong> because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is <strong>2^n - 2</strong>, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.</p>
-<p>The network address of <strong>subnet 1</strong> is 192.168.1.0/26. To find the broadcast address of subnet 1, we first convert the subnet 1 address to binary:
-<strong>11000000.10101000.00000001.00000000</strong></p>
+<p>Divide the <code>192.168.1.0/24</code> network into 4 subnets that can accommodate 45 number of hosts.</p>
+<p>First, we determined that the prefix length needs to be <code>/26</code> because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.</p>
+<p>The network address of <code>subnet 1</code> is 192.168.1.0/26. To find the broadcast address of subnet 1, we first convert the subnet 1 address to binary:
+<code>11000000.10101000.00000001.00000000</code></p>
 <p>Then, we change all the Host ID bits to 1, leaving the Network ID bits unchanged:
-<strong>11000000.10101000.00000001.00111111</strong></p>
+<code>11000000.10101000.00000001.00111111</code></p>
 <p>Converting these binary bits back to dotted decimal format gives us the broadcast address (the highest address in this subnet) of subnet 1.
-<strong>192.168.1.63/26</strong>.</p>
+<code>192.168.1.63/26</code>.</p>
 <p>So, the address range of subnet1 is 192.168.1.0 - 192.168.1.63.</p>
-<p>The network address of <strong>subnet 2</strong> will be 1 higher than the broadcast address of <strong>subnet 1</strong>. So, 192.168.1.64/26.</p>
-<p>192.168.1.64 in binary is <strong>11000000.10101000.00000001.01000000</strong>.
-Covert all the host bits to 1s. <strong>11000000.10101000.00000001.01111111</strong></p>
-<p>Convert the binary bits back to dotted decimal and it becomes <strong>192.168.1.127</strong>.</p>
+<p>The network address of <code>subnet 2</code> will be 1 higher than the broadcast address of <code>subnet 1</code>. So, 192.168.1.64/26.</p>
+<p>192.168.1.64 in binary is <code>11000000.10101000.00000001.01000000</code>.
+Covert all the host bits to 1s. <code>11000000.10101000.00000001.01111111</code></p>
+<p>Convert the binary bits back to dotted decimal and it becomes <code>192.168.1.127</code>.</p>
 <p>The address range of subnet 2 is 192.168.1.64 to 192.168.1.127.</p>
 <p>You might have noticed that each subnet is 64 bits apart. To find next subnet&rsquo;s network address, simply add this value to the current subnet.</p>
 <p>Take the image below as an example.</p>
 <div style="text-align: center"><img src="./image-31.png"></div>
-Let's just focus on the last octet here. The last octet in binary is **00000000**. The first 2 bits is the network ID, which we borrowed to expand the network ID and the last 6 bits is the host ID. The trick to find each subnet's network address is to remember the value of last bit of the network portion, which is 64, in this case.
+<p>Let&rsquo;s just focus on the last octet here. The last octet in binary is <code>00000000</code>. The first 2 bits is the network ID, which we borrowed to expand the network ID and the last 6 bits is the host ID. The trick to find each subnet&rsquo;s network address is to remember the value of last bit of the network portion, which is 64, in this case.</p>
 <br>
 <br>
 <br>
@@ -159,18 +159,18 @@ For the number of subnets, each additional bit that you borrow doubles the numbe
 <div style="text-align: center"><img src="./image-33.png"></div>
 we have to borrow 7 bits. 16 + 7 = /23.
 <ol start="2">
-<li>You have been given the <strong>172.22.0.0/16</strong> network. You are required to divide the network into 500 separate subnets. What prefix should you use?</li>
+<li>You have been given the <code>172.22.0.0/16</code> network. You are required to divide the network into 500 separate subnets. What prefix should you use?</li>
 </ol>
 <p>First of all, looking at the /16 prefix length, it seems like subnetting needs to be done in a Class B network. To create 500 subnets, we need to determine how many bits to borrow.</p>
 <p>2^8 is 256, and 2^9 is 512. Therefore, we need to borrow 9 bits. Starting from a Class B network, which has a /16 prefix length, we add 9 bits to get a /25 prefix length. This means we should use a /25 prefix length.</p>
 <ol start="3">
-<li>You have been given the <strong>172.18.0.0/16</strong> network. Your company requires 250 subnets with the same number of hosts per subnet. What prefix length should you use?</li>
+<li>You have been given the <code>172.18.0.0/16</code> network. Your company requires 250 subnets with the same number of hosts per subnet. What prefix length should you use?</li>
 </ol>
-<p><strong>/24</strong> . 2^8 = 256 subnets could be made. Also /24 prefix length will leave 8, the number of host bits which could lead to 2^8 - 2, 254.</p>
+<p><code>/24</code> . 2^8 = 256 subnets could be made. Also /24 prefix length will leave 8, the number of host bits which could lead to 2^8 - 2, 254.</p>
 <ol start="4">
 <li>
 <p>What subnet does host 172.25.217.192/21 belong to?</p>
-<p>Let&rsquo;s convert <strong>172.25.217.192</strong> to binary bits.
+<p>Let&rsquo;s convert <code>172.25.217.192</code> to binary bits.
 10101100.00011001.11011001.11000000</p>
 <p>change all of the host bits to 0.
 10101100.00011001.11011000.00000000</p>
@@ -180,7 +180,7 @@ we have to borrow 7 bits. 16 + 7 = /23.
 </ol>
 <h3 id="quiz">Quiz</h3>
 <hr>
-<p>Q1. You have been given the <strong>172.30.0.0/16</strong> network. Your company requires 100 subnets with at least 500 hosts per subnet. What prefix length should you use?</p>
+<p>Q1. You have been given the <code>172.30.0.0/16</code> network. Your company requires 100 subnets with at least 500 hosts per subnet. What prefix length should you use?</p>
 
 
 
@@ -189,7 +189,7 @@ we have to borrow 7 bits. 16 + 7 = /23.
 
 <pre tabindex="0"><code>/23</code></pre>
 <br>
-<p>Q2. What subnet does host <strong>172.21.111.201/20</strong> belong to?</p>
+<p>Q2. What subnet does host <code>172.21.111.201/20</code> belong to?</p>
 
 
 
@@ -198,9 +198,9 @@ we have to borrow 7 bits. 16 + 7 = /23.
 
 <pre tabindex="0"><code>172.21.96.0/20</code></pre>
 <ul>
-<li>Convert the address to binary: <strong>10101100.00010101.01101111.11001001</strong></li>
-<li>Change the host bits to 0s. Since the prefix length is <strong>/20</strong> , we can set the last 12 bits to 0s: <strong>10101100.00010101.01100000.00000000</strong></li>
-<li>Convert the binary bits back to dotted decimal: <strong>172.21.96.0/20</strong></li>
+<li>Convert the address to binary: <code>10101100.00010101.01101111.11001001</code></li>
+<li>Change the host bits to 0s. Since the prefix length is <code>/20</code> , we can set the last 12 bits to 0s: <code>10101100.00010101.01100000.00000000</code></li>
+<li>Convert the binary bits back to dotted decimal: <code>172.21.96.0/20</code></li>
 </ul>
 <br>
 <p>Q3. What is the broadcast address of the network 192.168.91.78/26 belongs to?</p>
@@ -214,17 +214,17 @@ we have to borrow 7 bits. 16 + 7 = /23.
 <ul>
 <li>Convert the address to binary bits:
 <ul>
-<li><strong>11000000.10101000.01011011.01001110</strong>.</li>
+<li><code>11000000.10101000.01011011.01001110</code>.</li>
 </ul>
 </li>
 <li>Change all of the host bits to 0s to find the network address of the subnet:
 <ul>
-<li><strong>11000000.10101000.01011011.01000000</strong>.</li>
+<li><code>11000000.10101000.01011011.01000000</code>.</li>
 </ul>
 </li>
 <li>Change all of the host bits to 1s to find the broadcast address of the subnet:
 <ul>
-<li><strong>11000000.10101000.01011011.01111111</strong>.</li>
+<li><code>11000000.10101000.01011011.01111111</code>.</li>
 </ul>
 </li>
 <li>Change the binary bits back to dotted decimal
@@ -235,7 +235,7 @@ we have to borrow 7 bits. 16 + 7 = /23.
 </li>
 </ul>
 <br>
-<p>Q4. You divide the <strong>172.16.0.0/16</strong> network into 4 subnets of equal size. Identify the network and broadcast addresses of the second subnet.</p>
+<p>Q4. You divide the <code>172.16.0.0/16</code> network into 4 subnets of equal size. Identify the network and broadcast addresses of the second subnet.</p>
 
 
 
@@ -267,7 +267,7 @@ broadcast address: 172.16.127.255/18</code></pre>
 
 
 <pre tabindex="0"><code>64</code></pre>
-<p>To divide the network into subnets that each accommodate 1,000 hosts, we first need to determine how many bits are required for the hosts. The formula for calculating the number of hosts is <strong>2^n - 2</strong>, where n is the number of host bits. If we use 10 bits for the hosts, we get 2^10 - 2 = 1,022 hosts, which is more than enough.</p>
+<p>To divide the network into subnets that each accommodate 1,000 hosts, we first need to determine how many bits are required for the hosts. The formula for calculating the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If we use 10 bits for the hosts, we get 2^10 - 2 = 1,022 hosts, which is more than enough.</p>
 <p>The maximum prefix length is /32. Subtracting the 10 host bits from 32 gives us a prefix length of /22. Therefore, the subnet mask of the subnets will be /22. The original subnet mask was /16, so we&rsquo;ve borrowed 6 bits from the original network for subnetting. With these 6 additional bits, we can create 64 (2^6) subnets.</p>
 
   </content>

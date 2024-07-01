@@ -174,7 +174,7 @@ DHCPv6 IAID.....................:
 DHCPv6 Client DUID..............: 00-01-00-01-09-99-E5-2C-00-D0-BA-11-11-11
 DNS Servers.....................: ::
 0.0.0.0</code></pre>
-<p>the last four digits of PC1&rsquo;s MAC Address is <strong>1111</strong> . We are sending a packet from PC1 to PC4, which means the source IP Address is <strong>192.168.1.1</strong> (PC1&rsquo;s IP Address) and the destination IP Address is <strong>192.168.3.1</strong> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <strong>default gateway</strong>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
+<p>the last four digits of PC1&rsquo;s MAC Address is <code>1111</code> . We are sending a packet from PC1 to PC4, which means the source IP Address is <code>192.168.1.1</code> (PC1&rsquo;s IP Address) and the destination IP Address is <code>192.168.3.1</code> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <code>default gateway</code>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
 
 
 
@@ -185,7 +185,7 @@ DNS Servers.....................: ::
 R1#show interfaces g0/0
 GigabitEthernet0/0 is up, line protocol is up (connected)
 Hardware is CN Gigabit Ethernet, address is 0000.01aa.aaaa (bia 00d0.ff77.0101)</code></pre>
-<p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <strong>aaaa</strong> .</p>
+<p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <code>aaaa</code> .</p>
 <div style="text-align: center"><img src="./image16.png"></div>
 <br/>
 <h5 id="q2-sourcedestination-mac-addresses-at-sw1--r1-segment">Q2. Source/Destination MAC addresses at SW1 → R1 segment.</h5>
@@ -210,9 +210,9 @@ Destination MAC Address: AAAA</code></pre>
 Destination MAC address: CCCC</code></pre>
 <p>Like I already mentioned, the source and destination IP addresses will remain the same, as R1 encapsulates the packet with an Ethernet header, it will use the MAC address of its g0/1 interface as the source MAC address and the MAC address of R2&rsquo;s g0/0 interface, which is the next hop in the route, as the destination MAC address.</p>
 <div style="text-align: center"><img src="./image17.png"></div>
-<p>The last four digits of R1&rsquo;s g0/1 interface MAC address is <strong>BBBB</strong>.</p>
+<p>The last four digits of R1&rsquo;s g0/1 interface MAC address is <code>BBBB</code>.</p>
 <div style="text-align: center"><img src="./image18.png"></div>
-<p>The last four digits of R2&rsquo;s g0/0 interface MAC address is <strong>CCCC</strong>.</p>
+<p>The last four digits of R2&rsquo;s g0/0 interface MAC address is <code>CCCC</code>.</p>
 <div style="text-align: center"><img src="./image19.png"></div>
 <p>Here, on Cisco Packet Tracer, we can confirm the source/destination MAC address on the Ethernet header in Layer 2.</p>
 <br/>
@@ -227,9 +227,9 @@ Destination MAC address: CCCC</code></pre>
 Destination MAC address: EEEE</code></pre>
 <p>The source MAC address will be R2&rsquo;s interface g0/1 and the destination MAC address will be R3&rsquo;s interface g0/0.</p>
 <div style="text-align: center"><img src="./image20.png"></div>
-<p>The last four digits of R2&rsquo;s interface g0/1 MAC address is <strong>DDDD</strong>.</p>
+<p>The last four digits of R2&rsquo;s interface g0/1 MAC address is <code>DDDD</code>.</p>
 <div style="text-align: center"><img src="./image21.png"></div>
-<p>The last four digits of R3&rsquo;s interface g0/0 MAC address is <strong>EEEE</strong>.</p>
+<p>The last four digits of R3&rsquo;s interface g0/0 MAC address is <code>EEEE</code>.</p>
 <div style="text-align: center"><img src="./image22.png"></div>
 <br/>
 <h5 id="q5-e-sourcedestination-mac-addresses-at-r3--sw2-segment">Q5. E. Source/Destination MAC addresses at R3 → SW2 segment.</h5>
@@ -241,10 +241,10 @@ Destination MAC address: EEEE</code></pre>
 
 <pre tabindex="0"><code>Source MAC address: FFFF
 Destination MAC address: 4444</code></pre>
-<p>At this point, the destination IP address is part of a network connected to R3, <strong>192.168.3.0/24</strong> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
-<p>The source MAC address will be R3&rsquo;s g0/1 interface, which is <strong>FFFF</strong> .</p>
+<p>At this point, the destination IP address is part of a network connected to R3, <code>192.168.3.0/24</code> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
+<p>The source MAC address will be R3&rsquo;s g0/1 interface, which is <code>FFFF</code> .</p>
 <div style="text-align: center"><img src="./image23.png"></div>
-<p>The destination MAC address will be PC4&rsquo;s MAC address, which turned out to be <strong>4444</strong> (the last 4 digits).</p>
+<p>The destination MAC address will be PC4&rsquo;s MAC address, which turned out to be <code>4444</code> (the last 4 digits).</p>
 
 
 

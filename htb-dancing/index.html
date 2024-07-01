@@ -267,7 +267,7 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 
 
 <pre tabindex="0"><code>WorkShares</code></pre>
-<p>Running the <strong>smbclient -L 10.129.1.12</strong> command, we can see that four separate shares are displayed. The default administrative shares often include the $ symbol at the end of their name to indicate they are hidden shares. As we can see that <strong>ADMIN$</strong> , <strong>C$</strong>, <strong>IPC$</strong> shares all include the symbol at the end. On the other hand, <strong>WorkShares</strong> share does not include this symbol, which is an indicator that it is a user-created, or custom, share.</p>
+<p>Running the <code>smbclient -L 10.129.1.12</code> command, we can see that four separate shares are displayed. The default administrative shares often include the $ symbol at the end of their name to indicate they are hidden shares. As we can see that <code>ADMIN$</code> , <code>C$</code>, <code>IPC$</code> shares all include the symbol at the end. On the other hand, <code>WorkShares</code> share does not include this symbol, which is an indicator that it is a user-created, or custom, share.</p>
 </br>
 <h5 id="task-7">TASK 7</h5>
 <p>What is the command we can use within the SMB shell to download the files we find?</p>
@@ -293,11 +293,11 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>.. D <span style="color:#fab387">0</span> Mon Mar <span style="color:#fab387">29</span> 09:22:01 <span style="color:#fab387">2021</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>Amy.J D <span style="color:#fab387">0</span> Mon Mar <span style="color:#fab387">29</span> 10:08:24 <span style="color:#fab387">2021</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">9</span><span>James.P D <span style="color:#fab387">0</span> Thu Jun <span style="color:#fab387">3</span> 09:38:03 <span style="color:#fab387">2021</span></span></span></code></pre></div>
-<p>In order to connect to the custom share, <strong>WorkShares</strong> , we need to specify the target&rsquo;s IP address and the target SMB share. The command is <strong>smbclient \\{target_IP}\{target_share}</strong>.</p>
+<p>In order to connect to the custom share, <code>WorkShares</code> , we need to specify the target&rsquo;s IP address and the target SMB share. The command is <code>smbclient \\\\{target_IP}\\{target_share}</code>.</p>
 <ul>
 <li>The double backslashes (&rsquo;\\&rsquo;) are used to escape the backslashes in the path.</li>
-<li>The path <strong>{target_IP}\WorkShares</strong> refers to the &ldquo;WorkShares&rdquo; share on the machine identified by &lsquo;{target_IP}&rsquo;</li>
-<li>We were able to connect to the custom share and I used the command ls to list all of the contents of the directories within the share. The command showed us two directories, one is <strong>Amy.J</strong> and another is <strong>James.P</strong> .</li>
+<li>The path <code>{target_IP}\\WorkShares</code> refers to the &ldquo;WorkShares&rdquo; share on the machine identified by &lsquo;{target_IP}&rsquo;</li>
+<li>We were able to connect to the custom share and I used the command ls to list all of the contents of the directories within the share. The command showed us two directories, one is <code>Amy.J</code> and another is <code>James.P</code> .</li>
 </ul>
 
 
@@ -336,7 +336,7 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>smb: <span style="color:#89b4fa">\J</span>ames.P<span style="color:#89b4fa">\&gt;</span> get flag.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>getting file <span style="color:#89b4fa">\J</span>ames.P<span style="color:#89b4fa">\f</span>lag.txt of size <span style="color:#fab387">32</span> as flag.txt <span style="color:#89dceb;font-weight:bold">(</span>0.7 KiloBytes/sec<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">(</span>average 1.5 KiloBytes/sec<span style="color:#89dceb;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>smb: <span style="color:#89b4fa">\J</span>ames.P<span style="color:#89b4fa">\&gt;</span></span></span></code></pre></div>
-<p>I used <strong>cd</strong> command to visit Amy.J folder and found &lsquo;worknotes.txt&rsquo; file, which we can download using the <strong>get</strong> command. Also we moved inside the James.P directory as well and downloaded the flag.txt file.</p>
+<p>I used <code>cd</code> command to visit Amy.J folder and found &lsquo;worknotes.txt&rsquo; file, which we can download using the <code>get</code> command. Also we moved inside the James.P directory as well and downloaded the flag.txt file.</p>
 
 
 
@@ -350,7 +350,7 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-bozzgppq95<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ cat flag.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>5f61c10dffbc77a704d76016a22f1664</span></span></code></pre></div>
-<p>Since we got everything we needed from the share, we can exit out of the SMB server and the files we downloaded are saved inside the location where we ran our <strong>smbclient</strong> command from.
+<p>Since we got everything we needed from the share, we can exit out of the SMB server and the files we downloaded are saved inside the location where we ran our <code>smbclient</code> command from.
 <br/>
 <br/></p>
 <h5 id="submit-flag">SUBMIT FLAG</h5>

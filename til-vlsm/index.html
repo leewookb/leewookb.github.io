@@ -132,7 +132,7 @@ Here’s an example of a small enterprise network. There are two LANs in Tokyo a
 <p>VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.</p>
 <br>
 <div style="text-align: center"><img src="./image-34.png"></div>
-<p>Here&rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto. We are assigned the <strong>192.168.1.0/24</strong> network and must divide it into 5 subnets to provide IP addresses for all hosts in the enterprise network.</p>
+<p>Here&rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto. We are assigned the <code>192.168.1.0/24</code> network and must divide it into 5 subnets to provide IP addresses for all hosts in the enterprise network.</p>
 <p>If we were to try this with FLSM (Fixed-length subnet masks), we would need to borrow 3 bits to make enough subnets. That would leave 5 host bits left. 5 host bits only allow 30 host addresses, so that&rsquo;s not enough addresses for Tokyo LAN A and Toronto LAN B.</p>
 <p>However, if we use VLSM we can assign different subnet sizes to each LAN, which will allow us to make sure each LAN has enough addresses available.</p>
 <br>

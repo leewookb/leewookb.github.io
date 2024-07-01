@@ -56,7 +56,7 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 This box was the most challenging one to crack so far, but I feel incredibly accomplished seeing my progress. I really enjoy writing about my experiences in this personal space, even though no one else is seeing it. I’m practicing not to rely on external sources unless I’ve tried everything I can on my own, and I’m really glad I’ve decided to do so. Working on this box has made me feel like I’m going to remember every step I took to get the flag.">
   <meta itemprop="datePublished" content="2024-06-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-06-18T00:00:00+00:00">
-  <meta itemprop="wordCount" content="751">
+  <meta itemprop="wordCount" content="752">
   <meta itemprop="keywords" content="Hack The Box">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -154,7 +154,7 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 0.71 seconds</span></span></code></pre></div>
-<p>Initially, scanning ports on the target IP address did not reveal any open ports. Therefore, I had to expand my scan to include more ports. By default, Nmap scans only the most commonly used 1,000 ports, which are statistically the most likely to be open based on real-world usage. By adding the <strong>-p-</strong> option, Nmap scans all 65,535 ports on the target IP address. This extended scan revealed that port 6379/tcp is open.</p>
+<p>Initially, scanning ports on the target IP address did not reveal any open ports. Therefore, I had to expand my scan to include more ports. By default, Nmap scans only the most commonly used 1,000 ports, which are statistically the most likely to be open based on real-world usage. By adding the <code>-p-</code> option, Nmap scans all 65,535 ports on the target IP address. This extended scan revealed that port 6379/tcp is open.</p>
 
 
 
@@ -204,8 +204,8 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 
 
 <pre tabindex="0"><code>redis-cli</code></pre>
-<p>To be able to interact with the Redis server, we need to download the <strong>redis-cli</strong> utility. It can be downloaded using the command below.</p>
-<p><strong>sudo apt install redis-tools</strong></p>
+<p>To be able to interact with the Redis server, we need to download the <code>redis-cli</code> utility. It can be downloaded using the command below.</p>
+<p><code>sudo apt install redis-tools</code></p>
 <br/>
 <h5 id="task-5">TASK 5</h5>
 <p>which flag is used with the Redis command-line utility to specify the hostname?</p>
@@ -238,7 +238,7 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 
 
 <pre tabindex="0"><code>info</code></pre>
-<p>The answer to this question was a bit challenging to find. A quick Google search would have provided it in seconds, but I wanted to challenge my self. After I got a successful connection with the Redis server, I typed the <strong>help</strong> command to gain some insights.</p>
+<p>The answer to this question was a bit challenging to find. A quick Google search would have provided it in seconds, but I wanted to challenge my self. After I got a successful connection with the Redis server, I typed the <code>help</code> command to gain some insights.</p>
 
 
 
@@ -252,7 +252,7 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#a6e3a1">&#34;help &lt;command&gt;&#34;</span> <span style="color:#cba6f7">for</span> <span style="color:#89dceb">help</span> on &lt;command&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#a6e3a1">&#34;help &lt;tab&gt;&#34;</span> to get a list of possible <span style="color:#89dceb">help</span> topics
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span><span style="color:#a6e3a1">&#34;quit&#34;</span> to exit</span></span></code></pre></div>
-<p>The output indicated that <strong>help <tab></strong> command would list possible help topics. Each time I pressed the tab key, the topic changed. Then I found <strong>@server</strong> topic, which seemed promising since I was looking for a command to obtain the information and statistics about the Redis server.</p>
+<p>The output indicated that <code>help &lt;tab&gt;</code> command would list possible help topics. Each time I pressed the tab key, the topic changed. Then I found <code>@server</code> topic, which seemed promising since I was looking for a command to obtain the information and statistics about the Redis server.</p>
 
 
 
