@@ -62,6 +62,173 @@ Look at other user's notes. What is the flag?
 <p><img src="image-1.png" alt="alt text">
 changed the <strong>id</strong> in the url from 1 to 0 and revealed the flag.</p>
 <h3 id="2-cryptographic-failures">2. Cryptographic Failures</h3>
+<p>A <strong>cryptographic failure</strong> refers to any vulnerability arising from the misuse of cryptographic alogrithms for protecting sensitive information. Web applications require cryptography to provide confidentiality for their users at many levels.</p>
+<h4 id="cryptographic-failures-challenge">Cryptographic Failures (Challenge)</h4>
+<p>Have a look around the web app. The developer has left themselves a note indicating that there is sensitive data in a specific directory.</p>
+<p>What is the name of the mentioned directory?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>/assets</code></pre>
+<p><img src="image-2.png" alt="alt text"></p>
+<br>
+<p>Navigate to the directory you found in question one. What file stands out as being likely to contain sensitive data?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>webapp.db</code></pre>
+<p><img src="image-3.png" alt="alt text"></p>
+<br>
+<p>Use the supporting material to access the sensitive data. What is the password hash of the admin user?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>6eea9b7ef19179a06954edd0f6c05ceb</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>└─$ file webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>webapp.db: SQLite 3.x database, last written using SQLite version 3022000, file counter 255, database pages 7, 1st free page 5, free pages 1, cookie 0x6, schema 4, UTF-8, version-valid-for <span style="color:#fab387">255</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>└─$ sqlite3 webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>SQLite version 3.44.2 2023-11-24 11:41:44
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Enter <span style="color:#a6e3a1">&#34;.help&#34;</span> <span style="color:#cba6f7">for</span> usage hints.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>sqlite&gt; .tables
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>sessions  users
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>sqlite&gt; PRAGMA table_info<span style="color:#89dceb;font-weight:bold">(</span>users<span style="color:#89dceb;font-weight:bold">)</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>0|userID|TEXT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>1|username|TEXT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>2|password|TEXT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>3|admin|INT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>sqlite&gt; SELECT * FROM users;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>4413096d9c933359b898b6202288a650|admin|6eea9b7ef19179a06954edd0f6c05ceb|<span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>23023b67a32488588db1e28579ced7ec|Bob|ad0234829205b9033196ba818f7a872b|<span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>4e8423b514eef575394ff78caed3254d|Alice|268b38ca7b84f44fa0a6cdc86e6301e0|<span style="color:#fab387">0</span></span></span></code></pre></div>
+<br>
+<p>Crack the hash.
+What is the admin&rsquo;s plaintext password?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>qwertyuiop</code></pre>
+<p><img src="image-4.png" alt="alt text"></p>
+<br>
+<p>Login as the admin. What is the flag?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Yzc2YjdkMjE5N2VjMzNhOTE3NjdiMjdl}</code></pre>
+<p><img src="image-5.png" alt="alt text"></p>
+<br>
+<h3 id="3-injection">3. Injection</h3>
+<p>Injection flaws occur because the application interprets user-controlled input as commands or parameters.</p>
+<p>Some common examples:</p>
+<ul>
+<li><strong>SQL Injection</strong></li>
+<li><strong>Command Injection</strong></li>
+</ul>
+<p>The main defence for preventing injection attacks is ensuring that user-controlled input is not interpreted as queries or commands.</p>
+<ul>
+<li><strong>Allow list</strong>: checks input by comparing it to a list of safe inputs. If the input is marked as safe, then it is processed. Otherwise, it&rsquo;s rejected.</li>
+<li><strong>Stripping input</strong>: If the input contains dangerous characters, these are removed before processing.</li>
+</ul>
+<h4 id="command-injection">Command Injection</h4>
+<p>Command Injection occurs when server-side code in a web app makes a call to a function that interacts with the server&rsquo;s console directly. An Injection web vulnerability allows an attacker to take advantage of that call to execute operating system commands arbitrarily on the server.</p>
+<br>
+<p>What strange text file is in the website&rsquo;s root directory?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>drpepper.txt</code></pre>
+<p><img src="image-6.png" alt="alt text"></p>
+<br>
+<p>How many non-root/non-service/non-daemon users are there?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>0</code></pre>
+<p>In order to find users in Linux, we can use the following command: <code>cat /etc/passwd</code>.
+<img src="image-7.png" alt="alt text"></p>
+<p>However, there are so many users in the output. We are only interested in <strong>non-root/non-service/non-daemon</strong> users.</p>
+<p>We need to remember that Linux-based systems have two types of users: <code>system</code> and <code>normal</code> users.</p>
+<ul>
+<li><code>system users</code> are entities created by the system to run non-interactive processes, the processes that run in the background and do not require human interaction.</li>
+<li><code>normal users</code> are human users created by root or another user with root privileges.</li>
+</ul>
+<p>Both system and normal users in Linux have a <code>Unique User ID (UID)</code> to identify them.</p>
+<ul>
+<li>System users have UIDs in the range from <code>0 (root user) to 999</code>.</li>
+<li>Normal users typically receive UIDs from <code>1000 onwards</code></li>
+</ul>
+<p>I researched further to understand <code>/etc/passwd</code> file fields.</p>
+<p><img src="image-8.png" alt="alt text"></p>
+<p>arrow #3 represents the UID. From the output of our commands <code>cat /etc/passwd</code>, I found only one user that has UID higher than 1000.
+That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsquo; is a reserved user created by the system. Therefore, the answer to the question is actually 0.</p>
+<p><img src="image-9.png" alt="alt text"></p>
+<br>
+<p>What user is this app running as?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>apache</code></pre>
+<p>In order to find the current user, we can run the following command: <code>$(whoami)</code>
+<img src="image-10.png" alt="alt text"></p>
+<br>
+<p>What is the user&rsquo;s shell set as?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>/sbin/nologin</code></pre>
+<p><code>$(cat /etc/passwd)</code> command we saw above shows that user apache&rsquo;s shell at the very bottom.</p>
+<p><img src="image-11.png" alt="alt text"></p>
+<br>
+<p>What version of Alpine Linux is running?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>3.16.0</code></pre>
+<p>The hint of the question tells us that the version can be found in <code>/etc/alpine-release</code>.</p>
+<p><img src="image-12.png" alt="alt text"></p>
+<h3 id="4-insecure-design">4. Insecure Design</h3>
 ]]></content:encoded>
     </item>
     <item>
