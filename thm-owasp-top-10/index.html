@@ -159,7 +159,7 @@ Look at other user's notes. What is the flag?
 
 
 <pre tabindex="0"><code>flag{fivefourthree}</code></pre>
-<p><img src="image.png" alt="alt text"></p>
+<p><img src="image.png#center" alt="alt text"></p>
 
 
 
@@ -167,7 +167,7 @@ Look at other user's notes. What is the flag?
 
 
 <pre tabindex="0"><code>http://10.10.255.211/note.php?note_id=0</code></pre>
-<p><img src="image-1.png" alt="alt text">
+<p><img src="image-1.png#center" alt="alt text">
 changed the <strong>id</strong> in the url from 1 to 0 and revealed the flag.</p>
 <h3 id="2-cryptographic-failures">2. Cryptographic Failures</h3>
 <p>A <strong>cryptographic failure</strong> refers to any vulnerability arising from the misuse of cryptographic alogrithms for protecting sensitive information. Web applications require cryptography to provide confidentiality for their users at many levels.</p>
@@ -181,7 +181,7 @@ changed the <strong>id</strong> in the url from 1 to 0 and revealed the flag.</p
 
 
 <pre tabindex="0"><code>/assets</code></pre>
-<p><img src="image-2.png" alt="alt text"></p>
+<p><img src="image-2.png#center" alt="alt text"></p>
 <br>
 <p>Navigate to the directory you found in question one. What file stands out as being likely to contain sensitive data?</p>
 
@@ -191,7 +191,7 @@ changed the <strong>id</strong> in the url from 1 to 0 and revealed the flag.</p
 
 
 <pre tabindex="0"><code>webapp.db</code></pre>
-<p><img src="image-3.png" alt="alt text"></p>
+<p><img src="image-3.png#center" alt="alt text"></p>
 <br>
 <p>Use the supporting material to access the sensitive data. What is the password hash of the admin user?</p>
 
@@ -240,7 +240,7 @@ What is the admin&rsquo;s plaintext password?</p>
 
 
 <pre tabindex="0"><code>qwertyuiop</code></pre>
-<p><img src="image-4.png" alt="alt text"></p>
+<p><img src="image-4.png#center" alt="alt text"></p>
 <br>
 <p>Login as the admin. What is the flag?</p>
 
@@ -250,7 +250,7 @@ What is the admin&rsquo;s plaintext password?</p>
 
 
 <pre tabindex="0"><code>THM{Yzc2YjdkMjE5N2VjMzNhOTE3NjdiMjdl}</code></pre>
-<p><img src="image-5.png" alt="alt text"></p>
+<p><img src="image-5.png#center" alt="alt text"></p>
 <br>
 <h3 id="3-injection">3. Injection</h3>
 <p>Injection flaws occur because the application interprets user-controlled input as commands or parameters.</p>
@@ -275,7 +275,7 @@ What is the admin&rsquo;s plaintext password?</p>
 
 
 <pre tabindex="0"><code>drpepper.txt</code></pre>
-<p><img src="image-6.png" alt="alt text"></p>
+<p><img src="image-6.png#center" alt="alt text"></p>
 <br>
 <p>How many non-root/non-service/non-daemon users are there?</p>
 
@@ -286,7 +286,7 @@ What is the admin&rsquo;s plaintext password?</p>
 
 <pre tabindex="0"><code>0</code></pre>
 <p>In order to find users in Linux, we can use the following command: <code>cat /etc/passwd</code>.</p>
-<p><img src="image-7.png" alt="alt text"></p>
+<p><img src="image-7.png#center" alt="alt text"></p>
 <p>However, there are so many users in the output. We are only interested in <strong>non-root/non-service/non-daemon</strong> users.</p>
 <p>We need to remember that Linux-based systems have two types of users: <code>system</code> and <code>normal</code> users.</p>
 <ul>
@@ -299,10 +299,10 @@ What is the admin&rsquo;s plaintext password?</p>
 <li>Normal users typically receive UIDs from <code>1000 onwards</code></li>
 </ul>
 <p>I researched further to understand <code>/etc/passwd</code> file fields.</p>
-<p><img src="image-8.png" alt="alt text"></p>
+<p><img src="image-8.png#center" alt="alt text"></p>
 <p>arrow #3 represents the UID. From the output of our commands <code>cat /etc/passwd</code>, I found only one user that has UID higher than 1000.
 That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsquo; is a reserved user created by the system. Therefore, the answer to the question is actually 0.</p>
-<p><img src="image-9.png" alt="alt text"></p>
+<p><img src="image-9.png#center" alt="alt text"></p>
 <br>
 <p>What user is this app running as?</p>
 
@@ -313,7 +313,7 @@ That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsq
 
 <pre tabindex="0"><code>apache</code></pre>
 <p>In order to find the current user, we can run the following command: <code>$(whoami)</code>
-<img src="image-10.png" alt="alt text"></p>
+<img src="image-10.png#center" alt="alt text"></p>
 <br>
 <p>What is the user&rsquo;s shell set as?</p>
 
@@ -324,7 +324,7 @@ That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsq
 
 <pre tabindex="0"><code>/sbin/nologin</code></pre>
 <p><code>$(cat /etc/passwd)</code> command we saw above shows that user apache&rsquo;s shell at the very bottom.</p>
-<p><img src="image-11.png" alt="alt text"></p>
+<p><img src="image-11.png#center" alt="alt text"></p>
 <br>
 <p>What version of Alpine Linux is running?</p>
 
@@ -335,7 +335,7 @@ That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsq
 
 <pre tabindex="0"><code>3.16.0</code></pre>
 <p>The hint of the question tells us that the version can be found in <code>/etc/alpine-release</code>.</p>
-<p><img src="image-12.png" alt="alt text"></p>
+<p><img src="image-12.png#center" alt="alt text"></p>
 <br>
 <h3 id="4-insecure-design">4. Insecure Design</h3>
 <p>Insecure design refers to vulnerabilities that are inherent to the application&rsquo;s architecture. They are not vulnerabilities regarding bad implementations or configurations, but the idea behind the whole application (or part of it) is falwed from the start.</p>
@@ -350,8 +350,8 @@ That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsq
 
 
 <pre tabindex="0"><code>THM{Not_3ven_c4tz_c0uld_sav3_U!}</code></pre>
-<p><img src="image-13.png" alt="alt text">
-<img src="image-14.png" alt="alt text"></p>
+<p><img src="image-13.png#center" alt="alt text">
+<img src="image-14.png#center" alt="alt text"></p>
 <p>One of the security questions was very easy to guess, and there was no limit on password attempts, which is an insecure design.</p>
 <br>
 <h3 id="5-security-misconfiguration">5. Security Misconfiguration</h3>
@@ -385,7 +385,7 @@ That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsq
 
 
 <pre tabindex="0"><code>THM{Just_a_tiny_misconfiguration}</code></pre>
-<p><img src="image-15.png" alt="alt text"></p>
+<p><img src="image-15.png#center" alt="alt text"></p>
 <br>
 <h3 id="6-vulnerable-and-outdated-components">6. Vulnerable and Outdated Components</h3>
 <p>Occasionally, you may find that the company/entity you&rsquo;re pen-testing is using a program with a well-known vulnerability.
@@ -400,13 +400,13 @@ All the information you need to exploit it can be found online.</p>
 
 
 <pre tabindex="0"><code>THM{But_1ts_n0t_my_f4ult!}</code></pre>
-<p><img src="image-16.png" alt="alt text">
+<p><img src="image-16.png#center" alt="alt text">
 At the very top, the website clearly specifies that the site is built with PHP, MYSQL (procedure functions), and Bootstrap.</p>
 <br>
-<p><img src="image-17.png" alt="alt text">
+<p><img src="image-17.png#center" alt="alt text">
 I googled <code>procedure functions bootstrap exploit</code> and the first result directs to <code>Exploit-DB</code>, clearly indicating we may be onto something!</p>
 <br>
-<p><img src="image-18.png" alt="alt text">
+<p><img src="image-18.png#center" alt="alt text">
 I downloaded the exploit and ran it</p>
 <br>
 
@@ -462,7 +462,7 @@ If a user enters correct credentials, the server would provide ther users&rsquo;
 
 
 <pre tabindex="0"><code>fe86079416a21a3c99937fea8874b667</code></pre>
-<p><img src="image-19.png" alt="alt text"></p>
+<p><img src="image-19.png#center" alt="alt text"></p>
 <br>
 <p>Now try to do the same trick and see if you can log in as <code>arthur</code></p>
 
@@ -472,7 +472,7 @@ If a user enters correct credentials, the server would provide ther users&rsquo;
 
 
 <pre tabindex="0"><code>d9ac0f7db4fda460ac3edeb75d75e16e</code></pre>
-<p><img src="image-20.png" alt="alt text"></p>
+<p><img src="image-20.png#center" alt="alt text"></p>
 <br>
 <h3 id="8-software-and-data-integrity-failures">8. Software and Data Integrity Failures</h3>
 <h4 id="what-is-integrity">What is Integrity?</h4>
@@ -488,19 +488,19 @@ A <code>hash</code> is generally mentioned as a solution for ensuring data integ
 
 
 <pre tabindex="0"><code>sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=</code></pre>
-<p><img src="image-21.png" alt="alt text"></p>
+<p><img src="image-21.png#center" alt="alt text"></p>
 <p>When a user logs into an application, they will be assigned some sort of session token that will need to be saved on the browser. This token will be repeated on each subsequent request to identify who we are. These session token can come in many forms but are usually assigned via <code>cookies</code>.</p>
 <p>Cookies are key-value pairs that a web application will store on the user&rsquo;s browser and that will be automatically repeated on each request to the website that issued them. This could be a terrible idea security-wise because, cookies are stored on the user&rsquo;s browser, so if the user tampers with the cookie, they could potentially impersonate someone else. The application would suffer from a data integrity failure.</p>
 <p>One solution to this is use some integry mechanisms to guarantee that cookie hasn&rsquo;t been altered by the user. One popular option is <code>JSON Web Tokens (JWT)</code></p>
 <p>JWTs are very simple tokens that allow you to store key-value pairs on a token that provides integrity as part of the token. The idea is that you can generate tokens that you can give your users with the certainty that they won&rsquo;t be able to alter the key-value pairs and pass the integrity check.</p>
-<p><img src="image-24.png" alt="alt text">
+<p><img src="image-24.png#center" alt="alt text">
 JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <code>Signature</code>.</p>
 <p>A data integrity failure vulnerability was present on some libraries implementing JWTs a while ago. The vulnerable libraries allowed attackers to bypass the signature validation by changing the two following things in a JWT:</p>
 <ol>
 <li>Modify the header section of the token so that the <code>alg</code> header would contain the value <code>none</code>.</li>
 <li>Remove the signature part.</li>
 </ol>
-<p><img src="image-25.png" alt="alt text"></p>
+<p><img src="image-25.png#center" alt="alt text"></p>
 <br>
 <p>Try logging into the application as guest. What is guest&rsquo;s account password?</p>
 
@@ -510,7 +510,7 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 
 
 <pre tabindex="0"><code>guest</code></pre>
-<p><img src="image-22.png" alt="alt text"></p>
+<p><img src="image-22.png#center" alt="alt text"></p>
 <br>
 <p>If your login was successful, you should now have a JWT stored as a cookie in your browser. Press F12 to bring out the Developer Tools.</p>
 <p>What is the name of the website&rsquo;s cookie containing a JWT token?</p>
@@ -521,7 +521,7 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 
 
 <pre tabindex="0"><code>jwt-session</code></pre>
-<p><img src="image-23.png" alt="alt text"></p>
+<p><img src="image-23.png#center" alt="alt text"></p>
 <br>
 <p>Use the knowledge gained in this task to modify the JWT toekn so that the application thinks you are the user &ldquo;admin&rdquo;.</p>
 <p>What is the flag presented to the admin user?</p>
@@ -542,16 +542,16 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 </ol>
 <p>Now we can use the encode/decode online tool to modify the contents of the header and remove signature.</p>
 <p>First decode the <code>Header</code> part of the token
-<img src="image-26.png" alt="alt text"></p>
+<img src="image-26.png#center" alt="alt text"></p>
 <br>
 <p>Modify the <code>alg</code> value to <code>none</code>
-<img src="image-27.png" alt="alt text"></p>
+<img src="image-27.png#center" alt="alt text"></p>
 <br>
 <p>Decode the <code>Payload</code> part of the token
-<img src="image-28.png" alt="alt text"></p>
+<img src="image-28.png#center" alt="alt text"></p>
 <br>
 <p>Modify the value of the username to <code>admin</code>
-<img src="image-29.png" alt="alt text"></p>
+<img src="image-29.png#center" alt="alt text"></p>
 <br>
 <p>Remove Signature and combine those modified parts</p>
 <ol>
@@ -562,7 +562,7 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 <p><em>Notice that I still kept the dot at then end even though we removed the signature part of the token.</em>
 <br></p>
 <p>Replace the value of the cookie to our modified token and refresh the page
-<img src="image-30.png" alt="alt text"></p>
+<img src="image-30.png#center" alt="alt text"></p>
 <br>
 <h3 id="9-security-logging-and-monitoring-failures">9. Security Logging and Monitoring Failures</h3>
 <p>When web applications are set up, every action performed by the user should be logged. Logging is important because if an incident occurs, the attackers&rsquo; activites can be traced. Once their actions are traced, their risk and impact can be determined.</p>
@@ -630,7 +630,7 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 
 
 <pre tabindex="0"><code>secure-file-storage.com</code></pre>
-<p><img src="image-31.png" alt="alt text"></p>
+<p><img src="image-31.png#center" alt="alt text"></p>
 <br>
 <p>Using SSRF, make the application send the request to your AttackBox instead of the secure file storage. Are there any API keys in the intercepted request?</p>
 
@@ -660,9 +660,10 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 <br>
 
   </content>
+  
   <p>
     
-      <a href="/blog/tryhackme/">#TryHackMe</a>&nbsp;&nbsp;
+    <a href="/blog/tryhackme/">#TryHackMe</a>&nbsp;&nbsp;
     
   </p>
 
