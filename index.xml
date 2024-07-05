@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Wook&#39;s blog</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:51400/</link>
     <description>Recent content on Wook&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
     <lastBuildDate>Fri, 05 Jul 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:51400/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[picoCTF] Binary Search</title>
-      <link>http://localhost:1313/picoctf-binary-search/</link>
+      <link>http://localhost:51400/picoctf-binary-search/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-binary-search/</guid>
+      <guid>http://localhost:51400/picoctf-binary-search/</guid>
       <description>Binary Search Author : Jeffery John
 Description Want to play a game? As you use more of the shell, you might be interested in how they work! Binary search is a classic algorithm used to quickly find an item in a sorted list. Can you find the flag? You&amp;rsquo;ll have 1000 possibilities and only 10 guesses. Cyber security often has a huge amount of data to look through - from logs, vulnerability reports, and forensics.</description>
       <content:encoded><![CDATA[<h3 id="binary-search">Binary Search</h3>
@@ -56,9 +56,9 @@ Majoring in Computer Science finally paid off.. 😭</p>
     </item>
     <item>
       <title>[picoCTF] heap 1 &amp; heap 0</title>
-      <link>http://localhost:1313/picoctf-heap-1-heap-0/</link>
+      <link>http://localhost:51400/picoctf-heap-1-heap-0/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-heap-1-heap-0/</guid>
+      <guid>http://localhost:51400/picoctf-heap-1-heap-0/</guid>
       <description>heap 0 author: ABRXS, PR1OR1TYQ
 Description Are overflows just a stack concern? Download the binary Download the source Here&amp;rsquo;s the source code provided
 1#include &amp;lt;stdio.h&amp;gt; 2#include &amp;lt;stdlib.h&amp;gt; 3#include &amp;lt;string.h&amp;gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &amp;#34;bico&amp;#34;) != 0) { 17 printf(&amp;#34;\nYOU WIN\n&amp;#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&amp;#34;flag.</description>
@@ -397,8 +397,7 @@ nc tethys.picoctf.net 50046</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">check_win</span>() {
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>    <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span><span style="color:#89b4fa">strcmp</span>(safe_var, <span style="color:#a6e3a1">&#34;pico&#34;</span>)) {
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">YOU WIN</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);</span></span></code></pre></div>
-<br>
-Heap 1 task is every similar to Heap 0. The only difference is that we need to make the value of `safe_var` variable to "**pico**". The address values of the variables are the same with Heap 0. Therefore, we already know they are 32bits apart. All we need to do is input 32-bit long characters to fill `input_data` variable and type "**pico**" after to overwrite the value of `safe_var` variable.
+<p>Heap 1 task is every similar to Heap 0. The only difference is that we need to make the value of <code>safe_var</code> variable to &ldquo;<strong>pico</strong>&rdquo;. The address values of the variables are the same with Heap 0. Therefore, we already know they are 32bits apart. All we need to do is input 32-bit long characters to fill <code>input_data</code> variable and type &ldquo;<strong>pico</strong>&rdquo; after to overwrite the value of <code>safe_var</code> variable.</p>
 <br>
 <br>
 <br>
@@ -459,9 +458,9 @@ Here's the solution:
     </item>
     <item>
       <title>[picoCTF] Scan Surprise</title>
-      <link>http://localhost:1313/picoctf-scan-surprise/</link>
+      <link>http://localhost:51400/picoctf-scan-surprise/</link>
       <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-scan-surprise/</guid>
+      <guid>http://localhost:51400/picoctf-scan-surprise/</guid>
       <description>Description Author: Jeffrey John I&amp;rsquo;ve gotton bored of handing out flags as text. Wouldn&amp;rsquo;t it be cool if they were an image instead?
 This is what wee see when we first log into the ssh server, a QR code. The one thing we could easily do to capture the flag is to scan the QR code with our mobile phones since they have included native QR code scanner in their cameras since version 8 and iOS 11.</description>
       <content:encoded><![CDATA[<h3 id="description">Description</h3>
@@ -484,9 +483,9 @@ Wouldn&rsquo;t it be cool if they were an image instead?</p>
     </item>
     <item>
       <title>[picoCTF] Verify</title>
-      <link>http://localhost:1313/picoctf-verify/</link>
+      <link>http://localhost:51400/picoctf-verify/</link>
       <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-verify/</guid>
+      <guid>http://localhost:51400/picoctf-verify/</guid>
       <description>Happy 4th of July
 This is my first time experiencing picoCTF. I had heard of it numerous times on the Internet, and it turned out to be way more fun and engaging than I expected. I think I’ll stick to picoCTF for a while before moving on to HackTheBox, as I feel picoCTF provides more basic and foundational CTFs than HTB. Anyway, I&amp;rsquo;m really glad I stumbled upon this resource and decided to give it a try.</description>
       <content:encoded><![CDATA[<div style="text-align: center"><img src="./giphy.gif"></div>
@@ -561,9 +560,9 @@ This is my first time experiencing picoCTF. I had heard of it numerous times on 
     </item>
     <item>
       <title>[THM] OWASP Juice Shop</title>
-      <link>http://localhost:1313/thm-owasp-juice-shop/</link>
+      <link>http://localhost:51400/thm-owasp-juice-shop/</link>
       <pubDate>Wed, 03 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-owasp-juice-shop/</guid>
+      <guid>http://localhost:51400/thm-owasp-juice-shop/</guid>
       <description>We will look at OWASP&amp;rsquo;s TOP 10 vulnerabilities in web applications. But for this, we will be looking at OWASP&amp;rsquo;s own creation, Juice Shop.
 Question #1: What&amp;rsquo;s the Administrator&amp;rsquo;s email address? admin@juice-sh.op Question #2: What parameter is used for searching? q When I typed asdfsdf on the search bar, I noticed that the URL changed to http://10.10.113.37/#/search?q=asdfsdf. we can see that the parameter is q.
 Question #3: What show does Jim reference in his review?</description>
@@ -759,9 +758,9 @@ From there you will see a &lsquo;Truck&rsquo; icon, clicking on that will bring 
     </item>
     <item>
       <title>[THM] OWASP Top 10 (2021)</title>
-      <link>http://localhost:1313/thm-owasp-top-10/</link>
+      <link>http://localhost:51400/thm-owasp-top-10/</link>
       <pubDate>Sun, 30 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-owasp-top-10/</guid>
+      <guid>http://localhost:51400/thm-owasp-top-10/</guid>
       <description>What is OWASP? The Open Web Application Security Project, or OWASP, is an international non-profit organization dedicated to web application security. One of OWASP&amp;rsquo;s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.
 What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.</description>
       <content:encoded><![CDATA[<h3 id="what-is-owasp">What is OWASP?</h3>
@@ -1307,9 +1306,9 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
     </item>
     <item>
       <title>[TIL] VLSM</title>
-      <link>http://localhost:1313/til-vlsm/</link>
+      <link>http://localhost:51400/til-vlsm/</link>
       <pubDate>Thu, 27 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-vlsm/</guid>
+      <guid>http://localhost:51400/til-vlsm/</guid>
       <description>VLSM (Variable-Length Subnet Masks) Until now, I have practiced subnetting used FLSM (Fixed-Length Subnet Masks). This means that all of the subnets use the same prefix length (ie. subnetting a Class C network into 4 subnets using /26).
 VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.
 Here&amp;rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto.</description>
@@ -1585,9 +1584,9 @@ Last usable address: 192.168.5.226/30</code></pre>
     </item>
     <item>
       <title>[THM] Network Services 2</title>
-      <link>http://localhost:1313/thm-network-services-2/</link>
+      <link>http://localhost:51400/thm-network-services-2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-network-services-2/</guid>
+      <guid>http://localhost:51400/thm-network-services-2/</guid>
       <description>This is the second series on Network Services in the Network Exploitation Basics module of the Complete Beginner path. I really learned a lot and a lot of new protocols and tools were introduced.
 NFS Understanding NFS What does NFS stand for?
 Network File System What process allows an NFS client to interact with a remote directory as though it was a physical drive?
@@ -2966,9 +2965,9 @@ What is the user/hash combination string?</p>
     </item>
     <item>
       <title>[TIL] Subnetting 2</title>
-      <link>http://localhost:1313/til-subnetting-2/</link>
+      <link>http://localhost:51400/til-subnetting-2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-subnetting-2/</guid>
+      <guid>http://localhost:51400/til-subnetting-2/</guid>
       <description>Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
 First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts.</description>
       <content:encoded><![CDATA[<div style="text-align: center"><img src="./image-30.png"></div>
@@ -3119,9 +3118,9 @@ broadcast address: 172.16.127.255/18</code></pre>
     </item>
     <item>
       <title>[TIL] Subnetting</title>
-      <link>http://localhost:1313/til-subnetting-1/</link>
+      <link>http://localhost:51400/til-subnetting-1/</link>
       <pubDate>Tue, 25 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-subnetting-1/</guid>
+      <guid>http://localhost:51400/til-subnetting-1/</guid>
       <description>Today marks day 13 of studying CCNA with Jeremy&amp;rsquo;s IT Lab. Today&amp;rsquo;s topic was subnetting. Even though the topic was challenging to grasp at first, it&amp;rsquo;s really interesting how people came up with such ideas to efficiently utilize the IP addressing system. People are geniuses!
 IPv4 Address Classes There are 5 different IPv4 classes
 A subnet refers to a portioned network within an IP address that divides the network area. The tool used to create these subnets is called a Subnet Mask.</description>
@@ -3168,9 +3167,9 @@ Earlier, we mentioned that <code>/30</code> is a subnet of the <code>/24</code> 
     </item>
     <item>
       <title>[THM] Network Services</title>
-      <link>http://localhost:1313/thm-network-services/</link>
+      <link>http://localhost:51400/thm-network-services/</link>
       <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-network-services/</guid>
+      <guid>http://localhost:51400/thm-network-services/</guid>
       <description>I have been indecisive about choosing between TryHackMe and Hack The Box Academy. Both are great platforms for learning about cybersecurity, and I plan to use both. However, I think TryHackMe is more suitable for absolute beginners like me. While exploring their Network Services rooms, I found myself learning a lot, so I decided to make a post about them.
 SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</description>
       <content:encoded><![CDATA[<p>I have been indecisive about choosing between TryHackMe and Hack The Box Academy. Both are great platforms for learning about cybersecurity, and I plan to use both. However, I think TryHackMe is more suitable for absolute beginners like me. While exploring their Network Services rooms, I found myself learning a lot, so I decided to make a post about them.</p>
@@ -4020,9 +4019,9 @@ SMB default ports are <code>139 or 445</code></p>
     </item>
     <item>
       <title>[TIL] Life of a Packet</title>
-      <link>http://localhost:1313/til-life-of-a-packet/</link>
+      <link>http://localhost:51400/til-life-of-a-packet/</link>
       <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-life-of-a-packet/</guid>
+      <guid>http://localhost:51400/til-life-of-a-packet/</guid>
       <description>Today, while studying for my CCNA with Jeremy&amp;rsquo;s IT Lab YouTube videos, I learned something very useful that I can&amp;rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.
 The image below is the network topology used in the Lab.
 PC1 pings PC4.
@@ -4178,9 +4177,9 @@ Destination MAC address: 4444</code></pre>
     </item>
     <item>
       <title>[TIL] Port</title>
-      <link>http://localhost:1313/til-port/</link>
+      <link>http://localhost:51400/til-port/</link>
       <pubDate>Fri, 21 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-port/</guid>
+      <guid>http://localhost:51400/til-port/</guid>
       <description>I feel like I&amp;rsquo;ve only scratched the surface when it comes to understanding Ports. Since I have an interview coming up, I want to review the basics of Ports, even if it&amp;rsquo;s very fundamental.
 What is a port? From Wikipedia
 a port is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service.
@@ -4211,9 +4210,9 @@ To simply put, a port is like an address for a specific program or service runni
     </item>
     <item>
       <title>[HTB] Redeemer</title>
-      <link>http://localhost:1313/htb-redeemer/</link>
+      <link>http://localhost:51400/htb-redeemer/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-redeemer/</guid>
+      <guid>http://localhost:51400/htb-redeemer/</guid>
       <description>some thoughts:
 This box was the most challenging one to crack so far, but I feel incredibly accomplished seeing my progress. I really enjoy writing about my experiences in this personal space, even though no one else is seeing it. I&amp;rsquo;m practicing not to rely on external sources unless I&amp;rsquo;ve tried everything I can on my own, and I&amp;rsquo;m really glad I&amp;rsquo;ve decided to do so. Working on this box has made me feel like I&amp;rsquo;m going to remember every step I took to get the flag.</description>
       <content:encoded><![CDATA[<p>some thoughts:</p>
@@ -4451,9 +4450,9 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
     </item>
     <item>
       <title>[TIL] Explosion</title>
-      <link>http://localhost:1313/htb-explosion/</link>
+      <link>http://localhost:51400/htb-explosion/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-explosion/</guid>
+      <guid>http://localhost:51400/htb-explosion/</guid>
       <description>some thoughts:
 It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.</description>
       <content:encoded><![CDATA[<p>some thoughts:</p>
@@ -4590,9 +4589,9 @@ The final command <code>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator</c
     </item>
     <item>
       <title>[TIL] Routing</title>
-      <link>http://localhost:1313/til-routing/</link>
+      <link>http://localhost:51400/til-routing/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-routing/</guid>
+      <guid>http://localhost:51400/til-routing/</guid>
       <description>I&amp;rsquo;m currently studying for the CCNA exam, primarily using Jeremy&amp;rsquo;s IT Lab YouTube channel. He&amp;rsquo;s well-known for providing great CCNA content, and the best part is that it&amp;rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</description>
       <content:encoded><![CDATA[<p>I&rsquo;m currently studying for the CCNA exam, primarily using Jeremy&rsquo;s IT Lab YouTube channel. He&rsquo;s well-known for providing great CCNA content, and the best part is that it&rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</p>
 <p>Today, I learned about routing.</p>
@@ -4662,9 +4661,9 @@ But before we go into routing methods,</p>
     </item>
     <item>
       <title>[HTB] Dancing</title>
-      <link>http://localhost:1313/htb-dancing/</link>
+      <link>http://localhost:51400/htb-dancing/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-dancing/</guid>
+      <guid>http://localhost:51400/htb-dancing/</guid>
       <description>Hack The Box starting point, tier 0, very easy, #3 machine: Dancing. Lets&amp;rsquo; go!
 TASK 1 What does 3-letter acronym SMB stand for?
 Server Message Block SMB protocol implements an application-layer network protocol used to access resources on a server, such as file shares and shared printers.
@@ -4900,9 +4899,9 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
     </item>
     <item>
       <title>[HTB] Fawn</title>
-      <link>http://localhost:1313/htb-fawn/</link>
+      <link>http://localhost:51400/htb-fawn/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-fawn/</guid>
+      <guid>http://localhost:51400/htb-fawn/</guid>
       <description>Hopefully one day I will become very good at CTFs.
 TASK 1 What does the 3-letter acronym FTP stand for?
 File Transfer Protocol TASK 2 Which port does the FTP service listen on usually?
@@ -5143,9 +5142,9 @@ TASK 4 What is the command we can use to send an ICMP echo request to test our c
     </item>
     <item>
       <title>[HTB] Meow</title>
-      <link>http://localhost:1313/htb-meow/</link>
+      <link>http://localhost:51400/htb-meow/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-meow/</guid>
+      <guid>http://localhost:51400/htb-meow/</guid>
       <description>My journey begins here. 🐌
 TASK 1 What does the acronym VM stand for? Virtual Machine TASK 2 What tool do we use to interact with the operating system in order to issue commands via the command line, such as the one to start our VPN connection? It&amp;rsquo;s also known as a console or shell.
 Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?</description>
@@ -5318,9 +5317,9 @@ Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?
     </item>
     <item>
       <title>Photos</title>
-      <link>http://localhost:1313/photos/</link>
+      <link>http://localhost:51400/photos/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/photos/</guid>
+      <guid>http://localhost:51400/photos/</guid>
       <description> </description>
       <content:encoded><![CDATA[<div style="
     display: flex; 
