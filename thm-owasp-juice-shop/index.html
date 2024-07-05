@@ -60,7 +60,7 @@ Question #1: What’s the Administrator’s email address? admin@juice-sh.op Que
 Question #3: What show does Jim reference in his review?">
   <meta itemprop="datePublished" content="2024-07-03T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-03T00:00:00+00:00">
-  <meta itemprop="wordCount" content="488">
+  <meta itemprop="wordCount" content="1262">
   <meta itemprop="keywords" content="TryHackMe">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -233,6 +233,90 @@ However, we already saw that Jim used a Star Trek reference with his review on a
 <p>when googled &ldquo;Jim Star Trek&rdquo;, the fictional character&rsquo;s name is actually <code>James T. Kirk</code> and its eldest siblings middle name is <code>Samuel</code>
 <img src="image-14.png#center#center" alt="alt text">
 <img src="image-15.png#center" alt="alt text"></p>
+<br>
+<h4 id="question-8-access-the-confidential-document">Question 8: Access the Confidential Document!</h4>
+<p><img src="image-16.png#center" alt="alt text"></p>
+<p>on the bottom left, we can see that it links to <code>http://10.10.187.53/ft/legal.md</code>. Navigating to that <code>/ftp/</code> directory reveals that it is exposed to the public.</p>
+<p><img src="image-17.png#center" alt="alt text"></p>
+<p>Some of the files appear to be confidential. Download the files and go back to the homepage to receive the flag.</p>
+<p><img src="image-18.png#center" alt="alt text">
+<code>edf9281222395a1c5fee9b89e32175f1ccf50c5b</code></p>
+<br>
+<h4 id="question-9-log-into-mc-safesearchs-account">Question 9: Log into MC SafeSearch&rsquo;s account</h4>
+<p>Watch the following video to get the password for MC Safe Search&rsquo;s account:
+<a href="https://www.youtube.com/watch?v=v59CX2DiX0Y">Link</a></p>
+<p>In his song, he mentions that his password is &ldquo;Mr. Noodles&rdquo; but he replaced some vowels into zeros. So, the password to the <em><a href="mailto:mc.safesearch@juice-sh.op">mc.safesearch@juice-sh.op</a></em> is &ldquo;<strong>Mr. N00dles</strong>.</p>
+<p><code>66bdcffad9e698fd534003fbb3cc7e2b7b55d7f0</code></p>
+<br>
+<h4 id="question-10-download-the-backup-file">Question 10: Download the Backup file!</h4>
+<p>On http://10.10.176.53/ftp, when we try to download <code>package.json.bak</code> file, we encounter a 403 error saying that only .md and .pdf files can be downloaded.</p>
+<p>To get around this, we can use a character bypass called <code>Poison Null Byte</code>.
+A Poison Null Byte looks like this <code>$00</code></p>
+<p>But because we are downloading it using the url, we will need to encode this into a url encoded format, which is <code>%2500</code>.</p>
+<p>The number &ldquo;2500&rdquo; in the context of a &ldquo;Poison Null Byte&rdquo; is a result of URL encoding</p>
+<p>A Poison Null Byte is actually a <code>NULL terminator</code>. By placing a NULL character in the string at a certain byte, the string will tell the server to terminate at that point, nulling the rest of the string.</p>
+<p>The final url should look like this: <code>10.10.176.53/ftp/package.json.bak%2500.md</code></p>
+<br>
+<h4 id="question-11-access-the-administration-page">Question 11: Access the administration page</h4>
+<p>Modern-day systems will allow for multiple users to have access to different pages. Administrators most commonly use an admin page to edit, add, and remove different elements of a website.</p>
+<p>When <code>Broken Access Control</code> exploits or bugs are found, it will be categorized into one of two types:</p>
+<ul>
+<li>Horizontal Privilege Escalation</li>
+<li>Vertical Privilege Escalation</li>
+</ul>
+<p>Look for a javascript file for <code>main-es2015.js</code> in Debugger on FireFox (or Sources on Chrome)</p>
+<p><img src="image-19.png#center" alt="alt text"></p>
+<p>This shows us that there&rsquo;s a path towards <code>/#/administration</code>, but going there while not logged in doesn&rsquo;t work. As this is an Administrator page, it makes sens that we need to be in the Admin account in order to view it.</p>
+<br>
+<p><img src="image-20.png#center" alt="alt text">
+This image above is what we see when we logged in as admin and navigated to <code>/#/administration</code> page.</p>
+<p><code>946a799363226a24822008503f5d1324536629a0</code></p>
+<br>
+<h4 id="question-12-view-another-users-shopping-basket">Question 12: View another user&rsquo;s shopping basket.</h4>
+<p>Log into the Admin account and click on &lsquo;Your Basket&rsquo;. Make sure Burp is running so you can capture the request.</p>
+<p><code>GET /rest/basket/1 HTTP/1.1</code></p>
+<p>Change the number 1 after <code>/basket/</code> to 2</p>
+<p><img src="image-21.png#center" alt="alt text"></p>
+<p>It will show you the basket of User ID 2. You can do this for other User IDs as well</p>
+<br>
+<h4 id="question-13-remove-all-5-star-reviews">Question 13: Remove all 5-star reviews.</h4>
+<p>Navigate back to <code>/#/administration</code> page and remove all the five-star review by clicking the bin icon.</p>
+<p><img src="image-22.png#center" alt="alt text"></p>
+<p><code>50c97bcce0b895e446d61c83a21df371ac2266ef</code></p>
+<br>
+<h4 id="question-14-perform-a-dom-xss">Question 14: Perform a DOM XSS!</h4>
+<p>XSS or Cross-site scripting is a vulnerability that allows attackers to run javascript in web applications. Their complexity ranges from easy to extremely hard, as each web application parses the queries in a different way.</p>
+<p>There are three major types of XSS attacks:</p>
+<ol>
+<li>DOM XSS</li>
+<li>Persistent XSS</li>
+<li>Reflected XSS</li>
+</ol>
+<p>We will be using the iframe element with a javascript alert tag:</p>
+<p><code>&lt;iframe src=&quot;javascript:alert('xss')&quot;&gt;</code></p>
+<p>It is common practice that the search bar will send a request to the server in which it will then send back the related information, but this is where the flaw lies. Without correct input sanitastion, we are able to perform an XSS attack against the search bar.</p>
+<p><code>9aaf4bbea5c30d00a1f5bbcfce4db6d4b0efe0bf</code></p>
+<br>
+<h4 id="question-15-perform-a-persistent-xss">Question 15: Perform a persistent XSS!</h4>
+<p>First, log in to the <code>admin</code> account. We are going to navigate to the <code>Last Login IP</code> page for this attack.</p>
+<p>The Last Login IP should say <code>0.0.0.0</code>
+As it logs the &rsquo;last&rsquo; login IP, we will now logout so that it logs the &rsquo;new&rsquo; IP. Make sure that Burp intercept is on, so it will catch the logout request.</p>
+<p><img src="image-23.png#center" alt="alt text"></p>
+<p>After we catch the logout request, we will add a new header like the image above and forward the request to the server with the newly added header.</p>
+<p>Then when signing back into the admin account and navigating to the Last Login IP page again, we will see the XSS alert.</p>
+<p><img src="image-24.png#center" alt="alt text"></p>
+<p><code>149aa8ce13d7a4a8a931472308e269c94dc5f156</code></p>
+<br>
+<h4 id="question-16-perform-a-reflected-xss">Question 16: Perform a reflected XSS!</h4>
+<p>Login into the admin account and navigate to the &lsquo;Order History&rsquo; page.
+From there you will see a &lsquo;Truck&rsquo; icon, clicking on that will bring you to the track result page. You will also see that there is an id paird with the order.</p>
+<p><code>http://10.10.129.167/#/track-result?id=5267-b3f50aba1f1b9125</code></p>
+<p>We will use the iframe XSS, <code>&lt;iframe src=&quot;javascript:alert('xss')&quot;</code>&gt;, in the place of the
+<code>5267-b3f50aba1f1b9125</code></p>
+<p>After submitting the URL, refresh the page and you will get an alert saying XSS.</p>
+<p><img src="image-25.png#center" alt="alt text"></p>
+<p><code>23cefee1527bde039295b2616eeb29e1edc660a0</code></p>
+<br>
 
   </content>
   

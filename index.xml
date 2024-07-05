@@ -8,8 +8,442 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Thu, 04 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[picoCTF] Binary Search</title>
+      <link>http://localhost:1313/picoctf-binary-search/</link>
+      <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/picoctf-binary-search/</guid>
+      <description>Binary Search Author : Jeffery John
+Description Want to play a game? As you use more of the shell, you might be interested in how they work! Binary search is a classic algorithm used to quickly find an item in a sorted list. Can you find the flag? You&amp;rsquo;ll have 1000 possibilities and only 10 guesses. Cyber security often has a huge amount of data to look through - from logs, vulnerability reports, and forensics.</description>
+      <content:encoded><![CDATA[<h3 id="binary-search">Binary Search</h3>
+<p><em>Author : Jeffery John</em></p>
+<h4 id="description">Description</h4>
+<p>Want to play a game? As you use more of the shell, you might be interested in how they work! Binary search is a classic algorithm used to quickly find an item in a sorted list. Can you find the flag? You&rsquo;ll have 1000 possibilities and only 10 guesses.
+Cyber security often has a huge amount of data to look through - from logs, vulnerability reports, and forensics. Practicing the fundamentals manually might help you in the future when you have to write your own tools!</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Welcome to the Binary Search Game!
+I&#39;m thinking of a number between 1 and 1000.
+Enter your guess: 500
+Lower! Try again.
+Enter your guess: 250
+Higher! Try again.
+Enter your guess: 375
+Lower! Try again.
+Enter your guess: 313
+Lower! Try again.
+Enter your guess: 282
+Higher! Try again.
+Enter your guess: 297
+Lower! Try again.
+Enter your guess: 289
+Higher! Try again.
+Enter your guess: 293
+Congratulations! You guessed the correct number: 293
+Here&#39;s your flag: picoCTF{g00d_gu355_2e90d29b}
+Connection to atlas.picoctf.net closed.</code></pre>
+<p><strong><em>flag</em></strong>: <code>picoCTF{g00d_gu355_2e90d29b}</code></p>
+<hr>
+<p>This one was fairly easy because I was already familiar with the Binary Search Algorithm.
+Majoring in Computer Science finally paid off.. 😭</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[picoCTF] heap 1 &amp; heap 0</title>
+      <link>http://localhost:1313/picoctf-heap-1-heap-0/</link>
+      <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/picoctf-heap-1-heap-0/</guid>
+      <description>heap 0 author: ABRXS, PR1OR1TYQ
+Description Are overflows just a stack concern? Download the binary Download the source Here&amp;rsquo;s the source code provided
+1#include &amp;lt;stdio.h&amp;gt; 2#include &amp;lt;stdlib.h&amp;gt; 3#include &amp;lt;string.h&amp;gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &amp;#34;bico&amp;#34;) != 0) { 17 printf(&amp;#34;\nYOU WIN\n&amp;#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&amp;#34;flag.</description>
+      <content:encoded><![CDATA[<h3 id="heap-0">heap 0</h3>
+<p><em>author: ABRXS, PR1OR1TYQ</em></p>
+<h4 id="description">Description</h4>
+<p>Are overflows just a stack concern? <br>
+Download the binary <br>
+Download the source <br></p>
+<p>Here&rsquo;s the source code provided</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  1</span><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  2</span><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;stdlib.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  3</span><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;string.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  4</span><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  5</span><span><span style="color:#6c7086;font-style:italic">#define FLAGSIZE_MAX 64
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  6</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">// amount of memory allocated for input_data
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  7</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">#define INPUT_DATA_SIZE 5
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  8</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">// amount of memory allocated for safe_var
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  9</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">#define SAFE_VAR_SIZE 5
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 10</span><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 11</span><span><span style="color:#f38ba8">int</span> num_allocs;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 12</span><span><span style="color:#f38ba8">char</span> <span style="color:#89dceb;font-weight:bold">*</span>safe_var;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 13</span><span><span style="color:#f38ba8">char</span> <span style="color:#89dceb;font-weight:bold">*</span>input_data;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 15</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">check_win</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 16</span><span>    <span style="color:#cba6f7">if</span> (<span style="color:#89b4fa">strcmp</span>(safe_var, <span style="color:#a6e3a1">&#34;bico&#34;</span>) <span style="color:#89dceb;font-weight:bold">!=</span> <span style="color:#fab387">0</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 17</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">YOU WIN</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 19</span><span>        <span style="color:#6c7086;font-style:italic">// Print flag
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 20</span><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#f38ba8">char</span> buf[FLAGSIZE_MAX];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 21</span><span>        FILE <span style="color:#89dceb;font-weight:bold">*</span>fd <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">fopen</span>(<span style="color:#a6e3a1">&#34;flag.txt&#34;</span>, <span style="color:#a6e3a1">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 22</span><span>        <span style="color:#89b4fa">fgets</span>(buf, FLAGSIZE_MAX, fd);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 23</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;%s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, buf);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 24</span><span>        <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 25</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 26</span><span>        <span style="color:#89b4fa">exit</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 27</span><span>    } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 28</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Looks like everything is still secure!</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 29</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">No flage for you :(</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 30</span><span>        <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 31</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 32</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 33</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 34</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">print_menu</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 35</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">1. Print Heap:</span><span style="color:#89b4fa">\t\t</span><span style="color:#a6e3a1">(print the current state of the heap)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 36</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">2. Write to buffer:</span><span style="color:#89b4fa">\t</span><span style="color:#a6e3a1">(write to your own personal block of data &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 37</span><span>           <span style="color:#a6e3a1">&#34;on the heap)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 38</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">3. Print safe_var:</span><span style="color:#89b4fa">\t</span><span style="color:#a6e3a1">(I&#39;ll even let you look at my variable on &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 39</span><span>           <span style="color:#a6e3a1">&#34;the heap, &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 40</span><span>           <span style="color:#a6e3a1">&#34;I&#39;m confident it can&#39;t be modified)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 41</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">4. Print Flag:</span><span style="color:#89b4fa">\t\t</span><span style="color:#a6e3a1">(Try to print the flag, good luck)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 42</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">5. Exit</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">Enter your choice: &#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 43</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 44</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 45</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 46</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">init</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 47</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">Welcome to heap0!</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 48</span><span>    <span style="color:#89b4fa">printf</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 49</span><span>        <span style="color:#a6e3a1">&#34;I put my data on the heap so it should be safe from any tampering.</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 50</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Since my data isn&#39;t on the stack I&#39;ll even let you write whatever &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 51</span><span>           <span style="color:#a6e3a1">&#34;info you want to the heap, I already took care of using malloc for &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 52</span><span>           <span style="color:#a6e3a1">&#34;you.</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 53</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 54</span><span>    input_data <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">malloc</span>(INPUT_DATA_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 55</span><span>    <span style="color:#89b4fa">strncpy</span>(input_data, <span style="color:#a6e3a1">&#34;pico&#34;</span>, INPUT_DATA_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 56</span><span>    safe_var <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">malloc</span>(SAFE_VAR_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 57</span><span>    <span style="color:#89b4fa">strncpy</span>(safe_var, <span style="color:#a6e3a1">&#34;bico&#34;</span>, SAFE_VAR_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 58</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 59</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 60</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">write_buffer</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 61</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Data for buffer: &#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 62</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 63</span><span>    <span style="color:#89b4fa">scanf</span>(<span style="color:#a6e3a1">&#34;%s&#34;</span>, input_data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 64</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 65</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 66</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">print_heap</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 67</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Heap State:</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 68</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 69</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;[*] Address   -&gt;   Heap Data   </span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 70</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 71</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;[*]   %p  -&gt;   %s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, input_data, input_data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 72</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 73</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;[*]   %p  -&gt;   %s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, safe_var, safe_var);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 74</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 75</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 76</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 77</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 78</span><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(<span style="color:#f38ba8">void</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 79</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 80</span><span>    <span style="color:#6c7086;font-style:italic">// Setup
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 81</span><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#89b4fa">init</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 82</span><span>    <span style="color:#89b4fa">print_heap</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 83</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 84</span><span>    <span style="color:#f38ba8">int</span> choice;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 85</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 86</span><span>    <span style="color:#cba6f7">while</span> (<span style="color:#fab387">1</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 87</span><span>        <span style="color:#89b4fa">print_menu</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 88</span><span>	<span style="color:#f38ba8">int</span> rval <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">scanf</span>(<span style="color:#a6e3a1">&#34;%d&#34;</span>, <span style="color:#89dceb;font-weight:bold">&amp;</span>choice);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 89</span><span>	<span style="color:#cba6f7">if</span> (rval <span style="color:#89dceb;font-weight:bold">==</span> EOF){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 90</span><span>	    <span style="color:#89b4fa">exit</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 91</span><span>	}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 92</span><span>        <span style="color:#cba6f7">if</span> (rval <span style="color:#89dceb;font-weight:bold">!=</span> <span style="color:#fab387">1</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 93</span><span>            <span style="color:#6c7086;font-style:italic">//printf(&#34;Invalid input. Please enter a valid choice.\n&#34;);
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 94</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#6c7086;font-style:italic">//fflush(stdout);
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 95</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#6c7086;font-style:italic">// Clear input buffer
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 96</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#6c7086;font-style:italic">//while (getchar() != &#39;\n&#39;);
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 97</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#6c7086;font-style:italic">//continue;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 98</span><span><span style="color:#6c7086;font-style:italic"></span>	    <span style="color:#89b4fa">exit</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 99</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">100</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">101</span><span>        <span style="color:#cba6f7">switch</span> (choice) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">102</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">103</span><span>            <span style="color:#6c7086;font-style:italic">// print heap
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">104</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#89b4fa">print_heap</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">105</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">106</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">2</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">107</span><span>            <span style="color:#89b4fa">write_buffer</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">108</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">109</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">3</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">110</span><span>            <span style="color:#6c7086;font-style:italic">// print safe_var
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">111</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">Take a look at my variable: safe_var = %s</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">112</span><span>                   safe_var);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">113</span><span>            <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">114</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">115</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">4</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">116</span><span>            <span style="color:#6c7086;font-style:italic">// Check for win condition
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">117</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#89b4fa">check_win</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">118</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">119</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">5</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">120</span><span>            <span style="color:#6c7086;font-style:italic">// exit
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">121</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">122</span><span>        <span style="color:#cba6f7">default</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">123</span><span>            <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Invalid choice</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">124</span><span>            <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">125</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">126</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">127</span><span>}</span></span></code></pre></div>
+<p>If you look closely at the <code>check_win</code> function, our job is to make <code>safe_var</code> variable and the string <code>bico</code> not equal to each other. We can see that the variables <code>input_data</code> and <code>safe_var</code> are allocated 5 bytes of memory. The allocations are likely to be sequential, meaning <code>input_data</code> and <code>safe_var</code> are placed next to each other in memory.</p>
+<br>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">write_buffer</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Data for buffer: &#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>    <span style="color:#89b4fa">scanf</span>(<span style="color:#a6e3a1">&#34;%s&#34;</span>, input_data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>}</span></span></code></pre></div>
+<p>Check out the <code>write_buffer</code> function. We can write data to <code>input_data</code> variable, meaning if we write more data than it can hold, it will result in a <strong><em>buffer overflow</em></strong> and the extra bytes will overflow into the memory space allocated for <code>safe_var</code> and eventually overwrite the data of <code>safe_var</code> variable.</p>
+<p>First, we are going to select <code>2</code> to write to buffer, and as we can see from the heap table, the address of <strong>input_data</strong> is <code>0x5e2f114332b0</code> and the address of <strong>safe_var</strong> is <code>0x5e2f114332d0</code>. They are 0x20 hexadecimal digits, or 32 bits apart. Therefore, all we gotta do is input more than 32 bits to overflow the input_data and eventually overwrite safe_var variable.</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>1. Print Heap:          (print the current state of the heap)
+2. Write to buffer:     (write to your own personal block of data on the heap)
+3. Print safe_var:      (I&#39;ll even let you look at my variable on the heap, I&#39;m confident it can&#39;t be modified)
+4. Print Flag:          (Try to print the flag, good luck)
+5. Exit
+
+Enter your choice: 2
+Data for buffer: abcdefghijklmnopqrstuvwxyz1234567890
+
+1. Print Heap:          (print the current state of the heap)
+2. Write to buffer:     (write to your own personal block of data on the heap)
+3. Print safe_var:      (I&#39;ll even let you look at my variable on the heap, I&#39;m confident it can&#39;t be modified)
+4. Print Flag:          (Try to print the flag, good luck)
+5. Exit
+
+Enter your choice: 3
+
+
+Take a look at my variable: safe_var = 7890
+
+
+1. Print Heap:          (print the current state of the heap)
+2. Write to buffer:     (write to your own personal block of data on the heap)
+3. Print safe_var:      (I&#39;ll even let you look at my variable on the heap, I&#39;m confident it can&#39;t be modified)
+4. Print Flag:          (Try to print the flag, good luck)
+5. Exit
+
+Enter your choice: 4
+
+YOU WIN
+picoCTF{my_first_heap_overflow_c3935a08}</code></pre>
+<p><strong><em>flag</em></strong>: picoCTF{my_first_heap_overflow_c3935a08}</p>
+<br>
+<hr>
+<h3 id="heap-1">heap 1</h3>
+<p><em>author: ABRXS, PR1OR1TYQ</em></p>
+<h4 id="description-1">Description</h4>
+<p>Can you control your overflow?
+Connect with the challenge instance here:
+nc tethys.picoctf.net 50046</p>
+<br>
+<p>Here is the source code provided</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  1</span><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  2</span><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;stdlib.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  3</span><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;string.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  4</span><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  5</span><span><span style="color:#6c7086;font-style:italic">#define FLAGSIZE_MAX 64
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  6</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">// amount of memory allocated for input_data
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  7</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">#define INPUT_DATA_SIZE 5
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  8</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">// amount of memory allocated for safe_var
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">  9</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">#define SAFE_VAR_SIZE 5
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 10</span><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 11</span><span><span style="color:#f38ba8">int</span> num_allocs;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 12</span><span><span style="color:#f38ba8">char</span> <span style="color:#89dceb;font-weight:bold">*</span>safe_var;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 13</span><span><span style="color:#f38ba8">char</span> <span style="color:#89dceb;font-weight:bold">*</span>input_data;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 15</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">check_win</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 16</span><span>    <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span><span style="color:#89b4fa">strcmp</span>(safe_var, <span style="color:#a6e3a1">&#34;pico&#34;</span>)) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 17</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">YOU WIN</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 19</span><span>        <span style="color:#6c7086;font-style:italic">// Print flag
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 20</span><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#f38ba8">char</span> buf[FLAGSIZE_MAX];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 21</span><span>        FILE <span style="color:#89dceb;font-weight:bold">*</span>fd <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">fopen</span>(<span style="color:#a6e3a1">&#34;flag.txt&#34;</span>, <span style="color:#a6e3a1">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 22</span><span>        <span style="color:#89b4fa">fgets</span>(buf, FLAGSIZE_MAX, fd);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 23</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;%s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, buf);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 24</span><span>        <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 25</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 26</span><span>        <span style="color:#89b4fa">exit</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 27</span><span>    } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 28</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Looks like everything is still secure!</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 29</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">No flage for you :(</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 30</span><span>        <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 31</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 32</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 33</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 34</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">print_menu</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 35</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">1. Print Heap:</span><span style="color:#89b4fa">\t\t</span><span style="color:#a6e3a1">(print the current state of the heap)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 36</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">2. Write to buffer:</span><span style="color:#89b4fa">\t</span><span style="color:#a6e3a1">(write to your own personal block of data &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 37</span><span>           <span style="color:#a6e3a1">&#34;on the heap)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 38</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">3. Print safe_var:</span><span style="color:#89b4fa">\t</span><span style="color:#a6e3a1">(I&#39;ll even let you look at my variable on &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 39</span><span>           <span style="color:#a6e3a1">&#34;the heap, &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 40</span><span>           <span style="color:#a6e3a1">&#34;I&#39;m confident it can&#39;t be modified)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 41</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">4. Print Flag:</span><span style="color:#89b4fa">\t\t</span><span style="color:#a6e3a1">(Try to print the flag, good luck)&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 42</span><span>           <span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">5. Exit</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">Enter your choice: &#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 43</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 44</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 45</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 46</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">init</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 47</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">Welcome to heap1!</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 48</span><span>    <span style="color:#89b4fa">printf</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 49</span><span>        <span style="color:#a6e3a1">&#34;I put my data on the heap so it should be safe from any tampering.</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 50</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Since my data isn&#39;t on the stack I&#39;ll even let you write whatever &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 51</span><span>           <span style="color:#a6e3a1">&#34;info you want to the heap, I already took care of using malloc for &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 52</span><span>           <span style="color:#a6e3a1">&#34;you.</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 53</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 54</span><span>    input_data <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">malloc</span>(INPUT_DATA_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 55</span><span>    <span style="color:#89b4fa">strncpy</span>(input_data, <span style="color:#a6e3a1">&#34;pico&#34;</span>, INPUT_DATA_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 56</span><span>    safe_var <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">malloc</span>(SAFE_VAR_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 57</span><span>    <span style="color:#89b4fa">strncpy</span>(safe_var, <span style="color:#a6e3a1">&#34;bico&#34;</span>, SAFE_VAR_SIZE);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 58</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 59</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 60</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">write_buffer</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 61</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Data for buffer: &#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 62</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 63</span><span>    <span style="color:#89b4fa">scanf</span>(<span style="color:#a6e3a1">&#34;%s&#34;</span>, input_data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 64</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 65</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 66</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">print_heap</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 67</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Heap State:</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 68</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 69</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;[*] Address   -&gt;   Heap Data   </span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 70</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 71</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;[*]   %p  -&gt;   %s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, input_data, input_data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 72</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 73</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;[*]   %p  -&gt;   %s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, safe_var, safe_var);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 74</span><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;+-------------+----------------+</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 75</span><span>    <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 76</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 77</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 78</span><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(<span style="color:#f38ba8">void</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 79</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 80</span><span>    <span style="color:#6c7086;font-style:italic">// Setup
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 81</span><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#89b4fa">init</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 82</span><span>    <span style="color:#89b4fa">print_heap</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 83</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 84</span><span>    <span style="color:#f38ba8">int</span> choice;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 85</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 86</span><span>    <span style="color:#cba6f7">while</span> (<span style="color:#fab387">1</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 87</span><span>        <span style="color:#89b4fa">print_menu</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 88</span><span>	<span style="color:#cba6f7">if</span> (<span style="color:#89b4fa">scanf</span>(<span style="color:#a6e3a1">&#34;%d&#34;</span>, <span style="color:#89dceb;font-weight:bold">&amp;</span>choice) <span style="color:#89dceb;font-weight:bold">!=</span> <span style="color:#fab387">1</span>) <span style="color:#89b4fa">exit</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 89</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 90</span><span>        <span style="color:#cba6f7">switch</span> (choice) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 91</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 92</span><span>            <span style="color:#6c7086;font-style:italic">// print heap
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 93</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#89b4fa">print_heap</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 94</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 95</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">2</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 96</span><span>            <span style="color:#89b4fa">write_buffer</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 97</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 98</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">3</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 99</span><span>            <span style="color:#6c7086;font-style:italic">// print safe_var
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">100</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">Take a look at my variable: safe_var = %s</span><span style="color:#89b4fa">\n\n</span><span style="color:#a6e3a1">&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">101</span><span>                   safe_var);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">102</span><span>            <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">103</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">104</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">4</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">105</span><span>            <span style="color:#6c7086;font-style:italic">// Check for win condition
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">106</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#89b4fa">check_win</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">107</span><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">108</span><span>        <span style="color:#cba6f7">case</span> <span style="color:#fab387">5</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">109</span><span>            <span style="color:#6c7086;font-style:italic">// exit
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">110</span><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">111</span><span>        <span style="color:#cba6f7">default</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">112</span><span>            <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;Invalid choice</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">113</span><span>            <span style="color:#89b4fa">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">114</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">115</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">116</span><span>}</span></span></code></pre></div>
+<p>Heap 1 task is every similar to Heap 0. The only difference is that we need to make the value of <code>safe_var</code> variable to &ldquo;<strong>pico</strong>&rdquo;. The address values of the variables are the same with Heap 0. Therefore, we already know they are 32bits apart. All we need to do is input 32-bit long characters to fill <code>input_data</code> variable and type &ldquo;<strong>pico</strong>&rdquo; after to overwrite the value of <code>safe_var</code> variable.</p>
+<br>
+<p>Here&rsquo;s the solution:</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>Welcome to heap1!
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>I put my data on the heap so it should be safe from any tampering.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Since my data isn<span style="color:#a6e3a1">&#39;t on the stack I&#39;</span>ll even <span style="color:#89dceb">let</span> you write whatever info you want to the heap, I already took care of using malloc <span style="color:#cba6f7">for</span> you.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Heap State:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>+-------------+----------------+
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> Address   -&gt;   Heap Data
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>+-------------+----------------+
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span>   0x63e0c8e3d2b0  -&gt;   pico
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>+-------------+----------------+
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span>   0x63e0c8e3d2d0  -&gt;   bico
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>+-------------+----------------+
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>1. Print Heap:          <span style="color:#89dceb;font-weight:bold">(</span>print the current state of the heap<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>2. Write to buffer:     <span style="color:#89dceb;font-weight:bold">(</span>write to your own personal block of data on the heap<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>3. Print safe_var:      <span style="color:#89dceb;font-weight:bold">(</span>I<span style="color:#a6e3a1">&#39;ll even let you look at my variable on the heap, I&#39;</span>m confident it can<span style="color:#a6e3a1">&#39;t be modified)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span><span style="color:#a6e3a1">4. Print Flag:          (Try to print the flag, good luck)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span><span style="color:#a6e3a1">5. Exit
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span><span style="color:#a6e3a1">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span><span style="color:#a6e3a1">Enter your choice: 2
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span><span style="color:#a6e3a1">Data for buffer: abcdefghijklmnopqrstuvwxyz123456pico
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span><span style="color:#a6e3a1">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span><span style="color:#a6e3a1">1. Print Heap:          (print the current state of the heap)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span><span style="color:#a6e3a1">2. Write to buffer:     (write to your own personal block of data on the heap)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span><span style="color:#a6e3a1">3. Print safe_var:      (I&#39;</span>ll even <span style="color:#89dceb">let</span> you look at my variable on the heap, I<span style="color:#a6e3a1">&#39;m confident it can&#39;</span>t be modified<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>4. Print Flag:          <span style="color:#89dceb;font-weight:bold">(</span>Try to print the flag, good luck<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>5. Exit
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>Enter your choice: <span style="color:#fab387">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>Take a look at my variable: <span style="color:#f5e0dc">safe_var</span> <span style="color:#89dceb;font-weight:bold">=</span> pico
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>1. Print Heap:          <span style="color:#89dceb;font-weight:bold">(</span>print the current state of the heap<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>2. Write to buffer:     <span style="color:#89dceb;font-weight:bold">(</span>write to your own personal block of data on the heap<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>3. Print safe_var:      <span style="color:#89dceb;font-weight:bold">(</span>I<span style="color:#a6e3a1">&#39;ll even let you look at my variable on the heap, I&#39;</span>m confident it can<span style="color:#f38ba8">&#39;</span>t be modified<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>4. Print Flag:          <span style="color:#89dceb;font-weight:bold">(</span>Try to print the flag, good luck<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">39</span><span>5. Exit
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">40</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">41</span><span>Enter your choice: <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">42</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">43</span><span>YOU WIN
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">44</span><span>picoCTF<span style="color:#89dceb;font-weight:bold">{</span>starting_to_get_the_hang_ce5bee9b<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<p><strong><em>flag</em></strong>: picoCTF{starting_to_get_the_hang_ce5bee9b}</p>
+<hr>
+]]></content:encoded>
+    </item>
     <item>
       <title>[picoCTF] Scan Surprise</title>
       <link>http://localhost:1313/picoctf-scan-surprise/</link>
@@ -224,6 +658,90 @@ However, we already saw that Jim used a Star Trek reference with his review on a
 <p>when googled &ldquo;Jim Star Trek&rdquo;, the fictional character&rsquo;s name is actually <code>James T. Kirk</code> and its eldest siblings middle name is <code>Samuel</code>
 <img src="image-14.png#center#center" alt="alt text">
 <img src="image-15.png#center" alt="alt text"></p>
+<br>
+<h4 id="question-8-access-the-confidential-document">Question 8: Access the Confidential Document!</h4>
+<p><img src="image-16.png#center" alt="alt text"></p>
+<p>on the bottom left, we can see that it links to <code>http://10.10.187.53/ft/legal.md</code>. Navigating to that <code>/ftp/</code> directory reveals that it is exposed to the public.</p>
+<p><img src="image-17.png#center" alt="alt text"></p>
+<p>Some of the files appear to be confidential. Download the files and go back to the homepage to receive the flag.</p>
+<p><img src="image-18.png#center" alt="alt text">
+<code>edf9281222395a1c5fee9b89e32175f1ccf50c5b</code></p>
+<br>
+<h4 id="question-9-log-into-mc-safesearchs-account">Question 9: Log into MC SafeSearch&rsquo;s account</h4>
+<p>Watch the following video to get the password for MC Safe Search&rsquo;s account:
+<a href="https://www.youtube.com/watch?v=v59CX2DiX0Y">Link</a></p>
+<p>In his song, he mentions that his password is &ldquo;Mr. Noodles&rdquo; but he replaced some vowels into zeros. So, the password to the <em><a href="mailto:mc.safesearch@juice-sh.op">mc.safesearch@juice-sh.op</a></em> is &ldquo;<strong>Mr. N00dles</strong>.</p>
+<p><code>66bdcffad9e698fd534003fbb3cc7e2b7b55d7f0</code></p>
+<br>
+<h4 id="question-10-download-the-backup-file">Question 10: Download the Backup file!</h4>
+<p>On http://10.10.176.53/ftp, when we try to download <code>package.json.bak</code> file, we encounter a 403 error saying that only .md and .pdf files can be downloaded.</p>
+<p>To get around this, we can use a character bypass called <code>Poison Null Byte</code>.
+A Poison Null Byte looks like this <code>$00</code></p>
+<p>But because we are downloading it using the url, we will need to encode this into a url encoded format, which is <code>%2500</code>.</p>
+<p>The number &ldquo;2500&rdquo; in the context of a &ldquo;Poison Null Byte&rdquo; is a result of URL encoding</p>
+<p>A Poison Null Byte is actually a <code>NULL terminator</code>. By placing a NULL character in the string at a certain byte, the string will tell the server to terminate at that point, nulling the rest of the string.</p>
+<p>The final url should look like this: <code>10.10.176.53/ftp/package.json.bak%2500.md</code></p>
+<br>
+<h4 id="question-11-access-the-administration-page">Question 11: Access the administration page</h4>
+<p>Modern-day systems will allow for multiple users to have access to different pages. Administrators most commonly use an admin page to edit, add, and remove different elements of a website.</p>
+<p>When <code>Broken Access Control</code> exploits or bugs are found, it will be categorized into one of two types:</p>
+<ul>
+<li>Horizontal Privilege Escalation</li>
+<li>Vertical Privilege Escalation</li>
+</ul>
+<p>Look for a javascript file for <code>main-es2015.js</code> in Debugger on FireFox (or Sources on Chrome)</p>
+<p><img src="image-19.png#center" alt="alt text"></p>
+<p>This shows us that there&rsquo;s a path towards <code>/#/administration</code>, but going there while not logged in doesn&rsquo;t work. As this is an Administrator page, it makes sens that we need to be in the Admin account in order to view it.</p>
+<br>
+<p><img src="image-20.png#center" alt="alt text">
+This image above is what we see when we logged in as admin and navigated to <code>/#/administration</code> page.</p>
+<p><code>946a799363226a24822008503f5d1324536629a0</code></p>
+<br>
+<h4 id="question-12-view-another-users-shopping-basket">Question 12: View another user&rsquo;s shopping basket.</h4>
+<p>Log into the Admin account and click on &lsquo;Your Basket&rsquo;. Make sure Burp is running so you can capture the request.</p>
+<p><code>GET /rest/basket/1 HTTP/1.1</code></p>
+<p>Change the number 1 after <code>/basket/</code> to 2</p>
+<p><img src="image-21.png#center" alt="alt text"></p>
+<p>It will show you the basket of User ID 2. You can do this for other User IDs as well</p>
+<br>
+<h4 id="question-13-remove-all-5-star-reviews">Question 13: Remove all 5-star reviews.</h4>
+<p>Navigate back to <code>/#/administration</code> page and remove all the five-star review by clicking the bin icon.</p>
+<p><img src="image-22.png#center" alt="alt text"></p>
+<p><code>50c97bcce0b895e446d61c83a21df371ac2266ef</code></p>
+<br>
+<h4 id="question-14-perform-a-dom-xss">Question 14: Perform a DOM XSS!</h4>
+<p>XSS or Cross-site scripting is a vulnerability that allows attackers to run javascript in web applications. Their complexity ranges from easy to extremely hard, as each web application parses the queries in a different way.</p>
+<p>There are three major types of XSS attacks:</p>
+<ol>
+<li>DOM XSS</li>
+<li>Persistent XSS</li>
+<li>Reflected XSS</li>
+</ol>
+<p>We will be using the iframe element with a javascript alert tag:</p>
+<p><code>&lt;iframe src=&quot;javascript:alert('xss')&quot;&gt;</code></p>
+<p>It is common practice that the search bar will send a request to the server in which it will then send back the related information, but this is where the flaw lies. Without correct input sanitastion, we are able to perform an XSS attack against the search bar.</p>
+<p><code>9aaf4bbea5c30d00a1f5bbcfce4db6d4b0efe0bf</code></p>
+<br>
+<h4 id="question-15-perform-a-persistent-xss">Question 15: Perform a persistent XSS!</h4>
+<p>First, log in to the <code>admin</code> account. We are going to navigate to the <code>Last Login IP</code> page for this attack.</p>
+<p>The Last Login IP should say <code>0.0.0.0</code>
+As it logs the &rsquo;last&rsquo; login IP, we will now logout so that it logs the &rsquo;new&rsquo; IP. Make sure that Burp intercept is on, so it will catch the logout request.</p>
+<p><img src="image-23.png#center" alt="alt text"></p>
+<p>After we catch the logout request, we will add a new header like the image above and forward the request to the server with the newly added header.</p>
+<p>Then when signing back into the admin account and navigating to the Last Login IP page again, we will see the XSS alert.</p>
+<p><img src="image-24.png#center" alt="alt text"></p>
+<p><code>149aa8ce13d7a4a8a931472308e269c94dc5f156</code></p>
+<br>
+<h4 id="question-16-perform-a-reflected-xss">Question 16: Perform a reflected XSS!</h4>
+<p>Login into the admin account and navigate to the &lsquo;Order History&rsquo; page.
+From there you will see a &lsquo;Truck&rsquo; icon, clicking on that will bring you to the track result page. You will also see that there is an id paird with the order.</p>
+<p><code>http://10.10.129.167/#/track-result?id=5267-b3f50aba1f1b9125</code></p>
+<p>We will use the iframe XSS, <code>&lt;iframe src=&quot;javascript:alert('xss')&quot;</code>&gt;, in the place of the
+<code>5267-b3f50aba1f1b9125</code></p>
+<p>After submitting the URL, refresh the page and you will get an alert saying XSS.</p>
+<p><img src="image-25.png#center" alt="alt text"></p>
+<p><code>23cefee1527bde039295b2616eeb29e1edc660a0</code></p>
+<br>
 ]]></content:encoded>
     </item>
     <item>
@@ -4834,6 +5352,14 @@ Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?
 <!-- Image 11 -->
 <div style="display: inline-block; margin: 0 5px;">
     <img src="./levi_sitting_on_a_stool.jpeg" alt="Image 5" style="width: 300px; height: auto;">
+</div>
+<!-- Image 11 -->
+<div style="display: inline-block; margin: 0 5px;">
+    <img src="./leon_hungry.jpeg" alt="leon_hungry" style="width: 300px; height: auto;">
+</div>
+<!-- Image 12 -->
+<div style="display: inline-block; margin: 0 5px;">
+    <img src="./levi_shocked.jpeg" alt="levi_shocked" style="width: 300px; height: auto;">
 </div>
 </div>
 ]]></content:encoded>
