@@ -61,10 +61,8 @@ This is my first time experiencing picoCTF. I had heard of it numerous times on 
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>ctf-player@pico-chall$ ls
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>checksum.txt  decrypt.sh  files</span></span></code></pre></div>
 <br>
-<ul>
-<li>Checksum
-<code>3ad37ed6c5ab81d31e4c94ae611e0adf2e9e3e6bee55804ebc7f386283e366a4</code></li>
-</ul>
+<p>Checksum
+<code>3ad37ed6c5ab81d31e4c94ae611e0adf2e9e3e6bee55804ebc7f386283e366a4</code></p>
 <br>
 
 
@@ -645,11 +643,11 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 <br>
 <p>original token: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imd1ZXN0IiwiZXhwIjoxNzE5ODk1NzI0fQ.KY3A8a6eVrLrqFt606eVjfMLYLGTRtZAwthimwQO5Lo</code></p>
 <p>We learned that the JWT token is formed of 3 parts.</p>
-<ol>
+<ul>
 <li>Header: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</code></li>
 <li>Payload: <code>eyJ1c2VybmFtZSI6Imd1ZXN0IiwiZXhwIjoxNzE5ODk1NzI0fQ</code></li>
 <li>Signature: <code>KY3A8a6eVrLrqFt606eVjfMLYLGTRtZAwthimwQO5Lo</code></li>
-</ol>
+</ul>
 <p>Now we can use the encode/decode online tool to modify the contents of the header and remove signature.</p>
 <p>First decode the <code>Header</code> part of the token
 <img src="image-26.png#center" alt="alt text"></p>
@@ -664,11 +662,17 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
 <img src="image-29.png#center" alt="alt text"></p>
 <br>
 <p>Remove Signature and combine those modified parts</p>
-<ol>
-<li>Header_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0</code></li>
-<li>Payload_modified: <code>eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ</code></li>
-<li>Combined_token_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ.</code></li>
-</ol>
+<ul>
+<li>
+<p>Header_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0</code></p>
+</li>
+<li>
+<p>Payload_modified: <code>eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ</code></p>
+</li>
+<li>
+<p>Combined_token_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ.</code></p>
+</li>
+</ul>
 <p><em>Notice that I still kept the dot at then end even though we removed the signature part of the token.</em>
 <br></p>
 <p>Replace the value of the cookie to our modified token and refresh the page
