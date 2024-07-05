@@ -60,7 +60,7 @@ Description Are overflows just a stack concern? Download the binary Download the
 1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.">
   <meta itemprop="datePublished" content="2024-07-05T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-05T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1652">
+  <meta itemprop="wordCount" content="1671">
   <meta itemprop="keywords" content="picoCTF">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -322,7 +322,6 @@ Enter your choice: 4
 YOU WIN
 picoCTF{my_first_heap_overflow_c3935a08}</code></pre>
 <p><strong><em>flag</em></strong>: picoCTF{my_first_heap_overflow_c3935a08}</p>
-<br>
 <hr>
 <h3 id="heap-1">heap 1</h3>
 <p><em>author: ABRXS, PR1OR1TYQ</em></p>
@@ -454,9 +453,23 @@ nc tethys.picoctf.net 50046</p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">114</span><span>        }
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">115</span><span>    }
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">116</span><span>}</span></span></code></pre></div>
-<p>Heap 1 task is every similar to Heap 0. The only difference is that we need to make the value of <code>safe_var</code> variable to &ldquo;<strong>pico</strong>&rdquo;. The address values of the variables are the same with Heap 0. Therefore, we already know they are 32bits apart. All we need to do is input 32-bit long characters to fill <code>input_data</code> variable and type &ldquo;<strong>pico</strong>&rdquo; after to overwrite the value of <code>safe_var</code> variable.</p>
 <br>
-<p>Here&rsquo;s the solution:</p>
+<p>Check out <code>check_win</code> function for the win condition:</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">check_win</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>    <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span><span style="color:#89b4fa">strcmp</span>(safe_var, <span style="color:#a6e3a1">&#34;pico&#34;</span>)) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>        <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">YOU WIN</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>);</span></span></code></pre></div>
+<br>
+Heap 1 task is every similar to Heap 0. The only difference is that we need to make the value of `safe_var` variable to "**pico**". The address values of the variables are the same with Heap 0. Therefore, we already know they are 32bits apart. All we need to do is input 32-bit long characters to fill `input_data` variable and type "**pico**" after to overwrite the value of `safe_var` variable.
+<br>
+<br>
+<br>
+Here's the solution:
 
 
 
