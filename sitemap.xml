@@ -5,10 +5,16 @@
     <loc>http://localhost:1313/picoctf-webdecode/</loc>
     <lastmod>2024-07-06T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/thm-upload-vulnerabilities/</loc>
+    <lastmod>2024-07-06T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/blog/picoctf/</loc>
     <lastmod>2024-07-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2024-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tryhackme/</loc>
     <lastmod>2024-07-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
@@ -27,9 +33,6 @@
     <lastmod>2024-07-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thm-owasp-juice-shop/</loc>
-    <lastmod>2024-07-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/tryhackme/</loc>
     <lastmod>2024-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thm-owasp-top-10/</loc>

