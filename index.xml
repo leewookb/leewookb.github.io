@@ -15,14 +15,12 @@
       <link>http://localhost:1313/picoctf-packer/</link>
       <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-packer/</guid>
-      <description>Author: MUBARAK MIKAIL
-Description Reverse this linux executable? link
+      <description>Description Reverse this linux executable? link
 First, I downloaded the file to my local machine using the wget comand.
 wget https://artifacts.picoctf.net/c_titan/103/out
 It seems like a binary file that contains non-human readable contents inside it
 1┌──(kali㉿kali)-[~/Desktop] 2└─$ ls 3hello.php5 hello.png leewookb.ovpn out shell.js 4 5┌──(kali㉿kali)-[~/Desktop] 6└─$ file out 7out: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, no section header I used the strings command to extract and print only the readable strings from the binary file and found these meaningful words.</description>
-      <content:encoded><![CDATA[<p><em>Author: MUBARAK MIKAIL</em></p>
-<h3 id="description">Description</h3>
+      <content:encoded><![CDATA[<h3 id="description">Description</h3>
 <p>Reverse this linux executable?
 <a href="https://artifacts.picoctf.net/c_titan/103/out" target="_blank">link</a></p>
 <hr>
@@ -118,11 +116,10 @@ It seems like a binary file that contains non-human readable contents inside it
       <link>http://localhost:1313/picoctf-secret-of-the-polyglot/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-secret-of-the-polyglot/</guid>
-      <description>Author: SYREAL
-Description The Network Operations Center (NOC) of your local institution picked up a suspicious file, they&amp;rsquo;re getting conflicting information on what type of file it is. They&amp;rsquo;ve brought you in as an external expert to examine the file. Can you extract all the information from this strange file? Download the suspicious file.
-First, I downloaded the provided file on my Kali Linux VM by the follwing command: wget https://artifacts.</description>
-      <content:encoded><![CDATA[<p><em>Author: SYREAL</em></p>
-<h3 id="description">Description</h3>
+      <description>Description The Network Operations Center (NOC) of your local institution picked up a suspicious file, they&amp;rsquo;re getting conflicting information on what type of file it is. They&amp;rsquo;ve brought you in as an external expert to examine the file. Can you extract all the information from this strange file? Download the suspicious file.
+First, I downloaded the provided file on my Kali Linux VM by the follwing command: wget https://artifacts.picoctf.net/c_titan/9/flag2of2-final.pdf
+The name of the file is flag2of2-final.</description>
+      <content:encoded><![CDATA[<h3 id="description">Description</h3>
 <p>The Network Operations Center (NOC) of your local institution picked up a suspicious file, they&rsquo;re getting conflicting information on what type of file it is. They&rsquo;ve brought you in as an external expert to examine the file. Can you extract all the information from this strange file?
 Download the suspicious file.</p>
 <hr>
@@ -159,15 +156,13 @@ Download the suspicious file.</p>
       <link>http://localhost:1313/picoctf-time-machine/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-time-machine/</guid>
-      <description>*Author: JEFFREY JOHN
-Description What was I last working on? I remember writing a note to help me remember&amp;hellip; You can download the challenge files here: challenge.zip
+      <description>Description What was I last working on? I remember writing a note to help me remember&amp;hellip; You can download the challenge files here: challenge.zip
 First, let&amp;rsquo;s download the provided .zip file on our terminal by running the following command:
 wget https://artifacts.picoctf.net/c_titan/160/challenge.zip
 1leewookb-picoctf@webshell:~$ ls 2README.txt challenge.zip Let&amp;rsquo;s unzip the downloaded file by running the following command:
 unzip challenge.zip
-1eewookb-picoctf@webshell:~$ unzip challenge.zip 2Archive: challenge.zip 3 creating: drop-in/ 4 inflating: drop-in/message.</description>
-      <content:encoded><![CDATA[<p>*Author: JEFFREY JOHN</p>
-<h3 id="description">Description</h3>
+1eewookb-picoctf@webshell:~$ unzip challenge.zip 2Archive: challenge.zip 3 creating: drop-in/ 4 inflating: drop-in/message.txt 5 creating: drop-in/.</description>
+      <content:encoded><![CDATA[<h3 id="description">Description</h3>
 <p>What was I last working on? I remember writing a note to help me remember&hellip;
 You can download the challenge files here:
 challenge.zip</p>
@@ -278,12 +273,10 @@ Let&rsquo;s run <code>ls -la</code> command to reveal all the hidden files.</p>
       <link>http://localhost:1313/picoctf-webdecode/</link>
       <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-webdecode/</guid>
-      <description>Author: NANA AMA ATOMOBO-SACKEY
-Description Do you know how to use the web inspector? Start searching here to find the flag
+      <description>Description Do you know how to use the web inspector? Start searching here to find the flag
 If you click on the link provided, it takes you to a website. There&amp;rsquo;s a navbar at the top with three options, home, about, and contact If you navigate to the about page, it says Try inspecting the page!! You might find it there.
 When you inspect the elements of the page, you&amp;rsquo;ll notice that the section tag has an attribute called notify_true=&amp;quot;cGljb0NURnt3ZWJfc3VjYzNzc2Z1bGx5X2QzYzBkZWRfMjgzZTYyZmV9&amp;quot;.</description>
-      <content:encoded><![CDATA[<p><em>Author</em>: NANA AMA ATOMOBO-SACKEY</p>
-<h3 id="description">Description</h3>
+      <content:encoded><![CDATA[<h3 id="description">Description</h3>
 <p>Do you know how to use the web inspector?
 Start searching <a href="http://titan.picoctf.net:64333/" target="_blank">here</a> to find the flag</p>
 <hr>
@@ -774,10 +767,8 @@ What is the name of the image file which can be overwritten?</description>
       <link>http://localhost:1313/picoctf-binary-search/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-binary-search/</guid>
-      <description>Binary Search Author : Jeffery John
-Description Want to play a game? As you use more of the shell, you might be interested in how they work! Binary search is a classic algorithm used to quickly find an item in a sorted list. Can you find the flag? You&amp;rsquo;ll have 1000 possibilities and only 10 guesses. Cyber security often has a huge amount of data to look through - from logs, vulnerability reports, and forensics.</description>
+      <description>Binary Search Description Want to play a game? As you use more of the shell, you might be interested in how they work! Binary search is a classic algorithm used to quickly find an item in a sorted list. Can you find the flag? You&amp;rsquo;ll have 1000 possibilities and only 10 guesses. Cyber security often has a huge amount of data to look through - from logs, vulnerability reports, and forensics.</description>
       <content:encoded><![CDATA[<h3 id="binary-search">Binary Search</h3>
-<p><em>Author : Jeffery John</em></p>
 <h4 id="description">Description</h4>
 <p>Want to play a game? As you use more of the shell, you might be interested in how they work! Binary search is a classic algorithm used to quickly find an item in a sorted list. Can you find the flag? You&rsquo;ll have 1000 possibilities and only 10 guesses.
 Cyber security often has a huge amount of data to look through - from logs, vulnerability reports, and forensics. Practicing the fundamentals manually might help you in the future when you have to write your own tools!</p>
@@ -818,11 +809,9 @@ Majoring in Computer Science finally paid off.. 😭</p>
       <link>http://localhost:1313/picoctf-heap-0-1/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-heap-0-1/</guid>
-      <description>heap 0 author: ABRXS, PR1OR1TYQ
-Description Are overflows just a stack concern? Download the binary Download the source Here&amp;rsquo;s the source code provided
+      <description>heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here&amp;rsquo;s the source code provided
 1#include &amp;lt;stdio.h&amp;gt; 2#include &amp;lt;stdlib.h&amp;gt; 3#include &amp;lt;string.h&amp;gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &amp;#34;bico&amp;#34;) != 0) { 17 printf(&amp;#34;\nYOU WIN\n&amp;#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&amp;#34;flag.</description>
       <content:encoded><![CDATA[<h3 id="heap-0">heap 0</h3>
-<p><em>author: ABRXS, PR1OR1TYQ</em></p>
 <h4 id="description">Description</h4>
 <p>Are overflows just a stack concern? <br>
 Download the binary <br>
@@ -1222,11 +1211,10 @@ Here's the solution:
       <link>http://localhost:1313/picoctf-scan-surprise/</link>
       <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-scan-surprise/</guid>
-      <description>Description Author: Jeffrey John I&amp;rsquo;ve gotton bored of handing out flags as text. Wouldn&amp;rsquo;t it be cool if they were an image instead?
+      <description>Description I&amp;rsquo;ve gotton bored of handing out flags as text. Wouldn&amp;rsquo;t it be cool if they were an image instead?
 This is what wee see when we first log into the ssh server, a QR code. The one thing we could easily do to capture the flag is to scan the QR code with our mobile phones since they have included native QR code scanner in their cameras since version 8 and iOS 11.</description>
       <content:encoded><![CDATA[<h3 id="description">Description</h3>
-<p><em>Author: Jeffrey John</em>
-<br></p>
+<br>
 <p>I&rsquo;ve gotton bored of handing out flags as text.
 Wouldn&rsquo;t it be cool if they were an image instead?</p>
 <hr>
@@ -1254,7 +1242,6 @@ This is my first time experiencing picoCTF. I had heard of it numerous times on 
 <p>This is my first time experiencing picoCTF. I had heard of it numerous times on the Internet, and it turned out to be way more fun and engaging than I expected. I think I’ll stick to picoCTF for a while before moving on to HackTheBox, as I feel picoCTF provides more basic and foundational CTFs than HTB. Anyway, I&rsquo;m really glad I stumbled upon this resource and decided to give it a try.</p>
 <hr>
 <h3 id="description">Description</h3>
-<p><em>Author</em>: Jeffrey John</p>
 <p>People keep trying to trick my players with imitation flags. I want to make sure they get the real thing! I&rsquo;m going to provide the SHA-256 hash and a decrypt script to help you know that my flags are legitimate.</p>
 <hr>
 <p>First we need to connect to SSH server by <code>ssh ctf-player@rhea.picoctf.net -p 61394</code></p>
@@ -6133,6 +6120,10 @@ Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?
 <!-- Image 12 -->
 <div style="display: inline-block; margin: 0 5px;">
     <img src="./levi_shocked.jpeg" alt="levi_shocked" style="width: 300px; height: auto;">
+</div>
+<!-- Image 13 -->
+<div style="display: inline-block; margin: 0 5px;">
+    <img src="./levi_staring.jpeg" alt="levi_shocked" style="width: 300px; height: auto;">
 </div>
 </div>
 ]]></content:encoded>

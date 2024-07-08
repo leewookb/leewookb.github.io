@@ -13,8 +13,7 @@
 />
 <meta
   name="description"
-  content="heap 0 author: ABRXS, PR1OR1TYQ
-Description Are overflows just a stack concern? Download the binary Download the source Here&rsquo;s the source code provided
+  content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here&rsquo;s the source code provided
 1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag."
 />
 <meta
@@ -30,8 +29,7 @@ Description Are overflows just a stack concern? Download the binary Download the
 <meta property="og:url" content="http://localhost:1313/picoctf-heap-0-1/">
   <meta property="og:site_name" content="Wook&#39;s blog">
   <meta property="og:title" content="[picoCTF] heap 1 &amp; heap 0">
-  <meta property="og:description" content="heap 0 author: ABRXS, PR1OR1TYQ
-Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
+  <meta property="og:description" content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
 1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -46,8 +44,7 @@ Description Are overflows just a stack concern? Download the binary Download the
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[picoCTF] heap 1 &amp; heap 0">
-  <meta name="twitter:description" content="heap 0 author: ABRXS, PR1OR1TYQ
-Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
+  <meta name="twitter:description" content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
 1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.">
 
 
@@ -55,12 +52,11 @@ Description Are overflows just a stack concern? Download the binary Download the
 
 
   <meta itemprop="name" content="[picoCTF] heap 1 &amp; heap 0">
-  <meta itemprop="description" content="heap 0 author: ABRXS, PR1OR1TYQ
-Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
+  <meta itemprop="description" content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
 1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.">
   <meta itemprop="datePublished" content="2024-07-05T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-05T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1671">
+  <meta itemprop="wordCount" content="1668">
   <meta itemprop="keywords" content="picoCTF">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -130,7 +126,6 @@ Description Are overflows just a stack concern? Download the binary Download the
   
   <content>
     <h3 id="heap-0">heap 0</h3>
-<p><em>author: ABRXS, PR1OR1TYQ</em></p>
 <h4 id="description">Description</h4>
 <p>Are overflows just a stack concern? <br>
 Download the binary <br>
