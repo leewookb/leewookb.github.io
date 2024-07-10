@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[picoCTF] CanYouSee&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[picoCTF] CanYouSee"
+/>
+<meta
+  name="description"
+  content="This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn&rsquo;t familiar with, and I learned something new. So, why not?
+Description How about some hide and seek?
+As usual, I started by downloading the provided file to my local machine by using the wget command.
+1──(kali㉿kali)-[~/Desktop/pico] 2└─$ wget https://artifacts.picoctf.net/c_titan/128/unknown.zip 3--2024-07-09 16:33:45-- https://artifacts.picoctf.net/c_titan/128/unknown.zip 4Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 54.230.253.65, 54.230.253.91, 54.230.253.20, ."
+/>
+<meta
+  name="keywords"
+  content="picoCTF,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/picoctf-canyousee/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[picoCTF] CanYouSee">
+  <meta property="og:description" content="This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn’t familiar with, and I learned something new. So, why not?
+Description How about some hide and seek?
+As usual, I started by downloading the provided file to my local machine by using the wget command.
+1──(kali㉿kali)-[~/Desktop/pico] 2└─$ wget https://artifacts.picoctf.net/c_titan/128/unknown.zip 3--2024-07-09 16:33:45-- https://artifacts.picoctf.net/c_titan/128/unknown.zip 4Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 54.230.253.65, 54.230.253.91, 54.230.253.20, .">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-07-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-09T00:00:00+00:00">
+    <meta property="article:tag" content="picoCTF">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[picoCTF] CanYouSee">
+  <meta name="twitter:description" content="This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn’t familiar with, and I learned something new. So, why not?
+Description How about some hide and seek?
+As usual, I started by downloading the provided file to my local machine by using the wget command.
+1──(kali㉿kali)-[~/Desktop/pico] 2└─$ wget https://artifacts.picoctf.net/c_titan/128/unknown.zip 3--2024-07-09 16:33:45-- https://artifacts.picoctf.net/c_titan/128/unknown.zip 4Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 54.230.253.65, 54.230.253.91, 54.230.253.20, .">
+
+
+
+
+
+  <meta itemprop="name" content="[picoCTF] CanYouSee">
+  <meta itemprop="description" content="This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn’t familiar with, and I learned something new. So, why not?
+Description How about some hide and seek?
+As usual, I started by downloading the provided file to my local machine by using the wget command.
+1──(kali㉿kali)-[~/Desktop/pico] 2└─$ wget https://artifacts.picoctf.net/c_titan/128/unknown.zip 3--2024-07-09 16:33:45-- https://artifacts.picoctf.net/c_titan/128/unknown.zip 4Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 54.230.253.65, 54.230.253.91, 54.230.253.20, .">
+  <meta itemprop="datePublished" content="2024-07-09T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-09T00:00:00+00:00">
+  <meta itemprop="wordCount" content="426">
+  <meta itemprop="keywords" content="picoCTF">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[picoCTF] CanYouSee</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-07-09" pubdate>
+            2024-07-09
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <p>This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn&rsquo;t familiar with, and I learned something new. So, why not?</p>
+<div style="text-align: center;"><img src="./giphy.gif"></div>
+<hr>
+<h3 id="description">Description</h3>
+<p>How about some hide and seek?</p>
+<hr>
+<p>As usual, I started by downloading the provided file to my local machine by using the <code>wget</code> command.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ wget https://artifacts.picoctf.net/c_titan/128/unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>--2024-07-09 16:33:45--  https://artifacts.picoctf.net/c_titan/128/unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Resolving artifacts.picoctf.net <span style="color:#89dceb;font-weight:bold">(</span>artifacts.picoctf.net<span style="color:#89dceb;font-weight:bold">)</span>... 54.230.253.65, 54.230.253.91, 54.230.253.20, ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Connecting to artifacts.picoctf.net <span style="color:#89dceb;font-weight:bold">(</span>artifacts.picoctf.net<span style="color:#89dceb;font-weight:bold">)</span>|54.230.253.65|:443... connected.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>HTTP request sent, awaiting response... <span style="color:#fab387">200</span> OK
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Length: <span style="color:#fab387">2252108</span> <span style="color:#89dceb;font-weight:bold">(</span>2.1M<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>application/octet-stream<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>Saving to: ‘unknown.zip’
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>unknown.zip                            100%<span style="color:#89dceb;font-weight:bold">[============================================================================</span>&gt;<span style="color:#89dceb;font-weight:bold">]</span>   2.15M  11.2MB/s    in 0.2s
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>2024-07-09 16:33:47 <span style="color:#89dceb;font-weight:bold">(</span>11.2 MB/s<span style="color:#89dceb;font-weight:bold">)</span> - ‘unknown.zip’ saved <span style="color:#89dceb;font-weight:bold">[</span>2252108/2252108<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>unknown.zip</span></span></code></pre></div>
+<br>
+<p>Unzipped the unknown.zip file.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ unzip unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Archive:  unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>  inflating: ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>ukn_reality.jpg  unknown.zip</span></span></code></pre></div>
+<br>
+<p>Inside the zip file, there was a <code>.jpg</code> file named ukn_reality.jpg and it looked like the following:</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<p>Since this was the only file given to me, I knew I had to look up the file&rsquo;s info to capture the flag. So the first thing I tried was to run a <code>file</code> command. However, nothing useful was found.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ file ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>ukn_reality.jpg: JPEG image data, JFIF standard 1.01, resolution <span style="color:#89dceb;font-weight:bold">(</span>DPI<span style="color:#89dceb;font-weight:bold">)</span>, density 72x72, segment length 16, baseline, precision 8, 4308x2875, components <span style="color:#fab387">3</span></span></span></code></pre></div>
+<br>
+<p>Then I asked chatGPT for ways to view information about an image and it provided some commonly used methods:</p>
+<ol>
+<li><code>file</code> command</li>
+<li><code>identify</code> from ImageMagick</li>
+<li><code>exiftool</code></li>
+<li><code>exiv2</code></li>
+</ol>
+<p>I further looked into the commands and thought the <code>exiftool</code> would give me the most information about the image.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ exiftool ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>ExifTool Version Number         : 12.76
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>File Name                       : ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Directory                       : .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>File Size                       : 2.3 MB
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>File Modification Date/Time     : 2024:03:11 20:05:51-04:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>File Access Date/Time           : 2024:07:09 16:33:57-04:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>File Inode Change Date/Time     : 2024:07:09 16:33:51-04:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>File Permissions                : -rw-r--r--
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>File Type                       : JPEG
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>File Type Extension             : jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>MIME Type                       : image/jpeg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>JFIF Version                    : 1.01
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Resolution Unit                 : inches
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>X Resolution                    : <span style="color:#fab387">72</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>Y Resolution                    : <span style="color:#fab387">72</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>XMP Toolkit                     : Image::ExifTool 11.88
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>Attribution URL                 : <span style="color:#f5e0dc">cGljb0NURntNRTc0RDQ3QV9ISUREM05fM2I5MjA5YTJ9Cg</span><span style="color:#89dceb;font-weight:bold">==</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>Image Width                     : <span style="color:#fab387">4308</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>Image Height                    : <span style="color:#fab387">2875</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>Encoding Process                : Baseline DCT, Huffman coding
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>Bits Per Sample                 : <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>Color Components                : <span style="color:#fab387">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>Y Cb Cr Sub Sampling            : YCbCr4:2:0 <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">2</span> 2<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>Image Size                      : 4308x2875
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>Megapixels                      : 12.4</span></span></code></pre></div>
+<br>
+<p>If you look closely the value for <code>Attribution URL</code> is not in the expected form. It looks like it&rsquo;s encoded or hashed. I tried decoding the given URL with the <code>base64</code> command.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ <span style="color:#89dceb">echo</span> <span style="color:#f5e0dc">cGljb0NURntNRTc0RDQ3QV9ISUREM05fM2I5MjA5YTJ9Cg</span><span style="color:#89dceb;font-weight:bold">==</span> | base64 -d
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>picoCTF<span style="color:#89dceb;font-weight:bold">{</span>ME74D47A_HIDD3N_3b9209a2<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<p>And we got the flag!</p>
+<p><strong><em>flag</em></strong>: <code>picoCTF{ME74D47A_HIDD3N_3b9209a2}</code></p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/picoctf/">#picoCTF</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

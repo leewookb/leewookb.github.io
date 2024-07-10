@@ -8,21 +8,304 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Mon, 08 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[picoCTF] CanYouSee</title>
+      <link>http://localhost:1313/picoctf-canyousee/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/picoctf-canyousee/</guid>
+      <description>This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn&amp;rsquo;t familiar with, and I learned something new. So, why not?
+Description How about some hide and seek?
+As usual, I started by downloading the provided file to my local machine by using the wget command.
+1──(kali㉿kali)-[~/Desktop/pico] 2└─$ wget https://artifacts.picoctf.net/c_titan/128/unknown.zip 3--2024-07-09 16:33:45-- https://artifacts.picoctf.net/c_titan/128/unknown.zip 4Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 54.230.253.65, 54.230.253.91, 54.230.253.20, .</description>
+      <content:encoded><![CDATA[<p>This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn&rsquo;t familiar with, and I learned something new. So, why not?</p>
+<div style="text-align: center;"><img src="./giphy.gif"></div>
+<hr>
+<h3 id="description">Description</h3>
+<p>How about some hide and seek?</p>
+<hr>
+<p>As usual, I started by downloading the provided file to my local machine by using the <code>wget</code> command.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ wget https://artifacts.picoctf.net/c_titan/128/unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>--2024-07-09 16:33:45--  https://artifacts.picoctf.net/c_titan/128/unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Resolving artifacts.picoctf.net <span style="color:#89dceb;font-weight:bold">(</span>artifacts.picoctf.net<span style="color:#89dceb;font-weight:bold">)</span>... 54.230.253.65, 54.230.253.91, 54.230.253.20, ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Connecting to artifacts.picoctf.net <span style="color:#89dceb;font-weight:bold">(</span>artifacts.picoctf.net<span style="color:#89dceb;font-weight:bold">)</span>|54.230.253.65|:443... connected.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>HTTP request sent, awaiting response... <span style="color:#fab387">200</span> OK
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Length: <span style="color:#fab387">2252108</span> <span style="color:#89dceb;font-weight:bold">(</span>2.1M<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>application/octet-stream<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>Saving to: ‘unknown.zip’
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>unknown.zip                            100%<span style="color:#89dceb;font-weight:bold">[============================================================================</span>&gt;<span style="color:#89dceb;font-weight:bold">]</span>   2.15M  11.2MB/s    in 0.2s
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>2024-07-09 16:33:47 <span style="color:#89dceb;font-weight:bold">(</span>11.2 MB/s<span style="color:#89dceb;font-weight:bold">)</span> - ‘unknown.zip’ saved <span style="color:#89dceb;font-weight:bold">[</span>2252108/2252108<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>unknown.zip</span></span></code></pre></div>
+<br>
+<p>Unzipped the unknown.zip file.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ unzip unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Archive:  unknown.zip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>  inflating: ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>ukn_reality.jpg  unknown.zip</span></span></code></pre></div>
+<br>
+<p>Inside the zip file, there was a <code>.jpg</code> file named ukn_reality.jpg and it looked like the following:</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<p>Since this was the only file given to me, I knew I had to look up the file&rsquo;s info to capture the flag. So the first thing I tried was to run a <code>file</code> command. However, nothing useful was found.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ file ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>ukn_reality.jpg: JPEG image data, JFIF standard 1.01, resolution <span style="color:#89dceb;font-weight:bold">(</span>DPI<span style="color:#89dceb;font-weight:bold">)</span>, density 72x72, segment length 16, baseline, precision 8, 4308x2875, components <span style="color:#fab387">3</span></span></span></code></pre></div>
+<br>
+<p>Then I asked chatGPT for ways to view information about an image and it provided some commonly used methods:</p>
+<ol>
+<li><code>file</code> command</li>
+<li><code>identify</code> from ImageMagick</li>
+<li><code>exiftool</code></li>
+<li><code>exiv2</code></li>
+</ol>
+<p>I further looked into the commands and thought the <code>exiftool</code> would give me the most information about the image.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ exiftool ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>ExifTool Version Number         : 12.76
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>File Name                       : ukn_reality.jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Directory                       : .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>File Size                       : 2.3 MB
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>File Modification Date/Time     : 2024:03:11 20:05:51-04:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>File Access Date/Time           : 2024:07:09 16:33:57-04:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>File Inode Change Date/Time     : 2024:07:09 16:33:51-04:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>File Permissions                : -rw-r--r--
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>File Type                       : JPEG
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>File Type Extension             : jpg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>MIME Type                       : image/jpeg
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>JFIF Version                    : 1.01
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Resolution Unit                 : inches
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>X Resolution                    : <span style="color:#fab387">72</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>Y Resolution                    : <span style="color:#fab387">72</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>XMP Toolkit                     : Image::ExifTool 11.88
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>Attribution URL                 : <span style="color:#f5e0dc">cGljb0NURntNRTc0RDQ3QV9ISUREM05fM2I5MjA5YTJ9Cg</span><span style="color:#89dceb;font-weight:bold">==</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>Image Width                     : <span style="color:#fab387">4308</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>Image Height                    : <span style="color:#fab387">2875</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>Encoding Process                : Baseline DCT, Huffman coding
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>Bits Per Sample                 : <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>Color Components                : <span style="color:#fab387">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>Y Cb Cr Sub Sampling            : YCbCr4:2:0 <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">2</span> 2<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>Image Size                      : 4308x2875
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>Megapixels                      : 12.4</span></span></code></pre></div>
+<br>
+<p>If you look closely the value for <code>Attribution URL</code> is not in the expected form. It looks like it&rsquo;s encoded or hashed. I tried decoding the given URL with the <code>base64</code> command.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/pico<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ <span style="color:#89dceb">echo</span> <span style="color:#f5e0dc">cGljb0NURntNRTc0RDQ3QV9ISUREM05fM2I5MjA5YTJ9Cg</span><span style="color:#89dceb;font-weight:bold">==</span> | base64 -d
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>picoCTF<span style="color:#89dceb;font-weight:bold">{</span>ME74D47A_HIDD3N_3b9209a2<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<p>And we got the flag!</p>
+<p><strong><em>flag</em></strong>: <code>picoCTF{ME74D47A_HIDD3N_3b9209a2}</code></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[THM] Pickle Rick</title>
+      <link>http://localhost:1313/thm-pickle-rick/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/thm-pickle-rick/</guid>
+      <description>This Rick and Morty-themed challenge requires you to exploit a web server and find three ingredients to help Rick make his potion and transform himself back into a human from a pickle.
+Deploy the virtual machine on this task and explore the web application
+What is the first ingredient that Rick needs? mr. meeseek hair The first enumeration step I took was to run a nmap scan. In the meanwhile, I browsed the source code of the target website and found the following: username: R1ckRul3s, which implies that there&amp;rsquo;s going to be some sort of login webpage within the target website.</description>
+      <content:encoded><![CDATA[<p>This Rick and Morty-themed challenge requires you to exploit a web server and find three ingredients to help Rick make his potion and transform himself back into a human from a pickle.</p>
+<p>Deploy the virtual machine on this task and explore the web application</p>
+<h4 id="what-is-the-first-ingredient-that-rick-needs">What is the first ingredient that Rick needs?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>mr. meeseek hair</code></pre>
+<br>
+<p>The first enumeration step I took was to run a nmap scan. In the meanwhile, I browsed the source code of the target website and found the following: <code>username: R1ckRul3s</code>, which implies that there&rsquo;s going to be some sort of login webpage within the target website.</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<p>Through the nmap scan, I confirmed there&rsquo;s 2 open ports: 1 ssh and 1 http server. The next thing I did was to run a <code>gobuster</code> to brute-force against the target URL and to find directories and files using a wordlist. Also I appended <code>-x</code> option, this means that Gobuster will test each directory/file name with the given extensions.</p>
+<p><code>gobuster dir -u http://10.10.243.38 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,css,txt,db,js,py</code></p>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<p>gobuster ouput gave me some useful information. Let&rsquo;s take a look at the <code>robot.txt</code> file first. The robot.txt file only contained <code>Wubbalubbadubdub</code>, which could be a password for the username we found earlier.</p>
+<p><img src="image-2.png#center" alt="alt text">
+<br></p>
+<p>To test my theory, I navigated to <code>/login.php</code> url and inputted the username, R1ckRul3s and the password, Wubbalubbadubdub. It turned out they were the correct credentials and the site directed me to <code>/portal.php</code></p>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<p>I typed <code>ls</code> command then got the following result. Then I tried <code>cat Sup3rS3cretPickl3Ingred.txt</code> but it said &ldquo;command disabled&rdquo;, so I navigated to /Sup3rS3cretPickl3Ingred.txt and got <code>mr. meeseek hair</code>, which turned out to be the first ingredient of the task!
+<img src="image-4.png#center" alt="alt text"></p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-second-ingredient-in-ricks-potion">What is the second ingredient in Rick&rsquo;s potion?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>1 jerry tear</code></pre>
+<br>
+<p>Since we can execute some of the commands on the target website. I think it&rsquo;s best to try reverse-shell. I visited the <code>pentest monkey</code> to refer to their <strong>Reverse Shell Cheat Sheet</strong> for Python reverse shell. Make sure to change the IP address to your own and change the <code>python</code> to <code>python3</code>.</p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<p><img src="image-9.png#center" alt="alt text"></p>
+<br>
+Before running the reverse-shell command, I made sure I'm running the netcat in order to capture the shell.
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ nc -lvnp <span style="color:#fab387">1234</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">1234</span> ...</span></span></code></pre></div>
+<br>
+<p>I was able to caputre the shell after I had executed the python reverse shell command.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -lvnp <span style="color:#fab387">1234</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">1234</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.6.67.243<span style="color:#89dceb;font-weight:bold">]</span> from <span style="color:#89dceb;font-weight:bold">(</span>UNKNOWN<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>10.10.242.29<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">38160</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>/bin/sh: 0: can<span style="color:#f38ba8">&#39;</span>t access tty; job control turned off
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Sup3rS3cretPickl3Ingred.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>assets
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>clue.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>denied.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>index.html
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>login.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>portal.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>robots.txt</span></span></code></pre></div>
+<br>
+<p>I remembered there was <code>clue.txt</code> file which showed me a hint for the second ingredient.</p>
+<p><img src="image-6.png" alt="alt text"></p>
+<br>
+<p>I looked around the file system in the shell for a while then I finally found the file named <code>second ingredients</code>!</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>$ <span style="color:#89dceb">cd</span> home
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>rick
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>ubuntu
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>$ <span style="color:#89dceb">cd</span> rick
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>second ingredients
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>$ ls -la
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>total <span style="color:#fab387">12</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>drwxrwxrwx <span style="color:#fab387">2</span> root root <span style="color:#fab387">4096</span> Feb <span style="color:#fab387">10</span>  <span style="color:#fab387">2019</span> .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>drwxr-xr-x <span style="color:#fab387">4</span> root root <span style="color:#fab387">4096</span> Feb <span style="color:#fab387">10</span>  <span style="color:#fab387">2019</span> ..
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>-rwxrwxrwx <span style="color:#fab387">1</span> root root   <span style="color:#fab387">13</span> Feb <span style="color:#fab387">10</span>  <span style="color:#fab387">2019</span> second ingredients
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>$ cat <span style="color:#a6e3a1">&#34;second ingredients&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#fab387">1</span> jerry tear</span></span></code></pre></div>
+<br>
+<h4 id="what-is-the-last-and-final-ingredient">What is the last and final ingredient?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>fleeb juice</code></pre>
+<br>
+<p>After we got the second flag, while still in the shell we captured, I ran <code>sudo -l</code> command to see what commands I&rsquo;m permitted to run using <code>sudo</code> and it turned out there was no restriction at all.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>$ sudo -l
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Matching Defaults entries <span style="color:#cba6f7">for</span> www-data on ip-10-10-242-29:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>    env_reset, mail_badpass,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>    <span style="color:#f5e0dc">secure_path</span><span style="color:#89dceb;font-weight:bold">=</span>/usr/local/sbin<span style="color:#89b4fa">\:</span>/usr/local/bin<span style="color:#89b4fa">\:</span>/usr/sbin<span style="color:#89b4fa">\:</span>/usr/bin<span style="color:#89b4fa">\:</span>/sbin<span style="color:#89b4fa">\:</span>/bin<span style="color:#89b4fa">\:</span>/snap/bin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>User www-data may run the following commands on ip-10-10-242-29:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>    <span style="color:#89dceb;font-weight:bold">(</span>ALL<span style="color:#89dceb;font-weight:bold">)</span> NOPASSWD: ALL</span></span></code></pre></div>
+<br>
+<p>Because I knew that I could run any command with sudo, I went straight to run the <code>sudo bash</code> command. This command runs a new instance of Bash shell with root privileges. This effectively gives you a root shell. Once I got the root priviliege, the rest was easy. I navigated to the <code>root</code> folder and there was the third ingredients inside it.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>proc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>root
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>run
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>sbin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>snap
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>srv
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>sys
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>tmp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>usr
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>var
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>vmlinuz
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>vmlinuz.old
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb">cd</span> root
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>3rd.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>snap
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>cat 3rd.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>3rd ingredients: fleeb juice</span></span></code></pre></div>
+<p>I got the last ingredients for this task!</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[picoCTF] packer</title>
       <link>http://localhost:1313/picoctf-packer/</link>
       <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
       <guid>http://localhost:1313/picoctf-packer/</guid>
-      <description>Description Reverse this linux executable? link
+      <description>Description Reverse this linux executable?
 First, I downloaded the file to my local machine using the wget comand.
 wget https://artifacts.picoctf.net/c_titan/103/out
 It seems like a binary file that contains non-human readable contents inside it
-1┌──(kali㉿kali)-[~/Desktop] 2└─$ ls 3hello.php5 hello.png leewookb.ovpn out shell.js 4 5┌──(kali㉿kali)-[~/Desktop] 6└─$ file out 7out: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, no section header I used the strings command to extract and print only the readable strings from the binary file and found these meaningful words.</description>
+1┌──(kali㉿kali)-[~/Desktop] 2└─$ ls 3hello.php5 hello.png leewookb.ovpn out shell.js 4 5┌──(kali㉿kali)-[~/Desktop] 6└─$ file out 7out: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, no section header I used the strings command to extract and print only the readable strings from the binary file and found these words that might be useful.</description>
       <content:encoded><![CDATA[<h3 id="description">Description</h3>
-<p>Reverse this linux executable?
-<a href="https://artifacts.picoctf.net/c_titan/103/out" target="_blank">link</a></p>
+<p>Reverse this linux executable?</p>
 <hr>
 <p>First, I downloaded the file to my local machine using the <strong>wget</strong> comand.</p>
 <p><code>wget https://artifacts.picoctf.net/c_titan/103/out</code></p>
@@ -42,7 +325,7 @@ It seems like a binary file that contains non-human readable contents inside it
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>out: ELF 64-bit LSB executable, x86-64, version <span style="color:#fab387">1</span> <span style="color:#89dceb;font-weight:bold">(</span>GNU/Linux<span style="color:#89dceb;font-weight:bold">)</span>, statically linked, no section header</span></span></code></pre></div>
 <p><img src="image.png#center" alt="alt text"></p>
 <br>
-<p>I used the <code>strings</code> command to extract and print only the readable strings from the binary file and found these meaningful words.</p>
+<p>I used the <code>strings</code> command to extract and print only the readable strings from the binary file and found these words that might be useful.</p>
 <p><img src="image-1.png#center" alt="alt text"></p>
 <p>It clearly mentions that the file is packed with the UPX executable. On the internet, I found the command to decompress the executable.</p>
 <p><code>upx -d {your executable}</code></p>
@@ -148,7 +431,7 @@ Download the suspicious file.</p>
 <p>And check out the newly created file! We&rsquo;re really close to the capturing the flag.
 <img src="image-2.png#center" alt="alt text"></p>
 <p>We&rsquo;re missing the rest of the file but notice the name of the original file, <code>flag2of2-final.pdf</code>. The name implies that it is the second part of the flag.</p>
-<p><strong><em>flag</em></strong>: `picoCTF{f1u3n7<em>1n_pn9</em>&amp;_pdf_7f9bccd1}</p>
+<p><strong><em>flag</em></strong>: <code>picoCTF{f1u3n7*1n_pn9*&amp;\_pdf_7f9bccd1}</code></p>
 ]]></content:encoded>
     </item>
     <item>
