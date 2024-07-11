@@ -11,6 +11,177 @@
     <lastBuildDate>Thu, 11 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>[HTB] Appointment</title>
+      <link>http://localhost:1313/htb-appointment/</link>
+      <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-appointment/</guid>
+      <description>I just finished Tier 0 of the Starting Point and now I&amp;rsquo;m moving on to Tier 1 boxes. These are still very easy level boxes, but we all start somewhere, and I&amp;rsquo;m enjoying every step of this process. That&amp;rsquo;s what matters hehe.
+What does the acronym SQL stand for? Structured Query Language What is one of the most common type of SQL vulnerabilities? SQL Injection What is the 2021 OWASP Top 10 classification for this vulnerability?</description>
+      <content:encoded><![CDATA[<p>I just finished Tier 0 of the Starting Point and now I&rsquo;m moving on to Tier 1 boxes. These are still <code>very easy</code> level boxes, but we all start somewhere, and I&rsquo;m enjoying every step of this process. That&rsquo;s what matters hehe.</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<hr>
+<h4 id="what-does-the-acronym-sql-stand-for">What does the acronym SQL stand for?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Structured Query Language</code></pre>
+<br>
+<h4 id="what-is-one-of-the-most-common-type-of-sql-vulnerabilities">What is one of the most common type of SQL vulnerabilities?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>SQL Injection</code></pre>
+<br>
+<h4 id="what-is-the-2021-owasp-top-10-classification-for-this-vulnerability">What is the 2021 OWASP Top 10 classification for this vulnerability?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>A03:2021-Injection</code></pre>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-does-nmap-report-as-the-service-and-version-that-are-running-on-port-80-of-the-target">What does Nmap report as the service and version that are running on port 80 of the target?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Apache httpd 2.4.38 ((Debian))</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.28<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-wv2b0ymwtt<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ nmap -sC -sV 10.129.50.1 -p <span style="color:#fab387">80</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-07-11 13:16 CDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.50.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.0085s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>80/tcp open  http    Apache httpd 2.4.38 <span style="color:#89dceb;font-weight:bold">((</span>Debian<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>|_http-server-header: Apache/2.4.38 <span style="color:#89dceb;font-weight:bold">(</span>Debian<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>|_http-title: Login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 6.76 seconds</span></span></code></pre></div>
+<br>
+<h4 id="what-is-the-standard-port-used-for-the-https-protocol">What is the standard port used for the HTTPS protocol?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>443</code></pre>
+<br>
+<h4 id="what-is-a-folder-called-in-web-application-terminology">What is a folder called in web-application terminology?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>directory</code></pre>
+<br>
+<h4 id="what-is-the-http-response-code-is-given-for-not-found-errors">What is the HTTP response code is given for &lsquo;Not Found&rsquo; errors?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>404</code></pre>
+<br>
+<h4 id="gobuster-is-one-tool-used-to-brute-force-directories-on-a-webserver-what-switch-do-we-use-with-gobuster-to-specify-were-looking-to-discover-directories-and-not-subdomains">Gobuster is one tool used to brute force directories on a webserver. What switch do we use with Gobuster to specify we&rsquo;re looking to discover directories, and not subdomains?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>dir</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-singlce-character-can-be-used-to-comment-out-the-rest-of-a-line-in-mysql">What singlce character can be used to comment out the rest of a line in MySQL?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>#</code></pre>
+<p>We can also use <code>--</code> for commenting, but that&rsquo;s two characters.</p>
+<br>
+<h4 id="if-user-input-is-not-handled-carefully-it-could-be-interpreted-as-a-comment-use-a-comment-to-login-as-admin-without-knowing-the-password-what-is-the-first-word-on-the-webpage-returned">If user input is not handled carefully, it could be interpreted as a comment. Use a comment to login as admin without knowing the password. What is the first word on the webpage returned?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Congratulations</code></pre>
+<p>I first tried <code>admin#</code> but kept failing to log in, so since the <code>gobuster</code> was mentioned earlier, I tried dirbuster to see if there were any helpful folders open but couldn&rsquo;t find any.</p>
+<p>After peeping the provided walkthrough, I learned that I had to include <code>'</code> the single quote to close the query, allowing the script to search for the <code>admin</code> username and then add the hashtag symbol to comment out the rest of the query.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.28<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-wv2b0ymwtt<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ gobuster dir -u http://10.129.50.1 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Gobuster v3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>by OJ Reeves <span style="color:#89dceb;font-weight:bold">(</span>@TheColonial<span style="color:#89dceb;font-weight:bold">)</span> &amp; Christian Mehlmauer <span style="color:#89dceb;font-weight:bold">(</span>@firefart<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Url:                     http://10.129.50.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Method:                  GET
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Threads:                 <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Negative Status codes:   <span style="color:#fab387">404</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> User Agent:              gobuster/3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Timeout:                 <span style="color:#f5e0dc">10s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>Starting gobuster in directory enumeration <span style="color:#f5e0dc">mode</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>/images               <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 311<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.50.1/images/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>/css                  <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 308<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.50.1/css/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>/js                   <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 307<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.50.1/js/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>/vendor               <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 311<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.50.1/vendor/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>/fonts                <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 310<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.50.1/fonts/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>/server-status        <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 276<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>Progress: <span style="color:#fab387">220560</span> / <span style="color:#fab387">220561</span> <span style="color:#89dceb;font-weight:bold">(</span>100.00%<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span><span style="color:#f5e0dc">Finished</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span></span></span></code></pre></div>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>e3d0796d002a446c0e622226f42e9672</code></pre>
+<br>
+<p><img src="image-5.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
+    <item>
       <title>[HTB] Synced</title>
       <link>http://localhost:1313/htb-synced/</link>
       <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>

@@ -104,6 +104,8 @@
     <loc>http://localhost:1313/htb-meow/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/htb-appointment/</loc>
+  </url><url>
     <loc>http://localhost:1313/photos/</loc>
   </url>
 </urlset>
