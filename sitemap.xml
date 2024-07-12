@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/htb-synced/</loc>
-    <lastmod>2024-07-11T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/htb-sequel/</loc>
+    <lastmod>2024-07-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/hack-the-box/</loc>
-    <lastmod>2024-07-11T00:00:00+00:00</lastmod>
+    <lastmod>2024-07-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2024-07-11T00:00:00+00:00</lastmod>
+    <lastmod>2024-07-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2024-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/htb-appointment/</loc>
+    <lastmod>2024-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/htb-synced/</loc>
     <lastmod>2024-07-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/htb-mongod/</loc>
@@ -103,8 +109,6 @@
   </url><url>
     <loc>http://localhost:1313/htb-meow/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/htb-appointment/</loc>
   </url><url>
     <loc>http://localhost:1313/photos/</loc>
   </url>

