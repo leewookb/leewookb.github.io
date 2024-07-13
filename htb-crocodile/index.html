@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[HTB] Crocodile&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[HTB] Crocodile"
+/>
+<meta
+  name="description"
+  content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10."
+/>
+<meta
+  name="keywords"
+  content="Hack The Box,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/htb-crocodile/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[HTB] Crocodile">
+  <meta property="og:description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-07-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-13T00:00:00+00:00">
+    <meta property="article:tag" content="Hack The Box">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTB] Crocodile">
+  <meta name="twitter:description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.">
+
+
+
+
+
+  <meta itemprop="name" content="[HTB] Crocodile">
+  <meta itemprop="description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.">
+  <meta itemprop="datePublished" content="2024-07-13T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-13T00:00:00+00:00">
+  <meta itemprop="wordCount" content="577">
+  <meta itemprop="keywords" content="Hack The Box">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[HTB] Crocodile</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-07-13" pubdate>
+            2024-07-13
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h4 id="what-nmap-scanning-switch-employs-the-use-of-default-scripts-during-a-scan">What Nmap scanning switch employs the use of default scripts during a scan?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>-sC</code></pre>
+<br>
+<h4 id="what-service-version-is-found-to-be-running-on-port-21">What service version is found to be running on port 21?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>vsftpd 3.0.3</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sC -sV 10.129.60.250
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-07-13 00:54 EDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.60.250
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.034s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">998</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>conn-refused<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>21/tcp open  ftp     vsftpd 3.0.3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>| ftp-syst:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>|   STAT:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>| FTP server status:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>|      Connected to ::ffff:10.10.14.28
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>|      Logged in as ftp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>|      TYPE: ASCII
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>|      No session bandwidth limit
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>|      Session timeout in seconds is <span style="color:#fab387">300</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>|      Control connection is plain text
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>|      Data connections will be plain text
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>|      At session startup, client count was <span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>|      vsFTPd 3.0.3 - secure, fast, stable
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>|_End of status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>| ftp-anon: Anonymous FTP login allowed <span style="color:#89dceb;font-weight:bold">(</span>FTP code 230<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>| -rw-r--r--    <span style="color:#fab387">1</span> ftp      ftp            <span style="color:#fab387">33</span> Jun <span style="color:#fab387">08</span>  <span style="color:#fab387">2021</span> allowed.userlist
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>|_-rw-r--r--    <span style="color:#fab387">1</span> ftp      ftp            <span style="color:#fab387">62</span> Apr <span style="color:#fab387">20</span>  <span style="color:#fab387">2021</span> allowed.userlist.passwd
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>80/tcp open  http    Apache httpd 2.4.41 <span style="color:#89dceb;font-weight:bold">((</span>Ubuntu<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>|_http-title: Smash - Bootstrap Business Template
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>|_http-server-header: Apache/2.4.41 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>Service Info: OS: Unix
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 8.08 seconds</span></span></code></pre></div>
+<br>
+<h4 id="what-ftp-code-is-returned-to-us-for-the-anonymous-ftp-login-allowed-message">What FTP code is returned to us for the &ldquo;Anonymous FTP login allowed message?&rdquo;</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>230</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="after-connecting-to-the-ftp-server-using-the-ftp-client-what-username-do-we-provide-when-prompted-to-log-in-anonymously">After connecting to the FTP server using the ftp client, what username do we provide when prompted to log in anonymously?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>anonymous</code></pre>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="after-connecting-to-the-ftp-server-anonymously-what-command-can-we-use-to-download-the-files-we-find-on-the-ftp-server">After connecting to the FTP server anonymously, what command can we use to download the files we find on the FTP server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>get</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-one-of-the-higher-privilege-sounding-usernames-in-alloweduserlist-that-we-download-from-the-ftp-server">What is one of the higher-privilege sounding usernames in <code>allowed.userlist</code> that we download from the FTP server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>admin</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>allowed.userlist  allowed.userlist.passwd  hash-id.py  ntlm_1605054722641.txt  openvpn  pico
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>└─$ cat allowed.userlist
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>aron
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>pwnmeow
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>egotisticalsw
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>admin</span></span></code></pre></div>
+<br>
+<h4 id="what-version-of-apache-http-server-is-running-on-the-target-host">What version of Apache HTTP Server is running on the target host?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Apache httpd 2.4.41</code></pre>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-switch-can-we-use-with-gobuster-to-specify-we-are-looking-for-specific-filetypes">What switch can we use with Gobuster to specify we are looking for specific filetypes?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>-x</code></pre>
+<p><code>gobuster dir --help</code> revealed the <code>-x</code> option.</p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-php-file-can-we-identify-with-directory-brute-force-that-will-provide-the-opportunity-to-authenticate-to-the-web-service">Which PHP file can we identify with directory brute force that will provide the opportunity to authenticate to the web service?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>login.php</code></pre>
+<p>The following command revealed PHP files with dirbuster on the target host.
+<code>gobuster dir -u http://10.129.60.250 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php</code></p>
+<p><code>-u</code>: url</p>
+<p><code>-w</code>: wordlist</p>
+<p><code>-x</code>: file types to look for</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ gobuster dir -u http://10.129.60.250 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x <span style="color:#f5e0dc">php</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Gobuster v3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>by OJ Reeves <span style="color:#89dceb;font-weight:bold">(</span>@TheColonial<span style="color:#89dceb;font-weight:bold">)</span> &amp; Christian Mehlmauer <span style="color:#89dceb;font-weight:bold">(</span>@firefart<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Url: http://10.129.60.250
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Method: GET
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Threads: <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Wordlist: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Negative Status codes: <span style="color:#fab387">404</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> User Agent: gobuster/3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Extensions: php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Timeout: <span style="color:#f5e0dc">10s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>Starting gobuster in directory enumeration <span style="color:#f5e0dc">mode</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>/.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 278<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>/login.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 200<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 1577<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>/assets <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 315<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/assets/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>/css <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 312<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/css/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>/js <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 311<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/js/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>/logout.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 302<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 0<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; login.php<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>/config.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 200<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 0<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>/fonts <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 314<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/fonts/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>/dashboard <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 318<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/dashboard/<span style="color:#89dceb;font-weight:bold">]</span></span></span></code></pre></div>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>c7110277ac44d78b6a9fff2232434d16</code></pre>
+<p>From the earlier task, we downloaded two files from the ftp server:</p>
+<ol>
+<li><strong><em>allowed.userlist</em></strong></li>
+<li><strong><em>allowed.userlist.passwd</em></strong></li>
+</ol>
+<p>and we confirmed there was the username, <code>admin</code>. As you can see from the passwd file, the password for <code>admin</code> is <code>rKXM59ESxesUFHAd</code>.</p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p>From the gobuster output, we revealed there was <code>/login.php</code> page, so I navigated to the page and entered the credentials we had found from the ftp server and finally found the flag.</p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-9.png#center" alt="alt text"></p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/hack-the-box/">#Hack The Box</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

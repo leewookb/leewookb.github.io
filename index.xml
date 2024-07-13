@@ -8,8 +8,216 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Crocodile</title>
+      <link>http://localhost:1313/htb-crocodile/</link>
+      <pubDate>Sat, 13 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-crocodile/</guid>
+      <description>What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.</description>
+      <content:encoded><![CDATA[<h4 id="what-nmap-scanning-switch-employs-the-use-of-default-scripts-during-a-scan">What Nmap scanning switch employs the use of default scripts during a scan?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>-sC</code></pre>
+<br>
+<h4 id="what-service-version-is-found-to-be-running-on-port-21">What service version is found to be running on port 21?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>vsftpd 3.0.3</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sC -sV 10.129.60.250
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-07-13 00:54 EDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.60.250
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.034s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">998</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>conn-refused<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>21/tcp open  ftp     vsftpd 3.0.3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>| ftp-syst:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>|   STAT:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>| FTP server status:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>|      Connected to ::ffff:10.10.14.28
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>|      Logged in as ftp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>|      TYPE: ASCII
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>|      No session bandwidth limit
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>|      Session timeout in seconds is <span style="color:#fab387">300</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>|      Control connection is plain text
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>|      Data connections will be plain text
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>|      At session startup, client count was <span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>|      vsFTPd 3.0.3 - secure, fast, stable
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>|_End of status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>| ftp-anon: Anonymous FTP login allowed <span style="color:#89dceb;font-weight:bold">(</span>FTP code 230<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>| -rw-r--r--    <span style="color:#fab387">1</span> ftp      ftp            <span style="color:#fab387">33</span> Jun <span style="color:#fab387">08</span>  <span style="color:#fab387">2021</span> allowed.userlist
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>|_-rw-r--r--    <span style="color:#fab387">1</span> ftp      ftp            <span style="color:#fab387">62</span> Apr <span style="color:#fab387">20</span>  <span style="color:#fab387">2021</span> allowed.userlist.passwd
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>80/tcp open  http    Apache httpd 2.4.41 <span style="color:#89dceb;font-weight:bold">((</span>Ubuntu<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>|_http-title: Smash - Bootstrap Business Template
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>|_http-server-header: Apache/2.4.41 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>Service Info: OS: Unix
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 8.08 seconds</span></span></code></pre></div>
+<br>
+<h4 id="what-ftp-code-is-returned-to-us-for-the-anonymous-ftp-login-allowed-message">What FTP code is returned to us for the &ldquo;Anonymous FTP login allowed message?&rdquo;</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>230</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="after-connecting-to-the-ftp-server-using-the-ftp-client-what-username-do-we-provide-when-prompted-to-log-in-anonymously">After connecting to the FTP server using the ftp client, what username do we provide when prompted to log in anonymously?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>anonymous</code></pre>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="after-connecting-to-the-ftp-server-anonymously-what-command-can-we-use-to-download-the-files-we-find-on-the-ftp-server">After connecting to the FTP server anonymously, what command can we use to download the files we find on the FTP server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>get</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-one-of-the-higher-privilege-sounding-usernames-in-alloweduserlist-that-we-download-from-the-ftp-server">What is one of the higher-privilege sounding usernames in <code>allowed.userlist</code> that we download from the FTP server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>admin</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>allowed.userlist  allowed.userlist.passwd  hash-id.py  ntlm_1605054722641.txt  openvpn  pico
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>└─$ cat allowed.userlist
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>aron
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>pwnmeow
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>egotisticalsw
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>admin</span></span></code></pre></div>
+<br>
+<h4 id="what-version-of-apache-http-server-is-running-on-the-target-host">What version of Apache HTTP Server is running on the target host?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Apache httpd 2.4.41</code></pre>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-switch-can-we-use-with-gobuster-to-specify-we-are-looking-for-specific-filetypes">What switch can we use with Gobuster to specify we are looking for specific filetypes?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>-x</code></pre>
+<p><code>gobuster dir --help</code> revealed the <code>-x</code> option.</p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-php-file-can-we-identify-with-directory-brute-force-that-will-provide-the-opportunity-to-authenticate-to-the-web-service">Which PHP file can we identify with directory brute force that will provide the opportunity to authenticate to the web service?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>login.php</code></pre>
+<p>The following command revealed PHP files with dirbuster on the target host.
+<code>gobuster dir -u http://10.129.60.250 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php</code></p>
+<p><code>-u</code>: url</p>
+<p><code>-w</code>: wordlist</p>
+<p><code>-x</code>: file types to look for</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ gobuster dir -u http://10.129.60.250 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x <span style="color:#f5e0dc">php</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Gobuster v3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>by OJ Reeves <span style="color:#89dceb;font-weight:bold">(</span>@TheColonial<span style="color:#89dceb;font-weight:bold">)</span> &amp; Christian Mehlmauer <span style="color:#89dceb;font-weight:bold">(</span>@firefart<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Url: http://10.129.60.250
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Method: GET
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Threads: <span style="color:#fab387">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Wordlist: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Negative Status codes: <span style="color:#fab387">404</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> User Agent: gobuster/3.6
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Extensions: php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Timeout: <span style="color:#f5e0dc">10s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>Starting gobuster in directory enumeration <span style="color:#f5e0dc">mode</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>/.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 278<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>/login.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 200<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 1577<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>/assets <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 315<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/assets/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>/css <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 312<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/css/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>/js <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 311<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/js/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>/logout.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 302<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 0<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; login.php<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>/config.php <span style="color:#89dceb;font-weight:bold">(</span>Status: 200<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 0<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>/fonts <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 314<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/fonts/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>/dashboard <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 318<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://10.129.60.250/dashboard/<span style="color:#89dceb;font-weight:bold">]</span></span></span></code></pre></div>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>c7110277ac44d78b6a9fff2232434d16</code></pre>
+<p>From the earlier task, we downloaded two files from the ftp server:</p>
+<ol>
+<li><strong><em>allowed.userlist</em></strong></li>
+<li><strong><em>allowed.userlist.passwd</em></strong></li>
+</ol>
+<p>and we confirmed there was the username, <code>admin</code>. As you can see from the passwd file, the password for <code>admin</code> is <code>rKXM59ESxesUFHAd</code>.</p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p>From the gobuster output, we revealed there was <code>/login.php</code> page, so I navigated to the page and entered the credentials we had found from the ftp server and finally found the flag.</p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-9.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Sequel</title>
       <link>http://localhost:1313/htb-sequel/</link>
@@ -209,6 +417,253 @@ Then listed the tables belonged to the db by <code>show tables</code></p>
 </span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#fab387">7</span> <span style="color:#cba6f7">rows</span> <span style="color:#cba6f7">in</span> <span style="color:#cba6f7">set</span> (<span style="color:#fab387">0</span>.<span style="color:#fab387">009</span> sec)</span></span></code></pre></div>
 <br>
 <p><img src="image-1.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[THM] John The Ripper</title>
+      <link>http://localhost:1313/thm-john-the-ripper/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/thm-john-the-ripper/</guid>
+      <description>What are Hashes? A hash is a way of taking a piece of data any length and representing it in another form that is a fixed length. This masks the original value of the data. This is done by running the original through a hashing algorithm.
+What makes Hashes secure? Hashing functions are designed as one-way functions. It&amp;rsquo;s easy to calculate the vash value of a given input; however, it is very difficult to find the original input given the hash value.</description>
+      <content:encoded><![CDATA[<h4 id="what-are-hashes">What are Hashes?</h4>
+<p>A hash is a way of taking a piece of data any length and representing it in another form that is a fixed length. This masks the original value of the data. This is done by running the original through a hashing algorithm.</p>
+<h4 id="what-makes-hashes-secure">What makes Hashes secure?</h4>
+<p>Hashing functions are designed as one-way functions. It&rsquo;s easy to calculate the vash value of a given input; however, it is very difficult to find the original input given the hash value.</p>
+<h4 id="wordlists">Wordlists</h4>
+<p>In order to dictonary attack hashes, you need a list of words that you can hash and compare, this is called a <code>wordlist</code>. There are many different wordlists out there, a good collection to use can be found in the <code>SecLists</code> repository. On Parrot and Kali, you can find a series of amazing wordlists in the <code>/usr/share/wordlists</code> directory.</p>
+<h4 id="john-basic-syntax">John Basic Syntax</h4>
+<p><code>john [options] [path to file]</code>
+<code>john</code>: invokes the John the Ripper program
+<code>[path to file]</code>: The file containing the hash you&rsquo;re trying to crack, if it&rsquo;s in the same directory you won&rsquo;t need to name a path, just the file.</p>
+<p>John has built-in features to detect what type of hash it&rsquo;s being given, and to select appropriate rules and format to crack it for you, however it can be unreliable but if you can&rsquo;t identify what hash type you&rsquo;re working with and just want to try cracking it, use the following syntax:</p>
+<p><code>john --wordlist=[path to wordlist] [path to file]</code></p>
+<p>Format-specific cracking
+<code>john --format=[format] --wordlist=[path to wordlist] [path to file]</code></p>
+<p>Now you know the syntax, modifiers, and methods to crck basic hashes, try it yourself! Download the attached.txt files.</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-type-of-hash-is-hash1txt">What type of hash is hash1.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>md5</code></pre>
+<p>I used <code>hash-identifier</code>, a Python tool, to identify the hash type of the hash1.txt.
+<img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-cracked-value-of-hash1txt">What is the cracked value of hash1.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>biscuit</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ john --format<span style="color:#89dceb;font-weight:bold">=</span>raw-md5 --wordlist<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt first_task_hashes/hash1.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Using default input encoding: UTF-8
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Loaded <span style="color:#fab387">1</span> password <span style="color:#89dceb">hash</span> <span style="color:#89dceb;font-weight:bold">(</span>Raw-MD5 <span style="color:#89dceb;font-weight:bold">[</span>MD5 128/128 ASIMD 4x2<span style="color:#89dceb;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Warning: no OpenMP support <span style="color:#cba6f7">for</span> this <span style="color:#89dceb">hash</span> type, consider --fork<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Press <span style="color:#a6e3a1">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span style="color:#cba6f7">for</span> status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>biscuit          <span style="color:#89dceb;font-weight:bold">(</span>?<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>1g 0:00:00:00 DONE <span style="color:#89dceb;font-weight:bold">(</span>2024-07-12 12:43<span style="color:#89dceb;font-weight:bold">)</span> 100.0g/s 409600p/s 409600c/s 409600C/s slimshady..oooooo
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Use the <span style="color:#a6e3a1">&#34;--show --format=Raw-MD5&#34;</span> options to display all of the cracked passwords reliably
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Session completed.</span></span></code></pre></div>
+<br>
+<h4 id="what-type-of-hash-is-hash2txt">What type of hash is hash2.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>sha1</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-cracked-value-of-hash2txt">What is the cracked value of hash2.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>kangeroo</code></pre>
+<p><code>john --format=raw-sha1 --wordlist=/usr/share/wordlists/rockyou.txt first_task_hashes/hash2.txt</code></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ john --format<span style="color:#89dceb;font-weight:bold">=</span>raw-sha1 --wordlist<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt first_task_hashes/hash2.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Using default input encoding: UTF-8
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Loaded <span style="color:#fab387">1</span> password <span style="color:#89dceb">hash</span> <span style="color:#89dceb;font-weight:bold">(</span>Raw-SHA1 <span style="color:#89dceb;font-weight:bold">[</span>SHA1 128/128 ASIMD 4x<span style="color:#89dceb;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Warning: no OpenMP support <span style="color:#cba6f7">for</span> this <span style="color:#89dceb">hash</span> type, consider --fork<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Press <span style="color:#a6e3a1">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span style="color:#cba6f7">for</span> status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>kangeroo         <span style="color:#89dceb;font-weight:bold">(</span>?<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>1g 0:00:00:00 DONE <span style="color:#89dceb;font-weight:bold">(</span>2024-07-12 12:46<span style="color:#89dceb;font-weight:bold">)</span> 100.0g/s 11714Kp/s 11714Kc/s 11714KC/s kanon..kalvin1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Use the <span style="color:#a6e3a1">&#34;--show --format=Raw-SHA1&#34;</span> options to display all of the cracked passwords reliably
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Session completed.</span></span></code></pre></div>
+<br>
+<h4 id="what-type-of-hash-is-hash3txt">What type of hash is hash3.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>sha256</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>HASH: D7F4D3CCEE7ACD3DD7FAD3AC2BE2AAE9C44F4E9B7FB802D73136D4C53920140A
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Possible Hashs:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SHA-256
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Haval-256
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Least Possible Hashs:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> GOST R 34.11-94
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> RipeMD-256
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SNEFRU-256
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SHA-256<span style="color:#89dceb;font-weight:bold">(</span>HMAC<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Haval-256<span style="color:#89dceb;font-weight:bold">(</span>HMAC<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> RipeMD-256<span style="color:#89dceb;font-weight:bold">(</span>HMAC<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SNEFRU-256<span style="color:#89dceb;font-weight:bold">(</span>HMAC<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SHA-256<span style="color:#89dceb;font-weight:bold">(</span>md5<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">$pass</span><span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SHA-256<span style="color:#89dceb;font-weight:bold">(</span>sha1<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">$pass</span><span style="color:#89dceb;font-weight:bold">))</span></span></span></code></pre></div>
+<br>
+<h4 id="what-is-the-cracked-value-of-hash3txt">What is the cracked value of hash3.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>microphone</code></pre>
+<p><code>john --format=raw-sha256 --wordlist=/usr/share/wordlists/rockyou.txt first_task_hashes/hash3.txt</code></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ john --format<span style="color:#89dceb;font-weight:bold">=</span>raw-sha256 --wordlist<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt first_task_hashes/hash3.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Using default input encoding: UTF-8
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Loaded <span style="color:#fab387">1</span> password <span style="color:#89dceb">hash</span> <span style="color:#89dceb;font-weight:bold">(</span>Raw-SHA256 <span style="color:#89dceb;font-weight:bold">[</span>SHA256 128/128 ASIMD 4x<span style="color:#89dceb;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Warning: poor OpenMP scalability <span style="color:#cba6f7">for</span> this <span style="color:#89dceb">hash</span> type, consider --fork<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Will run <span style="color:#fab387">2</span> OpenMP threads
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Press <span style="color:#a6e3a1">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span style="color:#cba6f7">for</span> status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>microphone       <span style="color:#89dceb;font-weight:bold">(</span>?<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>1g 0:00:00:00 DONE <span style="color:#89dceb;font-weight:bold">(</span>2024-07-12 12:49<span style="color:#89dceb;font-weight:bold">)</span> 100.0g/s 8192Kp/s 8192Kc/s 8192KC/s ryanscott..janson
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Use the <span style="color:#a6e3a1">&#34;--show --format=Raw-SHA256&#34;</span> options to display all of the cracked passwords reliably
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Session completed.</span></span></code></pre></div>
+<br>
+<h4 id="what-type-of-hash-is-hash4txt">What type of hash is hash4.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Whirlpool</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>HASH: c5a60cc6bbba781c601c5402755ae1044bbf45b78d1183cbf2ca1c865b6c792cf3c6b87791344986c8a832a0f9ca8d0b4afd3d9421a149d57075e1b4e93f90bf
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>Possible Hashs:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SHA-512
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Whirlpool
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>Least Possible Hashs:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> SHA-512<span style="color:#89dceb;font-weight:bold">(</span>HMAC<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">9</span><span><span style="color:#89dceb;font-weight:bold">[</span>+<span style="color:#89dceb;font-weight:bold">]</span> Whirlpool<span style="color:#89dceb;font-weight:bold">(</span>HMAC<span style="color:#89dceb;font-weight:bold">)</span></span></span></code></pre></div>
+<br>
+<h4 id="what-is-the-cracked-value-of-hash4txt">What is the cracked value of hash4.txt?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>colossal</code></pre>
+<p><code>john --format=whirlpool --wordlist=/usr/share/wordlists/rockyou.txt first_task_hashes/hash4.txt</code></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ john --format<span style="color:#89dceb;font-weight:bold">=</span>whirlpool --wordlist<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt first_task_hashes/hash4.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Using default input encoding: UTF-8
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Loaded <span style="color:#fab387">1</span> password <span style="color:#89dceb">hash</span> <span style="color:#89dceb;font-weight:bold">(</span>whirlpool <span style="color:#89dceb;font-weight:bold">[</span>WHIRLPOOL 32/64<span style="color:#89dceb;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Warning: poor OpenMP scalability <span style="color:#cba6f7">for</span> this <span style="color:#89dceb">hash</span> type, consider --fork<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Will run <span style="color:#fab387">2</span> OpenMP threads
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Press <span style="color:#a6e3a1">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span style="color:#cba6f7">for</span> status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>colossal         <span style="color:#89dceb;font-weight:bold">(</span>?<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>1g 0:00:00:00 DONE <span style="color:#89dceb;font-weight:bold">(</span>2024-07-12 12:51<span style="color:#89dceb;font-weight:bold">)</span> 6.250g/s 4300Kp/s 4300Kc/s 4300KC/s grass9..blah2007
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Use the <span style="color:#a6e3a1">&#34;--show&#34;</span> option to display all of the cracked passwords reliably
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Session completed.</span></span></code></pre></div>
+<br>
+<h4 id="cracking-windows-hashes">Cracking Windows Hashes</h4>
+<p>Authentication hashes are the hashed versions of passwords that are stored by operating systems. It is sometimes possible to crack them using the brute-force methods that we&rsquo;re using. To get your hands on these hashes, you must often already be a privileged user.</p>
+<h4 id="nthash--ntlm-windows-new-technology-lan-manager">NTHash / NTLM (Windows New Technology LAN Manager)</h4>
+<p>NThash is the hash format that modern Windows Operating System machines will store user and service passwords. It&rsquo;s also commonly referred to as <code>NTLM</code> which references the previous version of Windows format for hashing passwords known as <code>LM</code>, thus <code>NT/LM</code></p>
+<p>You can acquire NTHash/NTLM hashes by dumping the SAM database on a Windows machine, by using a tool like <code>Mimikatz</code> or from the Active Directory database: <code>NTDS.dit</code>. You may not have to crack the hash to continue privilege escalation as you can often conduct a <code>pass the hash</code> attack instead.</p>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<h4 id="what-do-we-need-to-set-the-format-flag-to-in-order-to-crack-this">What do we need to set the &ldquo;format&rdquo; flag to, in order to crack this?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>nt</code></pre>
+<br>
+<h4 id="what-is-the-cracked-value-of-this-password">What is the cracked value of this password?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>mushroom</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ john --format<span style="color:#89dceb;font-weight:bold">=</span>nt --wordlist<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt ntlm_1605054722641.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Using default input encoding: UTF-8
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Loaded <span style="color:#fab387">1</span> password <span style="color:#89dceb">hash</span> <span style="color:#89dceb;font-weight:bold">(</span>NT <span style="color:#89dceb;font-weight:bold">[</span>MD4 128/128 ASIMD 4x2<span style="color:#89dceb;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Warning: no OpenMP support <span style="color:#cba6f7">for</span> this <span style="color:#89dceb">hash</span> type, consider --fork<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Press <span style="color:#a6e3a1">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span style="color:#cba6f7">for</span> status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>mushroom         <span style="color:#89dceb;font-weight:bold">(</span>?<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>1g 0:00:00:00 DONE <span style="color:#89dceb;font-weight:bold">(</span>2024-07-12 13:12<span style="color:#89dceb;font-weight:bold">)</span> 100.0g/s 3276Kp/s 3276Kc/s 3276KC/s 123456..eatme1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Use the <span style="color:#a6e3a1">&#34;--show --format=NT&#34;</span> options to display all of the cracked passwords reliably
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Session completed.</span></span></code></pre></div>
+<br>
 ]]></content:encoded>
     </item>
     <item>
@@ -7051,14 +7506,6 @@ Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>root@Meow:~#</span></span></code></pre></div>
 <p><img src="./htb_meow.png" alt="meow_clear"></p>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/thm-john-the-ripper/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-john-the-ripper/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Photos</title>
