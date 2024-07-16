@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[TIL] Key Exchange&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[TIL] Key Exchange"
+/>
+<meta
+  name="description"
+  content="What is a Key Exchange? A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.
+What is Diffie-Hellman Key Exchange? The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys."
+/>
+<meta
+  name="keywords"
+  content="Today I Learned,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/til-key-exchange/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[TIL] Key Exchange">
+  <meta property="og:description" content="What is a Key Exchange? A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.
+What is Diffie-Hellman Key Exchange? The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-07-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-15T00:00:00+00:00">
+    <meta property="article:tag" content="Today I Learned">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[TIL] Key Exchange">
+  <meta name="twitter:description" content="What is a Key Exchange? A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.
+What is Diffie-Hellman Key Exchange? The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys.">
+
+
+
+
+
+  <meta itemprop="name" content="[TIL] Key Exchange">
+  <meta itemprop="description" content="What is a Key Exchange? A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.
+What is Diffie-Hellman Key Exchange? The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys.">
+  <meta itemprop="datePublished" content="2024-07-15T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-15T00:00:00+00:00">
+  <meta itemprop="wordCount" content="236">
+  <meta itemprop="keywords" content="Today I Learned">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[TIL] Key Exchange</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-07-15" pubdate>
+            2024-07-15
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h4 id="what-is-a-key-exchange">What is a Key Exchange?</h4>
+<p>A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.</p>
+<h4 id="what-is-diffie-hellman-key-exchange">What is Diffie-Hellman Key Exchange?</h4>
+<p>The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys. It allows two parties to generate a shared secret over an insecure channel without having to transmit the secret itself.</p>
+<p><strong><em>Simplified example</em></strong>: Alice and Bob want to talk securely. They want to establish a common key, so they can use symmetric cryptography, but they don&rsquo;t want to use key exchange with asymmetric cryptography. This is where Diffie Hellman Key Exchange comes in.</p>
+<p>Alice and Bob both have secrets that they generate, let&rsquo;s call these <code>A</code> and <code>B</code>. They also have some common material that&rsquo;s public, let&rsquo;s call this <code>C</code>.</p>
+<p>Alice and Bob will combine their secrets with the common material and form <code>AC</code> and <code>BC</code>. They will then send these to each other, and combine that with their secrets to form two identical keys, both <code>ABC</code>. Now they can use this key to communicate.</p>
+<hr>
+<p>The <strong><em>Diffie-Hellman key exchange</em></strong> was explained in detail by the famous YouTube channel, <code>Computerphile</code>, in the following video:</p>
+
+
+    
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/NmM9HA2MQGI?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"
+      ></iframe>
+    </div>
+
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/today-i-learned/">#Today I Learned</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

