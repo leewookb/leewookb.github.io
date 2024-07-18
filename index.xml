@@ -8,8 +8,216 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Wed, 17 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Funnel</title>
+      <link>http://localhost:1313/htb-funnel/</link>
+      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-funnel/</guid>
+      <description>How many TCP ports are open? 2 According to output of the nmap scan, there are 2 open ports.
+What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the &amp;ldquo;Funnel&amp;rdquo; team should change as soon as possible?</description>
+      <content:encoded><![CDATA[<h4 id="how-many-tcp-ports-are-open">How many TCP ports are open?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>2</code></pre>
+<p>According to output of the nmap scan, there are 2 open ports.</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-name-of-the-directory-that-is-available-on-the-ftp-server">What is the name of the directory that is available on the FTP server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>mail_backup</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>21/tcp open  ftp     vsftpd 3.0.3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>| ftp-anon: Anonymous FTP login allowed <span style="color:#89dceb;font-weight:bold">(</span>FTP code 230<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>|_drwxr-xr-x    <span style="color:#fab387">2</span> ftp      ftp          <span style="color:#fab387">4096</span> Nov <span style="color:#fab387">28</span>  <span style="color:#fab387">2022</span> mail_backup</span></span></code></pre></div>
+<br>
+<h4 id="what-is-the-default-account-password-that-every-new-member-on-the-funnel-team-should-change-as-soon-as-possible">What is the default account password that every new member on the &ldquo;Funnel&rdquo; team should change as soon as possible?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>funnel123#!#</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ ftp 10.129.151.228
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Connected to 10.129.151.228.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#fab387">220</span> <span style="color:#89dceb;font-weight:bold">(</span>vsFTPd 3.0.3<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Name <span style="color:#89dceb;font-weight:bold">(</span>10.129.151.228:kali<span style="color:#89dceb;font-weight:bold">)</span>: anonymous
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#fab387">331</span> Please specify the password.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#fab387">230</span> Login successful.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Remote system <span style="color:#89dceb">type</span> is UNIX.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Using binary mode to transfer files.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>ftp&gt; ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#fab387">229</span> Entering Extended Passive Mode <span style="color:#89dceb;font-weight:bold">(||</span>|32449|<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#fab387">150</span> Here comes the directory listing.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>drwxr-xr-x    <span style="color:#fab387">2</span> ftp      ftp          <span style="color:#fab387">4096</span> Nov <span style="color:#fab387">28</span>  <span style="color:#fab387">2022</span> mail_backup
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#fab387">226</span> Directory send OK.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>ftp&gt; <span style="color:#89dceb">cd</span> mail_backup
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span><span style="color:#fab387">250</span> Directory successfully changed.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>ftp&gt; ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span><span style="color:#fab387">229</span> Entering Extended Passive Mode <span style="color:#89dceb;font-weight:bold">(||</span>|61475|<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span><span style="color:#fab387">150</span> Here comes the directory listing.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>-rw-r--r--    <span style="color:#fab387">1</span> ftp      ftp         <span style="color:#fab387">58899</span> Nov <span style="color:#fab387">28</span>  <span style="color:#fab387">2022</span> password_policy.pdf
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>-rw-r--r--    <span style="color:#fab387">1</span> ftp      ftp           <span style="color:#fab387">713</span> Nov <span style="color:#fab387">28</span>  <span style="color:#fab387">2022</span> welcome_28112022
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span><span style="color:#fab387">226</span> Directory send OK.</span></span></code></pre></div>
+<br>
+<p>After logged into the ftp server as <code>anonymous</code>, I was able to locate 2 files inside the mail_backup directory. Downloaded those files to local and the <code>password_policy.pdf</code> file disclosed the default password of a newly created user.</p>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-user-has-not-changed-their-default-password-yet">Which user has not changed their default password yet?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>christine</code></pre>
+<p>From the <code>welcome_28112022</code> file, we noticed that the new users are 5 people: <code>optimus</code>, <code>albert</code>, <code>andreas</code>, <code>christine</code>, and <code>maria</code>. As we already saw from the previous task, the default password was <code>funnel#!#</code> for new users. We can try to login with their credentials one by one to ssh server and see if any of them has not changed their default password.</p>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<p>I was able to login to the ssh server with <code>christine</code>&rsquo;s credentials with the default password.
+<img src="image-3.png#center" alt="alt text"></p>
+<hr>
+<p>Instead of manually inputting password for each credential, we can also use <code>Hydra</code> to automate the process.</p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<h4 id="which-service-is-running-on-tcp-port-5432-and-listens-only-on-localhost">Which service is running on TCP port 5432 and listens only on localhost?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>postgresql</code></pre>
+<p>First, I ran another nmap scan particularly on the port 5432 and it showed that <code>postgresql</code> as the servic running on the port 5432.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sC -sV 10.129.151.228 -p <span style="color:#fab387">5432</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-07-18 00:52 EDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.151.228
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.033s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT     STATE  SERVICE    VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>5432/tcp closed postgresql
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 0.29 seconds</span></span></code></pre></div>
+<br>
+<p>To confirm I used the <code>ss</code> command to dump socket statistics. It&rsquo;s a utility to investigate sockets, similar to the older <code>netstat</code> command.</p>
+<ul>
+<li><code>-t</code> or <code>--tcp</code>: this option displays only TCP sockets.</li>
+<li><code>-l</code> or <code>--listening</code>: displays only listening sockets.</li>
+</ul>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>christine@funnel:~$ ss -tl <span style="color:#f5e0dc">sport</span> <span style="color:#89dceb;font-weight:bold">=</span> :5432
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>State            Recv-Q           Send-Q                       Local Address:Port                             Peer Address:Port           Process
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>LISTEN           <span style="color:#fab387">0</span>                <span style="color:#fab387">4096</span>                             127.0.0.1:postgresql                            0.0.0.0:*</span></span></code></pre></div>
+<br>
+<h4 id="since-you-cant-access-the-previously-mentioned-service-from-the-local-machine-you-will-have-to-create-a-tunnel-and-connect-to-it-from-your-machine-what-is-the-correct-type-of-tunneling-to-use-remote-port-forwarding-or-local-port-forwarding">Since you can&rsquo;t access the previously mentioned service from the local machine, you will have to create a tunnel and connect to it from your machine. What is the correct type of tunneling to use? remote port forwarding or local port forwarding?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>local port forwarding</code></pre>
+<p>According to the definition of tunneling, one can use it to access resources that are available only to internal networks. To create/facilitate such tunnels, an appropriate application should be used. The most known one is <code>SSH</code>.</p>
+<p>The <code>SSH</code> protocol is vastly used for maintaining and accessing remote systems in a secure and encrypted way. But, it also offers the possibility to create tunnels that operate over the SSH protocol. More specifically, SSH offers various types of tunnels.</p>
+<p>When <code>local port forwarding</code> is used, a separate tunnel is created inside the existing valid SSH session that forwards network traffic from a local port on the client&rsquo;s machine over to the remote server&rsquo;s port. Under the hood, SSH allocates a socket listener on the client on the given port.</p>
+<p>When <code>remote port forwarding</code>, also known as <code>Reverse Tunneling</code> is used, after a successful SSH connection, a separate tunnel is created which SSH users to redirect incoming traffic to the server&rsquo;s port back to the client. Internally, SSH allocates a socket listener on the server on the given port. When a connection is made to this port, the connection is forwarded over the existing SSH session over to the local client&rsquo;s port.</p>
+<h4 id="again-in-simple-terms">Again in simple terms</h4>
+<h5 id="local-port-forwarding">Local Port Forwarding</h5>
+<p>Imagine you have a computer at home, and there&rsquo;s a service or website you can only access from your office network. You want to connect to that service from your home computer. Local port forwarding can help you do that.</p>
+<p>How it works:</p>
+<ol>
+<li>You create a tunnel (connection) from your home computer to your office computer</li>
+<li>You tell your home computer to listen on a specific port (e.g., 8080).</li>
+<li>Any data you send to this port on your home computer gets forwarded to the service on your office network.</li>
+</ol>
+<h5 id="remote-port-forwarding">Remote Port Forwarding</h5>
+<p>Now imagine the opposite scenario: you are at work, and you want to access a service running on your home computer, but your home network doesn&rsquo;t allow incoming connections from outside. Remote port forwarding can help here.</p>
+<p>How it works:</p>
+<ol>
+<li>You create a tunnel from your office computer to your home computer.</li>
+<li>You tell your home computer to listen on a specific port and forward requests to a service on your office computer.</li>
+<li>Any data sent to this port on your home computer gets forwarded to the service on your office network.</li>
+</ol>
+<h4 id="tunneling">Tunneling</h4>
+<p>To use local port forwarding with SSH, you can use the <code>ssh</code> command with the <code>-L</code> option, followed by the local port, remote host and port, and the remote SSH server.</p>
+<p><code>ssh -L 1234:localhost:22 christine@10.129.151.228</code></p>
+<p>When you run this command, the SSH client will establish a secure connection to the remote SSH server, and it will listen for incoming connections on the local port <code>1234</code>. When a client connects to the local port, the SSH client will forward the connection to the remote server on port <code>22</code>. This allows the local client to access services on the remote server as if they were running on the local machine.</p>
+<p>However, we want to forward traffic from any given local port, for instance <code>1234</code>, to the port on which <code>PostgreSQL</code> is listening, <code>5432</code>, on the remote server. Therefore specify port 1234 to the left of localhost, and 5432 to the right, indicating the target port.</p>
+<p><code>ssh -L 1234:localhost:5432 christine@10.129.151.228</code></p>
+<br>
+<h4 id="what-is-the-name-of-the-database-that-holds-the-flag">What is the name of the database that holds the flag?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Secrets</code></pre>
+<p>After entering christine&rsquo;s password, we have a shell on the target system like we did before, however, under the hood, SSH has opened up a socket on our local machine on port 1234, to which we can now direct traffic that we want forwarded to port 5432 on the target machine.</p>
+<p>By running the following command, I was able to interact with the postgresql service running locally on the target machine.</p>
+<p><code>psql -U chirstine -h localhost -p 1234</code></p>
+<p>Then <code>\l</code> command to list all the databases. Out of the databases, the database with the name <strong>*Secrets</strong> is very suspicious. I used <code>\c secrets</code> to change the database to the secrets db and <code>\dt</code> command to display all the tables that belong to the db. Finally <code>SELECT * FROM flag;</code> to display the flag.</p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="could-you-use-a-dynamic-tunnel-instead-of-local-port-forwarding-yes-or-no">Could you use a dynamic tunnel instead of local port forwarding? yes or No.</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Yes</code></pre>
+<p>In many cases, the local port forwarding tunnel can indeed be replaced by a dynamic one.</p>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>cf277664b1771217d7006acdea006db1</code></pre>
+<br>
+<p><img src="image-5.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Bike</title>
       <link>http://localhost:1313/htb-bike/</link>
