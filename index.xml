@@ -8,8 +8,124 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Pennyworth</title>
+      <link>http://localhost:1313/htb-pennyworth/</link>
+      <pubDate>Sun, 21 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-pennyworth/</guid>
+      <description>This box was easier compared to the previous two I attempted. However, I still referred to the provided walkthrough. I am trying to apply a top-down approach to my learning as a mentor advised me to. I feel too dependent on resources because I am not confident in my skills yet and have always relied on guided learning. I admit there is not shortcut; trial and error will benefit me in the long run.</description>
+      <content:encoded><![CDATA[<div style="text-align: center"><img src="./giphy.gif"></div>
+<p>This box was easier compared to the previous two I attempted. However, I still referred to the provided walkthrough. I am trying to apply a <code>top-down</code> approach to my learning as a mentor advised me to. I feel too dependent on resources because I am not confident in my skills yet and have always relied on guided learning. I admit there is not shortcut; <code>trial and error</code> will benefit me in the long run.</p>
+<hr>
+<h4 id="what-does-the-acronym-cve-stand-for">What does the acronym CVE stand for?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Common Vulnerabilities and Exposures</code></pre>
+<br>
+<h4 id="what-do-the-three-letters-in-cia-referring-to-the-cia-traid-in-cybersecurity-stand-for">What do the three letters in CIA, referring to the CIA traid in cybersecurity, stand for?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Confidentiality, Integrity, Availability</code></pre>
+<p>When I was studying for the CompTIA Security+ certification, the CIA triad was emphasized repeatedly throughout the course. I&rsquo;m grateful for this question as it reminds me again of this important cybersecurity principle.</p>
+<br>
+<h4 id="what-is-the-version-of-the-service-running-on-port-8080">What is the version of the service running on port 8080?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Jetty 9.4.39.v20210325</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-version-of-jenkins-is-running-on-the-target">What version of Jenkins is running on the target?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>2.289.1</code></pre>
+<p>I couldn&rsquo;t determine the Jenkins version from the nmap scan results. The hint suggested checking the bottom right corner of the <code>admin</code> page, implying I needed admin access. I didn&rsquo;t know the admin credentials, but the walkthrough recommended searching for common weak credential pairs. The combination that worked was <code>root:password</code>.</p>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-type-of-script-is-accepted-as-input-on-the-jenkins-script-console">What type of script is accepted as input on the Jenkins Script Console?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Groovy</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-would-the-string-cmd-variable-from-the-groovy-script-snippet-be-equal-to-if-the-target-vm-was-running-windows">What would the <code>String cmd</code> variable from the Groovy Script snippet be equal to if the Target VM was running Windows?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>cmd.exe</code></pre>
+<p>I thought having access to a script console implies we need to create a reverse shell, meaning the target will initiate a connection back to our attacker VM. I referred to the Java version of the Reverse Shell Cheat Sheet because the Groovy script uses Java syntax. The Java Alternative 1 option shows that <code>String cmd</code> variable is equal to <code>cmd.exe</code> in Windows.</p>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-a-different-command-than-ip-a-we-could-use-to-display-our-network-interfaces-information-on-linux">What is a different command than <code>ip a</code> we could use to display our network interfaces&rsquo; information on Linux?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>ifconfig</code></pre>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-switch-should-we-use-with-netcat-for-it-to-use-udp-transport-mode">What switch should we use with netcat for it to use UDP transport mode?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>-u</code></pre>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-term-used-to-describe-making-a-target-host-initiate-a-connection-back-to-the-attacker-host">What is the term used to describe making a target host initiate a connection back to the attacker host?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>reverse shell</code></pre>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>9cdfb439c7876e703e307864c9167a15</code></pre>
+<p>Since the target was linux based, I had to change the <code>String cmd=&quot;cmd.exe&quot;</code> to <code>String cmd=&quot;/bin/bash&quot;</code>. Before sending the payload, I started netcat to receive the reverse shell using the command: <code>nc -lvnp 1234</code>. I personally specified the port 1234 in the payload, and netcat was set to listen on that port.</p>
+<p>After sucessfully receiving the reverse shell, I was able to locate the flag on the target host.</p>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-9.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Funnel</title>
       <link>http://localhost:1313/htb-funnel/</link>
