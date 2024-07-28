@@ -2,153 +2,153 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/htb-tactics/</loc>
+    <loc>http://localhost:49865/htb-archetype/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49865/blog/hack-the-box/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49865/blog/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49865/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49865/htb-tactics/</loc>
     <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/hack-the-box/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/thm-blue/</loc>
+    <loc>http://localhost:49865/thm-blue/</loc>
     <lastmod>2024-07-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-what-the-shell/</loc>
+    <loc>http://localhost:49865/blog/tryhackme/</loc>
     <lastmod>2024-07-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/tryhackme/</loc>
-    <lastmod>2024-07-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/htb-pennyworth/</loc>
+    <loc>http://localhost:49865/htb-pennyworth/</loc>
     <lastmod>2024-07-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-funnel/</loc>
+    <loc>http://localhost:49865/htb-funnel/</loc>
     <lastmod>2024-07-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-bike/</loc>
+    <loc>http://localhost:49865/htb-bike/</loc>
     <lastmod>2024-07-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-active-directory/</loc>
+    <loc>http://localhost:49865/thm-active-directory/</loc>
     <lastmod>2024-07-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-ignition/</loc>
+    <loc>http://localhost:49865/htb-ignition/</loc>
     <lastmod>2024-07-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/til-key-exchange/</loc>
+    <loc>http://localhost:49865/til-key-exchange/</loc>
     <lastmod>2024-07-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/today-i-learned/</loc>
+    <loc>http://localhost:49865/blog/today-i-learned/</loc>
     <lastmod>2024-07-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-three/</loc>
+    <loc>http://localhost:49865/htb-three/</loc>
     <lastmod>2024-07-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-crocodile/</loc>
+    <loc>http://localhost:49865/htb-crocodile/</loc>
     <lastmod>2024-07-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-responder/</loc>
+    <loc>http://localhost:49865/htb-responder/</loc>
     <lastmod>2024-07-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-sequel/</loc>
+    <loc>http://localhost:49865/htb-sequel/</loc>
     <lastmod>2024-07-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-john-the-ripper/</loc>
+    <loc>http://localhost:49865/thm-john-the-ripper/</loc>
     <lastmod>2024-07-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-appointment/</loc>
+    <loc>http://localhost:49865/htb-appointment/</loc>
     <lastmod>2024-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-synced/</loc>
+    <loc>http://localhost:49865/htb-synced/</loc>
     <lastmod>2024-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-mongod/</loc>
+    <loc>http://localhost:49865/htb-mongod/</loc>
     <lastmod>2024-07-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-canyousee/</loc>
+    <loc>http://localhost:49865/picoctf-canyousee/</loc>
     <lastmod>2024-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-pickle-rick/</loc>
+    <loc>http://localhost:49865/thm-pickle-rick/</loc>
     <lastmod>2024-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/picoctf/</loc>
+    <loc>http://localhost:49865/blog/picoctf/</loc>
     <lastmod>2024-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-packer/</loc>
+    <loc>http://localhost:49865/picoctf-packer/</loc>
     <lastmod>2024-07-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-secret-of-the-polyglot/</loc>
+    <loc>http://localhost:49865/picoctf-secret-of-the-polyglot/</loc>
     <lastmod>2024-07-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-time-machine/</loc>
+    <loc>http://localhost:49865/picoctf-time-machine/</loc>
     <lastmod>2024-07-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-webdecode/</loc>
+    <loc>http://localhost:49865/picoctf-webdecode/</loc>
     <lastmod>2024-07-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-upload-vulnerabilities/</loc>
+    <loc>http://localhost:49865/thm-upload-vulnerabilities/</loc>
     <lastmod>2024-07-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-binary-search/</loc>
+    <loc>http://localhost:49865/picoctf-binary-search/</loc>
     <lastmod>2024-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-heap-0-1/</loc>
+    <loc>http://localhost:49865/picoctf-heap-0-1/</loc>
     <lastmod>2024-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-scan-surprise/</loc>
+    <loc>http://localhost:49865/picoctf-scan-surprise/</loc>
     <lastmod>2024-07-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/picoctf-verify/</loc>
+    <loc>http://localhost:49865/picoctf-verify/</loc>
     <lastmod>2024-07-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-owasp-juice-shop/</loc>
+    <loc>http://localhost:49865/thm-owasp-juice-shop/</loc>
     <lastmod>2024-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-owasp-top-10/</loc>
+    <loc>http://localhost:49865/thm-owasp-top-10/</loc>
     <lastmod>2024-06-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/til-vlsm/</loc>
+    <loc>http://localhost:49865/til-vlsm/</loc>
     <lastmod>2024-06-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-network-services-2/</loc>
+    <loc>http://localhost:49865/thm-network-services-2/</loc>
     <lastmod>2024-06-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/til-subnetting-2/</loc>
+    <loc>http://localhost:49865/til-subnetting-2/</loc>
     <lastmod>2024-06-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/til-subnetting-1/</loc>
+    <loc>http://localhost:49865/til-subnetting-1/</loc>
     <lastmod>2024-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thm-network-services/</loc>
+    <loc>http://localhost:49865/thm-network-services/</loc>
     <lastmod>2024-06-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/til-life-of-a-packet/</loc>
+    <loc>http://localhost:49865/til-life-of-a-packet/</loc>
     <lastmod>2024-06-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/til-port/</loc>
+    <loc>http://localhost:49865/til-port/</loc>
     <lastmod>2024-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-redeemer/</loc>
+    <loc>http://localhost:49865/htb-redeemer/</loc>
     <lastmod>2024-06-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-explosion/</loc>
+    <loc>http://localhost:49865/htb-explosion/</loc>
     <lastmod>2024-06-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/til-routing/</loc>
+    <loc>http://localhost:49865/til-routing/</loc>
     <lastmod>2024-06-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-dancing/</loc>
+    <loc>http://localhost:49865/htb-dancing/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-fawn/</loc>
+    <loc>http://localhost:49865/htb-fawn/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/htb-meow/</loc>
+    <loc>http://localhost:49865/htb-meow/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/photos/</loc>
+    <loc>http://localhost:49865/photos/</loc>
   </url>
 </urlset>

