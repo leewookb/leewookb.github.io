@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[HTB] Blue&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[HTB] Blue"
+/>
+<meta
+  name="description"
+  content="This is my first post in a week, not because I was procastinating or slacking off, but because I was taking time to watch pentesting lectures to strengthen my foundational knowledge. I&rsquo;ve alwas felt my foundation wa a bit weak. After watching some videos, I tackled this box, one of the easy-level challenges they recommended. I&rsquo;m proud to say that, for the first time, I solved it without any help from a walkthrough."
+/>
+<meta
+  name="keywords"
+  content="Hack The Box,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/htb-blue/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[HTB] Blue">
+  <meta property="og:description" content="This is my first post in a week, not because I was procastinating or slacking off, but because I was taking time to watch pentesting lectures to strengthen my foundational knowledge. I’ve alwas felt my foundation wa a bit weak. After watching some videos, I tackled this box, one of the easy-level challenges they recommended. I’m proud to say that, for the first time, I solved it without any help from a walkthrough.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:tag" content="Hack The Box">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTB] Blue">
+  <meta name="twitter:description" content="This is my first post in a week, not because I was procastinating or slacking off, but because I was taking time to watch pentesting lectures to strengthen my foundational knowledge. I’ve alwas felt my foundation wa a bit weak. After watching some videos, I tackled this box, one of the easy-level challenges they recommended. I’m proud to say that, for the first time, I solved it without any help from a walkthrough.">
+
+
+
+
+
+  <meta itemprop="name" content="[HTB] Blue">
+  <meta itemprop="description" content="This is my first post in a week, not because I was procastinating or slacking off, but because I was taking time to watch pentesting lectures to strengthen my foundational knowledge. I’ve alwas felt my foundation wa a bit weak. After watching some videos, I tackled this box, one of the easy-level challenges they recommended. I’m proud to say that, for the first time, I solved it without any help from a walkthrough.">
+  <meta itemprop="datePublished" content="2024-08-06T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-08-06T00:00:00+00:00">
+  <meta itemprop="wordCount" content="527">
+  <meta itemprop="keywords" content="Hack The Box">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[HTB] Blue</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-08-06" pubdate>
+            2024-08-06
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <div style="text-align: center"><img width="400px"src="./giphy.gif"></div>
+<p>This is my first post in a week, not because I was procastinating or slacking off, but because I was taking time to watch pentesting lectures to strengthen my foundational knowledge. I&rsquo;ve alwas felt my foundation wa a bit weak. After watching some videos, I tackled this box, one of the easy-level challenges they recommended. I&rsquo;m proud to say that, for the first time, I solved it without any help from a walkthrough. Even though it was a straightforward box, solving it on my own is really satisfying. I know there&rsquo;s still a lot of room for improvement, especially in writing better write-ups but still, I&rsquo;m definitely making progress!</p>
+<hr>
+<br>
+<p>As always, I started the enumeration phase by scanning ports with <strong><em>nmap</em></strong>.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic"># Nmap 7.94SVN scan initiated Tue Aug  6 23:39:01 2024 as: nmap -T4 -A --min-rate 3000 -p- -oA output 10.10.10.40</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.10.10.40
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.0084s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Not shown: <span style="color:#fab387">65526</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>reset<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>PORT      STATE SERVICE      VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>135/tcp   open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>445/tcp   open  microsoft-ds Windows <span style="color:#fab387">7</span> Professional <span style="color:#fab387">7601</span> Service Pack <span style="color:#fab387">1</span> microsoft-ds <span style="color:#89dceb;font-weight:bold">(</span>workgroup: WORKGROUP<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>49152/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>49153/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>49154/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>49155/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>49156/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>49157/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>No exact OS matches <span style="color:#cba6f7">for</span> host <span style="color:#89dceb;font-weight:bold">(</span>If you know what OS is running on it, see https://nmap.org/submit/ <span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>TCP/IP fingerprint:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>OS:SCAN<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">V</span><span style="color:#89dceb;font-weight:bold">=</span>7.94SVN%E<span style="color:#89dceb;font-weight:bold">=</span>4%D<span style="color:#89dceb;font-weight:bold">=</span>8/6%OT<span style="color:#89dceb;font-weight:bold">=</span>135%CT<span style="color:#89dceb;font-weight:bold">=</span>1%CU<span style="color:#89dceb;font-weight:bold">=</span>31869%PV<span style="color:#89dceb;font-weight:bold">=</span>Y%DS<span style="color:#89dceb;font-weight:bold">=</span>2%DC<span style="color:#89dceb;font-weight:bold">=</span>T%G<span style="color:#89dceb;font-weight:bold">=</span>Y%TM<span style="color:#89dceb;font-weight:bold">=</span>66B2
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>OS:FAC2%P<span style="color:#89dceb;font-weight:bold">=</span>x86_64-pc-linux-gnu<span style="color:#89dceb;font-weight:bold">)</span>SEQ<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">SP</span><span style="color:#89dceb;font-weight:bold">=</span>107%GCD<span style="color:#89dceb;font-weight:bold">=</span>1%ISR<span style="color:#89dceb;font-weight:bold">=</span>107%TI<span style="color:#89dceb;font-weight:bold">=</span>I%CI<span style="color:#89dceb;font-weight:bold">=</span>I%II<span style="color:#89dceb;font-weight:bold">=</span>I%SS<span style="color:#89dceb;font-weight:bold">=</span>S%
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>OS:TS<span style="color:#89dceb;font-weight:bold">=</span>7<span style="color:#89dceb;font-weight:bold">)</span>OPS<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">O1</span><span style="color:#89dceb;font-weight:bold">=</span>M53CNW8ST11%O2<span style="color:#89dceb;font-weight:bold">=</span>M53CNW8ST11%O3<span style="color:#89dceb;font-weight:bold">=</span>M53CNW8NNT11%O4<span style="color:#89dceb;font-weight:bold">=</span>M53CNW8ST11%O5
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>OS:<span style="color:#89dceb;font-weight:bold">=</span>M53CNW8ST11%O6<span style="color:#89dceb;font-weight:bold">=</span>M53CST11<span style="color:#89dceb;font-weight:bold">)</span>WIN<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">W1</span><span style="color:#89dceb;font-weight:bold">=</span>2000%W2<span style="color:#89dceb;font-weight:bold">=</span>2000%W3<span style="color:#89dceb;font-weight:bold">=</span>2000%W4<span style="color:#89dceb;font-weight:bold">=</span>2000%W5<span style="color:#89dceb;font-weight:bold">=</span>2000%W6<span style="color:#89dceb;font-weight:bold">=</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>OS:2000<span style="color:#89dceb;font-weight:bold">)</span>ECN<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%W<span style="color:#89dceb;font-weight:bold">=</span>2000%O<span style="color:#89dceb;font-weight:bold">=</span>M53CNW8NNS%CC<span style="color:#89dceb;font-weight:bold">=</span>N%Q<span style="color:#89dceb;font-weight:bold">=)</span>T1<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%S<span style="color:#89dceb;font-weight:bold">=</span>O%
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>OS:A<span style="color:#89dceb;font-weight:bold">=</span>S+%F<span style="color:#89dceb;font-weight:bold">=</span>AS%RD<span style="color:#89dceb;font-weight:bold">=</span>0%Q<span style="color:#89dceb;font-weight:bold">=)</span>T2<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%W<span style="color:#89dceb;font-weight:bold">=</span>0%S<span style="color:#89dceb;font-weight:bold">=</span>Z%A<span style="color:#89dceb;font-weight:bold">=</span>S%F<span style="color:#89dceb;font-weight:bold">=</span>AR%O<span style="color:#89dceb;font-weight:bold">=</span>%RD<span style="color:#89dceb;font-weight:bold">=</span>0%Q<span style="color:#89dceb;font-weight:bold">=)</span>T3<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>OS:<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%W<span style="color:#89dceb;font-weight:bold">=</span>0%S<span style="color:#89dceb;font-weight:bold">=</span>Z%A<span style="color:#89dceb;font-weight:bold">=</span>O%F<span style="color:#89dceb;font-weight:bold">=</span>AR%O<span style="color:#89dceb;font-weight:bold">=</span>%RD<span style="color:#89dceb;font-weight:bold">=</span>0%Q<span style="color:#89dceb;font-weight:bold">=)</span>T4<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%W<span style="color:#89dceb;font-weight:bold">=</span>0%S<span style="color:#89dceb;font-weight:bold">=</span>A%A<span style="color:#89dceb;font-weight:bold">=</span>O%F<span style="color:#89dceb;font-weight:bold">=</span>R%O<span style="color:#89dceb;font-weight:bold">=</span>%
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>OS:RD<span style="color:#89dceb;font-weight:bold">=</span>0%Q<span style="color:#89dceb;font-weight:bold">=)</span>T5<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%W<span style="color:#89dceb;font-weight:bold">=</span>0%S<span style="color:#89dceb;font-weight:bold">=</span>Z%A<span style="color:#89dceb;font-weight:bold">=</span>S+%F<span style="color:#89dceb;font-weight:bold">=</span>AR%O<span style="color:#89dceb;font-weight:bold">=</span>%RD<span style="color:#89dceb;font-weight:bold">=</span>0%Q<span style="color:#89dceb;font-weight:bold">=)</span>T6<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%W
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>OS:<span style="color:#89dceb;font-weight:bold">=</span>0%S<span style="color:#89dceb;font-weight:bold">=</span>A%A<span style="color:#89dceb;font-weight:bold">=</span>O%F<span style="color:#89dceb;font-weight:bold">=</span>R%O<span style="color:#89dceb;font-weight:bold">=</span>%RD<span style="color:#89dceb;font-weight:bold">=</span>0%Q<span style="color:#89dceb;font-weight:bold">=)</span>T7<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>Y%T<span style="color:#89dceb;font-weight:bold">=</span>80%W<span style="color:#89dceb;font-weight:bold">=</span>0%S<span style="color:#89dceb;font-weight:bold">=</span>Z%A<span style="color:#89dceb;font-weight:bold">=</span>S+%F<span style="color:#89dceb;font-weight:bold">=</span>AR%O<span style="color:#89dceb;font-weight:bold">=</span>%RD<span style="color:#89dceb;font-weight:bold">=</span>0%Q<span style="color:#89dceb;font-weight:bold">=)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>OS:U1<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%DF<span style="color:#89dceb;font-weight:bold">=</span>N%T<span style="color:#89dceb;font-weight:bold">=</span>80%IPL<span style="color:#89dceb;font-weight:bold">=</span>164%UN<span style="color:#89dceb;font-weight:bold">=</span>0%RIPL<span style="color:#89dceb;font-weight:bold">=</span>G%RID<span style="color:#89dceb;font-weight:bold">=</span>G%RIPCK<span style="color:#89dceb;font-weight:bold">=</span>G%RUCK<span style="color:#89dceb;font-weight:bold">=</span>G%RUD<span style="color:#89dceb;font-weight:bold">=</span>G<span style="color:#89dceb;font-weight:bold">)</span>IE<span style="color:#89dceb;font-weight:bold">(</span><span style="color:#f5e0dc">R</span><span style="color:#89dceb;font-weight:bold">=</span>Y%D
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>OS:FI<span style="color:#89dceb;font-weight:bold">=</span>N%T<span style="color:#89dceb;font-weight:bold">=</span>80%CD<span style="color:#89dceb;font-weight:bold">=</span>Z<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>Network Distance: <span style="color:#fab387">2</span> hops
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>Service Info: Host: HARIS-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>Host script results:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>|_clock-skew: mean: -19m57s, deviation: 34m36s, median: 0s
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>| smb2-time:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>|   date: 2024-08-07T04:40:29
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>|_  start_date: 2024-08-07T04:29:18
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>| smb-security-mode:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>|   account_used: guest
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">39</span><span>|   authentication_level: user
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">40</span><span>|   challenge_response: supported
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">41</span><span>|_  message_signing: disabled <span style="color:#89dceb;font-weight:bold">(</span>dangerous, but default<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">42</span><span>| smb-os-discovery:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">43</span><span>|   OS: Windows <span style="color:#fab387">7</span> Professional <span style="color:#fab387">7601</span> Service Pack <span style="color:#fab387">1</span> <span style="color:#89dceb;font-weight:bold">(</span>Windows <span style="color:#fab387">7</span> Professional 6.1<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">44</span><span>|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">45</span><span>|   Computer name: haris-PC
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">46</span><span>|   NetBIOS computer name: HARIS-PC<span style="color:#89b4fa">\x</span><span style="color:#fab387">00</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">47</span><span>|   Workgroup: WORKGROUP<span style="color:#89b4fa">\x</span><span style="color:#fab387">00</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">48</span><span>|_  System time: 2024-08-07T05:40:30+01:00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">49</span><span>| smb2-security-mode:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">50</span><span>|   2:1:0:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">51</span><span>|_    Message signing enabled but not required
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">52</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">53</span><span>TRACEROUTE <span style="color:#89dceb;font-weight:bold">(</span>using port 22/tcp<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">54</span><span>HOP RTT     ADDRESS
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">55</span><span><span style="color:#fab387">1</span>   8.08 ms 10.10.14.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">56</span><span><span style="color:#fab387">2</span>   8.47 ms 10.10.10.40
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">57</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">58</span><span>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">59</span><span><span style="color:#6c7086;font-style:italic"># Nmap done at Tue Aug  6 23:40:34 2024 -- 1 IP address (1 host up) scanned in 93.01 seconds</span></span></span></code></pre></div>
+<br>
+<p>Since we know the target host is running the smb server, I tried the following command <code>smbclient -L \\\\10.10.10.40\\</code> to list the shares
+<img src="image.png#center" alt="alt text"></p>
+<br>
+<p>Anonymous login was failed with every share but the <strong><em>Users</em></strong> share. I spent time looking around inside the share but there wasn&rsquo;t any useful information.
+<img src="image-1.png#center" alt="alt text"></p>
+<br>
+<p>While exploring the <strong><em>Users</em></strong> share, ran another nmap script to find if there&rsquo;s any smb vulnerabilities. The scan found one vulnerability <strong>CVE-2017-0143</strong> also known as <strong>ms17-010</strong>.
+<img src="image-2.png#center" alt="alt text"></p>
+<br>
+<p>To exploit the found vulnerability, I came to <strong><em>msfconsole</em></strong> and searched for <strong>ms17-010</strong>.
+<img src="image-3.png#center" alt="alt text"></p>
+<br>
+<p>Configure options of exploit. set <strong>RHOSTS</strong> to 10.10.10.40 and <strong>LHOST</strong> to 10.10.14.15
+<img src="image-4.png#center" alt="alt text"></p>
+<br>
+<p>Successfully got the shell!
+<img src="image-5.png#center" alt="alt text"></p>
+<br>
+<p>From the user, Haris&rsquo; desktop, the user flag could be found.
+<img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p>Moved up to <strong>All Users</strong> directory, then to <strong>Administrator</strong> directory, there was the root.txt.
+<img src="image-7.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-8.png#center" alt="alt text"></p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/hack-the-box/">#Hack The Box</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
