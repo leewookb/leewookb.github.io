@@ -8,8 +8,74 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Thu, 08 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 09 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[HTB] Optimum</title>
+      <link>http://localhost:1313/htb-optimum/</link>
+      <pubDate>Fri, 09 Aug 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-optimum/</guid>
+      <description>This machine was pretty straightforward and much easier than I expected it to be. I truly feel like I have improved a lot in the past 2-3 weeks because 2 weeks ago, I definitely would&amp;rsquo;ve not been able to solve this machine by myself. I still have a lot of room to develop, and I found myself freezing and getting lost when it came to the privilege escalation stage. I definitely need to spend more time working on it.</description>
+      <content:encoded><![CDATA[<div style="text-align: center"><img src="./giphy.gif"></div>
+<p>This machine was pretty straightforward and much easier than I expected it to be. I truly feel like I have improved a lot in the past 2-3 weeks because 2 weeks ago, I definitely would&rsquo;ve not been able to solve this machine by myself. I still have a lot of room to develop, and I found myself freezing and getting lost when it came to the <strong><em>privilege escalation</em></strong> stage. I definitely need to spend more time working on it. Still, I think I deserve to be proud of myself for tackling this machine (almost) entirely on my own.</p>
+<hr>
+<p><img src="image.png#center" alt="alt text">
+nmap scan showed that only 1 port open, which is the port 80 with the version of <strong><em>HttpFileServer httpd 2.3</em></strong></p>
+<br>
+<p><img src="image-1.png#center" alt="alt text">
+navigated to the web of target ip address <strong><em>10.10.10.8</em></strong>.</p>
+<br>
+<p><img src="image-2.png#center" alt="alt text">
+couldn&rsquo;t find anything juicy excpet when I clicked on the <strong><em>login</em></strong> button there was this pop-up asking for credentials.</p>
+<br>
+<p><img src="image-3.png#center" alt="alt text">
+I searched on <strong><em>searchsploit</em></strong> to see if there is an exploit for <strong><em>Httpfileserver 2.3</em></strong> that I found through an nmap scan and there was one exploit titled <strong><em>Rejetto HttpFileserver 2.3.x - Remote Command Execution</em></strong>. RCE attack is exactly what I was hoping for.</p>
+<br>
+<p><img src="image-4.png#center" alt="alt text">
+Since I knew there exists an exploit for the version that&rsquo;s running on the server, I moved on to <strong><em>metasploit</em></strong></p>
+<br>
+<p><img src="image-5.png#center" alt="alt text">
+on the options page of the exploit, configured every required option including <strong>RHOSTS</strong>, <strong>RPORT</strong>, <strong>SRVHOST</strong>, <strong>SRVPORT</strong>, <strong>LHOST</strong>, and <strong>LPORT</strong>.</p>
+<br>
+<p><img src="image-6.png#center" alt="alt text">
+successfully executed the exploit and gained access to the user shell.</p>
+<br>
+<p><img src="image-7.png#center" alt="alt text">
+obtained the user flag.</p>
+<br>
+<p><img src="image-8.png#center" alt="alt text">
+However with the current user privilege, I could not access the root user directory. It was time for privilege escalation to move up vertically.</p>
+<br>
+<p><img src="image-9.png#center" alt="alt text">
+As I learned from the previous machines, searched for a <code>post/multi/recon</code> module and it returned 4 modules. The second module is the one I&rsquo;ve used before on a machine which explores the current compromised local session and suggests all the potential exploits.</p>
+<p>The <strong>post/multi/recon</strong> represents a category of post-exploitation modules designed to perform reconnaissance tasks on compromised systems.</p>
+<ul>
+<li>
+<p><strong><em>post</em></strong>: short for <strong><em>post-exploitation</em></strong>. These modules are used after gaining access to a target system. They help gather additional information or achieve specific tasks once the initial compromise has been made.</p>
+</li>
+<li>
+<p><strong><em>multi</em></strong>: indicates that the module is applicable to multiple platforms or operating systems.</p>
+</li>
+<li>
+<p><strong><em>recon</em></strong>: short for <strong><em>reconnaissance</em></strong>, these modules are used to collect information about the target system or network.</p>
+</li>
+</ul>
+<br>
+<p><img src="image-10.png#center" alt="alt text">
+As you could see the module requires me to list a session I would like to use the exploit on. In my case, I listed the session that I previously obtained which had id 2.</p>
+<br>
+<p><img src="image-11.png#center" alt="alt text">
+It outputted all the possible exploits I could run on the current backgrouned session and what I decided to use was named <code>exploit/windows/local/ms16_032_secondary_logon_handle_privesc</code>. As you could notice from its name, it is used for a <strong><em>privilege escalation</em></strong> exactly what I was looking for.</p>
+<br>
+<p><img src="image-12.png#center" alt="alt text">
+successfully executed the exploit and gained the root shell! as you could see the <code>getuid</code> command returned <code>NT AUTHORITY\SYSTEM</code>, another name for root!</p>
+<br>
+<p><img src="image-13.png#center" alt="alt text">
+Got the root flag :)</p>
+<br>
+<p><img src="image-14.png#center" alt="alt text"></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Nibbles</title>
       <link>http://localhost:1313/htb-nibbles/</link>
@@ -8943,39 +9009,6 @@ DNS Servers.....................: ::
 <pre tabindex="0"><code>Source MAC address: FFFF
 Destination MAC address: 4444</code></pre>
 <p>The answer for Q6 is the same as Q5 because the SW2 only forwards the frame. The switch does not alter the source or destination MAC addresses in the Ethernet frame. The switch&rsquo;s role is to efficiently forward the frame to the correct destination based on its MAC address table. If it doesn&rsquo;t already know the destination MAC address, it will flood the frame.</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>[TIL] Port</title>
-      <link>http://localhost:1313/til-port/</link>
-      <pubDate>Fri, 21 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-port/</guid>
-      <description>I feel like I&amp;rsquo;ve only scratched the surface when it comes to understanding Ports. Since I have an interview coming up, I want to review the basics of Ports, even if it&amp;rsquo;s very fundamental.
-What is a port? From Wikipedia
-a port is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service.
-To simply put, a port is like an address for a specific program or service running on a computer.</description>
-      <content:encoded><![CDATA[<p>I feel like I&rsquo;ve only scratched the surface when it comes to understanding Ports. Since I have an interview coming up, I want to review the basics of Ports, even if it&rsquo;s very fundamental.</p>
-<hr>
-<h3 id="what-is-a-port">What is a port?</h3>
-<p>From Wikipedia</p>
-<blockquote>
-<p>a port is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service.</p>
-</blockquote>
-<p>To simply put, a port is like an address for a specific program or service running on a computer.</p>
-<p>An IP address identifies a device on a network, while a port number identifies a specific process or service running on that device. When data is sent over a network, the IP address directs the data to the correct device, and the port number ensures it reaches the correct application or service on that device.</p>
-<p>Because a computer runs multiple processes simultaneously, not just a single one, it is import to distinguish between them. For example, on my computer right now, I have multiple Google Chrome tabs open, Discord running, and I&rsquo;m listening to music on Spotify.</p>
-<p>So, let&rsquo;s say we want to communicate with a program on an external server. Assuming we know its IP address, if we don&rsquo;t know its port number, we won&rsquo;t be able to locate the specific program we want to communicate with.</p>
-<h3 id="why-do-we-not-specify-the-port-numbers-in-the-browser">Why do we not specify the port numbers in the browser?</h3>
-<p>It is said that to communicate with a specific server, you need to know both the IP address and the port number. Through the domain address, you can only find out the IP address. So, how can we communicate normally without entering the port number?</p>
-<p>When you enter a domain address in the address bar and press enter, the browser is set to send the communicate to port 80 by default. That&rsquo;s why you don&rsquo;t need to enter the port number. If you don&rsquo;t want to communicate through port 80, you can set the port number separately in the address bar.</p>
-<h3 id="there-are-total-65535-ports">There are total 65,535 ports.</h3>
-<ul>
-<li>Port numbers 0 - 1023 are called <code>System or Well-known</code> ports.</li>
-<li>Port numbers 1024 - 49151 are called <code>User</code> or <code>Registered</code> ports.</li>
-<li>Port numbers 49152-65535 are called <code>Dynamic</code> or <code>Private</code> ports.</li>
-</ul>
-<hr>
-<p>Now it all makes sense. When we are doing a CTF, the first thing we always do in the enumeration phase is utilize the <code>nmap</code> command to perform port scanning. This helps us identify open ports and see which services are running on them. The target might be running several programs, and we need to find and confirm which programs/services are running and identify corresponding vulnerabilities.</p>
 ]]></content:encoded>
     </item>
   </channel>

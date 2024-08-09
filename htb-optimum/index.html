@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[HTB] Optimum&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[HTB] Optimum"
+/>
+<meta
+  name="description"
+  content="This machine was pretty straightforward and much easier than I expected it to be. I truly feel like I have improved a lot in the past 2-3 weeks because 2 weeks ago, I definitely would&rsquo;ve not been able to solve this machine by myself. I still have a lot of room to develop, and I found myself freezing and getting lost when it came to the privilege escalation stage. I definitely need to spend more time working on it."
+/>
+<meta
+  name="keywords"
+  content="Hack The Box,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/htb-optimum/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[HTB] Optimum">
+  <meta property="og:description" content="This machine was pretty straightforward and much easier than I expected it to be. I truly feel like I have improved a lot in the past 2-3 weeks because 2 weeks ago, I definitely would’ve not been able to solve this machine by myself. I still have a lot of room to develop, and I found myself freezing and getting lost when it came to the privilege escalation stage. I definitely need to spend more time working on it.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-08-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-09T00:00:00+00:00">
+    <meta property="article:tag" content="Hack The Box">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTB] Optimum">
+  <meta name="twitter:description" content="This machine was pretty straightforward and much easier than I expected it to be. I truly feel like I have improved a lot in the past 2-3 weeks because 2 weeks ago, I definitely would’ve not been able to solve this machine by myself. I still have a lot of room to develop, and I found myself freezing and getting lost when it came to the privilege escalation stage. I definitely need to spend more time working on it.">
+
+
+
+
+
+  <meta itemprop="name" content="[HTB] Optimum">
+  <meta itemprop="description" content="This machine was pretty straightforward and much easier than I expected it to be. I truly feel like I have improved a lot in the past 2-3 weeks because 2 weeks ago, I definitely would’ve not been able to solve this machine by myself. I still have a lot of room to develop, and I found myself freezing and getting lost when it came to the privilege escalation stage. I definitely need to spend more time working on it.">
+  <meta itemprop="datePublished" content="2024-08-09T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-08-09T00:00:00+00:00">
+  <meta itemprop="wordCount" content="492">
+  <meta itemprop="keywords" content="Hack The Box">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[HTB] Optimum</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-08-09" pubdate>
+            2024-08-09
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <div style="text-align: center"><img src="./giphy.gif"></div>
+<p>This machine was pretty straightforward and much easier than I expected it to be. I truly feel like I have improved a lot in the past 2-3 weeks because 2 weeks ago, I definitely would&rsquo;ve not been able to solve this machine by myself. I still have a lot of room to develop, and I found myself freezing and getting lost when it came to the <strong><em>privilege escalation</em></strong> stage. I definitely need to spend more time working on it. Still, I think I deserve to be proud of myself for tackling this machine (almost) entirely on my own.</p>
+<hr>
+<p><img src="image.png#center" alt="alt text">
+nmap scan showed that only 1 port open, which is the port 80 with the version of <strong><em>HttpFileServer httpd 2.3</em></strong></p>
+<br>
+<p><img src="image-1.png#center" alt="alt text">
+navigated to the web of target ip address <strong><em>10.10.10.8</em></strong>.</p>
+<br>
+<p><img src="image-2.png#center" alt="alt text">
+couldn&rsquo;t find anything juicy excpet when I clicked on the <strong><em>login</em></strong> button there was this pop-up asking for credentials.</p>
+<br>
+<p><img src="image-3.png#center" alt="alt text">
+I searched on <strong><em>searchsploit</em></strong> to see if there is an exploit for <strong><em>Httpfileserver 2.3</em></strong> that I found through an nmap scan and there was one exploit titled <strong><em>Rejetto HttpFileserver 2.3.x - Remote Command Execution</em></strong>. RCE attack is exactly what I was hoping for.</p>
+<br>
+<p><img src="image-4.png#center" alt="alt text">
+Since I knew there exists an exploit for the version that&rsquo;s running on the server, I moved on to <strong><em>metasploit</em></strong></p>
+<br>
+<p><img src="image-5.png#center" alt="alt text">
+on the options page of the exploit, configured every required option including <strong>RHOSTS</strong>, <strong>RPORT</strong>, <strong>SRVHOST</strong>, <strong>SRVPORT</strong>, <strong>LHOST</strong>, and <strong>LPORT</strong>.</p>
+<br>
+<p><img src="image-6.png#center" alt="alt text">
+successfully executed the exploit and gained access to the user shell.</p>
+<br>
+<p><img src="image-7.png#center" alt="alt text">
+obtained the user flag.</p>
+<br>
+<p><img src="image-8.png#center" alt="alt text">
+However with the current user privilege, I could not access the root user directory. It was time for privilege escalation to move up vertically.</p>
+<br>
+<p><img src="image-9.png#center" alt="alt text">
+As I learned from the previous machines, searched for a <code>post/multi/recon</code> module and it returned 4 modules. The second module is the one I&rsquo;ve used before on a machine which explores the current compromised local session and suggests all the potential exploits.</p>
+<p>The <strong>post/multi/recon</strong> represents a category of post-exploitation modules designed to perform reconnaissance tasks on compromised systems.</p>
+<ul>
+<li>
+<p><strong><em>post</em></strong>: short for <strong><em>post-exploitation</em></strong>. These modules are used after gaining access to a target system. They help gather additional information or achieve specific tasks once the initial compromise has been made.</p>
+</li>
+<li>
+<p><strong><em>multi</em></strong>: indicates that the module is applicable to multiple platforms or operating systems.</p>
+</li>
+<li>
+<p><strong><em>recon</em></strong>: short for <strong><em>reconnaissance</em></strong>, these modules are used to collect information about the target system or network.</p>
+</li>
+</ul>
+<br>
+<p><img src="image-10.png#center" alt="alt text">
+As you could see the module requires me to list a session I would like to use the exploit on. In my case, I listed the session that I previously obtained which had id 2.</p>
+<br>
+<p><img src="image-11.png#center" alt="alt text">
+It outputted all the possible exploits I could run on the current backgrouned session and what I decided to use was named <code>exploit/windows/local/ms16_032_secondary_logon_handle_privesc</code>. As you could notice from its name, it is used for a <strong><em>privilege escalation</em></strong> exactly what I was looking for.</p>
+<br>
+<p><img src="image-12.png#center" alt="alt text">
+successfully executed the exploit and gained the root shell! as you could see the <code>getuid</code> command returned <code>NT AUTHORITY\SYSTEM</code>, another name for root!</p>
+<br>
+<p><img src="image-13.png#center" alt="alt text">
+Got the root flag :)</p>
+<br>
+<p><img src="image-14.png#center" alt="alt text"></p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/hack-the-box/">#Hack The Box</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
