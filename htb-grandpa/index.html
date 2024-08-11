@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[HTB] Grandpa&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[HTB] Grandpa"
+/>
+<meta
+  name="description"
+  content="nmap scan result shows that there is one open port, which is the port 80 and the version it&rsquo;s running is is Microsoft IIS httpd 6.0.
+Nothing interesting on the web page of the target ip address.
+I searched for a known exploit of the Microsoft IIS 6.0 version with Searchsploit.
+CVE-2017-7269, also known as the ScStoragePathFromUrl exploit seemed like a good choice in this case. Under its description it said it allowes remote attackers to execute arbitrary code."
+/>
+<meta
+  name="keywords"
+  content="Hack The Box,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/htb-grandpa/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[HTB] Grandpa">
+  <meta property="og:description" content="nmap scan result shows that there is one open port, which is the port 80 and the version it’s running is is Microsoft IIS httpd 6.0.
+Nothing interesting on the web page of the target ip address.
+I searched for a known exploit of the Microsoft IIS 6.0 version with Searchsploit.
+CVE-2017-7269, also known as the ScStoragePathFromUrl exploit seemed like a good choice in this case. Under its description it said it allowes remote attackers to execute arbitrary code.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-08-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-10T00:00:00+00:00">
+    <meta property="article:tag" content="Hack The Box">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[HTB] Grandpa">
+  <meta name="twitter:description" content="nmap scan result shows that there is one open port, which is the port 80 and the version it’s running is is Microsoft IIS httpd 6.0.
+Nothing interesting on the web page of the target ip address.
+I searched for a known exploit of the Microsoft IIS 6.0 version with Searchsploit.
+CVE-2017-7269, also known as the ScStoragePathFromUrl exploit seemed like a good choice in this case. Under its description it said it allowes remote attackers to execute arbitrary code.">
+
+
+
+
+
+  <meta itemprop="name" content="[HTB] Grandpa">
+  <meta itemprop="description" content="nmap scan result shows that there is one open port, which is the port 80 and the version it’s running is is Microsoft IIS httpd 6.0.
+Nothing interesting on the web page of the target ip address.
+I searched for a known exploit of the Microsoft IIS 6.0 version with Searchsploit.
+CVE-2017-7269, also known as the ScStoragePathFromUrl exploit seemed like a good choice in this case. Under its description it said it allowes remote attackers to execute arbitrary code.">
+  <meta itemprop="datePublished" content="2024-08-10T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-08-10T00:00:00+00:00">
+  <meta itemprop="wordCount" content="343">
+  <meta itemprop="keywords" content="Hack The Box">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[HTB] Grandpa</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-08-10" pubdate>
+            2024-08-10
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <p><img src="image-1.png#center" alt="alt text">
+<strong><em>nmap</em></strong> scan result shows that there is one open port, which is the port <strong>80</strong> and the version it&rsquo;s running is is <strong><em>Microsoft IIS httpd 6.0</em></strong>.</p>
+<br>
+<p><img src="image.png#center" alt="alt text">
+Nothing interesting on the web page of the target ip address.</p>
+<br>
+<p><img src="image-2.png#center" alt="alt text">
+I searched for a known exploit of the <strong><em>Microsoft IIS 6.0</em></strong> version with <strong><em>Searchsploit</em></strong>.</p>
+<br>
+<p><img src="image-3.png#center" alt="alt text">
+<strong><em>CVE-2017-7269</em></strong>, also known as the <strong><em>ScStoragePathFromUrl</em></strong> exploit seemed like a good choice in this case. Under its description it said it <strong><em>allowes remote attackers to execute arbitrary code</em></strong>. That&rsquo;s exactly what I was interested in.</p>
+<br>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-5.png#center" alt="alt text">
+looking up the CVE on the msfconsole.</p>
+<br>
+<p><img src="image-6.png#center" alt="alt text">
+configuring the options of the exploit.</p>
+<br>
+<p><img src="image-7.png#center" alt="alt text">
+The exploit successfully ran and I got the meterpreter shell.</p>
+<br>
+<p><img src="image-8.png#center" alt="alt text">
+However, the current user&rsquo;s capability was very limited that I was not able to enumerate any information. Definitely in need for a <strong><em>privilege escalation</em></strong>.</p>
+<br>
+<p><img src="image-9.png#center" alt="alt text">
+In previous machines, I remember using the <strong><em>local_exploit_suggester</em></strong> module located under <strong><em>post/multi/recon</em></strong> for post-exploitation.</p>
+<br>
+<p><img src="image-10.png#center" alt="alt text">
+Out of the many exploits it returned, there were six <strong>potentially vulnerable</strong> exploits I could use. I decided to use the <strong><em>ms10_015_kitrap0d</em></strong> exploit because I had used it before.</p>
+<br>
+<p><img src="image-11.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-12.png#center" alt="alt text">
+Contrary to my expectations, the exploit did not work. The error kept returning <strong><em>&ldquo;Access is denied&rdquo;</em></strong>.</p>
+<br>
+<p><img src="image-13.png#center" alt="alt text">
+Tried another exploit and the result was the same.</p>
+<br>
+<p><img src="image-14.png#center" alt="alt text">
+Back to the meterpreter shell, I ran the <strong>ps</strong> command to see what processes are running on the target system. The current process that our <strong>meterpreter payload</strong> is running on is the <strong><em>rundll32.exe</em></strong> and its <strong>PID</strong> is 3724. As you could see from the screenshot above, the <strong><em>User</em></strong> column of the process is empty, meaning the payload has no idea who the user is.</p>
+<p>In order to stabilize and properly run the post-exploit, I decided to migrate from the current process to another process which has the <strong><em>admin user</em></strong>.</p>
+<br>
+<p><img src="image-15.png#center" alt="alt text">
+Migrated from the pid 3724 to 1880.</p>
+<br>
+<p><img src="image-16.png#center" alt="alt text">
+After migrating to another process, I backgrounded the session again to carry out another attempt at privilege escalation. This time I used another exploit named <strong><em>ms14_070_tcpip_ioctl</em></strong>.</p>
+<br>
+<p><img src="image-17.png#center" alt="alt text">
+Finally the exploitation was successful and all commands worked properly without error.</p>
+<br>
+<p><img src="image-18.png#center" alt="alt text">
+got the user flag.</p>
+<br>
+<p><img src="image-19.png#center" alt="alt text">
+got the root flag.</p>
+<br>
+<p><img src="image-20.png#center" alt="alt text"></p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/hack-the-box/">#Hack The Box</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
