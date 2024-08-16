@@ -8,8 +8,218 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Mon, 12 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[OverTheWire] Bandit 0-17</title>
+      <link>http://localhost:1313/overthewire-bandit-0-17/</link>
+      <pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/overthewire-bandit-0-17/</guid>
+      <description>Level 0 The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+Level 0 -&amp;gt; 1 The password for the next level is stored in a file called readme located in the home directory.</description>
+      <content:encoded><![CDATA[<h4 id="level-0">Level 0</h4>
+<p>The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.</p>
+<p><code>ssh bandit0@bandit.labs.overthewire.org -p 2220</code></p>
+<hr>
+<h4 id="level-0---1">Level 0 -&gt; 1</h4>
+<p>The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.</p>
+<p><code>ssh bandit1@bandit.labs.overthewire.org -p 2220</code></p>
+<p><img src="image.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If</code></p>
+<hr>
+<h4 id="level-1---2">Level 1 -&gt; 2</h4>
+<p>The password for the next level is stored in a file called &ldquo;-&rdquo; located in the home directory</p>
+<p><img src="image-1.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>263JGJPfgU6LtdEvgfWU1XP5yac29mFx</code></p>
+<hr>
+<h4 id="level-2---3">Level 2 -&gt; 3</h4>
+<p>The password for the next level is stored in a file called spaces in this filename located in the home directory</p>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx</code></p>
+<hr>
+<h4 id="level-3---4">Level 3 -&gt; 4</h4>
+<p>The password for the next level is stored in a hidden file in the inhere directory.</p>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ</code></p>
+<hr>
+<h4 id="level-4---5">Level 4 -&gt; 5</h4>
+<p>The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.</p>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<p>The <code>file ./*</code> command returned that the <strong>file#7</strong> has a different file format from the rest of the files. The <strong><em>ASCII text</em></strong> is also a human-readable file format.</p>
+<p><strong><em>password</em></strong>: <code>4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw</code></p>
+<hr>
+<h4 id="level-5---6">Level 5 -&gt; 6</h4>
+<p>The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:</p>
+<ul>
+<li>human-readable</li>
+<li>1033 bytes in size</li>
+<li>not executable</li>
+</ul>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-7.png#center" alt="alt text">
+The reason I appended <strong>&lsquo;c&rsquo;</strong> after 1033 could be found under the <strong>find</strong>&rsquo;s <strong>man</strong> page.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>HWasnPhtq9AVKe0dmk45nxy20cvUa6EG</code></p>
+<hr>
+<h4 id="level-6---7">Level 6 -&gt; 7</h4>
+<p>The password for the next level is stored somewhere on the server and has all of the following properties:</p>
+<ul>
+<li>owned by user bandit7</li>
+<li>owned by group bandit6</li>
+<li>33 bytes in size</li>
+</ul>
+<p><img src="image-8.png#center" alt="alt text">
+There wasn&rsquo;t any directory or file inside the <strong>bandit6</strong> directory.</p>
+<br>
+<p><img src="image-9.png#center" alt="alt text">
+So I moved up a directory and run the following command: <code>find /home/ -user bandit7 -group bandit6 -size 33c</code>. The command returned some outputs but I did not have a permission to access any of them. So I decided to navigate to the parent directory of the current working directory once again.</p>
+<br>
+<p><img src="image-10.png#center" alt="alt text">
+The code returned too many outputs that I did not want to waste my time reading one by one to find the answer so I appended the following code to only return ones without errors. <code>2&gt;/dev/null</code>.</p>
+<br>
+<p><img src="image-11.png#center" alt="alt text">
+Got the password!</p>
+<br>
+<p><strong><em>password</em></strong>: <code>morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj</code></p>
+<hr>
+<h4 id="level-7---8">Level 7 -&gt; 8</h4>
+<p>The password for the next level is stored in the file data.txt next to the word millionth</p>
+<p><img src="image-12.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc</code></p>
+<hr>
+<h4 id="level-8---9">Level 8 -&gt; 9</h4>
+<p>The password for the next level is stored in the file data.txt and is the only line of text that occurs only once</p>
+<p><img src="image-13.png#center" alt="alt text"></p>
+<p><img src="image-14.png#center" alt="alt text"></p>
+<p><img src="image-15.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>4CKMh1JI91bUIZZPXDqGanal4xvAg0JM</code></p>
+<hr>
+<h4 id="level-9---10">Level 9 -&gt; 10</h4>
+<p>The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.</p>
+<p><img src="image-16.png#center" alt="alt text"></p>
+<p><img src="image-17.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey</code></p>
+<hr>
+<h4 id="level-10---11">Level 10 -&gt; 11</h4>
+<p>The password for the next level is stored in the file data.txt, which contains base64 encoded data</p>
+<p><img src="image-18.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr</code></p>
+<hr>
+<h4 id="level-11---12">Level 11 -&gt; 12</h4>
+<p>The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions.</p>
+<p><img src="image-19.png#center" alt="alt text">
+We have to first understand what <strong>ROT13</strong> is before we solve this question. According to the <strong><em>Wikipedia</em></strong>, <strong>ROT13</strong> is a simple letter subsitution cipher that replaces a letter with the 13th letter after it in the Latin alphabet.</p>
+<br>
+<p><img src="image-20.png#center" alt="alt text">
+<code>tr 'A-Za-z' 'N-ZA-Mn-za-m'</code>: This command tells <strong>tr</strong> to replace each letter in the first set (<code>A-Za-z</code>) with the corresponding letter in the second set (<code>N-ZA-Mn-za-m</code>), effectively rotating the alphabet by 13 positions.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4</code></p>
+<hr>
+<h4 id="level-12---13">Level 12 -&gt; 13</h4>
+<p>The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)</p>
+<p><img src="image-21.png#center" alt="alt text">
+While researching about this question, I kept encountering the command <code>xxd</code> and I learned the following:
+The <code>xxd</code> command in linux is a powerful utility for creating a hexadecimal (<strong>hex</strong>) dump of a given file. <strong><em>It also allows you to reverse the operation, converting a hex dump back into the original binary form</em></strong>.</p>
+<br>
+<p><code>-r</code> is the Reverse operation.</p>
+<p><img src="image-22.png#center" alt="alt text">
+<strong><em>Permission denied</em></strong> because the guest user <strong>bandit12</strong> does not have the permission to <strong>write</strong> in the current directory.</p>
+<br>
+<p><img src="image-23.png#center" alt="alt text">
+as suggested in the question, I will create the original file inside the <strong>tmp</strong> file since anyone can write inside the file.</p>
+<br>
+<p><img src="image-24.png#center" alt="alt text"></p>
+<p><img src="image-25.png#center" alt="alt text">
+Decompressed the hexdump file and it&rsquo;s now <strong>gzip</strong> compressed data. I renamed the file as <code>convert_back.gz</code> and decompressed it with the following command: <code>gunzip convert_back.gz</code>.</p>
+<p>It now became a <code>bzip2</code> compressed data.</p>
+<br>
+<p><img src="image-26.png#center" alt="alt text">
+decompressed back the file using <code>bunzip2</code> command and once again it&rsquo;s a <strong>gzip</strong> file.</p>
+<br>
+<p><img src="image-27.png#center" alt="alt text">
+To decompress and extract the contents of a <strong>POSIX tar archive file</strong>, you can use the <code>tar</code> command.</p>
+<br>
+<p><img src="image-28.png#center" alt="alt text">
+From there the process of decompressing files continued until the file format turned out to be <strong>ASCII text</strong>.</p>
+<br>
+<p><strong><em>Password</em></strong>: <code>FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn</code></p>
+<hr>
+<h4 id="level-13---14">Level 13 -&gt; 14</h4>
+<p>The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Note: localhost is a hostname that refers to the machine you are working on</p>
+<p><img src="image-29.png#center" alt="alt text">
+Inside the <strong>bandit13</strong> directory, there was this <strong><em>ssh private key</em></strong>. As stated in the question, there is no password inside this directory but this private file. We have to figure a way to login as <strong>bandit14</strong> using the private key.</p>
+<br>
+<p><img src="image-30.png#center" alt="alt text">
+I logged out of the ssh server and downloaded the private key from the ssh server to the localhost using the <code>scp</code> command.</p>
+<p><code>scp -P 2220 bandit13@bandit.labs.overthewire.org:/home/bandit13/sshkey.private ~/Desktop</code></p>
+<br>
+<p><img src="image-31.png#center" alt="alt text">
+<code>man ssh</code> shows that we can utilize the <code>-i</code> option when logging into the ssh server using a private key without password.</p>
+<br>
+<p><img src="image-32.png#center" alt="alt text">
+Logging into the SSH server failed because the file permissions were too open. <strong><em>It is required that your private key files are NOT accessible by others.</em></strong></p>
+<br>
+<p><img src="image-33.png#center" alt="alt text">
+<code>chmod 700 sshkey.private</code></p>
+<p>I made the file only accessible by the user using the <code>chmod 700</code> command above and succeeded in logging into the server.</p>
+<br>
+<p><img src="image-34.png#center" alt="alt text">
+As written in the question, the password was located in the following path, <strong>/etc/bandit_pass/bandit14</strong> and it was only accessible by user <strong>bandit14</strong>. Since I logged in as bandit14, I could obtain the password.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS</code></p>
+<hr>
+<h4 id="level-14---15">Level 14 -&gt; 15</h4>
+<p>The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.</p>
+<p><img src="image-35.png#center" alt="alt text"></p>
+<br>
+<p><strong><em>password</em></strong>: <code>8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo</code></p>
+<hr>
+<h4 id="level-15---16">Level 15 -&gt; 16</h4>
+<p>The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL/TLS encryption.</p>
+<p>Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.</p>
+<p><code>openssl s_client -connect localhost:30001</code></p>
+<ul>
+<li><code>openssl</code>: OpenSSL is widely used for implementing SSL/TLS protocols and managing certificates, keys, and other cryptographic operations.</li>
+<li><code>s_client</code>: This a subcommand within <strong><em>opnessl</em></strong> that allows you to connect to a remote server over <strong>SSL/TLS</strong>.</li>
+</ul>
+<p>When you run the full command, it initiates an SSL/TLS handshake with the server at <strong>localhost</strong> on port <strong>30001</strong>. Once the connection is established, <strong>openssl s_client</strong> will display various details about the connection, including the server&rsquo;s certificate, the cipher being used, and other SSL/TLS parameters.</p>
+<p><img src="image-36.png#center" alt="alt text"></p>
+<p><strong><em>password</em></strong>: <code>kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx</code></p>
+<hr>
+<h4 id="level-16---17">Level 16 -&gt; 17</h4>
+<p>The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.</p>
+<p><img src="image-37.png#center" alt="alt text">
+I used <strong><em>nmap</em></strong> to scan open ports in the range 31000 to 32000 on localhost and found 5 open ports. However, if you look closely under the port <strong>31790</strong>, it writes <strong>Wrong! Please enter the correct current password.</strong> implying a high possibility that it is the port that we are looking for.</p>
+<br>
+<p><img src="image-38.png#center" alt="alt text">
+<code>openssl s_client -connect localhost:31790</code></p>
+<p>I typed the correct password but it kept returning <strong>KEYUPDATE</strong>.</p>
+<br>
+<p><img src="image-43.png#center" alt="alt text">
+<code>openssl s_client -connect localhost:31790 -ign_eof</code></p>
+<p>The <code>KEYUPDATE</code> output was returned before because the <strong><em>KeyUpdate</em></strong> operation is traggered via <code>K</code>/<code>k</code> and the password included a <code>K</code>. You can switch off the interactive commands using the <code>-ign_eof</code> option. After correcting the command, I was able to obtain the RSA Private Key.</p>
+<br>
+<p><img src="image-44.png#center" alt="alt text">
+navigated to the <strong>/tmp</strong> directory because I don&rsquo;t have the permission to create a file in the current working directory. Created a new file called <strong><em>ssh.private</em></strong> using <code>vim</code>.</p>
+<br>
+<p><img src="image-45.png#center" alt="alt text">
+Transferred the file from the SSH server to my local machine using the <code>scp</code> command.</p>
+<br>
+<p><img src="image-46.png#center" alt="alt text">
+change the file permissions so the user can only have access to the file.</p>
+<br>
+<p><img src="image-47.png#center" alt="alt text">
+logged into the SSH server using the private key file instead of password.</p>
+<br>
+<p><img src="image-48.png#center" alt="alt text">
+I know I could use the private key to log in but I grabbed the password to bandit17 that&rsquo;s located in the following path just in case: <code>/etc/bandit_pass/bandit17</code></p>
+<br>
+<p><strong><em>password</em></strong>: <code>EReVavePLFHtFlFsjn3hyzMlvSuSAcRD</code></p>
+<hr>
+]]></content:encoded>
+    </item>
     <item>
       <title>[HTB] Netmon</title>
       <link>http://localhost:1313/htb-netmon/</link>
@@ -8012,159 +8222,6 @@ What is the user/hash combination string?</p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>MySQL.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>carl@polomysql:~$ cat MySQL.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>congratulations_you_got_the_mySQL_flag<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>[TIL] Subnetting 2</title>
-      <link>http://localhost:1313/til-subnetting-2/</link>
-      <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/til-subnetting-2/</guid>
-      <description>Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts.</description>
-      <content:encoded><![CDATA[<div style="text-align: center"><img src="./image-30.png"></div>
-<p>Divide the <code>192.168.1.0/24</code> network into 4 subnets that can accommodate 45 number of hosts.</p>
-<p>First, we determined that the prefix length needs to be <code>/26</code> because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.</p>
-<p>The network address of <code>subnet 1</code> is 192.168.1.0/26. To find the broadcast address of subnet 1, we first convert the subnet 1 address to binary:
-<code>11000000.10101000.00000001.00000000</code></p>
-<p>Then, we change all the Host ID bits to 1, leaving the Network ID bits unchanged:
-<code>11000000.10101000.00000001.00111111</code></p>
-<p>Converting these binary bits back to dotted decimal format gives us the broadcast address (the highest address in this subnet) of subnet 1.
-<code>192.168.1.63/26</code>.</p>
-<p>So, the address range of subnet1 is 192.168.1.0 - 192.168.1.63.</p>
-<p>The network address of <code>subnet 2</code> will be 1 higher than the broadcast address of <code>subnet 1</code>. So, 192.168.1.64/26.</p>
-<p>192.168.1.64 in binary is <code>11000000.10101000.00000001.01000000</code>.
-Covert all the host bits to 1s. <code>11000000.10101000.00000001.01111111</code></p>
-<p>Convert the binary bits back to dotted decimal and it becomes <code>192.168.1.127</code>.</p>
-<p>The address range of subnet 2 is 192.168.1.64 to 192.168.1.127.</p>
-<p>You might have noticed that each subnet is 64 bits apart. To find next subnet&rsquo;s network address, simply add this value to the current subnet.</p>
-<p>Take the image below as an example.</p>
-<div style="text-align: center"><img src="./image-31.png"></div>
-<p>Let&rsquo;s just focus on the last octet here. The last octet in binary is <code>00000000</code>. The first 2 bits is the network ID, which we borrowed to expand the network ID and the last 6 bits is the host ID. The trick to find each subnet&rsquo;s network address is to remember the value of last bit of the network portion, which is 64, in this case.</p>
-<br>
-<br>
-<br>
-<div style="text-align: center"><img src="./image-32.png"></div>
-For the number of subnets, each additional bit that you borrow doubles the number of subnets.
-<h3 id="subnetting-class-b-networks">Subnetting Class B Networks</h3>
-<ol>
-<li>
-<p>You have been given the 172.16.0.0/16 network. You are asked to create 80 subnets for your company&rsquo;s various LANs. What prefix length should you use?</p>
-<p>2^x = number of subnets, where x is the number of &lsquo;borrowed&rsquo; bits.</p>
-</li>
-</ol>
-<div style="text-align: center"><img src="./image-33.png"></div>
-we have to borrow 7 bits. 16 + 7 = /23.
-<ol start="2">
-<li>You have been given the <code>172.22.0.0/16</code> network. You are required to divide the network into 500 separate subnets. What prefix should you use?</li>
-</ol>
-<p>First of all, looking at the /16 prefix length, it seems like subnetting needs to be done in a Class B network. To create 500 subnets, we need to determine how many bits to borrow.</p>
-<p>2^8 is 256, and 2^9 is 512. Therefore, we need to borrow 9 bits. Starting from a Class B network, which has a /16 prefix length, we add 9 bits to get a /25 prefix length. This means we should use a /25 prefix length.</p>
-<ol start="3">
-<li>You have been given the <code>172.18.0.0/16</code> network. Your company requires 250 subnets with the same number of hosts per subnet. What prefix length should you use?</li>
-</ol>
-<p><code>/24</code> . 2^8 = 256 subnets could be made. Also /24 prefix length will leave 8, the number of host bits which could lead to 2^8 - 2, 254.</p>
-<ol start="4">
-<li>
-<p>What subnet does host 172.25.217.192/21 belong to?</p>
-<p>Let&rsquo;s convert <code>172.25.217.192</code> to binary bits.
-10101100.00011001.11011001.11000000</p>
-<p>change all of the host bits to 0.
-10101100.00011001.11011000.00000000</p>
-<p>change it back to dotted decimal.
-172.25.216.0/21</p>
-</li>
-</ol>
-<h3 id="quiz">Quiz</h3>
-<hr>
-<p>Q1. You have been given the <code>172.30.0.0/16</code> network. Your company requires 100 subnets with at least 500 hosts per subnet. What prefix length should you use?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>/23</code></pre>
-<br>
-<p>Q2. What subnet does host <code>172.21.111.201/20</code> belong to?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>172.21.96.0/20</code></pre>
-<ul>
-<li>Convert the address to binary: <code>10101100.00010101.01101111.11001001</code></li>
-<li>Change the host bits to 0s. Since the prefix length is <code>/20</code> , we can set the last 12 bits to 0s: <code>10101100.00010101.01100000.00000000</code></li>
-<li>Convert the binary bits back to dotted decimal: <code>172.21.96.0/20</code></li>
-</ul>
-<br>
-<p>Q3. What is the broadcast address of the network 192.168.91.78/26 belongs to?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>192.168.91.127/26</code></pre>
-<ul>
-<li>Convert the address to binary bits:
-<ul>
-<li><code>11000000.10101000.01011011.01001110</code>.</li>
-</ul>
-</li>
-<li>Change all of the host bits to 0s to find the network address of the subnet:
-<ul>
-<li><code>11000000.10101000.01011011.01000000</code>.</li>
-</ul>
-</li>
-<li>Change all of the host bits to 1s to find the broadcast address of the subnet:
-<ul>
-<li><code>11000000.10101000.01011011.01111111</code>.</li>
-</ul>
-</li>
-<li>Change the binary bits back to dotted decimal
-<ul>
-<li>network address: 192.168.91.64/26</li>
-<li>broadcast address: 192.168.91.127/26</li>
-</ul>
-</li>
-</ul>
-<br>
-<p>Q4. You divide the <code>172.16.0.0/16</code> network into 4 subnets of equal size. Identify the network and broadcast addresses of the second subnet.</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>network address: 172.16.64.0/18
-broadcast address: 172.16.127.255/18</code></pre>
-<ul>
-<li>The original subnet mask for a /16 network is 255.255.0.0.</li>
-<li>Dividing into 4 subnets require 2 additional bits for subnetting (2^2 = 4).</li>
-<li>This changes the subnet mask to 255.255.192.0 /18.</li>
-<li>The original network 172.16.0.0/16 is divided as follows with a /18 mask:
-<ul>
-<li>subnet1: 172.16.0.0/18</li>
-<li>subnet2: 172.16.64.0/18</li>
-<li>subnet3: 172.16.128.0/18</li>
-<li>subnet4: 172.16.192.0/18</li>
-</ul>
-</li>
-<li>We know that subnet 2&rsquo;s broadcast address is just 1 below subnet 3&rsquo;s network address: 172.16.127.255/18</li>
-</ul>
-<br>
-<p>Q5. You divide the 172.30.0.0/16 network into subnets of 1000 hosts each. How many subnets are you able to make?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>64</code></pre>
-<p>To divide the network into subnets that each accommodate 1,000 hosts, we first need to determine how many bits are required for the hosts. The formula for calculating the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If we use 10 bits for the hosts, we get 2^10 - 2 = 1,022 hosts, which is more than enough.</p>
-<p>The maximum prefix length is /32. Subtracting the 10 host bits from 32 gives us a prefix length of /22. Therefore, the subnet mask of the subnets will be /22. The original subnet mask was /16, so we&rsquo;ve borrowed 6 bits from the original network for subnetting. With these 6 additional bits, we can create 64 (2^6) subnets.</p>
 ]]></content:encoded>
     </item>
   </channel>
