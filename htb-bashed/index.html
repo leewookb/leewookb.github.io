@@ -13,11 +13,18 @@
 />
 <meta
   name="description"
-  content="nmap scan found that there is one open port, which is the port 80
+  content="
+nmap scan found that there is one open port, which is the port 80
+
+
 Since it was a http server, I navigated to the web page of target ip address.
+
+
 I didn&rsquo;t find much interesting information on the web page, so I decided to gather more by using gobuster with the following command:
 gobuster dir -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,js,py,html,db,xml,sh,txt
-gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash."
+
+
+gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.php where I could run some bash commands."
 />
 <meta
   name="keywords"
@@ -36,7 +43,7 @@ gobuster found many interesting directories, but the directory, /dev caught my e
 Since it was a http server, I navigated to the web page of target ip address.
 I didn’t find much interesting information on the web page, so I decided to gather more by using gobuster with the following command:
 gobuster dir -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,js,py,html,db,xml,sh,txt
-gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.">
+gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.php where I could run some bash commands.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -54,7 +61,7 @@ gobuster found many interesting directories, but the directory, /dev caught my e
 Since it was a http server, I navigated to the web page of target ip address.
 I didn’t find much interesting information on the web page, so I decided to gather more by using gobuster with the following command:
 gobuster dir -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,js,py,html,db,xml,sh,txt
-gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.">
+gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.php where I could run some bash commands.">
 
 
 
@@ -65,7 +72,7 @@ gobuster found many interesting directories, but the directory, /dev caught my e
 Since it was a http server, I navigated to the web page of target ip address.
 I didn’t find much interesting information on the web page, so I decided to gather more by using gobuster with the following command:
 gobuster dir -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,js,py,html,db,xml,sh,txt
-gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.">
+gobuster found many interesting directories, but the directory, /dev caught my eye because it included this file phpbash.php where I could run some bash commands.">
   <meta itemprop="datePublished" content="2024-08-09T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-08-09T00:00:00+00:00">
   <meta itemprop="wordCount" content="502">

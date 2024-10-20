@@ -13,8 +13,147 @@
 />
 <meta
   name="description"
-  content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here&rsquo;s the source code provided
-1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag."
+  content="heap 0
+Description
+Are overflows just a stack concern? 
+Download the binary 
+Download the source 
+
+Here&rsquo;s the source code provided
+
+
+
+
+
+
+  1#include &lt;stdio.h&gt;
+  2#include &lt;stdlib.h&gt;
+  3#include &lt;string.h&gt;
+  4
+  5#define FLAGSIZE_MAX 64
+  6// amount of memory allocated for input_data
+  7#define INPUT_DATA_SIZE 5
+  8// amount of memory allocated for safe_var
+  9#define SAFE_VAR_SIZE 5
+ 10
+ 11int num_allocs;
+ 12char *safe_var;
+ 13char *input_data;
+ 14
+ 15void check_win() {
+ 16    if (strcmp(safe_var, &#34;bico&#34;) != 0) {
+ 17        printf(&#34;\nYOU WIN\n&#34;);
+ 18
+ 19        // Print flag
+ 20        char buf[FLAGSIZE_MAX];
+ 21        FILE *fd = fopen(&#34;flag.txt&#34;, &#34;r&#34;);
+ 22        fgets(buf, FLAGSIZE_MAX, fd);
+ 23        printf(&#34;%s\n&#34;, buf);
+ 24        fflush(stdout);
+ 25
+ 26        exit(0);
+ 27    } else {
+ 28        printf(&#34;Looks like everything is still secure!\n&#34;);
+ 29        printf(&#34;\nNo flage for you :(\n&#34;);
+ 30        fflush(stdout);
+ 31    }
+ 32}
+ 33
+ 34void print_menu() {
+ 35    printf(&#34;\n1. Print Heap:\t\t(print the current state of the heap)&#34;
+ 36           &#34;\n2. Write to buffer:\t(write to your own personal block of data &#34;
+ 37           &#34;on the heap)&#34;
+ 38           &#34;\n3. Print safe_var:\t(I&#39;ll even let you look at my variable on &#34;
+ 39           &#34;the heap, &#34;
+ 40           &#34;I&#39;m confident it can&#39;t be modified)&#34;
+ 41           &#34;\n4. Print Flag:\t\t(Try to print the flag, good luck)&#34;
+ 42           &#34;\n5. Exit\n\nEnter your choice: &#34;);
+ 43    fflush(stdout);
+ 44}
+ 45
+ 46void init() {
+ 47    printf(&#34;\nWelcome to heap0!\n&#34;);
+ 48    printf(
+ 49        &#34;I put my data on the heap so it should be safe from any tampering.\n&#34;);
+ 50    printf(&#34;Since my data isn&#39;t on the stack I&#39;ll even let you write whatever &#34;
+ 51           &#34;info you want to the heap, I already took care of using malloc for &#34;
+ 52           &#34;you.\n\n&#34;);
+ 53    fflush(stdout);
+ 54    input_data = malloc(INPUT_DATA_SIZE);
+ 55    strncpy(input_data, &#34;pico&#34;, INPUT_DATA_SIZE);
+ 56    safe_var = malloc(SAFE_VAR_SIZE);
+ 57    strncpy(safe_var, &#34;bico&#34;, SAFE_VAR_SIZE);
+ 58}
+ 59
+ 60void write_buffer() {
+ 61    printf(&#34;Data for buffer: &#34;);
+ 62    fflush(stdout);
+ 63    scanf(&#34;%s&#34;, input_data);
+ 64}
+ 65
+ 66void print_heap() {
+ 67    printf(&#34;Heap State:\n&#34;);
+ 68    printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;);
+ 69    printf(&#34;[*] Address   -&gt;   Heap Data   \n&#34;);
+ 70    printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;);
+ 71    printf(&#34;[*]   %p  -&gt;   %s\n&#34;, input_data, input_data);
+ 72    printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;);
+ 73    printf(&#34;[*]   %p  -&gt;   %s\n&#34;, safe_var, safe_var);
+ 74    printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;);
+ 75    fflush(stdout);
+ 76}
+ 77
+ 78int main(void) {
+ 79
+ 80    // Setup
+ 81    init();
+ 82    print_heap();
+ 83
+ 84    int choice;
+ 85
+ 86    while (1) {
+ 87        print_menu();
+ 88	int rval = scanf(&#34;%d&#34;, &amp;choice);
+ 89	if (rval == EOF){
+ 90	    exit(0);
+ 91	}
+ 92        if (rval != 1) {
+ 93            //printf(&#34;Invalid input. Please enter a valid choice.\n&#34;);
+ 94            //fflush(stdout);
+ 95            // Clear input buffer
+ 96            //while (getchar() != &#39;\n&#39;);
+ 97            //continue;
+ 98	    exit(0);
+ 99        }
+100
+101        switch (choice) {
+102        case 1:
+103            // print heap
+104            print_heap();
+105            break;
+106        case 2:
+107            write_buffer();
+108            break;
+109        case 3:
+110            // print safe_var
+111            printf(&#34;\n\nTake a look at my variable: safe_var = %s\n\n&#34;,
+112                   safe_var);
+113            fflush(stdout);
+114            break;
+115        case 4:
+116            // Check for win condition
+117            check_win();
+118            break;
+119        case 5:
+120            // exit
+121            return 0;
+122        default:
+123            printf(&#34;Invalid choice\n&#34;);
+124            fflush(stdout);
+125        }
+126    }
+127}
+If you look closely at the check_win function, our job is to make safe_var variable and the string bico not equal to each other. We can see that the variables input_data and safe_var are allocated 5 bytes of memory. The allocations are likely to be sequential, meaning input_data and safe_var are placed next to each other in memory."
 />
 <meta
   name="keywords"
@@ -28,9 +167,9 @@
 
 <meta property="og:url" content="http://localhost:1313/picoctf-heap-0-1/">
   <meta property="og:site_name" content="Wook&#39;s blog">
-  <meta property="og:title" content="[picoCTF] heap 1 &amp; heap 0">
+  <meta property="og:title" content="[picoCTF] heap 1 & heap 0">
   <meta property="og:description" content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
-1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.">
+1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.txt&#34;, &#34;r&#34;); 22 fgets(buf, FLAGSIZE_MAX, fd); 23 printf(&#34;%s\n&#34;, buf); 24 fflush(stdout); 25 26 exit(0); 27 } else { 28 printf(&#34;Looks like everything is still secure!\n&#34;); 29 printf(&#34;\nNo flage for you :(\n&#34;); 30 fflush(stdout); 31 } 32} 33 34void print_menu() { 35 printf(&#34;\n1. Print Heap:\t\t(print the current state of the heap)&#34; 36 &#34;\n2. Write to buffer:\t(write to your own personal block of data &#34; 37 &#34;on the heap)&#34; 38 &#34;\n3. Print safe_var:\t(I&#39;ll even let you look at my variable on &#34; 39 &#34;the heap, &#34; 40 &#34;I&#39;m confident it can&#39;t be modified)&#34; 41 &#34;\n4. Print Flag:\t\t(Try to print the flag, good luck)&#34; 42 &#34;\n5. Exit\n\nEnter your choice: &#34;); 43 fflush(stdout); 44} 45 46void init() { 47 printf(&#34;\nWelcome to heap0!\n&#34;); 48 printf( 49 &#34;I put my data on the heap so it should be safe from any tampering.\n&#34;); 50 printf(&#34;Since my data isn&#39;t on the stack I&#39;ll even let you write whatever &#34; 51 &#34;info you want to the heap, I already took care of using malloc for &#34; 52 &#34;you.\n\n&#34;); 53 fflush(stdout); 54 input_data = malloc(INPUT_DATA_SIZE); 55 strncpy(input_data, &#34;pico&#34;, INPUT_DATA_SIZE); 56 safe_var = malloc(SAFE_VAR_SIZE); 57 strncpy(safe_var, &#34;bico&#34;, SAFE_VAR_SIZE); 58} 59 60void write_buffer() { 61 printf(&#34;Data for buffer: &#34;); 62 fflush(stdout); 63 scanf(&#34;%s&#34;, input_data); 64} 65 66void print_heap() { 67 printf(&#34;Heap State:\n&#34;); 68 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 69 printf(&#34;[*] Address -&gt; Heap Data \n&#34;); 70 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 71 printf(&#34;[*] %p -&gt; %s\n&#34;, input_data, input_data); 72 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 73 printf(&#34;[*] %p -&gt; %s\n&#34;, safe_var, safe_var); 74 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 75 fflush(stdout); 76} 77 78int main(void) { 79 80 // Setup 81 init(); 82 print_heap(); 83 84 int choice; 85 86 while (1) { 87 print_menu(); 88	int rval = scanf(&#34;%d&#34;, &amp;choice); 89	if (rval == EOF){ 90	exit(0); 91	} 92 if (rval != 1) { 93 //printf(&#34;Invalid input. Please enter a valid choice.\n&#34;); 94 //fflush(stdout); 95 // Clear input buffer 96 //while (getchar() != &#39;\n&#39;); 97 //continue; 98	exit(0); 99 } 100 101 switch (choice) { 102 case 1: 103 // print heap 104 print_heap(); 105 break; 106 case 2: 107 write_buffer(); 108 break; 109 case 3: 110 // print safe_var 111 printf(&#34;\n\nTake a look at my variable: safe_var = %s\n\n&#34;, 112 safe_var); 113 fflush(stdout); 114 break; 115 case 4: 116 // Check for win condition 117 check_win(); 118 break; 119 case 5: 120 // exit 121 return 0; 122 default: 123 printf(&#34;Invalid choice\n&#34;); 124 fflush(stdout); 125 } 126 } 127} If you look closely at the check_win function, our job is to make safe_var variable and the string bico not equal to each other. We can see that the variables input_data and safe_var are allocated 5 bytes of memory. The allocations are likely to be sequential, meaning input_data and safe_var are placed next to each other in memory.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -43,17 +182,17 @@
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[picoCTF] heap 1 &amp; heap 0">
+  <meta name="twitter:title" content="[picoCTF] heap 1 & heap 0">
   <meta name="twitter:description" content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
-1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.">
+1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.txt&#34;, &#34;r&#34;); 22 fgets(buf, FLAGSIZE_MAX, fd); 23 printf(&#34;%s\n&#34;, buf); 24 fflush(stdout); 25 26 exit(0); 27 } else { 28 printf(&#34;Looks like everything is still secure!\n&#34;); 29 printf(&#34;\nNo flage for you :(\n&#34;); 30 fflush(stdout); 31 } 32} 33 34void print_menu() { 35 printf(&#34;\n1. Print Heap:\t\t(print the current state of the heap)&#34; 36 &#34;\n2. Write to buffer:\t(write to your own personal block of data &#34; 37 &#34;on the heap)&#34; 38 &#34;\n3. Print safe_var:\t(I&#39;ll even let you look at my variable on &#34; 39 &#34;the heap, &#34; 40 &#34;I&#39;m confident it can&#39;t be modified)&#34; 41 &#34;\n4. Print Flag:\t\t(Try to print the flag, good luck)&#34; 42 &#34;\n5. Exit\n\nEnter your choice: &#34;); 43 fflush(stdout); 44} 45 46void init() { 47 printf(&#34;\nWelcome to heap0!\n&#34;); 48 printf( 49 &#34;I put my data on the heap so it should be safe from any tampering.\n&#34;); 50 printf(&#34;Since my data isn&#39;t on the stack I&#39;ll even let you write whatever &#34; 51 &#34;info you want to the heap, I already took care of using malloc for &#34; 52 &#34;you.\n\n&#34;); 53 fflush(stdout); 54 input_data = malloc(INPUT_DATA_SIZE); 55 strncpy(input_data, &#34;pico&#34;, INPUT_DATA_SIZE); 56 safe_var = malloc(SAFE_VAR_SIZE); 57 strncpy(safe_var, &#34;bico&#34;, SAFE_VAR_SIZE); 58} 59 60void write_buffer() { 61 printf(&#34;Data for buffer: &#34;); 62 fflush(stdout); 63 scanf(&#34;%s&#34;, input_data); 64} 65 66void print_heap() { 67 printf(&#34;Heap State:\n&#34;); 68 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 69 printf(&#34;[*] Address -&gt; Heap Data \n&#34;); 70 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 71 printf(&#34;[*] %p -&gt; %s\n&#34;, input_data, input_data); 72 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 73 printf(&#34;[*] %p -&gt; %s\n&#34;, safe_var, safe_var); 74 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 75 fflush(stdout); 76} 77 78int main(void) { 79 80 // Setup 81 init(); 82 print_heap(); 83 84 int choice; 85 86 while (1) { 87 print_menu(); 88	int rval = scanf(&#34;%d&#34;, &amp;choice); 89	if (rval == EOF){ 90	exit(0); 91	} 92 if (rval != 1) { 93 //printf(&#34;Invalid input. Please enter a valid choice.\n&#34;); 94 //fflush(stdout); 95 // Clear input buffer 96 //while (getchar() != &#39;\n&#39;); 97 //continue; 98	exit(0); 99 } 100 101 switch (choice) { 102 case 1: 103 // print heap 104 print_heap(); 105 break; 106 case 2: 107 write_buffer(); 108 break; 109 case 3: 110 // print safe_var 111 printf(&#34;\n\nTake a look at my variable: safe_var = %s\n\n&#34;, 112 safe_var); 113 fflush(stdout); 114 break; 115 case 4: 116 // Check for win condition 117 check_win(); 118 break; 119 case 5: 120 // exit 121 return 0; 122 default: 123 printf(&#34;Invalid choice\n&#34;); 124 fflush(stdout); 125 } 126 } 127} If you look closely at the check_win function, our job is to make safe_var variable and the string bico not equal to each other. We can see that the variables input_data and safe_var are allocated 5 bytes of memory. The allocations are likely to be sequential, meaning input_data and safe_var are placed next to each other in memory.">
 
 
 
 
 
-  <meta itemprop="name" content="[picoCTF] heap 1 &amp; heap 0">
+  <meta itemprop="name" content="[picoCTF] heap 1 & heap 0">
   <meta itemprop="description" content="heap 0 Description Are overflows just a stack concern? Download the binary Download the source Here’s the source code provided
-1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.">
+1#include &lt;stdio.h&gt; 2#include &lt;stdlib.h&gt; 3#include &lt;string.h&gt; 4 5#define FLAGSIZE_MAX 64 6// amount of memory allocated for input_data 7#define INPUT_DATA_SIZE 5 8// amount of memory allocated for safe_var 9#define SAFE_VAR_SIZE 5 10 11int num_allocs; 12char *safe_var; 13char *input_data; 14 15void check_win() { 16 if (strcmp(safe_var, &#34;bico&#34;) != 0) { 17 printf(&#34;\nYOU WIN\n&#34;); 18 19 // Print flag 20 char buf[FLAGSIZE_MAX]; 21 FILE *fd = fopen(&#34;flag.txt&#34;, &#34;r&#34;); 22 fgets(buf, FLAGSIZE_MAX, fd); 23 printf(&#34;%s\n&#34;, buf); 24 fflush(stdout); 25 26 exit(0); 27 } else { 28 printf(&#34;Looks like everything is still secure!\n&#34;); 29 printf(&#34;\nNo flage for you :(\n&#34;); 30 fflush(stdout); 31 } 32} 33 34void print_menu() { 35 printf(&#34;\n1. Print Heap:\t\t(print the current state of the heap)&#34; 36 &#34;\n2. Write to buffer:\t(write to your own personal block of data &#34; 37 &#34;on the heap)&#34; 38 &#34;\n3. Print safe_var:\t(I&#39;ll even let you look at my variable on &#34; 39 &#34;the heap, &#34; 40 &#34;I&#39;m confident it can&#39;t be modified)&#34; 41 &#34;\n4. Print Flag:\t\t(Try to print the flag, good luck)&#34; 42 &#34;\n5. Exit\n\nEnter your choice: &#34;); 43 fflush(stdout); 44} 45 46void init() { 47 printf(&#34;\nWelcome to heap0!\n&#34;); 48 printf( 49 &#34;I put my data on the heap so it should be safe from any tampering.\n&#34;); 50 printf(&#34;Since my data isn&#39;t on the stack I&#39;ll even let you write whatever &#34; 51 &#34;info you want to the heap, I already took care of using malloc for &#34; 52 &#34;you.\n\n&#34;); 53 fflush(stdout); 54 input_data = malloc(INPUT_DATA_SIZE); 55 strncpy(input_data, &#34;pico&#34;, INPUT_DATA_SIZE); 56 safe_var = malloc(SAFE_VAR_SIZE); 57 strncpy(safe_var, &#34;bico&#34;, SAFE_VAR_SIZE); 58} 59 60void write_buffer() { 61 printf(&#34;Data for buffer: &#34;); 62 fflush(stdout); 63 scanf(&#34;%s&#34;, input_data); 64} 65 66void print_heap() { 67 printf(&#34;Heap State:\n&#34;); 68 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 69 printf(&#34;[*] Address -&gt; Heap Data \n&#34;); 70 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 71 printf(&#34;[*] %p -&gt; %s\n&#34;, input_data, input_data); 72 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 73 printf(&#34;[*] %p -&gt; %s\n&#34;, safe_var, safe_var); 74 printf(&#34;&#43;-------------&#43;----------------&#43;\n&#34;); 75 fflush(stdout); 76} 77 78int main(void) { 79 80 // Setup 81 init(); 82 print_heap(); 83 84 int choice; 85 86 while (1) { 87 print_menu(); 88	int rval = scanf(&#34;%d&#34;, &amp;choice); 89	if (rval == EOF){ 90	exit(0); 91	} 92 if (rval != 1) { 93 //printf(&#34;Invalid input. Please enter a valid choice.\n&#34;); 94 //fflush(stdout); 95 // Clear input buffer 96 //while (getchar() != &#39;\n&#39;); 97 //continue; 98	exit(0); 99 } 100 101 switch (choice) { 102 case 1: 103 // print heap 104 print_heap(); 105 break; 106 case 2: 107 write_buffer(); 108 break; 109 case 3: 110 // print safe_var 111 printf(&#34;\n\nTake a look at my variable: safe_var = %s\n\n&#34;, 112 safe_var); 113 fflush(stdout); 114 break; 115 case 4: 116 // Check for win condition 117 check_win(); 118 break; 119 case 5: 120 // exit 121 return 0; 122 default: 123 printf(&#34;Invalid choice\n&#34;); 124 fflush(stdout); 125 } 126 } 127} If you look closely at the check_win function, our job is to make safe_var variable and the string bico not equal to each other. We can see that the variables input_data and safe_var are allocated 5 bytes of memory. The allocations are likely to be sequential, meaning input_data and safe_var are placed next to each other in memory.">
   <meta itemprop="datePublished" content="2024-07-05T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-05T00:00:00+00:00">
   <meta itemprop="wordCount" content="1668">

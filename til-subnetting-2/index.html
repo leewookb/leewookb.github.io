@@ -13,8 +13,9 @@
 />
 <meta
   name="description"
-  content="Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts."
+  content="
+Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
+First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32."
 />
 <meta
   name="keywords"
@@ -30,7 +31,7 @@ First, we determined that the prefix length needs to be /26 because each subnet 
   <meta property="og:site_name" content="Wook&#39;s blog">
   <meta property="og:title" content="[TIL] Subnetting 2">
   <meta property="og:description" content="Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts.">
+First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn’t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -45,7 +46,7 @@ First, we determined that the prefix length needs to be /26 because each subnet 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[TIL] Subnetting 2">
   <meta name="twitter:description" content="Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts.">
+First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn’t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.">
 
 
 
@@ -53,7 +54,7 @@ First, we determined that the prefix length needs to be /26 because each subnet 
 
   <meta itemprop="name" content="[TIL] Subnetting 2">
   <meta itemprop="description" content="Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts.">
+First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn’t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.">
   <meta itemprop="datePublished" content="2024-06-26T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-06-26T00:00:00+00:00">
   <meta itemprop="wordCount" content="987">

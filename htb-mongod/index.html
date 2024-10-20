@@ -14,7 +14,45 @@
 <meta
   name="description"
   content="it&rsquo;s been quite a while since I tackled any challenges on Hack The Box. My original plan was to strengthen my fundamentals on TryHackMe and then come back to Hack The Box. But now I&rsquo;m thinking, why not do both at the same time? I can learn by diving in and trying things out as I go.
-How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10."
+
+
+How many TCP ports are open on the machine?
+
+
+
+
+
+
+2
+
+
+
+
+
+
+ 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~]
+ 2└──╼ [★]$ sudo nmap -sC -sV 10.129.228.30 -p-
+ 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-10 23:00 CDT
+ 4Nmap scan report for 10.129.228.30
+ 5Host is up (0.0087s latency).
+ 6Not shown: 65533 closed tcp ports (reset)
+ 7PORT      STATE SERVICE VERSION
+ 822/tcp    open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+ 9| ssh-hostkey:
+10|   3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA)
+11|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)
+12|_  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)
+1327017/tcp open  mongodb MongoDB 3.6.8 3.6.8
+
+Which service is running on port 27017 of the remote host?
+
+
+
+
+
+
+MongoDB 3.6.8
+27017/tcp open  mongodb MongoDB 3.6.8 3.6.8"
 />
 <meta
   name="keywords"
@@ -30,7 +68,7 @@ How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dh
   <meta property="og:site_name" content="Wook&#39;s blog">
   <meta property="og:title" content="[HTB] Mongod">
   <meta property="og:description" content="it’s been quite a while since I tackled any challenges on Hack The Box. My original plan was to strengthen my fundamentals on TryHackMe and then come back to Hack The Box. But now I’m thinking, why not do both at the same time? I can learn by diving in and trying things out as I go.
-How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10.">
+How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10.129.228.30 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-10 23:00 CDT 4Nmap scan report for 10.129.228.30 5Host is up (0.0087s latency). 6Not shown: 65533 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 822/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0) 9| ssh-hostkey: 10| 3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA) 11| 256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA) 12|_ 256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519) 1327017/tcp open mongodb MongoDB 3.6.8 3.6.8 Which service is running on port 27017 of the remote host? MongoDB 3.6.8 27017/tcp open mongodb MongoDB 3.6.8 3.6.8">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -45,7 +83,7 @@ How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dh
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[HTB] Mongod">
   <meta name="twitter:description" content="it’s been quite a while since I tackled any challenges on Hack The Box. My original plan was to strengthen my fundamentals on TryHackMe and then come back to Hack The Box. But now I’m thinking, why not do both at the same time? I can learn by diving in and trying things out as I go.
-How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10.">
+How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10.129.228.30 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-10 23:00 CDT 4Nmap scan report for 10.129.228.30 5Host is up (0.0087s latency). 6Not shown: 65533 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 822/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0) 9| ssh-hostkey: 10| 3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA) 11| 256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA) 12|_ 256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519) 1327017/tcp open mongodb MongoDB 3.6.8 3.6.8 Which service is running on port 27017 of the remote host? MongoDB 3.6.8 27017/tcp open mongodb MongoDB 3.6.8 3.6.8">
 
 
 
@@ -53,7 +91,7 @@ How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dh
 
   <meta itemprop="name" content="[HTB] Mongod">
   <meta itemprop="description" content="it’s been quite a while since I tackled any challenges on Hack The Box. My original plan was to strengthen my fundamentals on TryHackMe and then come back to Hack The Box. But now I’m thinking, why not do both at the same time? I can learn by diving in and trying things out as I go.
-How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10.">
+How many TCP ports are open on the machine? 2 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-l3lgefdeyz]─[~] 2└──╼ [★]$ sudo nmap -sC -sV 10.129.228.30 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-10 23:00 CDT 4Nmap scan report for 10.129.228.30 5Host is up (0.0087s latency). 6Not shown: 65533 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 822/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0) 9| ssh-hostkey: 10| 3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA) 11| 256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA) 12|_ 256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519) 1327017/tcp open mongodb MongoDB 3.6.8 3.6.8 Which service is running on port 27017 of the remote host? MongoDB 3.6.8 27017/tcp open mongodb MongoDB 3.6.8 3.6.8">
   <meta itemprop="datePublished" content="2024-07-10T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-10T00:00:00+00:00">
   <meta itemprop="wordCount" content="622">

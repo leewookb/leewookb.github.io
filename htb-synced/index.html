@@ -13,8 +13,60 @@
 />
 <meta
   name="description"
-  content="What is the default port for rsync? 873 How many TCP ports are open on the remote host? 1 As always, started off by running the nmap scan on all ports and turned out there is only 1 open port on 873 and it&rsquo;s rsync.
-1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0."
+  content="What is the default port for rsync?
+
+
+
+
+
+
+873
+
+How many TCP ports are open on the remote host?
+
+
+
+
+
+
+1
+As always, started off by running the nmap scan on all ports and turned out there is only 1 open port on 873 and it&rsquo;s rsync.
+
+
+
+
+
+
+ 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~]
+ 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p-
+ 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT
+ 4Nmap scan report for 10.129.49.240
+ 5Host is up (0.0092s latency).
+ 6Not shown: 65534 closed tcp ports (reset)
+ 7PORT STATE SERVICE VERSION
+ 8873/tcp open rsync (protocol version 31)
+ 9
+10Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+11Nmap done: 1 IP address (1 host up) scanned in 16.33 seconds
+
+What is the protocol version used by rsync on the remote machine?
+
+
+
+
+
+
+31
+
+What is the most common command name on Linux to interact with rsync?
+
+
+
+
+
+
+rsync
+rsync is an open source utility that provides fast incremental file transfer. The way rsync works makes it an excellent choice when there is a need to synchronize files between a computer and a storage drive and across networked computers."
 />
 <meta
   name="keywords"
@@ -30,7 +82,7 @@
   <meta property="og:site_name" content="Wook&#39;s blog">
   <meta property="og:title" content="[HTB] Synced">
   <meta property="og:description" content="What is the default port for rsync? 873 How many TCP ports are open on the remote host? 1 As always, started off by running the nmap scan on all ports and turned out there is only 1 open port on 873 and it’s rsync.
-1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0.">
+1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0.0092s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 8873/tcp open rsync (protocol version 31) 9 10Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 11Nmap done: 1 IP address (1 host up) scanned in 16.33 seconds What is the protocol version used by rsync on the remote machine? 31 What is the most common command name on Linux to interact with rsync? rsync rsync is an open source utility that provides fast incremental file transfer. The way rsync works makes it an excellent choice when there is a need to synchronize files between a computer and a storage drive and across networked computers.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -45,7 +97,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[HTB] Synced">
   <meta name="twitter:description" content="What is the default port for rsync? 873 How many TCP ports are open on the remote host? 1 As always, started off by running the nmap scan on all ports and turned out there is only 1 open port on 873 and it’s rsync.
-1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0.">
+1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0.0092s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 8873/tcp open rsync (protocol version 31) 9 10Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 11Nmap done: 1 IP address (1 host up) scanned in 16.33 seconds What is the protocol version used by rsync on the remote machine? 31 What is the most common command name on Linux to interact with rsync? rsync rsync is an open source utility that provides fast incremental file transfer. The way rsync works makes it an excellent choice when there is a need to synchronize files between a computer and a storage drive and across networked computers.">
 
 
 
@@ -53,7 +105,7 @@
 
   <meta itemprop="name" content="[HTB] Synced">
   <meta itemprop="description" content="What is the default port for rsync? 873 How many TCP ports are open on the remote host? 1 As always, started off by running the nmap scan on all ports and turned out there is only 1 open port on 873 and it’s rsync.
-1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0.">
+1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-wv2b0ymwtt]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.49.240 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 12:14 CDT 4Nmap scan report for 10.129.49.240 5Host is up (0.0092s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 8873/tcp open rsync (protocol version 31) 9 10Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 11Nmap done: 1 IP address (1 host up) scanned in 16.33 seconds What is the protocol version used by rsync on the remote machine? 31 What is the most common command name on Linux to interact with rsync? rsync rsync is an open source utility that provides fast incremental file transfer. The way rsync works makes it an excellent choice when there is a need to synchronize files between a computer and a storage drive and across networked computers.">
   <meta itemprop="datePublished" content="2024-07-11T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-11T00:00:00+00:00">
   <meta itemprop="wordCount" content="407">

@@ -13,7 +13,70 @@
 />
 <meta
   name="description"
-  content="During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed."
+  content="During our scan, which port do we find serving MySQL?
+
+
+
+
+
+
+3306
+
+
+
+
+
+
+ 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~]
+ 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p-
+ 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT
+ 4Nmap scan report for 10.129.50.55
+ 5Host is up (0.0084s latency).
+ 6Not shown: 65534 closed tcp ports (reset)
+ 7PORT     STATE SERVICE VERSION
+ 83306/tcp open  mysql?
+ 9| mysql-info:
+10|   Protocol: 10
+11|   Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1
+12|   Thread ID: 66
+13|   Capabilities flags: 63486
+14|   Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults
+15|   Status: Autocommit
+16|   Salt: 6&#39;\|}}|xdny7D0ay_OOz
+17|_  Auth Plugin Name: mysql_native_password
+18
+19Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+20Nmap done: 1 IP address (1 host up) scanned in 204.84 seconds
+
+What community-developed MySQL version is the target running?
+
+
+
+
+
+
+MariaDB
+
+
+
+
+
+
+1| mysql-info:
+2|   Protocol: 10
+3|   Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1
+4|   Thread ID: 66
+5|   Capabilities flags: 63486
+
+When using the MySQL command line client, what switch do we need to use in order to specify a login username?
+
+
+
+
+
+
+-U
+The option could be found by the mysql --help command"
 />
 <meta
   name="keywords"
@@ -28,7 +91,7 @@
 <meta property="og:url" content="http://localhost:1313/htb-sequel/">
   <meta property="og:site_name" content="Wook&#39;s blog">
   <meta property="og:title" content="[HTB] Sequel">
-  <meta property="og:description" content="During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed.">
+  <meta property="og:description" content="During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 20Nmap done: 1 IP address (1 host up) scanned in 204.84 seconds What community-developed MySQL version is the target running? MariaDB 1| mysql-info: 2| Protocol: 10 3| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 4| Thread ID: 66 5| Capabilities flags: 63486 When using the MySQL command line client, what switch do we need to use in order to specify a login username? -U The option could be found by the mysql --help command">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -42,14 +105,14 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[HTB] Sequel">
-  <meta name="twitter:description" content="During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed.">
+  <meta name="twitter:description" content="During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 20Nmap done: 1 IP address (1 host up) scanned in 204.84 seconds What community-developed MySQL version is the target running? MariaDB 1| mysql-info: 2| Protocol: 10 3| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 4| Thread ID: 66 5| Capabilities flags: 63486 When using the MySQL command line client, what switch do we need to use in order to specify a login username? -U The option could be found by the mysql --help command">
 
 
 
 
 
   <meta itemprop="name" content="[HTB] Sequel">
-  <meta itemprop="description" content="During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed.">
+  <meta itemprop="description" content="During our scan, which port do we find serving MySQL? 3306 1┌─[us-starting-point-vip-1-dhcp]─[10.10.14.28]─[leewookb@htb-0x7zvm1bat]─[~] 2└──╼ [★]$ nmap -sC -sV 10.129.50.55 -p- 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-11 23:56 CDT 4Nmap scan report for 10.129.50.55 5Host is up (0.0084s latency). 6Not shown: 65534 closed tcp ports (reset) 7PORT STATE SERVICE VERSION 83306/tcp open mysql? 9| mysql-info: 10| Protocol: 10 11| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 12| Thread ID: 66 13| Capabilities flags: 63486 14| Some Capabilities: Speaks41ProtocolOld, Support41Auth, SupportsTransactions, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, InteractiveClient, Speaks41ProtocolNew, ConnectWithDatabase, FoundRows, SupportsLoadDataLocal, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults 15| Status: Autocommit 16| Salt: 6&#39;\|}}|xdny7D0ay_OOz 17|_ Auth Plugin Name: mysql_native_password 18 19Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 20Nmap done: 1 IP address (1 host up) scanned in 204.84 seconds What community-developed MySQL version is the target running? MariaDB 1| mysql-info: 2| Protocol: 10 3| Version: 5.5.5-10.3.27-MariaDB-0&#43;deb10u1 4| Thread ID: 66 5| Capabilities flags: 63486 When using the MySQL command line client, what switch do we need to use in order to specify a login username? -U The option could be found by the mysql --help command">
   <meta itemprop="datePublished" content="2024-07-12T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-12T00:00:00+00:00">
   <meta itemprop="wordCount" content="603">

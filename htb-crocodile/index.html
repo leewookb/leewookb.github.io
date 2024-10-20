@@ -13,7 +13,70 @@
 />
 <meta
   name="description"
-  content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10."
+  content="What Nmap scanning switch employs the use of default scripts during a scan?
+
+
+
+
+
+
+-sC
+
+What service version is found to be running on port 21?
+
+
+
+
+
+
+vsftpd 3.0.3
+
+
+
+
+
+
+ 1┌──(kali㉿kali)-[~/Desktop]
+ 2└─$ nmap -sC -sV 10.129.60.250
+ 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT
+ 4Nmap scan report for 10.129.60.250
+ 5Host is up (0.034s latency).
+ 6Not shown: 998 closed tcp ports (conn-refused)
+ 7PORT   STATE SERVICE VERSION
+ 821/tcp open  ftp     vsftpd 3.0.3
+ 9| ftp-syst:
+10|   STAT:
+11| FTP server status:
+12|      Connected to ::ffff:10.10.14.28
+13|      Logged in as ftp
+14|      TYPE: ASCII
+15|      No session bandwidth limit
+16|      Session timeout in seconds is 300
+17|      Control connection is plain text
+18|      Data connections will be plain text
+19|      At session startup, client count was 1
+20|      vsFTPd 3.0.3 - secure, fast, stable
+21|_End of status
+22| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+23| -rw-r--r--    1 ftp      ftp            33 Jun 08  2021 allowed.userlist
+24|_-rw-r--r--    1 ftp      ftp            62 Apr 20  2021 allowed.userlist.passwd
+2580/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+26|_http-title: Smash - Bootstrap Business Template
+27|_http-server-header: Apache/2.4.41 (Ubuntu)
+28Service Info: OS: Unix
+29
+30Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+31Nmap done: 1 IP address (1 host up) scanned in 8.08 seconds
+
+What FTP code is returned to us for the &ldquo;Anonymous FTP login allowed message?&rdquo;
+
+
+
+
+
+
+230
+"
 />
 <meta
   name="keywords"
@@ -28,7 +91,7 @@
 <meta property="og:url" content="http://localhost:1313/htb-crocodile/">
   <meta property="og:site_name" content="Wook&#39;s blog">
   <meta property="og:title" content="[HTB] Crocodile">
-  <meta property="og:description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.">
+  <meta property="og:description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.10.14.28 13| Logged in as ftp 14| TYPE: ASCII 15| No session bandwidth limit 16| Session timeout in seconds is 300 17| Control connection is plain text 18| Data connections will be plain text 19| At session startup, client count was 1 20| vsFTPd 3.0.3 - secure, fast, stable 21|_End of status 22| ftp-anon: Anonymous FTP login allowed (FTP code 230) 23| -rw-r--r-- 1 ftp ftp 33 Jun 08 2021 allowed.userlist 24|_-rw-r--r-- 1 ftp ftp 62 Apr 20 2021 allowed.userlist.passwd 2580/tcp open http Apache httpd 2.4.41 ((Ubuntu)) 26|_http-title: Smash - Bootstrap Business Template 27|_http-server-header: Apache/2.4.41 (Ubuntu) 28Service Info: OS: Unix 29 30Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 31Nmap done: 1 IP address (1 host up) scanned in 8.08 seconds What FTP code is returned to us for the “Anonymous FTP login allowed message?” 230">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -42,14 +105,14 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[HTB] Crocodile">
-  <meta name="twitter:description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.">
+  <meta name="twitter:description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.10.14.28 13| Logged in as ftp 14| TYPE: ASCII 15| No session bandwidth limit 16| Session timeout in seconds is 300 17| Control connection is plain text 18| Data connections will be plain text 19| At session startup, client count was 1 20| vsFTPd 3.0.3 - secure, fast, stable 21|_End of status 22| ftp-anon: Anonymous FTP login allowed (FTP code 230) 23| -rw-r--r-- 1 ftp ftp 33 Jun 08 2021 allowed.userlist 24|_-rw-r--r-- 1 ftp ftp 62 Apr 20 2021 allowed.userlist.passwd 2580/tcp open http Apache httpd 2.4.41 ((Ubuntu)) 26|_http-title: Smash - Bootstrap Business Template 27|_http-server-header: Apache/2.4.41 (Ubuntu) 28Service Info: OS: Unix 29 30Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 31Nmap done: 1 IP address (1 host up) scanned in 8.08 seconds What FTP code is returned to us for the “Anonymous FTP login allowed message?” 230">
 
 
 
 
 
   <meta itemprop="name" content="[HTB] Crocodile">
-  <meta itemprop="description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.">
+  <meta itemprop="description" content="What Nmap scanning switch employs the use of default scripts during a scan? -sC What service version is found to be running on port 21? vsftpd 3.0.3 1┌──(kali㉿kali)-[~/Desktop] 2└─$ nmap -sC -sV 10.129.60.250 3Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-13 00:54 EDT 4Nmap scan report for 10.129.60.250 5Host is up (0.034s latency). 6Not shown: 998 closed tcp ports (conn-refused) 7PORT STATE SERVICE VERSION 821/tcp open ftp vsftpd 3.0.3 9| ftp-syst: 10| STAT: 11| FTP server status: 12| Connected to ::ffff:10.10.14.28 13| Logged in as ftp 14| TYPE: ASCII 15| No session bandwidth limit 16| Session timeout in seconds is 300 17| Control connection is plain text 18| Data connections will be plain text 19| At session startup, client count was 1 20| vsFTPd 3.0.3 - secure, fast, stable 21|_End of status 22| ftp-anon: Anonymous FTP login allowed (FTP code 230) 23| -rw-r--r-- 1 ftp ftp 33 Jun 08 2021 allowed.userlist 24|_-rw-r--r-- 1 ftp ftp 62 Apr 20 2021 allowed.userlist.passwd 2580/tcp open http Apache httpd 2.4.41 ((Ubuntu)) 26|_http-title: Smash - Bootstrap Business Template 27|_http-server-header: Apache/2.4.41 (Ubuntu) 28Service Info: OS: Unix 29 30Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . 31Nmap done: 1 IP address (1 host up) scanned in 8.08 seconds What FTP code is returned to us for the “Anonymous FTP login allowed message?” 230">
   <meta itemprop="datePublished" content="2024-07-13T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-13T00:00:00+00:00">
   <meta itemprop="wordCount" content="577">

@@ -13,8 +13,75 @@
 />
 <meta
   name="description"
-  content="How many TCP ports are open? 2 According to output of the nmap scan, there are 2 open ports.
-What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the &ldquo;Funnel&rdquo; team should change as soon as possible?"
+  content="How many TCP ports are open?
+
+
+
+
+
+
+2
+According to output of the nmap scan, there are 2 open ports.
+
+
+What is the name of the directory that is available on the FTP server?
+
+
+
+
+
+
+mail_backup
+
+
+
+
+
+
+1PORT   STATE SERVICE VERSION
+221/tcp open  ftp     vsftpd 3.0.3
+3| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+4|_drwxr-xr-x    2 ftp      ftp          4096 Nov 28  2022 mail_backup
+
+What is the default account password that every new member on the &ldquo;Funnel&rdquo; team should change as soon as possible?
+
+
+
+
+
+
+funnel123#!#
+
+
+
+
+
+
+ 1┌──(kali㉿kali)-[~/Desktop]
+ 2└─$ ftp 10.129.151.228
+ 3Connected to 10.129.151.228.
+ 4220 (vsFTPd 3.0.3)
+ 5Name (10.129.151.228:kali): anonymous
+ 6331 Please specify the password.
+ 7Password:
+ 8230 Login successful.
+ 9Remote system type is UNIX.
+10Using binary mode to transfer files.
+11ftp&gt; ls
+12229 Entering Extended Passive Mode (|||32449|)
+13150 Here comes the directory listing.
+14drwxr-xr-x    2 ftp      ftp          4096 Nov 28  2022 mail_backup
+15226 Directory send OK.
+16ftp&gt; cd mail_backup
+17250 Directory successfully changed.
+18ftp&gt; ls
+19229 Entering Extended Passive Mode (|||61475|)
+20150 Here comes the directory listing.
+21-rw-r--r--    1 ftp      ftp         58899 Nov 28  2022 password_policy.pdf
+22-rw-r--r--    1 ftp      ftp           713 Nov 28  2022 welcome_28112022
+23226 Directory send OK.
+
+After logged into the ftp server as anonymous, I was able to locate 2 files inside the mail_backup directory. Downloaded those files to local and the password_policy.pdf file disclosed the default password of a newly created user."
 />
 <meta
   name="keywords"
@@ -30,7 +97,7 @@ What is the name of the directory that is available on the FTP server? mail_back
   <meta property="og:site_name" content="Wook&#39;s blog">
   <meta property="og:title" content="[HTB] Funnel">
   <meta property="og:description" content="How many TCP ports are open? 2 According to output of the nmap scan, there are 2 open ports.
-What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the “Funnel” team should change as soon as possible?">
+What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the “Funnel” team should change as soon as possible? funnel123#!# 1┌──(kali㉿kali)-[~/Desktop] 2└─$ ftp 10.129.151.228 3Connected to 10.129.151.228. 4220 (vsFTPd 3.0.3) 5Name (10.129.151.228:kali): anonymous 6331 Please specify the password. 7Password: 8230 Login successful. 9Remote system type is UNIX. 10Using binary mode to transfer files. 11ftp&gt; ls 12229 Entering Extended Passive Mode (|||32449|) 13150 Here comes the directory listing. 14drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup 15226 Directory send OK. 16ftp&gt; cd mail_backup 17250 Directory successfully changed. 18ftp&gt; ls 19229 Entering Extended Passive Mode (|||61475|) 20150 Here comes the directory listing. 21-rw-r--r-- 1 ftp ftp 58899 Nov 28 2022 password_policy.pdf 22-rw-r--r-- 1 ftp ftp 713 Nov 28 2022 welcome_28112022 23226 Directory send OK. After logged into the ftp server as anonymous, I was able to locate 2 files inside the mail_backup directory. Downloaded those files to local and the password_policy.pdf file disclosed the default password of a newly created user.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -45,7 +112,7 @@ What is the name of the directory that is available on the FTP server? mail_back
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[HTB] Funnel">
   <meta name="twitter:description" content="How many TCP ports are open? 2 According to output of the nmap scan, there are 2 open ports.
-What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the “Funnel” team should change as soon as possible?">
+What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the “Funnel” team should change as soon as possible? funnel123#!# 1┌──(kali㉿kali)-[~/Desktop] 2└─$ ftp 10.129.151.228 3Connected to 10.129.151.228. 4220 (vsFTPd 3.0.3) 5Name (10.129.151.228:kali): anonymous 6331 Please specify the password. 7Password: 8230 Login successful. 9Remote system type is UNIX. 10Using binary mode to transfer files. 11ftp&gt; ls 12229 Entering Extended Passive Mode (|||32449|) 13150 Here comes the directory listing. 14drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup 15226 Directory send OK. 16ftp&gt; cd mail_backup 17250 Directory successfully changed. 18ftp&gt; ls 19229 Entering Extended Passive Mode (|||61475|) 20150 Here comes the directory listing. 21-rw-r--r-- 1 ftp ftp 58899 Nov 28 2022 password_policy.pdf 22-rw-r--r-- 1 ftp ftp 713 Nov 28 2022 welcome_28112022 23226 Directory send OK. After logged into the ftp server as anonymous, I was able to locate 2 files inside the mail_backup directory. Downloaded those files to local and the password_policy.pdf file disclosed the default password of a newly created user.">
 
 
 
@@ -53,7 +120,7 @@ What is the name of the directory that is available on the FTP server? mail_back
 
   <meta itemprop="name" content="[HTB] Funnel">
   <meta itemprop="description" content="How many TCP ports are open? 2 According to output of the nmap scan, there are 2 open ports.
-What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the “Funnel” team should change as soon as possible?">
+What is the name of the directory that is available on the FTP server? mail_backup 1PORT STATE SERVICE VERSION 221/tcp open ftp vsftpd 3.0.3 3| ftp-anon: Anonymous FTP login allowed (FTP code 230) 4|_drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup What is the default account password that every new member on the “Funnel” team should change as soon as possible? funnel123#!# 1┌──(kali㉿kali)-[~/Desktop] 2└─$ ftp 10.129.151.228 3Connected to 10.129.151.228. 4220 (vsFTPd 3.0.3) 5Name (10.129.151.228:kali): anonymous 6331 Please specify the password. 7Password: 8230 Login successful. 9Remote system type is UNIX. 10Using binary mode to transfer files. 11ftp&gt; ls 12229 Entering Extended Passive Mode (|||32449|) 13150 Here comes the directory listing. 14drwxr-xr-x 2 ftp ftp 4096 Nov 28 2022 mail_backup 15226 Directory send OK. 16ftp&gt; cd mail_backup 17250 Directory successfully changed. 18ftp&gt; ls 19229 Entering Extended Passive Mode (|||61475|) 20150 Here comes the directory listing. 21-rw-r--r-- 1 ftp ftp 58899 Nov 28 2022 password_policy.pdf 22-rw-r--r-- 1 ftp ftp 713 Nov 28 2022 welcome_28112022 23226 Directory send OK. After logged into the ftp server as anonymous, I was able to locate 2 files inside the mail_backup directory. Downloaded those files to local and the password_policy.pdf file disclosed the default password of a newly created user.">
   <meta itemprop="datePublished" content="2024-07-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-18T00:00:00+00:00">
   <meta itemprop="wordCount" content="1255">
