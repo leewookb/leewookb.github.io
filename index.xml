@@ -8,8 +8,67 @@
     <language>en</language>
     <managingEditor>leewookb@gmail.com (Wook Lee)</managingEditor>
     <webMaster>leewookb@gmail.com (Wook Lee)</webMaster>
-    <lastBuildDate>Wed, 23 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 24 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Burp Suite] SQL injection 2</title>
+      <link>http://localhost:1313/burp-suite-sql-injection-2/</link>
+      <pubDate>Thu, 24 Oct 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
+      <guid>http://localhost:1313/burp-suite-sql-injection-2/</guid>
+      <description>&lt;h4 id=&#34;lab-sql-injection-union-attack-retrieving-multiple-values-in-a-single-column&#34;&gt;Lab: SQL injection UNION attack, retrieving multiple values in a single column&lt;/h4&gt;
+&lt;p&gt;This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application&amp;rsquo;s response so you can use a UNION attack to retrieve data from other tables.&lt;/p&gt;
+&lt;p&gt;The database contains a different table called users, with columns called username and password.&lt;/p&gt;
+&lt;p&gt;To solve the lab, perform a SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h4 id="lab-sql-injection-union-attack-retrieving-multiple-values-in-a-single-column">Lab: SQL injection UNION attack, retrieving multiple values in a single column</h4>
+<p>This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application&rsquo;s response so you can use a UNION attack to retrieve data from other tables.</p>
+<p>The database contains a different table called users, with columns called username and password.</p>
+<p>To solve the lab, perform a SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.</p>
+<hr>
+<p><img src="image.png#center" alt="alt text">
+Very similar to the previous Lab, this is what the landing page of the lab looks like.</p>
+<br>
+<p><img src="image-1.png#center" alt="alt text">
+We know there&rsquo;s a SQL injection vulnerability in the product category filter. Before we select a category, I clicked on <code>intercept on</code> button on Burp Suite, then selected the <code>Pets</code> category.</p>
+<br>
+<p><img src="image-2.png#center" alt="alt text">
+Send this request we intercepted to Burp Suite <strong>Repeater</strong> because we would need to send requests and receive response multiple times to figure out the vulnerability and exploit it.</p>
+<br>
+<p><img src="image-3.png#center" alt="alt text">
+<code>' UNION SELECT NULL, NULL, NULL, NULL from users--</code>. Starting with 4 NULLs as the placeholders to test whether the original query has 4 columns from the <code>users</code> table. However, before we run it for a test, we need to apply URL encoding on this query.</p>
+<br>
+<p><img src="image-4.png#center" alt="alt text">
+URL encoding applied</p>
+<br>
+<p><img src="image-5.png#center" alt="alt text">
+4 NULLs, and 3 NULLs returned <code>500 Internal Server Error</code> status code.</p>
+<br>
+<p><img src="image-6.png#center" alt="alt text">
+When the number of <code>NULL</code> placeholders got cut down to 2, it finally returned status code 200</p>
+<br>
+<p><img src="image-7.png#center" alt="alt text">
+replaced the first <code>NULL</code> placeholder with a string value <code>'A'</code>, didn&rsquo;t work out. This indicates that the first column expects a different data type value, not a String data type.</p>
+<br>
+<p><img src="image-8.png#center" alt="alt text">
+replaced the second <code>NULL</code> with the same string data type value, and it worked. As you can see, we got the status code 200 as our response.</p>
+<br>
+<p><img src="image-9.png#center" alt="alt text">
+Then, our SQL query became the following:</p>
+<p><code>' UNION SELECT NULL, username||password from users--</code></p>
+<p>We need both username and password values and we know the first column isn&rsquo;t much useful because it doesn&rsquo;t expect a string data type. Therefore, we concatenated the username column and password column, combining tow values into a single output column.</p>
+<p>If you see what&rsquo;s returned on the right, it&rsquo;s hard to distinguish between the username and password because they&rsquo;re concatenated without any separator.</p>
+<br>
+<p><img src="image-10.png#center" alt="alt text">
+Therefore, I added <code>---</code> as a separator between the username and password. The final query is as follows:</p>
+<p><code>' UNION SELECT NULL, username||'---'||password from users--</code></p>
+<p>Of course, you would need to apply URL encoding on the query if you need to pass this query in a URL as I did.</p>
+<br>
+<p><img src="image-11.png#center" alt="alt text">
+Type in the credentials I just obtained from the query.</p>
+<br>
+<p><img src="image-12.png#center" alt="alt text">
+BAM!</p>
+<br>]]></content:encoded>
+    </item>
     <item>
       <title>[Burp Suite] SQL injection</title>
       <link>http://localhost:1313/burp-suite-sql-injection/</link>
@@ -6832,234 +6891,6 @@ Wouldn&rsquo;t it be cool if they were an image instead?</p>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>picoCTF<span style="color:#89dceb;font-weight:bold">{</span>trust_but_verify_e018b574<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
 <p>We got the flag!</p>
 <p><strong><em>flag</em></strong>: <code>picoCTF{trust_but_verify_e018b574}</code></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>[THM] OWASP Juice Shop</title>
-      <link>http://localhost:1313/thm-owasp-juice-shop/</link>
-      <pubDate>Wed, 03 Jul 2024 00:00:00 +0000</pubDate><author>leewookb@gmail.com (Wook Lee)</author>
-      <guid>http://localhost:1313/thm-owasp-juice-shop/</guid>
-      <description>&lt;p&gt;We will look at OWASP&amp;rsquo;s TOP 10 vulnerabilities in web applications. But for this, we will be looking at OWASP&amp;rsquo;s own creation, Juice Shop.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;image.png#center&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;h4 id=&#34;question-1-whats-the-administrators-email-address&#34;&gt;Question #1: What&amp;rsquo;s the Administrator&amp;rsquo;s email address?&lt;/h4&gt;
-
-
-
-
-
-
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;admin@juice-sh.op&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;image-1.png#center&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;h4 id=&#34;question-2-what-parameter-is-used-for-searching&#34;&gt;Question #2: What parameter is used for searching?&lt;/h4&gt;
-
-
-
-
-
-
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;q&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;image-2.png#center&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;
-&lt;p&gt;When I typed &lt;code&gt;asdfsdf&lt;/code&gt; on the search bar, I noticed that the URL changed to &lt;code&gt;http://10.10.113.37/#/search?q=asdfsdf&lt;/code&gt;. we can see that the parameter is &lt;code&gt;q&lt;/code&gt;.&lt;/p&gt;
-&lt;br&gt;
-&lt;h4 id=&#34;question-3-what-show-does-jim-reference-in-his-review&#34;&gt;Question #3: What show does Jim reference in his review?&lt;/h4&gt;
-
-
-
-
-
-
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Star Trek&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;image-3.png#center&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>We will look at OWASP&rsquo;s TOP 10 vulnerabilities in web applications. But for this, we will be looking at OWASP&rsquo;s own creation, Juice Shop.</p>
-<p><img src="image.png#center" alt="alt text"></p>
-<br>
-<h4 id="question-1-whats-the-administrators-email-address">Question #1: What&rsquo;s the Administrator&rsquo;s email address?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>admin@juice-sh.op</code></pre>
-<p><img src="image-1.png#center" alt="alt text"></p>
-<br>
-<h4 id="question-2-what-parameter-is-used-for-searching">Question #2: What parameter is used for searching?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>q</code></pre>
-<p><img src="image-2.png#center" alt="alt text"></p>
-<p>When I typed <code>asdfsdf</code> on the search bar, I noticed that the URL changed to <code>http://10.10.113.37/#/search?q=asdfsdf</code>. we can see that the parameter is <code>q</code>.</p>
-<br>
-<h4 id="question-3-what-show-does-jim-reference-in-his-review">Question #3: What show does Jim reference in his review?</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>Star Trek</code></pre>
-<p><img src="image-3.png#center" alt="alt text"></p>
-<p>Jim did a review on the Green Smoothie product. We can see that he mentions a replicator. Replicator is a reference to a TV show called Star Trek.</p>
-<br>
-<h4 id="question-4-log-into-the-administrator-account">Question #4 Log into the administrator account!</h4>
-<p><img src="image-4.png#center" alt="alt text">
-On the login page, just type any credentials for Burpsuite to capture the request</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>POST /rest/user/login HTTP/1.1
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>Host: 10.10.113.37
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>User-Agent: Mozilla/5.0 <span style="color:#89dceb;font-weight:bold">(</span>X11; Linux aarch64; rv:109.0<span style="color:#89dceb;font-weight:bold">)</span> Gecko/20100101 Firefox/115.0
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>Accept: application/json, text/plain, */*
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Accept-Language: en-US,en;<span style="color:#f5e0dc">q</span><span style="color:#89dceb;font-weight:bold">=</span>0.5
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Accept-Encoding: gzip, deflate, br
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Content-Type: application/json
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>Content-Length: <span style="color:#fab387">44</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Origin: http://10.10.113.37
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>Connection: keep-alive
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>Referer: http://10.10.113.37/
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Cookie: <span style="color:#f5e0dc">io</span><span style="color:#89dceb;font-weight:bold">=</span>QdUYP1oidC2VzPTOAAAA; <span style="color:#f5e0dc">language</span><span style="color:#89dceb;font-weight:bold">=</span>en; <span style="color:#f5e0dc">cookieconsent_status</span><span style="color:#89dceb;font-weight:bold">=</span>dismiss
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89dceb;font-weight:bold">{</span><span style="color:#a6e3a1">&#34;email&#34;</span>:<span style="color:#a6e3a1">&#34;test@gmail.com&#34;</span>,<span style="color:#a6e3a1">&#34;password&#34;</span>:<span style="color:#a6e3a1">&#34;test&#34;</span><span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
-<p>As you could see our request has been captured. Next, we are going to change the email value, <code>test@gmail.com</code> to <code>' or 1=1</code>. <code>{&quot;email&quot;:&quot;' or 1=1&quot;,&quot;password&quot;:&quot;test&quot;}</code></p>
-<p>Here&rsquo;s how this works:</p>
-<ol>
-<li>The character <code>'</code> will close the brackets in the SQL query</li>
-<li><code>OR</code> in a SQL statement will return true if either side of it is true. As 1=1 is always true, the whole statement becomes true. Thus it will tell the server that the email is valid, and log us into user id 0, which happens to be the administrator account.</li>
-<li>The <code>--</code> character is used in SQL to comment out data, any restrictions on the login will no longer work as they are interpreted as a comment.</li>
-</ol>
-<p><img src="image-5.png#center" alt="alt text">
-Send a request with the SQL injection code then you will be logged in as admin</p>
-<br>
-<h4 id="question-5-log-into-the-bender-account">Question 5: Log into the Bender account!</h4>
-
-
-
-
-
-
-<pre tabindex="0"><code>fb364762a3c102b2db932069c0e6b78e738d4066</code></pre>
-<p><img src="image-6.png#center" alt="alt text">
-<img src="image-7.png#center" alt="alt text"></p>
-<br>
-<h4 id="question-6-bruteforce-the-administrator-accounts-password">Question 6: Bruteforce the Administrator account&rsquo;s password</h4>
-<p>We have used SQL injection to log into the Administrator account but still do not know the password.
-Once again capture a login request but this time send it to Intruder on Burpsuite.</p>
-<p>Go to Positions and then select the <code>Clear § </code>. In the password field, place two <code>§</code> inside the quotes.
-The <code>§§</code> is not two separate inputs but Burp&rsquo;s implementation of quotations.
-<img src="image-8.png#center" alt="alt text">
-<br></p>
-<p>For the payload, we will be using the <code>best1050.txt from Seclists</code> for Bruteforce attack.
-Seclists can be downloaded via <code>sudo apt-get install seclists</code>. Also, the list is located in <code>/usr/share/wordlists/SecLists/Passwords/Common-Credentials/best1050.txt</code>
-<br></p>
-<p><img src="image-9.png#center" alt="alt text"></p>
-<p><img src="image-10.png#center" alt="alt text">
-As we can see the status code is 200 for the payload, <code>admin123</code>
-<br></p>
-<p><img src="image-11.png#center" alt="alt text"></p>
-<br>
-<h4 id="question-7-reset-jims-password">Question 7: Reset Jim&rsquo;s Password</h4>
-<p>When typed into the email field in the Forgot Password page, Jim&rsquo;s security question is set to <code>Your eldest siblings middle name?</code>
-However, we already saw that Jim used a Star Trek reference with his review on a juice.</p>
-<p><img src="image-12.png#center" alt="alt text"></p>
-<br>
-<p><img src="image-13.png#center#center" alt="alt text"></p>
-<p>when googled &ldquo;Jim Star Trek&rdquo;, the fictional character&rsquo;s name is actually <code>James T. Kirk</code> and its eldest siblings middle name is <code>Samuel</code>
-<img src="image-14.png#center#center" alt="alt text">
-<img src="image-15.png#center" alt="alt text"></p>
-<br>
-<h4 id="question-8-access-the-confidential-document">Question 8: Access the Confidential Document!</h4>
-<p><img src="image-16.png#center" alt="alt text"></p>
-<p>on the bottom left, we can see that it links to <code>http://10.10.187.53/ft/legal.md</code>. Navigating to that <code>/ftp/</code> directory reveals that it is exposed to the public.</p>
-<p><img src="image-17.png#center" alt="alt text"></p>
-<p>Some of the files appear to be confidential. Download the files and go back to the homepage to receive the flag.</p>
-<p><img src="image-18.png#center" alt="alt text">
-<code>edf9281222395a1c5fee9b89e32175f1ccf50c5b</code></p>
-<br>
-<h4 id="question-9-log-into-mc-safesearchs-account">Question 9: Log into MC SafeSearch&rsquo;s account</h4>
-<p>Watch the following video to get the password for MC Safe Search&rsquo;s account:
-<a href="https://www.youtube.com/watch?v=v59CX2DiX0Y">Link</a></p>
-<p>In his song, he mentions that his password is &ldquo;Mr. Noodles&rdquo; but he replaced some vowels into zeros. So, the password to the <em><a href="mailto:mc.safesearch@juice-sh.op">mc.safesearch@juice-sh.op</a></em> is &ldquo;<strong>Mr. N00dles</strong>.</p>
-<p><code>66bdcffad9e698fd534003fbb3cc7e2b7b55d7f0</code></p>
-<br>
-<h4 id="question-10-download-the-backup-file">Question 10: Download the Backup file!</h4>
-<p>On http://10.10.176.53/ftp, when we try to download <code>package.json.bak</code> file, we encounter a 403 error saying that only .md and .pdf files can be downloaded.</p>
-<p>To get around this, we can use a character bypass called <code>Poison Null Byte</code>.
-A Poison Null Byte looks like this <code>$00</code></p>
-<p>But because we are downloading it using the url, we will need to encode this into a url encoded format, which is <code>%2500</code>.</p>
-<p>The number &ldquo;2500&rdquo; in the context of a &ldquo;Poison Null Byte&rdquo; is a result of URL encoding</p>
-<p>A Poison Null Byte is actually a <code>NULL terminator</code>. By placing a NULL character in the string at a certain byte, the string will tell the server to terminate at that point, nulling the rest of the string.</p>
-<p>The final url should look like this: <code>10.10.176.53/ftp/package.json.bak%2500.md</code></p>
-<br>
-<h4 id="question-11-access-the-administration-page">Question 11: Access the administration page</h4>
-<p>Modern-day systems will allow for multiple users to have access to different pages. Administrators most commonly use an admin page to edit, add, and remove different elements of a website.</p>
-<p>When <code>Broken Access Control</code> exploits or bugs are found, it will be categorized into one of two types:</p>
-<ul>
-<li>Horizontal Privilege Escalation</li>
-<li>Vertical Privilege Escalation</li>
-</ul>
-<p>Look for a javascript file for <code>main-es2015.js</code> in Debugger on FireFox (or Sources on Chrome)</p>
-<p><img src="image-19.png#center" alt="alt text"></p>
-<p>This shows us that there&rsquo;s a path towards <code>/#/administration</code>, but going there while not logged in doesn&rsquo;t work. As this is an Administrator page, it makes sens that we need to be in the Admin account in order to view it.</p>
-<br>
-<p><img src="image-20.png#center" alt="alt text">
-This image above is what we see when we logged in as admin and navigated to <code>/#/administration</code> page.</p>
-<p><code>946a799363226a24822008503f5d1324536629a0</code></p>
-<br>
-<h4 id="question-12-view-another-users-shopping-basket">Question 12: View another user&rsquo;s shopping basket.</h4>
-<p>Log into the Admin account and click on &lsquo;Your Basket&rsquo;. Make sure Burp is running so you can capture the request.</p>
-<p><code>GET /rest/basket/1 HTTP/1.1</code></p>
-<p>Change the number 1 after <code>/basket/</code> to 2</p>
-<p><img src="image-21.png#center" alt="alt text"></p>
-<p>It will show you the basket of User ID 2. You can do this for other User IDs as well</p>
-<br>
-<h4 id="question-13-remove-all-5-star-reviews">Question 13: Remove all 5-star reviews.</h4>
-<p>Navigate back to <code>/#/administration</code> page and remove all the five-star review by clicking the bin icon.</p>
-<p><img src="image-22.png#center" alt="alt text"></p>
-<p><code>50c97bcce0b895e446d61c83a21df371ac2266ef</code></p>
-<br>
-<h4 id="question-14-perform-a-dom-xss">Question 14: Perform a DOM XSS!</h4>
-<p>XSS or Cross-site scripting is a vulnerability that allows attackers to run javascript in web applications. Their complexity ranges from easy to extremely hard, as each web application parses the queries in a different way.</p>
-<p>There are three major types of XSS attacks:</p>
-<ol>
-<li>DOM XSS</li>
-<li>Persistent XSS</li>
-<li>Reflected XSS</li>
-</ol>
-<p>We will be using the iframe element with a javascript alert tag:</p>
-<p><code>&lt;iframe src=&quot;javascript:alert('xss')&quot;&gt;</code></p>
-<p>It is common practice that the search bar will send a request to the server in which it will then send back the related information, but this is where the flaw lies. Without correct input sanitastion, we are able to perform an XSS attack against the search bar.</p>
-<p><code>9aaf4bbea5c30d00a1f5bbcfce4db6d4b0efe0bf</code></p>
-<br>
-<h4 id="question-15-perform-a-persistent-xss">Question 15: Perform a persistent XSS!</h4>
-<p>First, log in to the <code>admin</code> account. We are going to navigate to the <code>Last Login IP</code> page for this attack.</p>
-<p>The Last Login IP should say <code>0.0.0.0</code>
-As it logs the &rsquo;last&rsquo; login IP, we will now logout so that it logs the &rsquo;new&rsquo; IP. Make sure that Burp intercept is on, so it will catch the logout request.</p>
-<p><img src="image-23.png#center" alt="alt text"></p>
-<p>After we catch the logout request, we will add a new header like the image above and forward the request to the server with the newly added header.</p>
-<p>Then when signing back into the admin account and navigating to the Last Login IP page again, we will see the XSS alert.</p>
-<p><img src="image-24.png#center" alt="alt text"></p>
-<p><code>149aa8ce13d7a4a8a931472308e269c94dc5f156</code></p>
-<br>
-<h4 id="question-16-perform-a-reflected-xss">Question 16: Perform a reflected XSS!</h4>
-<p>Login into the admin account and navigate to the &lsquo;Order History&rsquo; page.
-From there you will see a &lsquo;Truck&rsquo; icon, clicking on that will bring you to the track result page. You will also see that there is an id paird with the order.</p>
-<p><code>http://10.10.129.167/#/track-result?id=5267-b3f50aba1f1b9125</code></p>
-<p>We will use the iframe XSS, <code>&lt;iframe src=&quot;javascript:alert('xss')&quot;</code>&gt;, in the place of the
-<code>5267-b3f50aba1f1b9125</code></p>
-<p>After submitting the URL, refresh the page and you will get an alert saying XSS.</p>
-<p><img src="image-25.png#center" alt="alt text"></p>
-<p><code>23cefee1527bde039295b2616eeb29e1edc660a0</code></p>
-<br>
 ]]></content:encoded>
     </item>
   </channel>

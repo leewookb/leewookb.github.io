@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[Burp Suite] SQL injection 2&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[Burp Suite] SQL injection 2"
+/>
+<meta
+  name="description"
+  content="Lab: SQL injection UNION attack, retrieving multiple values in a single column
+This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application&rsquo;s response so you can use a UNION attack to retrieve data from other tables.
+The database contains a different table called users, with columns called username and password.
+To solve the lab, perform a SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user."
+/>
+<meta
+  name="keywords"
+  content="Burp Suite,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/burp-suite-sql-injection-2/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[Burp Suite] SQL injection 2">
+  <meta property="og:description" content="Lab: SQL injection UNION attack, retrieving multiple values in a single column This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application’s response so you can use a UNION attack to retrieve data from other tables.
+The database contains a different table called users, with columns called username and password.
+To solve the lab, perform a SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-10-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-10-24T00:00:00+00:00">
+    <meta property="article:tag" content="Burp Suite">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[Burp Suite] SQL injection 2">
+  <meta name="twitter:description" content="Lab: SQL injection UNION attack, retrieving multiple values in a single column This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application’s response so you can use a UNION attack to retrieve data from other tables.
+The database contains a different table called users, with columns called username and password.
+To solve the lab, perform a SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.">
+
+
+
+
+
+  <meta itemprop="name" content="[Burp Suite] SQL injection 2">
+  <meta itemprop="description" content="Lab: SQL injection UNION attack, retrieving multiple values in a single column This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application’s response so you can use a UNION attack to retrieve data from other tables.
+The database contains a different table called users, with columns called username and password.
+To solve the lab, perform a SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.">
+  <meta itemprop="datePublished" content="2024-10-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-10-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="440">
+  <meta itemprop="keywords" content="Burp Suite">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+  <a
+    href="/photos/"
+    
+    >Photos</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[Burp Suite] SQL injection 2</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-10-24" pubdate>
+            2024-10-24
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h4 id="lab-sql-injection-union-attack-retrieving-multiple-values-in-a-single-column">Lab: SQL injection UNION attack, retrieving multiple values in a single column</h4>
+<p>This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application&rsquo;s response so you can use a UNION attack to retrieve data from other tables.</p>
+<p>The database contains a different table called users, with columns called username and password.</p>
+<p>To solve the lab, perform a SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.</p>
+<hr>
+<p><img src="image.png#center" alt="alt text">
+Very similar to the previous Lab, this is what the landing page of the lab looks like.</p>
+<br>
+<p><img src="image-1.png#center" alt="alt text">
+We know there&rsquo;s a SQL injection vulnerability in the product category filter. Before we select a category, I clicked on <code>intercept on</code> button on Burp Suite, then selected the <code>Pets</code> category.</p>
+<br>
+<p><img src="image-2.png#center" alt="alt text">
+Send this request we intercepted to Burp Suite <strong>Repeater</strong> because we would need to send requests and receive response multiple times to figure out the vulnerability and exploit it.</p>
+<br>
+<p><img src="image-3.png#center" alt="alt text">
+<code>' UNION SELECT NULL, NULL, NULL, NULL from users--</code>. Starting with 4 NULLs as the placeholders to test whether the original query has 4 columns from the <code>users</code> table. However, before we run it for a test, we need to apply URL encoding on this query.</p>
+<br>
+<p><img src="image-4.png#center" alt="alt text">
+URL encoding applied</p>
+<br>
+<p><img src="image-5.png#center" alt="alt text">
+4 NULLs, and 3 NULLs returned <code>500 Internal Server Error</code> status code.</p>
+<br>
+<p><img src="image-6.png#center" alt="alt text">
+When the number of <code>NULL</code> placeholders got cut down to 2, it finally returned status code 200</p>
+<br>
+<p><img src="image-7.png#center" alt="alt text">
+replaced the first <code>NULL</code> placeholder with a string value <code>'A'</code>, didn&rsquo;t work out. This indicates that the first column expects a different data type value, not a String data type.</p>
+<br>
+<p><img src="image-8.png#center" alt="alt text">
+replaced the second <code>NULL</code> with the same string data type value, and it worked. As you can see, we got the status code 200 as our response.</p>
+<br>
+<p><img src="image-9.png#center" alt="alt text">
+Then, our SQL query became the following:</p>
+<p><code>' UNION SELECT NULL, username||password from users--</code></p>
+<p>We need both username and password values and we know the first column isn&rsquo;t much useful because it doesn&rsquo;t expect a string data type. Therefore, we concatenated the username column and password column, combining tow values into a single output column.</p>
+<p>If you see what&rsquo;s returned on the right, it&rsquo;s hard to distinguish between the username and password because they&rsquo;re concatenated without any separator.</p>
+<br>
+<p><img src="image-10.png#center" alt="alt text">
+Therefore, I added <code>---</code> as a separator between the username and password. The final query is as follows:</p>
+<p><code>' UNION SELECT NULL, username||'---'||password from users--</code></p>
+<p>Of course, you would need to apply URL encoding on the query if you need to pass this query in a URL as I did.</p>
+<br>
+<p><img src="image-11.png#center" alt="alt text">
+Type in the credentials I just obtained from the query.</p>
+<br>
+<p><img src="image-12.png#center" alt="alt text">
+BAM!</p>
+<br>
+  </content>
+  
+  <p>
+    
+    <a href="/blog/burp-suite/">#Burp Suite</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

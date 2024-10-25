@@ -2,16 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/burp-suite-sql-injection/</loc>
-    <lastmod>2024-10-23T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/burp-suite-sql-injection-2/</loc>
+    <lastmod>2024-10-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/burp-suite/</loc>
-    <lastmod>2024-10-23T00:00:00+00:00</lastmod>
+    <lastmod>2024-10-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2024-10-23T00:00:00+00:00</lastmod>
+    <lastmod>2024-10-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2024-10-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/burp-suite-sql-injection/</loc>
     <lastmod>2024-10-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/burp-suite-file-upload-vulnerabilities-2/</loc>
@@ -196,8 +199,6 @@
   </url><url>
     <loc>http://localhost:1313/htb-meow/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/burp-suite-file-upload-vuln-3/</loc>
   </url><url>
     <loc>http://localhost:1313/photos/</loc>
   </url>
