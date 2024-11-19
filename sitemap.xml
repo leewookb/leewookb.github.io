@@ -2,18 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/bhpt-vault/</loc>
-    <lastmod>2024-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/bhpt/</loc>
-    <lastmod>2024-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2024-11-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/overthewire-bandit-18-34/</loc>
     <lastmod>2024-08-17T00:00:00+00:00</lastmod>
   </url><url>
@@ -21,6 +9,12 @@
     <lastmod>2024-08-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/over-the-wire/</loc>
+    <lastmod>2024-08-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-08-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-08-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/overthewire-bandit-0-17/</loc>
@@ -31,15 +25,6 @@
   </url><url>
     <loc>http://localhost:1313/blog/today-i-learned/</loc>
     <lastmod>2024-07-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/thm-john-the-ripper/</loc>
-    <lastmod>2024-07-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/tryhackme/</loc>
-    <lastmod>2024-07-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/thm-owasp-top-10/</loc>
-    <lastmod>2024-06-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/til-subnetting-2/</loc>
     <lastmod>2024-06-26T00:00:00+00:00</lastmod>
