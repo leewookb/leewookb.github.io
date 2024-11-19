@@ -1,19 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/images/favicon.png" />
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Wook&#39;s blog/til-life-of-a-packet/</title>
+    <meta name="description" content="Wook blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/terminal-0.7.4.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/animate-4.1.1.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="[TIL] Life of a Packet" />
+<meta property="og:description" content="Wook blog" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/til-life-of-a-packet/" /><meta property="article:published_time" content="2024-06-24T00:00:00+00:00" />
+<meta property="og:site_name" content="leewookb" />
 
-<title>[TIL] Life of a Packet&nbsp;|&nbsp;Wook&#39;s blog</title>
-<meta
-  name="title"
-  content="[TIL] Life of a Packet"
-/>
-<meta
-  name="description"
-  content="Today, while studying for my CCNA with Jeremy&rsquo;s IT Lab YouTube videos, I learned something very useful that I can&rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.
+
+<meta name="twitter:title" content="[TIL] Life of a Packet"/>
+<meta name="twitter:description" content="Today, while studying for my CCNA with Jeremy&rsquo;s IT Lab YouTube videos, I learned something very useful that I can&rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.
 
 
 The image below is the network topology used in the Lab.
@@ -21,124 +32,30 @@ The image below is the network topology used in the Lab.
 PC1 pings PC4.
 Identify the source/destination MAC address at each specified point in the route to PC4.
 Identify the MAC address by the device and interface (ie. the MAC of R1 G0/0)
-"
-/>
-<meta
-  name="keywords"
-  content="Today I Learned,"
-/>
+"/>
 
-  <meta name="author" content="Wook Lee" />
-
-
-
-
-<meta property="og:url" content="http://localhost:1313/til-life-of-a-packet/">
-  <meta property="og:site_name" content="Wook&#39;s blog">
-  <meta property="og:title" content="[TIL] Life of a Packet">
-  <meta property="og:description" content="Today, while studying for my CCNA with Jeremy’s IT Lab YouTube videos, I learned something very useful that I can’t help but write about because I want to remember it for a long time and make the knowledge mine.
-The image below is the network topology used in the Lab.
-PC1 pings PC4.
-Identify the source/destination MAC address at each specified point in the route to PC4. Identify the MAC address by the device and interface (ie. the MAC of R1 G0/0)">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2024-06-24T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-06-24T00:00:00+00:00">
-    <meta property="article:tag" content="Today I Learned">
-
-
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[TIL] Life of a Packet">
-  <meta name="twitter:description" content="Today, while studying for my CCNA with Jeremy’s IT Lab YouTube videos, I learned something very useful that I can’t help but write about because I want to remember it for a long time and make the knowledge mine.
-The image below is the network topology used in the Lab.
-PC1 pings PC4.
-Identify the source/destination MAC address at each specified point in the route to PC4. Identify the MAC address by the device and interface (ie. the MAC of R1 G0/0)">
-
-
-
-
-
-  <meta itemprop="name" content="[TIL] Life of a Packet">
-  <meta itemprop="description" content="Today, while studying for my CCNA with Jeremy’s IT Lab YouTube videos, I learned something very useful that I can’t help but write about because I want to remember it for a long time and make the knowledge mine.
-The image below is the network topology used in the Lab.
-PC1 pings PC4.
-Identify the source/destination MAC address at each specified point in the route to PC4. Identify the MAC address by the device and interface (ie. the MAC of R1 G0/0)">
-  <meta itemprop="datePublished" content="2024-06-24T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-06-24T00:00:00+00:00">
-  <meta itemprop="wordCount" content="768">
-  <meta itemprop="keywords" content="Today I Learned">
-<meta name="referrer" content="no-referrer-when-downgrade" />
-
-    
-    <link href="/simple.min.css" rel="stylesheet" />
-
-    
-    <link href="/style.min.css" rel="stylesheet" />
-
-    
-
-    
 </head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="http://localhost:1313/" class="no-style ">Wook&#39;s blog</a>:~# 
+              <a href='http://localhost:1313/til-life-of-a-packet'>til-life-of-a-packet</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
 
-  <body>
-    <header>
-      <nav>
-  <a
-    href="/"
-    
-    >Home</a
-  >
-
-  <a
-    href="/blog/"
-    
-    >Blog</a
-  >
-
-  <a
-    href="/photos/"
-    
-    >Photos</a
-  >
-
-
-  <a href="/index.xml">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
-      
-      <path
-        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
-      />
-    </svg>
-    RSS
-  </a>
-
-</nav>
-
+    <div class="container " >
+        
 <h1>[TIL] Life of a Packet</h1>
-
-
-    </header>
-    <main>
-      
-  
-    
-      
-      <p>
-        <i>
-          <time datetime="2024-06-24" pubdate>
-            2024-06-24
-          </time>
-        </i>
-      </p>
-    
-  
-  
-  <content>
-    <p>Today, while studying for my CCNA with Jeremy&rsquo;s IT Lab YouTube videos, I learned something very useful that I can&rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.</p>
+<p>Today, while studying for my CCNA with Jeremy&rsquo;s IT Lab YouTube videos, I learned something very useful that I can&rsquo;t help but write about because I want to remember it for a long time and make the knowledge mine.</p>
 <div style="text-align: center"><img src="./pepe-internet.gif"></div>
 <hr>
 <p>The image below is the network topology used in the Lab.</p>
@@ -148,21 +65,9 @@ Identify the source/destination MAC address at each specified point in the route
 Identify the MAC address by the device and interface (ie. the MAC of R1 G0/0)
 </br></p>
 <h5 id="q1-sourcedestination-mac-addresses-at-pc1--sw1-segment">Q1. Source/Destination MAC addresses at PC1 → SW1 segment</h5>
-
-
-
-
-
-
 <pre tabindex="0"><code>Source MAC Address: 1111
-Destination MAC Address: AAAA</code></pre>
-
-
-
-
-
-
-<pre tabindex="0"><code>C:\&gt;ipconfig /all
+Destination MAC Address: AAAA
+</code></pre><pre tabindex="0"><code>C:\&gt;ipconfig /all
 
 FastEthernet0 Connection:(default port)
 
@@ -178,42 +83,24 @@ DHCP Servers....................: 0.0.0.0
 DHCPv6 IAID.....................:
 DHCPv6 Client DUID..............: 00-01-00-01-09-99-E5-2C-00-D0-BA-11-11-11
 DNS Servers.....................: ::
-0.0.0.0</code></pre>
-<p>the last four digits of PC1&rsquo;s MAC Address is <code>1111</code> . We are sending a packet from PC1 to PC4, which means the source IP Address is <code>192.168.1.1</code> (PC1&rsquo;s IP Address) and the destination IP Address is <code>192.168.3.1</code> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <code>default gateway</code>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
-
-
-
-
-
-
+0.0.0.0
+</code></pre><p>the last four digits of PC1&rsquo;s MAC Address is <code>1111</code> . We are sending a packet from PC1 to PC4, which means the source IP Address is <code>192.168.1.1</code> (PC1&rsquo;s IP Address) and the destination IP Address is <code>192.168.3.1</code> (PC4&rsquo;s IP Address). The source and destination IP Address remain unchanged throughout the communication. Because PC4 is located on a different network, PC1 will encapsulate the packet with an Ethernet header and the destination MAC address will be the MAC address of its <code>default gateway</code>. In this case, it&rsquo;s R1&rsquo;s g0/0 interface. It will be the destination MAC address.</p>
 <pre tabindex="0"><code>R1&gt;enable
 R1#show interfaces g0/0
 GigabitEthernet0/0 is up, line protocol is up (connected)
-Hardware is CN Gigabit Ethernet, address is 0000.01aa.aaaa (bia 00d0.ff77.0101)</code></pre>
-<p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <code>aaaa</code> .</p>
+Hardware is CN Gigabit Ethernet, address is 0000.01aa.aaaa (bia 00d0.ff77.0101)
+</code></pre><p>The last four digits of R1&rsquo;s g0/0 interface MAC address is <code>aaaa</code> .</p>
 <div style="text-align: center"><img src="./image16.png"></div>
 <br/>
 <h5 id="q2-sourcedestination-mac-addresses-at-sw1--r1-segment">Q2. Source/Destination MAC addresses at SW1 → R1 segment.</h5>
-
-
-
-
-
-
 <pre tabindex="0"><code>Source MAC Address: 1111
-Destination MAC Address: AAAA</code></pre>
-<p>The Source/Destination MAC addresses at SW1 to R1 segment should be the same as Q1. Switches do not change the source and destination MAC addresses in the frame. It will simply use the source MAC address field in the Ethernet header to learn PC1&rsquo;s MAC address if it doesn&rsquo;t already know it, and then forward the frame to the proper destination, or flood it if it hasn&rsquo;t learned the destination MAC address yet.</p>
+Destination MAC Address: AAAA
+</code></pre><p>The Source/Destination MAC addresses at SW1 to R1 segment should be the same as Q1. Switches do not change the source and destination MAC addresses in the frame. It will simply use the source MAC address field in the Ethernet header to learn PC1&rsquo;s MAC address if it doesn&rsquo;t already know it, and then forward the frame to the proper destination, or flood it if it hasn&rsquo;t learned the destination MAC address yet.</p>
 <br/>
 <h5 id="q3-sourcedestination-mac-addresses-at-r1--r2-segment">Q3. Source/Destination MAC addresses at R1 → R2 segment</h5>
-
-
-
-
-
-
 <pre tabindex="0"><code>Source MAC address: BBBB
-Destination MAC address: CCCC</code></pre>
-<p>Like I already mentioned, the source and destination IP addresses will remain the same, as R1 encapsulates the packet with an Ethernet header, it will use the MAC address of its g0/1 interface as the source MAC address and the MAC address of R2&rsquo;s g0/0 interface, which is the next hop in the route, as the destination MAC address.</p>
+Destination MAC address: CCCC
+</code></pre><p>Like I already mentioned, the source and destination IP addresses will remain the same, as R1 encapsulates the packet with an Ethernet header, it will use the MAC address of its g0/1 interface as the source MAC address and the MAC address of R2&rsquo;s g0/0 interface, which is the next hop in the route, as the destination MAC address.</p>
 <div style="text-align: center"><img src="./image17.png"></div>
 <p>The last four digits of R1&rsquo;s g0/1 interface MAC address is <code>BBBB</code>.</p>
 <div style="text-align: center"><img src="./image18.png"></div>
@@ -222,15 +109,9 @@ Destination MAC address: CCCC</code></pre>
 <p>Here, on Cisco Packet Tracer, we can confirm the source/destination MAC address on the Ethernet header in Layer 2.</p>
 <br/>
 <h5 id="q4-sourcedestination-mac-addresses-at-r2--r3-segment">Q4. Source/Destination MAC addresses at R2 → R3 segment.</h5>
-
-
-
-
-
-
 <pre tabindex="0"><code>Source MAC address: DDDD
-Destination MAC address: EEEE</code></pre>
-<p>The source MAC address will be R2&rsquo;s interface g0/1 and the destination MAC address will be R3&rsquo;s interface g0/0.</p>
+Destination MAC address: EEEE
+</code></pre><p>The source MAC address will be R2&rsquo;s interface g0/1 and the destination MAC address will be R3&rsquo;s interface g0/0.</p>
 <div style="text-align: center"><img src="./image20.png"></div>
 <p>The last four digits of R2&rsquo;s interface g0/1 MAC address is <code>DDDD</code>.</p>
 <div style="text-align: center"><img src="./image21.png"></div>
@@ -238,24 +119,12 @@ Destination MAC address: EEEE</code></pre>
 <div style="text-align: center"><img src="./image22.png"></div>
 <br/>
 <h5 id="q5-e-sourcedestination-mac-addresses-at-r3--sw2-segment">Q5. E. Source/Destination MAC addresses at R3 → SW2 segment.</h5>
-
-
-
-
-
-
 <pre tabindex="0"><code>Source MAC address: FFFF
-Destination MAC address: 4444</code></pre>
-<p>At this point, the destination IP address is part of a network connected to R3, <code>192.168.3.0/24</code> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
+Destination MAC address: 4444
+</code></pre><p>At this point, the destination IP address is part of a network connected to R3, <code>192.168.3.0/24</code> , so R3 knows it can send the packet directly to PC4. So, it will set the destination MAC address to PC4&rsquo;s MAC address, and use its own address as the source.</p>
 <p>The source MAC address will be R3&rsquo;s g0/1 interface, which is <code>FFFF</code> .</p>
 <div style="text-align: center"><img src="./image23.png"></div>
 <p>The destination MAC address will be PC4&rsquo;s MAC address, which turned out to be <code>4444</code> (the last 4 digits).</p>
-
-
-
-
-
-
 <pre tabindex="0"><code>Cisco Packet Tracer PC Command Line 1.0
 C:\&gt;ipconfig /all
 
@@ -273,40 +142,19 @@ DHCP Servers....................: 0.0.0.0
 DHCPv6 IAID.....................:
 DHCPv6 Client DUID..............: 00-01-00-01-2D-AC-7E-D8-00-0C-85-44-44-44
 DNS Servers.....................: ::
-0.0.0.0</code></pre>
-<br/>
+0.0.0.0
+</code></pre><br/>
 <h5 id="q6-sourcedestination-mac-addresses-at-sw2--pc4-segment">Q6. Source/Destination MAC addresses at SW2 → PC4 segment.</h5>
-
-
-
-
-
-
 <pre tabindex="0"><code>Source MAC address: FFFF
-Destination MAC address: 4444</code></pre>
-<p>The answer for Q6 is the same as Q5 because the SW2 only forwards the frame. The switch does not alter the source or destination MAC addresses in the Ethernet frame. The switch&rsquo;s role is to efficiently forward the frame to the correct destination based on its MAC address table. If it doesn&rsquo;t already know the destination MAC address, it will flood the frame.</p>
-
-  </content>
-  
-  <p>
-    
-    <a href="/blog/today-i-learned/">#Today I Learned</a>&nbsp;&nbsp;
-    
-  </p>
-
-    </main>
-    <footer>
-      
-
-  <span>
-    
-    Made with
-    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
-  </span>
+Destination MAC address: 4444
+</code></pre><p>The answer for Q6 is the same as Q5 because the SW2 only forwards the frame. The switch does not alter the source or destination MAC addresses in the Ethernet frame. The switch&rsquo;s role is to efficiently forward the frame to the correct destination based on its MAC address table. If it doesn&rsquo;t already know the destination MAC address, it will flood the frame.</p>
 
 
-    </footer>
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a> with
+    <a href="https://github.com/mrmierzejewski/hugo-theme-console/">Console Theme</a>. 
+</div>
 
-    
-</body>
+    </div>
+  </body>
 </html>

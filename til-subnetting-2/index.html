@@ -1,132 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/images/favicon.png" />
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Wook&#39;s blog/til-subnetting-2/</title>
+    <meta name="description" content="Wook blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/terminal-0.7.4.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/animate-4.1.1.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="[TIL] Subnetting 2" />
+<meta property="og:description" content="Wook blog" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/til-subnetting-2/" /><meta property="article:published_time" content="2024-06-26T00:00:00+00:00" />
+<meta property="og:site_name" content="leewookb" />
 
-<title>[TIL] Subnetting 2&nbsp;|&nbsp;Wook&#39;s blog</title>
-<meta
-  name="title"
-  content="[TIL] Subnetting 2"
-/>
-<meta
-  name="description"
-  content="
+
+<meta name="twitter:title" content="[TIL] Subnetting 2"/>
+<meta name="twitter:description" content="
 Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32."
-/>
-<meta
-  name="keywords"
-  content="Today I Learned,"
-/>
+First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32."/>
 
-  <meta name="author" content="Wook Lee" />
-
-
-
-
-<meta property="og:url" content="http://localhost:1313/til-subnetting-2/">
-  <meta property="og:site_name" content="Wook&#39;s blog">
-  <meta property="og:title" content="[TIL] Subnetting 2">
-  <meta property="og:description" content="Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn’t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2024-06-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-06-26T00:00:00+00:00">
-    <meta property="article:tag" content="Today I Learned">
-
-
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[TIL] Subnetting 2">
-  <meta name="twitter:description" content="Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn’t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.">
-
-
-
-
-
-  <meta itemprop="name" content="[TIL] Subnetting 2">
-  <meta itemprop="description" content="Divide the 192.168.1.0/24 network into 4 subnets that can accommodate 45 number of hosts.
-First, we determined that the prefix length needs to be /26 because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is 2^n - 2, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn’t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.">
-  <meta itemprop="datePublished" content="2024-06-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-06-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="987">
-  <meta itemprop="keywords" content="Today I Learned">
-<meta name="referrer" content="no-referrer-when-downgrade" />
-
-    
-    <link href="/simple.min.css" rel="stylesheet" />
-
-    
-    <link href="/style.min.css" rel="stylesheet" />
-
-    
-
-    
 </head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="http://localhost:1313/" class="no-style ">Wook&#39;s blog</a>:~# 
+              <a href='http://localhost:1313/til-subnetting-2'>til-subnetting-2</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
 
-  <body>
-    <header>
-      <nav>
-  <a
-    href="/"
-    
-    >Home</a
-  >
-
-  <a
-    href="/blog/"
-    
-    >Blog</a
-  >
-
-  <a
-    href="/photos/"
-    
-    >Photos</a
-  >
-
-
-  <a href="/index.xml">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
-      
-      <path
-        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
-      />
-    </svg>
-    RSS
-  </a>
-
-</nav>
-
+    <div class="container " >
+        
 <h1>[TIL] Subnetting 2</h1>
-
-
-    </header>
-    <main>
-      
-  
-    
-      
-      <p>
-        <i>
-          <time datetime="2024-06-26" pubdate>
-            2024-06-26
-          </time>
-        </i>
-      </p>
-    
-  
-  
-  <content>
-    <div style="text-align: center"><img src="./image-30.png"></div>
+<div style="text-align: center"><img src="./image-30.png"></div>
 <p>Divide the <code>192.168.1.0/24</code> network into 4 subnets that can accommodate 45 number of hosts.</p>
 <p>First, we determined that the prefix length needs to be <code>/26</code> because each subnet must be able to include 45 hosts. The formula to calculate the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If there are 5 host bits, then 2^5 - 2 = 30, which is not enough to include 45 hosts. Therefore, we need 2^6 - 2 = 62, which isn&rsquo;t exactly 45 but is sufficient. To accommodate 45 hosts, we need 6 host bits. This makes the prefix length /26, since we subtract the 6 host bits from the total address length of 32.</p>
 <p>The network address of <code>subnet 1</code> is 192.168.1.0/26. To find the broadcast address of subnet 1, we first convert the subnet 1 address to binary:
@@ -182,37 +105,19 @@ we have to borrow 7 bits. 16 + 7 = /23.
 <h3 id="quiz">Quiz</h3>
 <hr>
 <p>Q1. You have been given the <code>172.30.0.0/16</code> network. Your company requires 100 subnets with at least 500 hosts per subnet. What prefix length should you use?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>/23</code></pre>
-<br>
+<pre tabindex="0"><code>/23
+</code></pre><br>
 <p>Q2. What subnet does host <code>172.21.111.201/20</code> belong to?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>172.21.96.0/20</code></pre>
-<ul>
+<pre tabindex="0"><code>172.21.96.0/20
+</code></pre><ul>
 <li>Convert the address to binary: <code>10101100.00010101.01101111.11001001</code></li>
 <li>Change the host bits to 0s. Since the prefix length is <code>/20</code> , we can set the last 12 bits to 0s: <code>10101100.00010101.01100000.00000000</code></li>
 <li>Convert the binary bits back to dotted decimal: <code>172.21.96.0/20</code></li>
 </ul>
 <br>
 <p>Q3. What is the broadcast address of the network 192.168.91.78/26 belongs to?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>192.168.91.127/26</code></pre>
-<ul>
+<pre tabindex="0"><code>192.168.91.127/26
+</code></pre><ul>
 <li>Convert the address to binary bits:
 <ul>
 <li><code>11000000.10101000.01011011.01001110</code>.</li>
@@ -237,15 +142,9 @@ we have to borrow 7 bits. 16 + 7 = /23.
 </ul>
 <br>
 <p>Q4. You divide the <code>172.16.0.0/16</code> network into 4 subnets of equal size. Identify the network and broadcast addresses of the second subnet.</p>
-
-
-
-
-
-
 <pre tabindex="0"><code>network address: 172.16.64.0/18
-broadcast address: 172.16.127.255/18</code></pre>
-<ul>
+broadcast address: 172.16.127.255/18
+</code></pre><ul>
 <li>The original subnet mask for a /16 network is 255.255.0.0.</li>
 <li>Dividing into 4 subnets require 2 additional bits for subnetting (2^2 = 4).</li>
 <li>This changes the subnet mask to 255.255.192.0 /18.</li>
@@ -261,37 +160,16 @@ broadcast address: 172.16.127.255/18</code></pre>
 </ul>
 <br>
 <p>Q5. You divide the 172.30.0.0/16 network into subnets of 1000 hosts each. How many subnets are you able to make?</p>
-
-
-
-
-
-
-<pre tabindex="0"><code>64</code></pre>
-<p>To divide the network into subnets that each accommodate 1,000 hosts, we first need to determine how many bits are required for the hosts. The formula for calculating the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If we use 10 bits for the hosts, we get 2^10 - 2 = 1,022 hosts, which is more than enough.</p>
+<pre tabindex="0"><code>64
+</code></pre><p>To divide the network into subnets that each accommodate 1,000 hosts, we first need to determine how many bits are required for the hosts. The formula for calculating the number of hosts is <code>2^n - 2</code>, where n is the number of host bits. If we use 10 bits for the hosts, we get 2^10 - 2 = 1,022 hosts, which is more than enough.</p>
 <p>The maximum prefix length is /32. Subtracting the 10 host bits from 32 gives us a prefix length of /22. Therefore, the subnet mask of the subnets will be /22. The original subnet mask was /16, so we&rsquo;ve borrowed 6 bits from the original network for subnetting. With these 6 additional bits, we can create 64 (2^6) subnets.</p>
 
-  </content>
-  
-  <p>
-    
-    <a href="/blog/today-i-learned/">#Today I Learned</a>&nbsp;&nbsp;
-    
-  </p>
 
-    </main>
-    <footer>
-      
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a> with
+    <a href="https://github.com/mrmierzejewski/hugo-theme-console/">Console Theme</a>. 
+</div>
 
-  <span>
-    
-    Made with
-    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
-  </span>
-
-
-    </footer>
-
-    
-</body>
+    </div>
+  </body>
 </html>

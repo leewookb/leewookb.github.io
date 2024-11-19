@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[TIL] Routing&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[TIL] Routing"
+/>
+<meta
+  name="description"
+  content="I&rsquo;m currently studying for the CCNA exam, primarily using Jeremy&rsquo;s IT Lab YouTube channel. He&rsquo;s well-known for providing great CCNA content, and the best part is that it&rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress."
+/>
+<meta
+  name="keywords"
+  content="Today I Learned,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/posts/til-routing/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[TIL] Routing">
+  <meta property="og:description" content="I’m currently studying for the CCNA exam, primarily using Jeremy’s IT Lab YouTube channel. He’s well-known for providing great CCNA content, and the best part is that it’s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-06-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-18T00:00:00+00:00">
+    <meta property="article:tag" content="Today I Learned">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[TIL] Routing">
+  <meta name="twitter:description" content="I’m currently studying for the CCNA exam, primarily using Jeremy’s IT Lab YouTube channel. He’s well-known for providing great CCNA content, and the best part is that it’s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.">
+
+
+
+
+
+  <meta itemprop="name" content="[TIL] Routing">
+  <meta itemprop="description" content="I’m currently studying for the CCNA exam, primarily using Jeremy’s IT Lab YouTube channel. He’s well-known for providing great CCNA content, and the best part is that it’s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.">
+  <meta itemprop="datePublished" content="2024-06-18T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-06-18T00:00:00+00:00">
+  <meta itemprop="wordCount" content="583">
+  <meta itemprop="keywords" content="Today I Learned">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/posts/"
+    
+    >Posts</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[TIL] Routing</h1>
+
+
+    </header>
+    <main>
+      
+  
+  
+  <content>
+    <p>I&rsquo;m currently studying for the CCNA exam, primarily using Jeremy&rsquo;s IT Lab YouTube channel. He&rsquo;s well-known for providing great CCNA content, and the best part is that it&rsquo;s all free on YouTube. Jeremy also offers Anki flashcards, which I absolutely love and use daily, as well as Cisco Packet Tracer, which is an excellent resource for hands-on practice. I plan to take the exam in 3 to 4 months, though this timeline might change depending on my study and preparation progress.</p>
+<p>Today, I learned about routing.</p>
+<h3 id="what-is-routing">What is Routing?</h3>
+<hr>
+<p>Definition:</p>
+<blockquote>
+<p>Routing is the process that routers use to determine the path that IP packets should take over a network to reach their destination.</p>
+</blockquote>
+<p>When a router receives a packet, it&rsquo;s the router&rsquo;s job to forward it to the correct destination.</p>
+<p>Routers store routes to all of their known destinations in a <code>Routing table</code>.</p>
+<p>Switches keep a MAC address table with their known destination MAC addresses, and routers keep a routing table with their known destination networks.</p>
+<p>When routers receive packets, they look in the routing table to find the best route to forward the packet.</p>
+<p>There are two main routing methods:</p>
+<ul>
+<li>
+<p><code>dynamic routing</code>: Routers use dynamic protocols (i.e., OSPF) to share routing information with each other automatically and build their routing tables.</p>
+</li>
+<li>
+<p><code>static routing</code>: A network engineer/admin manually configures routes on the router.
+But before we go into routing methods,</p>
+</li>
+</ul>
+<h3 id="what-exactly-is-a-route">What exactly is a route?</h3>
+<hr>
+<p>Basically, it&rsquo;s an instruction to the router.</p>
+<p>A route tells the router:</p>
+<ul>
+<li>To send a packet to destination X, you should send the packet to next-hop Y.</li>
+<li>or, if the destination is directly connected to the router, send the packet directly to the destination.</li>
+<li>or, if the destination is the router&rsquo;s own IP address, receive the packet for yourself (don&rsquo;t forward it).</li>
+</ul>
+<p>Also, there are few types of routes found in routing tables.</p>
+<ol>
+<li><code>Connected routes</code></li>
+<li><code>Local routes</code></li>
+</ol>
+<p><code>Connected Routes</code></p>
+<ul>
+<li>These are routes that are directly connected to a router&rsquo;s interface.</li>
+<li>they are automatically created when an interface is configured with an IP address and brought up. Connected routes are essential for a router to communicate with devices on the directly attached network.</li>
+</ul>
+<p><code>Local Routes</code></p>
+<ul>
+<li>These are routes to the IP addresses assigned to the router&rsquo;s own interfaces.</li>
+<li>Local routes are used to specify that the router can directly reach its own IP addresses. They have the highest priority in the routing table since the router must be able to communicate with its own interfaces.</li>
+<li><code>/32</code> netmask is used to specify the exact IP address of the interface.</li>
+</ul>
+<p>There&rsquo;s a special kind of static route called a <code>default route</code>.</p>
+<p>This is a route that you configure inside the router that says, if nothing else matches inside of our routing table, send the traffic this way.</p>
+<p>It&rsquo;s also known as the &ldquo;gateway of last resort&rdquo;</p>
+<p>A default route is a route to <code>0.0.0.0/0</code></p>
+<ul>
+<li><code>/0</code> means that all bits of the netmask are 0, so none of the bits of the addresses are fixed. They can all change to be either 0 or 1.</li>
+<li><code>0.0.0.0/0</code> is the least specific route possible; it includes every possible destination IP address.</li>
+<li>If the router doesn&rsquo;t have any more specific routes that match a packet&rsquo;s destination IP address, the router will forward the packet using the default route.</li>
+</ul>
+<ul>
+<li>A default route is often used to direct traffic to the Internet.
+<ul>
+<li>More specific routes are used for destinations in the internal corporate network.</li>
+<li>Traffic to destinations outside of the internal network is sent to the Internet.</li>
+</ul>
+</li>
+</ul>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/today-i-learned/">#Today I Learned</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

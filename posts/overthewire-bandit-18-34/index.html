@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[OverTheWire] Bandit 18-34&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[OverTheWire] Bandit 18-34"
+/>
+<meta
+  name="description"
+  content="Level 17 -&gt; 18
+There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+
+As stated in the question, my job was to find the line that had been changed between passwords.old file and passwords.new file. We can utilize the diff command to solve this question."
+/>
+<meta
+  name="keywords"
+  content="Over The Wire,Bandit,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/posts/overthewire-bandit-18-34/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[OverTheWire] Bandit 18-34">
+  <meta property="og:description" content="Level 17 -&gt; 18 There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+As stated in the question, my job was to find the line that had been changed between passwords.old file and passwords.new file. We can utilize the diff command to solve this question.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-08-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-17T00:00:00+00:00">
+    <meta property="article:tag" content="Over The Wire">
+    <meta property="article:tag" content="Bandit">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[OverTheWire] Bandit 18-34">
+  <meta name="twitter:description" content="Level 17 -&gt; 18 There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+As stated in the question, my job was to find the line that had been changed between passwords.old file and passwords.new file. We can utilize the diff command to solve this question.">
+
+
+
+
+
+  <meta itemprop="name" content="[OverTheWire] Bandit 18-34">
+  <meta itemprop="description" content="Level 17 -&gt; 18 There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+As stated in the question, my job was to find the line that had been changed between passwords.old file and passwords.new file. We can utilize the diff command to solve this question.">
+  <meta itemprop="datePublished" content="2024-08-17T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-08-17T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2783">
+  <meta itemprop="keywords" content="Over The Wire,Bandit">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/posts/"
+    
+    >Posts</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[OverTheWire] Bandit 18-34</h1>
+
+
+    </header>
+    <main>
+      
+  
+  
+  <content>
+    <h4 id="level-17---18">Level 17 -&gt; 18</h4>
+<p>There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new</p>
+<p><img src="image.png#center" alt="alt text"></p>
+<p>As stated in the question, my job was to find the line that had been changed between <strong>passwords.old</strong> file and <strong>passwords.new</strong> file. We can utilize the <code>diff</code> command to solve this question.</p>
+<p>the output <code>42c42</code> indicates that there is a change on line 42 of both files.</p>
+<ul>
+<li>The first <code>42</code> refers to line 42 in the <strong>passwords.new</strong> file.</li>
+<li>The second <code>42</code> refers to line 42 in the <strong>passwords.old</strong> file.</li>
+<li>The <code>c</code> between them stands for &ldquo;change&rdquo;.</li>
+</ul>
+<p><code>&lt; x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO</code> This line shows the content of line 42 in the <strong>passwords.new</strong> file.</p>
+<p><code>&gt; bSrACvJvvBSxEM2SGsV5sn09vc3xgqyp</code> This line shows the content of line 42 in the <strong>passwords.old</strong> file.</p>
+<p><strong><em>password</em></strong>: <code>x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO</code></p>
+<hr>
+<h4 id="level-18---19">Level 18 -&gt; 19</h4>
+<p>The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.</p>
+<p><img src="image-1.png#center" alt="alt text">
+As stated in the question, we are not able to login to the bash shell becausome someone has modified the <strong>.bashrc</strong> file.</p>
+<br>
+<p><img src="image-2.png#center" alt="alt text">
+I learned that under the <strong>/etc/shells</strong> directory, the details of all the shells that are available on a system is stored there. These are the shells I can use on my local system.</p>
+<br>
+<p><img src="image-3.png#center" alt="alt text">
+Also the man page of <strong>ssh</strong> command explains that <code>-t</code> option is used to specify the shell to be used to login to the system.</p>
+<br>
+<p><img src="image-5.png#center" alt="alt text">
+Combined everything, the following command allowed me to login to the server as <strong>bandit18</strong> and found the password for the next level.</p>
+<p><code>ssh bandit18@bandit.labs.overthewire.org -p 2220 -t &quot;/bin/sh&quot;</code></p>
+<br>
+<p><strong><em>password</em></strong>: <code>cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8</code></p>
+<hr>
+<h4 id="level-19---20">Level 19 -&gt; 20</h4>
+<p>To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.</p>
+<p><img src="image-6.png#center" alt="alt text">
+confirmed the setuid binary existed inside the directory</p>
+<br>
+<p><img src="image-7.png#center" alt="alt text">
+executed the file without any arugument to find out how to use it. Following the example, I noticed that the username associated with the euid is <strong>bandit20</strong> while all other IDs are associated with the username <strong>bandit19</strong>. The <code>euid</code> or <code>effective user ID</code> is used for <strong><em>privilege checks during execution</em></strong> meaning we can run commands as if we were the bandit20 user.</p>
+<br>
+<p><img src="image-8.png#center" alt="alt text">
+looked up the password of bandit20 user with the SUID binary.</p>
+<p><strong><em>password</em></strong>: <code>0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO</code></p>
+<hr>
+<h4 id="level-20---21">Level 20 -&gt; 21</h4>
+<p>There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).</p>
+<p>NOTE: Try connecting to your own network daemon to see if it works as you think</p>
+<p><img src="image-9.png#center" alt="alt text">
+For this level, I found using <code>tmux</code> very useful because it allows you to create multiple panes on one window, making it easy to swtich between them. The question hints that we have to make a connection to localhost so I set up a listener on the local as you can see in the right pane.</p>
+<br>
+<p><img src="image-10.png#center" alt="alt text">
+Then I ran the SUID binary by running the command with the port number 1234 as the argument <code>./suconnect 1234</code> and the connection was successfully made.</p>
+<br>
+<p><img src="image-11.png#center" alt="alt text">
+It prompted me to input the password, which I did. The message &ldquo;Password matches, sending next password&rdquo; was returned in the left pane and the password for the next level appeared in the right pane.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>EeoULMCra2q0dSkYj561DX7s1CpBuOBt</code></p>
+<hr>
+<h4 id="level-21---22">Level 21 -&gt; 22</h4>
+<p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.</p>
+<p><img src="image-12.png#center" alt="alt text">
+Inside the <strong>/etc/cron.d</strong> directory, there were multiple files but the file that we are interested in is <strong><em>cronjob_bandit22</em></strong>.</p>
+<br>
+<p><img src="image-13.png#center" alt="alt text">
+The <strong><em>cronjob_bandit22</em></strong> file is scheduled to run at two intervals.</p>
+<ol>
+<li><code>@reboot</code>: runs the specified command when the system reboots.</li>
+<li><code>* * * * *</code>: Runs the specified command every minute.</li>
+</ol>
+<p>The scheduled command is that the user <strong>bandit22</strong> is running the <strong><em>cronjob_bandit22.sh</em></strong> file and any output is redirected to <strong>/dev/null</strong>, which means it is discarded.</p>
+<p>I looked inside the <strong><em>.sh</em></strong> file and found that it stores the password for bandit22 in the following path: <strong><em>/tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</em></strong>.</p>
+<br>
+<p><img src="image-14.png#center" alt="alt text">
+All that&rsquo;s left for us to do is look inside that file to retrieve the bandit22&rsquo;s password.</p>
+<p><strong><em>password</em></strong>: <code>tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q</code></p>
+<hr>
+<h4 id="level-22---23">Level 22 -&gt; 23</h4>
+<p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.</p>
+<p><img src="image-15.png#center" alt="alt text">
+This time we need to examine the <strong><em>cronjob_bandit23</em></strong> file inside the <strong><em>/etc/cron.d</em></strong> directory. Just like the previous question, the cronjob is scheduled to execute the following shell script: <strong>/usr/bin/cronjob_bandit23.sh</strong>.</p>
+<br>
+<p><img src="image-16.png#center" alt="alt text">
+Let&rsquo;s break down the shell script.</p>
+<ul>
+<li><code>md5sum</code>: calculates the MD5 hash of the input string.</li>
+<li><code>cut -d ' ' -f 1</code>: The <strong>cut</strong> command is used to split the input into sections based on a delimiter.
+<ul>
+<li><code>-d ' '</code>: specifies that the delimiter is a space character.</li>
+<li><code>-f 1</code>: specifies that you want to select the first field.</li>
+</ul>
+</li>
+</ul>
+<p>The entire command generates the MD5 hash of the string <code>I am user &lt;CURRENT USER&gt;</code> and then extracts and displays only the hash value and then stores the current user&rsquo;s password inside the following location: <strong>/tmp/&lt;MD5_HASH&gt;</strong></p>
+<br>
+<p><img src="image-17.png#center" alt="alt text">
+So all I had to do was replace the <code>$myname</code> variable with <code>bandit23</code> and run the command because I am currently looking for bandit23&rsquo;s password. It will return the md5 hash which is actually going to be the name of the file which stores bandit23&rsquo;s password.</p>
+<p><strong><em>password</em></strong>: <code>0Zf11ioIjMVN551jX3CmStKLYqjk54Ga</code></p>
+<hr>
+<h4 id="level-23---24">Level 23 -&gt; 24</h4>
+<p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.</p>
+<p><img src="image-18.png#center" alt="alt text">
+you can see that we can execute the shell file as the <strong><em>bandit24</em></strong> user</p>
+<br>
+<p><img src="image-19.png#center" alt="alt text">
+The code does exactly what the echo command says: <strong><em>Execute and delete all scripts in /var/spool/$myname/foo</em></strong>. In this case, the <code>myname</code> variable refers to <strong>bandit24</strong>.</p>
+<br>
+<p><img src="image-20.png#center" alt="alt text">
+confirmed that anyone can create files inside the <code>/var/spool/bandit24/foo</code> directory.</p>
+<br>
+<p><img src="image-23.png#center" alt="alt text">
+I created a <strong>tmp directory</strong> using the command <code>mktemp -d</code>, which automatically generated a directory named <code>tmp.ajuCmrTuOu</code>. Inside this directory, I created a file containing the code to retrieve the password for bandit24 and stored it in a file named <strong>password</strong> within the tmp directory.</p>
+<br>
+<p><img src="image-24.png#center" alt="alt text">
+Made sure the tmp directory and files are accessible by giving them 777 permissions.</p>
+<br>
+<p><img src="image-25.png#center" alt="alt text">
+I copied the file containing the code to retrieve the password to the path <code>/var/spool/bandit24/foo/</code>. This is the directory where all scripts will be executed and deleted. After this, you can wait for a minute and then read the password file to get the password for bandit24, as this is a cronjob that runs every minute.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8</code></p>
+<hr>
+<h4 id="level-24---25">Level 24 -&gt; 25</h4>
+<p>A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+You do not need to create new connections each time</p>
+<p><img src="image-28.png#center" alt="alt text">
+When you connect to port 30002, you will be prompted to input <strong><em>bandit24&rsquo;s password</em></strong> followed by a secret numeric <strong><em>4-digit pincode</em></strong> seaparated by a space. If either is incorrect, you will receive an error message and be prompted to try again.</p>
+<br>
+<p><img src="image-30.png#center" alt="alt text">
+Again, I made a tmp directory by running the <code>mktemp -d</code> command and wrote a bash script that iterates from 0000 to 9999 prepending each value with the bandit24 password. Each combination is stored in a file named <strong>bruteforce.txt</strong>.</p>
+<p>Once all possibilites are written, the script connects to the port and inputs each entry of the bruteforce, logging the output of each attempt into a <strong>result.txt</strong> file.</p>
+<br>
+<p><img src="image-31.png#center" alt="alt text">
+Before running the bash script, I gave it the <strong>executable</strong> permission.</p>
+<br>
+<p><img src="image-32.png#center" alt="alt text">
+This is the content of the <strong>bruteforce.txt</strong> file after running the bash script. Notice the scroll bar on the right is very small because of 10,000 possible entries.</p>
+<br>
+<p><img src="image-33.png#center" alt="alt text">
+This is the content of the <strong>result.txt</strong> file after running the bash script completion. Notice it returned <strong>Wrong! &hellip;</strong> for every entry with an incorrect pincode but the last entry returned <strong>Correct!</strong> along with the password for bandit25.</p>
+<br>
+<p><img src="image-34.png#center" alt="alt text">
+Another way to find the password for bandit25 is by using the <code>grep</code> command. The <code>-v</code> flag inverts the match, meaning it will select lines that do <strong><em>NOT</em></strong> match the pattern. We saw that for every entry that had the either wrong password or pincode returned the string &ldquo;Wrong&rdquo;, we can leverage this to find any line that does not include the pattern by using the option <code>-v</code>.</p>
+<p><strong><em>password</em></strong>: <code>iCi86ttT4KSNe1armKiwbQNmB3YJP3q4</code></p>
+<hr>
+<h4 id="level-25---26">Level 25 -&gt; 26</h4>
+<p>Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.</p>
+<p><img src="image-35.png#center" alt="alt text">
+When logged in as bandit25, we have the <strong>bandit26.sshkey</strong> inside the home directory.</p>
+<br>
+<p><img src="image-36.png#center" alt="alt text">
+Transferred the keyfile to my local environment using the <strong><em>scp</em></strong> command.</p>
+<br>
+<p><img src="image-37.png#center" alt="alt text">
+In order to login with the key file, you have to change the file permissions so that only the user has permissions to read/write/execute the file.</p>
+<br>
+<p><img src="image-38.png#center" alt="alt text">
+However, the server automatically kicked me out.</p>
+<br>
+<p><img src="image-39.png#center" alt="alt text">
+We have to remember that each user in SSH has a default shell. The <strong><em>/etc/passwd</em></strong> file displays what shell is the default for a user. As you can see, bandit26 user has <strong>/bin/showtext</strong> shell as the default.</p>
+<br>
+<p><img src="image-40.png#center" alt="alt text">
+We can see that the script opens a file called <strong><em>text.txt</em></strong> with the <strong><em>more</em></strong> program.</p>
+<br>
+<p><img src="image-41.png#center" alt="alt text">
+In order to make the <strong>more</strong> program run, we need to make the window smaller, then try logging in.</p>
+<br>
+<p><img src="image-42.png#center" alt="alt text">
+As you can see when we made the terminal window smaller, the <strong>more</strong> program will go into command mode.</p>
+<br>
+<p><img src="image-43.png#center" alt="alt text">
+From there, we can then use <code>v</code> to go into vim and rescale the window back.</p>
+<br>
+<p><img src="image-44.png#center" alt="alt text">
+To use the shell on vim, type <code>set shell=/bin/bash</code> and then use <code>:shell</code>. After getting the shell, I navigated to the <code>/etc/bandit_pass/bandit26</code> file to get the password for bandit26.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ</code></p>
+<hr>
+<h4 id="level-26---27">Level 26 -&gt; 27</h4>
+<p>Good job getting a shell! Now hurry and grab the password for bandit27!</p>
+<p><img src="image-45.png#center" alt="alt text"></p>
+<br>
+<p><img src="image-46.png#center" alt="alt text"></p>
+<br>
+<p><strong><em>password</em></strong>: <code>upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB</code></p>
+<hr>
+<h4 id="level-27---28">Level 27 -&gt; 28</h4>
+<p>There is a git repository at ssh://bandit27-git@localhost/home/bandit27-git/repo via the port 2220. The password for the user bandit27-git is the same as for the user bandit27.</p>
+<p>Clone the repository and find the password for the next level.</p>
+<p><img src="image-47.png#center" alt="alt text">
+I had to make a temporary directory inside the <code>/tmp</code> directory because the I did not have the permission to write in the <code>home</code> directory.</p>
+<br>
+<p><img src="image-48.png#center" alt="alt text">
+Failed to connect to the ssh server because I forgot to specify the port number 2220.</p>
+<br>
+<p><img src="image-49.png#center" alt="alt text">
+updated my command as the following:
+<code>git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo</code></p>
+<br>
+<p><img src="image-50.png#center" alt="alt text">
+Successfully cloned the git repo and there was <code>README</code> file, which contained the password for the next level, inside the <code>repo</code> directory.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN</code></p>
+<hr>
+<h4 id="level-28---29">Level 28 -&gt; 29</h4>
+<p>There is a git repository at ssh://bandit28-git@localhost/home/bandit28-git/repo via the port 2220. The password for the user bandit28-git is the same as for the user bandit28.</p>
+<p>Clone the repository and find the password for the next level.</p>
+<p><img src="image-51.png#center" alt="alt text">
+Since the question is exactly the same as the previous question except the bandit user#, I repeated the same process by making a temporary directory and cloned the repo.</p>
+<br>
+<p><img src="image-52.png#center" alt="alt text">
+Interestingly, the password inside <code>README.md</code> was censored.</p>
+<br>
+<p><img src="image-53.png#center" alt="alt text">
+As expected, the censored password, <code>xxxxxxx</code> did not work.</p>
+<br>
+<p><img src="image-55.png#center" alt="alt text">
+Since we know this question is related to <code>git</code>, I tried to look for submissions to the repo by typing <code>git log</code> and it showed three commits. The comment <code>fix info leak</code> maybe refers to censoring the leaked password.</p>
+<br>
+<p><img src="image-56.png#center" alt="alt text">
+I used the <code>git checkout</code> command to check the previous commit to verify if my hypothesis was correct.</p>
+<br>
+<p><img src="image-57.png#center" alt="alt text">
+Now we are on the previous version of the repo, I used the <code>cat</code> command to check out the readme file.</p>
+<p>And! There was the uncensored password for bandit29.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7</code></p>
+<hr>
+<h4 id="level-29---30">Level 29 -&gt; 30</h4>
+<p>There is a git repository at ssh://bandit29-git@localhost/home/bandit29-git/repo via the port 2220. The password for the user bandit29-git is the same as for the user bandit29.</p>
+<p>Clone the repository and find the password for the next level.</p>
+<p><img src="image-58.png#center" alt="alt text">
+Before we clone the repository, we already know that we have to make a temporary directory because we don&rsquo;t have permission to write in the home directory.</p>
+<br>
+<p><img src="image-59.png#center" alt="alt text">
+after cloning the repository, I navigated inside the repo folder and there was <strong>README.md</strong> file just like the two previous questions. This time there was a message saying <strong>no passwords in production!</strong> I thought the message implies there are more branches to this repo.</p>
+<br>
+<p><img src="image-60.png#center" alt="alt text">
+As you can see from the screenshot above, my theory was correct. The difference between <code>git branch</code> and <code>git branch -a</code>is that the former only shows local branches and the latter shows not only local but also remote branches.</p>
+<br>
+<p><img src="image-61.png#center" alt="alt text">
+I switched branch to <code>origin/dev</code> by running <code>git checkout origin/dev</code> command and checked out the content of README.md file and it contained the password for the next level as expected.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL</code></p>
+<hr>
+<h4 id="level-30---31">Level 30 -&gt; 31</h4>
+<p>There is a git repository at ssh://bandit30-git@localhost/home/bandit30-git/repo via the port 2220. The password for the user bandit30-git is the same as for the user bandit30.</p>
+<p>Clone the repository and find the password for the next level.</p>
+<p><img src="image-62.png#center" alt="alt text">
+Just like we did for the past few <code>git</code> related questions, we first have to create a <strong>tmp</strong> directory in order to clone the repo because we do not have the permission to <strong><em>write</em></strong> in the home directory.</p>
+<br>
+<p><img src="image-63.png#center" alt="alt text">
+the <strong>README.md</strong> file does not have any useful info but says that it&rsquo;s an empty file.</p>
+<br>
+<p><img src="image-65.png#center" alt="alt text"></p>
+<p><code>git log</code> and <code>git branch -a</code> commands also did not reveal any useful information. I was absolutely lost and didn&rsquo;t know how to proceed from here.</p>
+<br>
+<p><img src="image-66.png#center" alt="alt text"></p>
+<p>I researched online and found that there&rsquo;s <code>git tag</code> command that&rsquo;s used to create, list, delete, or verify tags in a Git repository and tags are often used to mark specific points in a repo&rsquo;s history, like releases or important milestones.</p>
+<p><code>git tag</code> command revealed a tag named <strong>secret</strong>. In order to display the content, we have to use <code>git show</code> command.</p>
+<p><code>git show</code> command is used to display detailed information about various Git objects, such as commits, tags, or trees.</p>
+<p>If you have annotated a tag, this command will display the tag&rsquo;s metadata.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy</code></p>
+<hr>
+<h4 id="level-31---32">Level 31 -&gt; 32</h4>
+<p>There is a git repository at ssh://bandit31-git@localhost/home/bandit31-git/repo via the port 2220. The password for the user bandit31-git is the same as for the user bandit31.</p>
+<p>Clone the repository and find the password for the next level.</p>
+<p><img src="image-67.png#center" alt="alt text">
+Same steps as before</p>
+<br>
+<p><img src="image-68.png#center" alt="alt text">
+This time the <strong>README.md</strong> file tells us to push a file to the remote repository.</p>
+<br>
+<p><img src="image-69.png#center" alt="alt text">
+Created a file named <strong>key.txt</strong> with the message, <strong><em>May I come in?</em></strong></p>
+<br>
+<p><img src="image-70.png#center" alt="alt text">
+However, when pushed to master branch, it returns <strong>Everything up-to-date</strong>. This is strange because I definitely created a new file and made some modifications to the repo.</p>
+<br>
+<p><img src="image-71.png#center" alt="alt text">
+The command <code>ls -la</code> revealed that there was <strong>.gitignore</strong> file and it&rsquo;s ignoring every file with <strong>.txt</strong> extension.</p>
+<p>A <strong>.gitignore</strong> file is used in Git to specify files and directories that should be ignored by Git. Any files or directories listed in a <strong>.gitignore</strong> file will not be tracked by Git, even if they are in your project directory.</p>
+<br>
+<p><img src="image-72.png#center" alt="alt text">
+replaced <strong>.txt</strong> with whitespaces.</p>
+<br>
+<p><img src="image-73.png#center" alt="alt text">
+Now the changes I made are being tracked by Git.</p>
+<br>
+<p><img src="image-74.png#center" alt="alt text">
+When pushed to the remote <strong><em>master</em></strong> branch, it returned the password for the next level.</p>
+<br>
+<p><strong><em>password</em></strong>: <code>3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K</code></p>
+<hr>
+<h4 id="level-32---33">Level 32 -&gt; 33</h4>
+<p>After all this git stuff, it’s time for another escape. Good luck!</p>
+<p><img src="image-75.png#center" alt="alt text">
+This level looked very different from the previous questions. The shell says <strong>WELCOME TO THE UPPERCASE SHELL</strong>.</p>
+<br>
+<p><img src="image-76.png#center" alt="alt text">
+just like its name implied, the shell converts every input to uppercase letters. Because of that reason, every command did not work.</p>
+<br>
+<p><img src="image-77.png#center" alt="alt text">
+I tried the <code>$0</code> command since it does not contain any letter, there&rsquo;s nothing to convert to uppercase letters.</p>
+<p><code>$0</code> is a special parameter. It represents the name of the script or shell being executed. When you type <code>$0</code>, it might return the name of the shell or script that is running.</p>
+<p>In our case, it seems to have triggered a change in the shell environment because the prompt changed from <code>&gt;&gt;</code> to <code>$</code>.</p>
+<p>And now the commands worked as it was supposed to. It&rsquo;s interesting that <code>whoami</code> returned that we are currently <strong>bandit33</strong> meaning that we can directly access the bandit33&rsquo;s password as the current user.</p>
+<br>
+<p><img src="image-78.png#center" alt="alt text"></p>
+<br>
+<p><strong><em>password</em></strong>: <code>tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0</code></p>
+<hr>
+<h4 id="level-33---34">Level 33 -&gt; 34</h4>
+<p>At this moment, level 34 does not exist yet.</p>
+<p><img src="image-79.png#center" alt="alt text"></p>
+<p>YAY!</p>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/over-the-wire/">#Over The Wire</a>&nbsp;&nbsp;
+    
+    <a href="/blog/bandit/">#Bandit</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>

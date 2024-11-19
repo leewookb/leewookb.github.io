@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Wook&#39;s blog/til-subnetting/</title>
+    <meta name="description" content="Wook blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/terminal-0.7.4.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/animate-4.1.1.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="[TIL] Subnetting" />
+<meta property="og:description" content="Wook blog" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/til-subnetting/" /><meta property="article:published_time" content="2024-06-25T00:00:00+00:00" />
+<meta property="og:site_name" content="leewookb" />
+
+
+<meta name="twitter:title" content="[TIL] Subnetting"/>
+<meta name="twitter:description" content="Today marks day 13 of studying CCNA with Jeremy&rsquo;s IT Lab. Today&rsquo;s topic was subnetting. Even though the topic was challenging to grasp at first, it&rsquo;s really interesting how people came up with such ideas to efficiently utilize the IP addressing system. People are geniuses!
+
+IPv4 Address Classes
+There are 5 different IPv4 classes
+
+A subnet refers to a portioned network within an IP address that divides the network area. The tool used to create these subnets is called a Subnet Mask. In other words, the Subnet Mask serves to separate the Network ID and the Host ID within the IP address system."/>
+
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="http://localhost:1313/" class="no-style ">Wook&#39;s blog</a>:~# 
+              <a href='http://localhost:1313/til-subnetting'>til-subnetting</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
+
+    <div class="container " >
+        
+<h1>[TIL] Subnetting</h1>
+<p>Today marks day 13 of studying CCNA with Jeremy&rsquo;s IT Lab. Today&rsquo;s topic was subnetting. Even though the topic was challenging to grasp at first, it&rsquo;s really interesting how people came up with such ideas to efficiently utilize the IP addressing system. People are geniuses!</p>
+<hr>
+<h3 id="ipv4-address-classes">IPv4 Address Classes</h3>
+<p>There are 5 different IPv4 classes</p>
+<div style="text-align: center"><img src="./ip table.png"></div>
+<p>A <code>subnet</code> refers to a portioned network within an IP address that divides the network area. The tool used to create these subnets is called a <code>Subnet Mask</code>. In other words, the Subnet Mask serves to separate the Network ID and the Host ID within the IP address system.</p>
+<p>For example, as shown in the image above, a <code>Class C</code> network has the first 24 bits representing the Network ID and the last 8 bits representing the Host ID. In this case, the actual number of assignable hosts within the 8-bit Host ID is 2^8 - 2 = 254.</p>
+<p>The formula for the actual number of assignable hosts is <code>2^n - 2</code>, where n is the number of bits in the Host ID. But why do we subtract 2? This is because we must exclude the <code>Network Address</code> and the <code>Broadcast Address</code>. These two addresses cannot be assigned to hosts.</p>
+<br>
+<h3 id="cidr-classless-inter-domain-routing">CIDR (Classless Inter-Domain Routing)</h3>
+<p>The class system has a critical problem, that is, it wastes a lot of IP addresses. When the Internet was first created, the creators did not predict that the Internet would become as large as it is today. This resulted in wasted address space.</p>
+<p>The IETF (Internet Engineering Task Force) introduced CIDR in 1993 to replace the &lsquo;classful&rsquo; addressing system.</p>
+<p>With CIDR, the requirements of</p>
+<ul>
+<li>Class A = /8</li>
+<li>Class B = /16</li>
+<li>Class C = /24</li>
+</ul>
+<p>were removed. This allowed larger networks to be split into smaller networks, allowing greater efficiency. These small networks are called <code>subnetworks</code> or <code>subnets</code> .</p>
+<br>
+<p>Wasted IP addresses example</p>
+<div style="text-align: center"><img src="./image-23.png"></div>
+<p>Here, we have two routers that we want to connect. This network is a <code>point-to-point</code> network, so we don&rsquo;t need many network blocks. Therefore, we allocate a Class C network. Since we allocated a Class C network, the Network ID will be 24 bits, and the Host ID will be 8 bits, giving us a total of 2^8 = 256 addresses. However, subtracting the network address (203.0.113.0) and the broadcast address (203.0.113.255), we have a total of 254 usable addresses.</p>
+<p>But let&rsquo;s say we are using the classful addressing system without CIDR introduced. In this case, out of the 254 addresses, if we assign one address to R1 (e.g., 203.0.113.1) and one address to R2 (e.g., 203.0.113.2), then 252 addresses will be unused and wasted.</p>
+<p>Let&rsquo;s look at another example.</p>
+<p>Company X needs IP addresses to connect 5000 end hosts. Since Class C can only allocate 2^8-2, or 254 addresses, we would have to allocate a Class B to X. A Class B provides 2^16-2, or 65,534 addresses. This means Company X, which only needs 5000 addresses, would waste over 60,000 IP addresses.</p>
+<h3 id="subnetting">Subnetting</h3>
+<div style="text-align: center"><img src="./image-24.png"></div>
+<p>Due to the waste of too many IP addresses, subnetting is essential. Returning to the same example, let&rsquo;s assign IP addresses to this point-to-point network using <code>/30</code> (which is a subnet of that larger Class C network).</p>
+<p>203.0.113.0/30 includes addresses from 203.0.113.0 to 203.0.113.3. When converted to binary, the IP addresses are as follows:</p>
+<ul>
+<li>203.0.113.0 = 11001011.00000000.01110001.00000000</li>
+<li>203.0.113.1 = 11001011.00000000.01110001.00000001</li>
+<li>203.0.113.2 = 11001011.00000000.01110001.00000010</li>
+<li>203.0.113.3 = 11001011.00000000.01110001.00000011</li>
+</ul>
+<p>We assign 203.0.113.1 and 203.0.113.2 to R1 and R2, respectively. (Since this was a point-to-point network, we could also use /31 instead of /30 since poin-to-point networks do not need 2 extra addresses for network and broadcast addresses.)
+Earlier, we mentioned that <code>/30</code> is a subnet of the <code>/24</code> address. So, what happens to the remaining addresses from 203.0.113.4 to 203.0.113.255 in the 203.0.113.0/24 network? These remaining addresses can be used in other subnets to prevent any waste of IP address.</p>
+
+
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a> with
+    <a href="https://github.com/mrmierzejewski/hugo-theme-console/">Console Theme</a>. 
+</div>
+
+    </div>
+  </body>
+</html>

